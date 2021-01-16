@@ -1,0 +1,27 @@
+body {
+  font-size: 16px;
+}
+#header {
+  padding-top: 0;
+  padding-bottom: 0;
+  border: 1px solid #eaeaea;
+}
+#header-nav {
+  background-color: #aa3a3a;
+  padding: 10px 0;
+}
+#header-nav .navbar-nav {
+  flex-direction: row;
+}
+#header-nav .navbar-nav .nav-item .nav-link {
+  padding: 0px 10px;
+  font-size: 0.8em;
+  color: #fff;
+}
+#header-body {
+  padding: 25px 0;
+}
+#container {
+  min-height: 80vh;
+  margin-top: 144px;
+}
