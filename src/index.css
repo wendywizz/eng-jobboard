@@ -1682,13 +1682,13 @@ header,
 ==================================================*/
 
 .footer-top {	
+	background-color: #121212;
 	color: #8d8e92;
 	position: relative;
 	z-index: 1;
 }
 
 .footer-top:after {
-	background: #121212 none repeat scroll 0 0;
 	content: "";
 	height: 100%;
 	left: 0;

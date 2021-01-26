@@ -1,0 +1,20 @@
+@font-face {
+  font-family: PSU-Stidti-Bold;
+  src: url("../fonts/PSU_Stidti/psu-stidti-bold.ttf");
+}
+@font-face {
+  font-family: PSU-Stidti-BoldItalic;
+  src: url("../fonts/PSU_Stidti/psu-stidti-bolditalic.ttf");
+}
+@font-face {
+  font-family: PSU-Stidti-Italic;
+  src: url("../fonts/PSU_Stidti/psu-stidti-italic.ttf");
+}
+@font-face {
+  font-family: PSU-Stidti-Light;
+  src: url("../fonts/PSU_Stidti/psu-stidti-light.ttf");
+}
+@font-face {
+  font-family: PSU-Stidti-LightItalic;
+  src: url("../fonts/PSU_Stidti/psu-stidti-lightitalic.ttf");
+}

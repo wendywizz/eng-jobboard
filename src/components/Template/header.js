@@ -1,5 +1,7 @@
 import React from "react";
+import { HOME_PATH, RESULT_PATH, DETAIL_PATH } from "configs/paths";
 import HeaderNav from "./header-nav";
+import navLogo from "assets/img/nav-logo.png";
 
 function Header(props) {
   return (
@@ -10,12 +12,12 @@ function Header(props) {
       <HeaderNav />
       <div id="header-body">
         <div className="menu-animation">
-          <div className="container-fluid">
+          <div className="container">
             <div className="row">
-              <div className="col-lg-2">
+              <div className="col-lg-3">
                 <div className="site-logo">
-                  <a href="index.html">
-                    <img src="assets/img/logo-2.png" alt="jobguru" />
+                  <a href={HOME_PATH}>
+                    <img className="nav-logo" src={navLogo} alt="site logo" />
                   </a>
                 </div>
                 <div className="jobguru-responsive-menu">
@@ -81,51 +83,15 @@ function Header(props) {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-5">
                 <div className="header-menu">
                   <nav id="navigation">
                     <ul id="jobguru_navigation">
                       <li className="active has-children">
-                        <a href="#">home</a>
-                        <ul>
-                          <li>
-                            <a href="index.html">Home 1</a>
-                          </li>
-                          <li>
-                            <a href="index-2.html">Home 2</a>
-                          </li>
-                        </ul>
+                        <a href={RESULT_PATH}>Result</a>                        
                       </li>
                       <li className="has-children">
-                        <a href="#">pages</a>
-                        <ul>
-                          <li>
-                            <a href="about.html">About us</a>
-                          </li>
-                          <li className="has-inner-child">
-                            <a href="#">blog</a>
-                            <ul>
-                              <li>
-                                <a href="blog.html">blog</a>
-                              </li>
-                              <li>
-                                <a href="single-blog.html">single blog</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="job-page.html">job page</a>
-                          </li>
-                          <li>
-                            <a href="login.html">login</a>
-                          </li>
-                          <li>
-                            <a href="register.html">register</a>
-                          </li>
-                          <li>
-                            <a href="contact.html">contact us</a>
-                          </li>
-                        </ul>
+                        <a href={DETAIL_PATH}>Detail</a>                       
                       </li>
                     </ul>
                   </nav>
@@ -138,17 +104,7 @@ function Header(props) {
                       <a href="post-job.html" className="post-jobs">
                         Post jobs
                       </a>
-                    </li>
-                    <li>
-                      <a href="register.html">
-                        <i className="fa fa-user"></i>sign up
-                      </a>
-                    </li>
-                    <li>
-                      <a href="login.html">
-                        <i className="fa fa-lock"></i>login
-                      </a>
-                    </li>
+                    </li>                  
                   </ul>
                 </div>
               </div>

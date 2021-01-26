@@ -1,0 +1,23 @@
+.cover-container {
+  height: 500px;
+}
+.cover-container .cover-carousel .carousel-item {
+  background-color: #000;
+  opacity: 0.4;
+  z-index: 5;
+}
+.cover-container .cover-carousel .carousel-item .image {  
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+}
+.cover-container .home-search-box { 
+  padding: 25px;
+  background-color: #fff;
+  width: 360px;
+  z-index: 10;
+}

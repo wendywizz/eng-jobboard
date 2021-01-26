@@ -1,0 +1,32 @@
+.job-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #fff;
+  padding: 35px 30px;
+  margin-bottom: 25px;
+}
+.job-item .image {  
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.job-item .detail {
+  flex: 3;
+  padding: 7px 10px;
+  margin-left: 15px;
+}
+.job-item .detail .title {  
+  font-family: PSU-Stidti-Light;
+  font-weight: bolder;
+  font-size: 1.25em;  
+  color: #111;
+  margin: 8px 0 12px;
+}
+.job-item .detail .desc .desc-item .text{
+  font-size: 0.9em;
+  margin-left: 5px;
+}
+.job-item .link {  
+  justify-content: flex-end;
+}
