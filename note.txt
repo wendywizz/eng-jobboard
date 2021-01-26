@@ -1,2 +1,13 @@
 http://preview.themeforest.net/item/jobguru-job-board-html-template/full_screen_preview/22860252?_ga=2.133208201.687065170.1610802636-785651244.1610802544
 https://www.devsnews.com/template/biden/biden/job-sidebar.html
+
+---- Search Option ----
+Keyword
+Location
+- Province
+Job Category
+Job Type
+- Full Time
+- Part Time
+- Training
+Salary
