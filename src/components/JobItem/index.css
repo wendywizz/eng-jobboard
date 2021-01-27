@@ -7,9 +7,10 @@
   margin-bottom: 25px;
 }
 .job-item .image {  
+  display: flex;
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .job-item .detail {
   flex: 3;
@@ -28,5 +29,8 @@
   margin-left: 5px;
 }
 .job-item .link {  
+  display: flex;
+  flex: 1;
   justify-content: flex-end;
+  align-items: center;
 }

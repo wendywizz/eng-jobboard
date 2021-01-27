@@ -8,4 +8,5 @@ body {
 .box {
   padding: 25px 20px;
   background-color: #fff;
+  margin-bottom: 25px;
 }

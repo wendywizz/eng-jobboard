@@ -20,7 +20,9 @@ function JobItem(props) {
           </div>
         </p>
       </div>
-      <a className="btn btn-md link">View</a>
+      <div className="link">
+        <a className="btn btn-lg btn-secondary rounded">View</a>
+      </div>
     </div>
   );
 }
