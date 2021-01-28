@@ -1,0 +1,16 @@
+.job-related-item {
+  background-color: #fff;
+  padding: 20px;
+}
+.job-related-item .title {
+  font-family: PSU-Stidti-Bold;
+  font-size: 1.15em;    
+  border-bottom: 3px solid #aa3a3a;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+.job-related-item .btn {
+  font-size: 12px;
+  padding: 7px 0;
+  margin-top: 10px;
+}

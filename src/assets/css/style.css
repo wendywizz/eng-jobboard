@@ -1,12 +1,36 @@
 @import './font.css';
 
 body {
-  font-family: PSU-Stidti-Light;
-  font-size: 16px;
+  font-family: PSU-Stidti;
+  font-size: 14px;
   background-color: #eeeeee;  
+  color: #444;
 }
 .box {
   padding: 25px 20px;
   background-color: #fff;
   margin-bottom: 25px;
+}
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.two-column {
+  display: flex;
+  flex-direction: row;
+}
+.two-column .sidebar{
+  flex-grow: 1;
+  margin-right: 30px;
+}
+.two-column .result-content {
+  flex-grow: 2;
+}
+.btn.rounded {  
+  border-radius: 25px !important;  
+}
+
+.section .title {
+  font-size: 1.3em;
+  margin-bottom: 20px;
 }

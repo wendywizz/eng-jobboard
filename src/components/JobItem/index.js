@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { Badge } from "reactstrap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons' 
@@ -21,7 +22,7 @@ function JobItem(props) {
         </p>
       </div>
       <div className="link">
-        <a className="btn btn-lg btn-secondary rounded">View</a>
+        <Link className="btn btn-lg btn-secondary rounded" to="/view">View</Link>
       </div>
     </div>
   );
