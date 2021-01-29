@@ -1,10 +1,9 @@
 @import './font.css';
 
 body {
-  font-family: PSU-Stidti;
-  font-size: 14px;
-  background-color: #eeeeee;  
-  color: #444;
+  font-family: PSU-Stidti-Light;
+  font-size: 16px;
+  background-color: #fdfdfd;  
 }
 .box {
   padding: 25px 20px;

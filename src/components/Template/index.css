@@ -8,7 +8,8 @@
   max-height: 60px;
 }
 #header-nav {
-  background-color: #aa3a3a;
+  /*background-color: #B80000;*/
+  background-color: #890403;
   padding: 10px 0;
 }
 #header-nav .navbar-nav {
