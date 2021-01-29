@@ -1,0 +1,11 @@
+.home-search-box {  
+  padding: 25px;
+  background-color: #fff;
+  width: 360px;
+  height: 380px;
+  z-index: 10000;
+  margin-left: 18vw;
+}
+.home-search-box .btn {
+  margin-top: 25px;
+}

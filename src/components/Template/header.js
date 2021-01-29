@@ -22,14 +22,7 @@ function Header(props) {
                 </div>
                 <div className="jobguru-responsive-menu">
                   <div className="slicknav_menu">
-                    <a
-                      href="#"
-                      aria-haspopup="true"
-                      role="button"
-                      tabIndex="0"
-                      className="slicknav_btn slicknav_collapsed"
-                      style={{ outline: "none" }}
-                    >
+                    <a href="/">
                       <span className="slicknav_menutxt">MENU</span>
                       <span className="slicknav_icon">
                         <span className="slicknav_icon-bar"></span>
@@ -44,19 +37,12 @@ function Header(props) {
                       role="menu"
                     >
                       <li className="active has-children slicknav_collapsed slicknav_parent">
-                        <a
-                          href="#"
-                          role="menuitem"
-                          aria-haspopup="true"
-                          tabIndex="-1"
-                          className="slicknav_item slicknav_row"
-                          style={{ outline: "none" }}
-                        >
-                          <a href="#" tabIndex="-1">
-                            home
+
+                        <a href="/" tabIndex="-1">
+                          home
                           </a>
-                          <span className="slicknav_arrow">►</span>
-                        </a>
+                        <span className="slicknav_arrow">►</span>
+
                         <ul
                           role="menu"
                           className="slicknav_hidden"
@@ -88,10 +74,10 @@ function Header(props) {
                   <nav id="navigation">
                     <ul id="jobguru_navigation">
                       <li className="active has-children">
-                        <a href={RESULT_PATH}>Result</a>                        
+                        <a href={RESULT_PATH}>Result</a>
                       </li>
                       <li className="has-children">
-                        <a href={DETAIL_PATH}>Detail</a>                       
+                        <a href={DETAIL_PATH}>Detail</a>
                       </li>
                     </ul>
                   </nav>
@@ -104,7 +90,7 @@ function Header(props) {
                       <a href="post-job.html" className="post-jobs">
                         Post jobs
                       </a>
-                    </li>                  
+                    </li>
                   </ul>
                 </div>
               </div>
