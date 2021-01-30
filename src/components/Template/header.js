@@ -10,7 +10,7 @@ function Header(props) {
       className="jobguru-header-area stick-top forsticky page-header"
     >
       <HeaderNav />
-      <div id="header-body">
+      <div className="header-body">
         <div className="menu-animation">
           <div className="container">
             <div className="row">

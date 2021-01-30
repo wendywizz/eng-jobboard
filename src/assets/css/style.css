@@ -11,10 +11,6 @@ body {
   background-color: #fff;
   margin-bottom: 25px;
 }
-.page {
-  max-width: 1280px;
-  margin: 30px auto;  
-}
 .two-column {
   display: flex;
   flex-direction: row;

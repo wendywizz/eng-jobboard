@@ -1,5 +1,6 @@
-import React from "react";
-import Template from "components/Template";
+import React from "react"
+import Template from "components/Template"
+import Page from "components/Page"
 import {
   Input,
   InputGroup,
@@ -21,7 +22,7 @@ const options = [
 function ResultContainer(props) {
   return (
     <Template>
-      <div className="page two-column">
+      <Page className="two-column">
         <div className="sidebar">
           <div className="box">
             <FormGroup tag="fieldset">
@@ -86,7 +87,7 @@ function ResultContainer(props) {
             <ListJobItem />
           </div>
         </div>
-      </div>
+      </Page>
     </Template>
   );
 }

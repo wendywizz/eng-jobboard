@@ -5,13 +5,13 @@ import './index.css';
 
 function Template(props) {
   return (
-    <div>
+    <>
       <Header />
-       <div id="container">
+       <div className="main-container">
          {props.children}
        </div>
       <Footer />
-    </div>
+    </>
   );
 }
 export default Template;

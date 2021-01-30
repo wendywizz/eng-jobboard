@@ -2,13 +2,14 @@ import React from "react"
 import { Row, Col, Button, Badge } from "reactstrap"
 import Template from "components/Template"
 import CardJobItem from "components/CardJobItem"
+import Page from "components/Page"
 import Section from "components/Section"
 import "./index.css";
 
 function DetailContainer(props) {
   return (
     <Template>
-      <div className="page">
+      <Page>
         <Section className="section-detail">
           <Row className="row-info">
             <Col md={2} className="col-image">
@@ -131,7 +132,7 @@ function DetailContainer(props) {
             <Col lg={3} md={4} sm={6} xs={12}><CardJobItem jobTitle="ผู้จัดการฝ่ายการตลาด" workAddress="อ.หาดใหญ่ จ.สงขลา" salary="ตามโครงสร้างบริษัท" /></Col>
           </Row>
         </Section>
-      </div>
+        </Page>
     </Template>
   );
 }

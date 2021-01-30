@@ -1,0 +1,10 @@
+.page {
+  max-width: 1280px;
+  margin: 30px auto;
+}
+.page.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}

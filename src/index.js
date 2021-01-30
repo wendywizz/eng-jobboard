@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '@fortawesome/fontawesome-free';
 import './index.css';
+import 'assets/css/theme/greyson.css'
 import './assets/css/style.css';
 
 ReactDOM.render(

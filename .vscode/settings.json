@@ -3,5 +3,9 @@
     "activityBar.background": "#227093",
     "titleBar.activeBackground": "#227093",
     "titleBar.activeForeground": "#FFFBFB"
-  }
+  },
+  // number of spaces for a tab
+  "editor.tabSize": 2,
+  // insert spaces when pressing tab
+  "editor.insertSpaces": true
 }
