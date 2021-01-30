@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons' 
 import './index.css';
 
-function JobItem(props) {
+function ListJobItem(props) {
   return (
-    <div className="job-item">
+    <div className="list-job-item">
       <div className="image">
-        <img src="http://themescare.com/demos/jobguru-v2/assets/img/company-logo-1.png" />
+        <img src="http://themescare.com/demos/jobguru-v2/assets/img/company-logo-1.png" alt="logo" />
       </div>
       <div className="detail">
         <Badge>FULL TIME</Badge>
@@ -22,9 +22,9 @@ function JobItem(props) {
         </p>
       </div>
       <div className="link">
-        <Link className="btn btn-lg btn-secondary rounded" to="/view">View</Link>
+        <Link className="btn btn-primary rounded" to="/view">รายละเอียด</Link>
       </div>
     </div>
   );
 }
-export default JobItem;
+export default ListJobItem;

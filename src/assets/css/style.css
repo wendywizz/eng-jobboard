@@ -1,8 +1,8 @@
 @import './font.css';
 
 body {
-  font-family: PSU-Stidti-Light;
-  font-size: 16px;
+  font-family: PSU-Stidti;
+  font-size: 14px;
   background-color: #eaeaea;
   /*background-color: #fdfdfd;*/
 }
@@ -13,7 +13,7 @@ body {
 }
 .page {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 30px auto;  
 }
 .two-column {
   display: flex;
@@ -28,9 +28,4 @@ body {
 }
 .btn.rounded {  
   border-radius: 25px !important;  
-}
-
-.section .title {
-  font-size: 1.3em;
-  margin-bottom: 20px;
 }

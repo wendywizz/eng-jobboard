@@ -8,7 +8,7 @@ import {
   FormGroup,
   Label,
 } from "reactstrap";
-import JobItem from "components/JobItem";
+import ListJobItem from "components/ListJobItem";
 import Select from "react-select";
 import "./index.css";
 
@@ -77,13 +77,13 @@ function ResultContainer(props) {
             </InputGroup>
           </div>
           <div>
-            <JobItem />
-            <JobItem />
-            <JobItem />
-            <JobItem />
-            <JobItem />
-            <JobItem />
-            <JobItem />
+            <ListJobItem />
+            <ListJobItem />
+            <ListJobItem />
+            <ListJobItem />
+            <ListJobItem />
+            <ListJobItem />
+            <ListJobItem />
           </div>
         </div>
       </div>

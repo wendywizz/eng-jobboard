@@ -1,17 +1,18 @@
 import React from "react"
 import { Row, Col, Button, Badge } from "reactstrap"
 import Template from "components/Template"
-import JobRelatedItem from "components/JobRelatedItem"
+import CardJobItem from "components/CardJobItem"
+import Section from "components/Section"
 import "./index.css";
 
 function DetailContainer(props) {
   return (
     <Template>
       <div className="page">
-        <div className="section page-detail">
+        <Section className="section-detail">
           <Row className="row-info">
             <Col md={2} className="col-image">
-              <img src="http://themescare.com/demos/jobguru-v2/assets/img/company-logo-1.png" />
+              <img src="http://themescare.com/demos/jobguru-v2/assets/img/company-logo-1.png" alt="logo" />
             </Col>
             <Col md={10} className="col-info">
               <h1 className="name">
@@ -26,7 +27,7 @@ function DetailContainer(props) {
           <hr />
           <Row className="row-detail">
             <Col md={8}>
-              <div className="page-detail-section">
+              <div className="section-sub-detail">
                 <h4 className="section-title">ข้อมูลบริษัท</h4>
                 <p>
                   เพื่อให้เข้ากับยุคสมัยทางบริษัทเน้นการใช้เทคโนโลยีสมัยใหม่เพื่อเจาะกลุ่มลูกค้าและบริหารงานให้มีประสิทธิภาพ
@@ -36,7 +37,7 @@ function DetailContainer(props) {
                   นี้อาจจะเป็นโอกาสที่ดีสำหรับคุณ
                 </p>
               </div>
-              <div className="page-detail-section">
+              <div className="section-sub-detail">
                 <h4 className="section-title">คุณสมบัติผู้เข้าสมัคร</h4>
                 <ul>
                   <li>มีคุณวุฒิตรงตามที่นายจ้างต้องการ</li>
@@ -51,13 +52,13 @@ function DetailContainer(props) {
                   <li>มีความเอื้ออาทรต่อเพื่อนร่วมงาน</li>
                 </ul>
               </div>
-              <div className="page-detail-section">
+              <div className="section-sub-detail">
                 <h4 className="section-title">ขอบเขตงาน</h4>
                 <p>
                   พัฒนาโปรแกรมทั้งเว็บแอพพลิเคชั่นและโมบายแอพพลิเคชั่นตามที่ได้รับมอบหมาย
                 </p>
               </div>
-              <div className="page-detail-section">
+              <div className="section-sub-detail">
                 <h4 className="section-title">สวัสดิการ</h4>
                 <ul>
                   <li>ประกันสังคม</li>
@@ -120,16 +121,16 @@ function DetailContainer(props) {
               </div>
             </Col>
           </Row>
-        </div>
-        <div className="section page-job-related">
+        </Section>
+        <Section className="section-job-related">
           <h3 className="title">ตำแหน่งงานอื่นๆ ของบริษัทนี้</h3>
           <Row>
-            <Col lg={3} md={4} sm={6} xs={12}><JobRelatedItem jobTitle="พนักงานธุรการ" workAddress="อ.หาดใหญ่ จ.สงขลา" salary="15,000 - 20,000" /></Col>
-            <Col lg={3} md={4} sm={6} xs={12}><JobRelatedItem jobTitle="วิศวกรระบบ" workAddress="อ.จะนะ จ.สงขลา" salary="35,000 - 50,000" /></Col>
-            <Col lg={3} md={4} sm={6} xs={12}><JobRelatedItem jobTitle="กราฟฟิคดีไซด์เนอร์" workAddress="อ.หาดใหญ่ จ.สงขลา" salary="ตามตกลง" /></Col>
-            <Col lg={3} md={4} sm={6} xs={12}><JobRelatedItem jobTitle="ผู้จัดการฝ่ายการตลาด" workAddress="อ.หาดใหญ่ จ.สงขลา" salary="ตามโครงสร้างบริษัท" /></Col>
+            <Col lg={3} md={4} sm={6} xs={12}><CardJobItem jobTitle="พนักงานธุรการ" workAddress="อ.หาดใหญ่ จ.สงขลา" salary="15,000 - 20,000" /></Col>
+            <Col lg={3} md={4} sm={6} xs={12}><CardJobItem jobTitle="วิศวกรระบบ" workAddress="อ.จะนะ จ.สงขลา" salary="35,000 - 50,000" /></Col>
+            <Col lg={3} md={4} sm={6} xs={12}><CardJobItem jobTitle="กราฟฟิคดีไซด์เนอร์" workAddress="อ.หาดใหญ่ จ.สงขลา" salary="ตามตกลง" /></Col>
+            <Col lg={3} md={4} sm={6} xs={12}><CardJobItem jobTitle="ผู้จัดการฝ่ายการตลาด" workAddress="อ.หาดใหญ่ จ.สงขลา" salary="ตามโครงสร้างบริษัท" /></Col>
           </Row>
-        </div>
+        </Section>
       </div>
     </Template>
   );

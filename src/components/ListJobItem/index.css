@@ -1,4 +1,4 @@
-.job-item {
+.list-job-item {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -6,29 +6,29 @@
   padding: 35px 30px;
   margin-bottom: 25px;
 }
-.job-item .image {  
+.list-job-item .image {  
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: flex-start;
 }
-.job-item .detail {
+.list-job-item .detail {
   flex: 3;
   padding: 7px 10px;
   margin-left: 15px;
 }
-.job-item .detail .title {  
+.list-job-item .detail .title {  
   font-family: PSU-Stidti-Light;
   font-weight: bolder;
   font-size: 1.25em;  
   color: #111;
   margin: 8px 0 12px;
 }
-.job-item .detail .desc .desc-item .text{
+.list-job-item .detail .desc .desc-item .text{
   font-size: 0.9em;
   margin-left: 5px;
 }
-.job-item .link {  
+.list-job-item .link {  
   display: flex;
   flex: 1;
   justify-content: flex-end;

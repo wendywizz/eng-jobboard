@@ -1,6 +1,9 @@
-.page-detail {  
+.section-detail {  
   padding: 1rem 2.5rem;
   background-color: #fff;
+}
+.section-sub-detail {
+  padding: 15px 0;
 }
 .row-info {
   padding: 25px 0;  
@@ -21,16 +24,7 @@
   padding: 25px 0;
 }
 
-.page-detail-section  {
-  padding: 20px 0;
-}
-.page-detail-section .section-title {  
-  font-size: 1.3em;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.page-job-related {  
+.section-job-related {  
   padding: 40px 0;
 }
 

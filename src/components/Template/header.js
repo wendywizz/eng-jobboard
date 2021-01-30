@@ -84,14 +84,7 @@ function Header(props) {
                 </div>
               </div>
               <div className="col-lg-4">
-                <div className="header-right-menu">
-                  <ul>
-                    <li>
-                      <a href="post-job.html" className="post-jobs">
-                        Post jobs
-                      </a>
-                    </li>
-                  </ul>
+                <div className="header-right-menu">                
                 </div>
               </div>
             </div>

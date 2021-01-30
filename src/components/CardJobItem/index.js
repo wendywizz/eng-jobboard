@@ -2,9 +2,9 @@ import React from "react"
 import { Button } from "reactstrap"
 import "./index.css"
 
-function JobRelatedItem({jobTitle, workAddress, salary}) {
+function CardJobItem({jobTitle, workAddress, salary}) {
   return (
-    <div className="job-related-item">
+    <div className="card-job-item">
       <h5 className="title">{jobTitle}</h5>
       <ul className="desc">
         <li>{workAddress}</li>
@@ -14,4 +14,4 @@ function JobRelatedItem({jobTitle, workAddress, salary}) {
     </div>
   )
 }
-export default JobRelatedItem
+export default CardJobItem

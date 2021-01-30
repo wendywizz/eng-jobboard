@@ -1,10 +1,9 @@
 import React from "react"
-import { Container } from "reactstrap"
 import HomeSearchBox from "./HomeSearchBox"
 
 import "./index.css";
 
-function CoverSection() {
+function SectionCover() {
   return (
     <div className="cover-container">
       <div className="image">        
@@ -13,4 +12,4 @@ function CoverSection() {
     </div>
   );
 }
-export default CoverSection;
+export default SectionCover;
