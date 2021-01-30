@@ -3,9 +3,14 @@ import { Form, FormGroup, Input, Label, Button, Alert } from "reactstrap"
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function PanelCodeChecking() {
+function PanelCodeChecking({ onCallback }) {
+  const _handleSubmit = (e) => {
+    e.preventDefault()
+
+    onCallback(true)
+  }
   return (
-    <Form>
+    <Form onSubmit={_handleSubmit}>
       <FormGroup>
         <div className="input-inner">
           <Label>รหัสนักศึกษา</Label>

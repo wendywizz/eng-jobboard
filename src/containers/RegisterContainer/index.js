@@ -9,17 +9,43 @@ import {
 } from "containers/RegisterContainer/PanelRegister"
 import "./index.css"
 
+const REGIST_STATE = {
+  codeChecking: 0,
+  inputInfo: 1,
+  finish: 2,
+}
 
 function RegisterContainer() {
-  const [registState, setRegistState] = useState(0)
+  const [registState, setRegistState] = useState(REGIST_STATE.codeChecking)
+
+  const _handleCallback = (passed) => {
+    switch (registState) {
+      case 0:
+        if (passed) {
+          setRegistState(REGIST_STATE.inputInfo)
+        }
+        break
+      case 1:
+        if (passed) {
+          setRegistState(REGIST_STATE.finish)
+        }
+        break
+      case 2:
+        setRegistState(REGIST_STATE.codeChecking)
+        break
+      default:
+        break
+    }
+
+  }
 
   const renderPanel = () => {
     switch (registState) {
-      case 0: default:
-        return <PanelCodeChecking />
-      case 1:
+      case REGIST_STATE.codeChecking: default:
+        return <PanelCodeChecking onCallback={_handleCallback} />
+      case REGIST_STATE.inputInfo:
         return <PanelInputInfo />
-      case 2:
+      case REGIST_STATE.finish:
         return <PanelFinish />
     }
   }
