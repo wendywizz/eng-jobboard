@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import { Row, Col } from "reactstrap"
-import Template from "components/Template"
-import Page from "components/Page"
+import Template from "frontend/components/Template"
+import Page from "frontend/components/Page"
 import {
   PanelCodeChecking,
   PanelInputInfo,
   PanelFinish
-} from "containers/RegisterContainer/PanelRegister"
+} from "frontend/containers/Public/RegisterContainer/PanelRegister"
 import "./index.css"
 
 const REGIST_STATE = {
@@ -44,9 +44,9 @@ function RegisterContainer() {
       case REGIST_STATE.codeChecking: default:
         return <PanelCodeChecking onCallback={_handleCallback} />
       case REGIST_STATE.inputInfo:
-        return <PanelInputInfo />
+        return <PanelInputInfo onCallback={_handleCallback} />
       case REGIST_STATE.finish:
-        return <PanelFinish />
+        return <PanelFinish onCallback={_handleCallback} />
     }
   }
 

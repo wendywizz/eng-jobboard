@@ -1,6 +1,6 @@
 import React from "react"
 import { Container, Row, Col } from "reactstrap"
-import Template from "components/Template"
+import Template from "frontend/components/Template"
 import SectionCover from "./SectionCover"
 import SectionRecentJob from "./SectionRecentJob"
 

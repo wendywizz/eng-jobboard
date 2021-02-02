@@ -1,9 +1,9 @@
 import React from "react"
 import { Row, Col, Button, Badge } from "reactstrap"
-import Template from "components/Template"
-import CardJobItem from "components/CardJobItem"
-import Page from "components/Page"
-import Section from "components/Section"
+import Template from "frontend/components/Template"
+import CardJobItem from "frontend/components/CardJobItem"
+import Page from "frontend/components/Page"
+import Section from "frontend/components/Section"
 import "./index.css";
 
 function DetailContainer(props) {

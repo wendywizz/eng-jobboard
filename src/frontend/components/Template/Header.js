@@ -1,9 +1,9 @@
 import React from "react";
-import { HOME_PATH, RESULT_PATH, DETAIL_PATH } from "configs/paths";
-import HeaderNav from "./header-nav";
-import navLogo from "assets/img/nav-logo.png";
+import { HOME_PATH, RESULT_PATH, DETAIL_PATH } from "frontend/configs/paths";
+import HeaderNav from "./HeaderNav";
+import navLogo from "frontend/assets/img/nav-logo.png";
 
-function Header(props) {
+function Header() {
   return (
     <header
       id="header"

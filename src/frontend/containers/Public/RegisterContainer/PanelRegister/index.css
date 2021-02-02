@@ -1,0 +1,10 @@
+.panel-input-info .block-register-social {
+  display: flex;
+  flex-direction: column;
+}
+.panel-input-info .block-register-social .btn:not(:last-child) {
+  margin-bottom: 7px;
+}
+.panel-input-info .line {
+  margin: 30px 0;
+}

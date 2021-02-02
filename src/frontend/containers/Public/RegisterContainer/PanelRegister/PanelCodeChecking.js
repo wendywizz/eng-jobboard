@@ -10,11 +10,12 @@ function PanelCodeChecking({ onCallback }) {
     onCallback(true)
   }
   return (
+    <div className="panel panel-code-checking">
     <Form onSubmit={_handleSubmit}>
       <FormGroup>
         <div className="input-inner">
-          <Label>รหัสนักศึกษา</Label>
-          <Input placeholder="xxxxxxxxxx" />
+          <Label>ตรวจสอบรหัสนักศึกษา</Label>
+          <Input placeholder="ระบุรหัสนักศึกษา" />
         </div>
         <Button block color="primary">ตรวจสอบ</Button>
         <Alert color="info">
@@ -23,6 +24,7 @@ function PanelCodeChecking({ onCallback }) {
         </Alert>
       </FormGroup>
     </Form>
+    </div>
   )
 }
 export default PanelCodeChecking

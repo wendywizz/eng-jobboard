@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'jquery/dist/jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import '@fortawesome/fontawesome-free';
+import '@fortawesome/fontawesome-free/css/all.css';
 import './index.css';
 import 'assets/css/theme/greyson.css'
 import './assets/css/style.css';
