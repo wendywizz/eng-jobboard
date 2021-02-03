@@ -1,7 +1,7 @@
 import React from "react";
-import { HOME_PATH, RESULT_PATH, DETAIL_PATH } from "frontend/configs/paths";
+import { HOME_PATH, RESULT_PATH, DETAIL_PATH } from "Frontend/configs/paths";
 import HeaderNav from "./HeaderNav";
-import navLogo from "frontend/assets/img/nav-logo.png";
+import navLogo from "Frontend/assets/img/nav-logo.png";
 
 function Header() {
   return (

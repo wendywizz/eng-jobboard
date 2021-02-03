@@ -1,9 +1,9 @@
 
-import HomeContainer from "frontend/containers/Public/HomeContainer"
-import ResultContainer from "frontend/containers/Public/ResultContainer"
-import DetailContainer from "frontend/containers/Public/DetailContainer"
-import RegisterContainer from "frontend/containers/Public/RegisterContainer"
-import TestContainer from "frontend/containers/TestContainer"
+import HomeContainer from "Frontend/containers/Public/HomeContainer"
+import ResultContainer from "Frontend/containers/Public/ResultContainer"
+import DetailContainer from "Frontend/containers/Public/DetailContainer"
+import RegisterContainer from "Frontend/containers/Public/RegisterContainer"
+import TestContainer from "Frontend/containers/TestContainer"
 import {
   HOME_PATH,  
   RESULT_PATH,

@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import ModalLogin from "frontend/components/ModalLogin"
+import ModalLogin from "Frontend/components/ModalLogin"
 
 function HeaderNav() {
   return (

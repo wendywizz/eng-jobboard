@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import { Row, Col } from "reactstrap"
-import Template from "frontend/components/Template"
-import Page from "frontend/components/Page"
+import Template from "Frontend/components/Template"
+import Page from "Frontend/components/Page"
 import {
   PanelCodeChecking,
   PanelInputInfo,
   PanelFinish
-} from "frontend/containers/Public/RegisterContainer/PanelRegister"
+} from "Frontend/containers/Public/RegisterContainer/PanelRegister"
 import "./index.css"
 
 const REGIST_STATE = {

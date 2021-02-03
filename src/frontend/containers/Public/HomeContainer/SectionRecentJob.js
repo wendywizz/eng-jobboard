@@ -1,5 +1,5 @@
 import React from "react"
-import ListJobItem from "frontend/components/ListJobItem"
+import ListJobItem from "Frontend/components/ListJobItem"
 
 function SectionRecentJob() {
   return (

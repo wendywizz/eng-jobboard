@@ -1,6 +1,6 @@
 import React from "react"
-import Template from "frontend/components/Template"
-import Page from "frontend/components/Page"
+import Template from "Frontend/components/Template"
+import Page from "Frontend/components/Page"
 import {
   Input,
   InputGroup,
@@ -9,7 +9,7 @@ import {
   FormGroup,
   Label,
 } from "reactstrap";
-import ListJobItem from "frontend/components/ListJobItem";
+import ListJobItem from "Frontend/components/ListJobItem";
 import Select from "react-select";
 import "./index.css";
 
