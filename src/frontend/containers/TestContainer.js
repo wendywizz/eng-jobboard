@@ -1,14 +1,10 @@
-import React from 'react'
-import { Button } from "reactstrap"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Template from '../components/Template';
+import React from "react"
 
 function TestContainer() {
   return (
-    <Template>
-      <h1>Hello</h1>
-      <Button size="lg" color="primary"><FontAwesomeIcon icon={["fal", "coffee"]} /> Hello</Button>
-    </Template>
+    <div>
+      <h1>Test Container</h1>
+    </div>
   )
 }
 export default TestContainer

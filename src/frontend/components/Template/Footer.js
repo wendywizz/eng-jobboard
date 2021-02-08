@@ -20,27 +20,27 @@ function Footer(props) {
                 </p>
                 <ul className="footer-social">
                   <li>
-                    <a href="#" className="fb">
+                    <a href="/" className="fb">
                       <i className="fa fa-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="twitter">
+                    <a href="/" className="twitter">
                       <i className="fa fa-twitter"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="linkedin">
+                    <a href="/" className="linkedin">
                       <i className="fa fa-linkedin"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="gp">
+                    <a href="/" className="gp">
                       <i className="fa fa-google-plus"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="skype">
+                    <a href="/" className="skype">
                       <i className="fa fa-skype"></i>
                     </a>
                   </li>
@@ -56,7 +56,7 @@ function Footer(props) {
                   </div>
                   <div className="latest-post-footer-right">
                     <h4>
-                      <a href="#">Website design trends for 2018</a>
+                      <a href="/">Website design trends for 2018</a>
                     </h4>
                     <p>January 14 - 2018</p>
                   </div>
@@ -67,7 +67,7 @@ function Footer(props) {
                   </div>
                   <div className="latest-post-footer-right">
                     <h4>
-                      <a href="#">UI experts and modern designs</a>
+                      <a href="/">UI experts and modern designs</a>
                     </h4>
                     <p>January 12 - 2018</p>
                   </div>
@@ -79,41 +79,41 @@ function Footer(props) {
                 <h3>main links</h3>
                 <ul>
                   <li>
-                    <a href="#">
+                    <a href="/">
                       <i className="fa fa-angle-double-right "></i> About jobguru
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/">
                       <i className="fa fa-angle-double-right "></i> Delivery
                       Information
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/">
                       <i className="fa fa-angle-double-right "></i> Terms &amp;
                       Conditions
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/">
                       <i className="fa fa-angle-double-right "></i> Customer support
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/">
                       <i className="fa fa-angle-double-right "></i> Contact with an
                       expert
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/">
                       <i className="fa fa-angle-double-right "></i> community
                       updates
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/">
                       <i className="fa fa-angle-double-right "></i> upcoming updates
                     </a>
                   </li>

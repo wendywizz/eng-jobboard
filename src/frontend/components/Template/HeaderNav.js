@@ -7,8 +7,8 @@ function HeaderNav() {
     <div className="header-nav">
       <div className="header-nav-col header-nav-left">
         <ul className="navbar-nav">
-          <li className="nav-item"><a className="nav-link" href="#">รับสมัครงาน</a></li>
-          <li className="nav-item"><a className="nav-link" href="#">หางาน</a></li>
+          <li className="nav-item"><a className="nav-link" href="/">รับสมัครงาน</a></li>
+          <li className="nav-item"><a className="nav-link" href="/">หางาน</a></li>
         </ul>
       </div>
       <div className="header-nav-col header-nav-right">
