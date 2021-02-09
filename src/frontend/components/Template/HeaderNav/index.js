@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from "react-router-dom"
 import ModalLogin from "Frontend/components/ModalLogin"
 
+import "./index.css"
+
 function HeaderNav() {
   return (
     <div className="header-nav">

@@ -7,9 +7,9 @@ function Template(props) {
   return (
     <>
       <Header />
-       <div className="main-container">
-         {props.children}
-       </div>
+      <div className="main-container">
+        {props.children}
+      </div>
       <Footer />
     </>
   );

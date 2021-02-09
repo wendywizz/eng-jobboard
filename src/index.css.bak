@@ -1840,27 +1840,27 @@ ul.footer-social li a>i {
 	padding: 30px 0;
 }
 
-.copyright-left {
+.copyright-center {
 	text-align: center
 }
 
-.copyright-left>p {
+.copyright-center>p {
 	text-transform: capitalize;
 }
 
-.copyright-left>p {
+.copyright-center>p {
 	font-family: "Montserrat", sans-serif;
 	font-weight: 500;
 	text-transform: capitalize;
 	color: #4c4c4c;
 }
 
-.copyright-left p i {
+.copyright-center p i {
 	color: #27d0ee;
 	margin: 0 5px;
 }
 
-.copyright-left p a {
+.copyright-center p a {
 	color: #27d0ee;
 	margin-left: 3px;
 }

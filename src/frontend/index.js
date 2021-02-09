@@ -8,9 +8,8 @@ import TemplateEmployer from "./components/TemplateEmployer"
 import { EMPLOYER_PATH } from "./configs/paths"
 import routes from "./configs/routes"
 
-import "./assets/css/style.css"
 import "./assets/css/theme/greyson.css"
-
+import "./assets/css/style.css"
 
 function Frontend() {
   return (
@@ -24,40 +23,35 @@ function Frontend() {
                   return (
                     <Switch>
                       {value.children.map((route, index) => {
-                        var RouteTemplate = null
-
-                        switch (value.basePath) {
-                          case EMPLOYER_PATH:
-                            
-                            RouteTemplate =
-                              <Route
-                                key={index}
-                                path={match.path + route.path}
-                                exact={route.exact}
-                                name={route.name}
-                                render={() => 
-                                  <TemplateEmployer>
-                                    <route.component />
-                                  </TemplateEmployer>}
-                              />
-                            break;
-                          default:
-                            RouteTemplate =
-                              <Route
-                                key={index}
-                                path={match.path + route.path}
-                                exact={route.exact}
-                                name={route.name}
-                                render={() => <route.component />}
-                              />
-                            break;
+                        if (route.component) {
+                          switch (value.basePath) {
+                            case EMPLOYER_PATH:
+                              return (
+                                <Route
+                                  key={index}
+                                  path={match.path + route.path}
+                                  exact={route.exact}
+                                  name={route.name}
+                                  render={() =>
+                                    <TemplateEmployer>
+                                      <route.component />
+                                    </TemplateEmployer>}
+                                />
+                              )
+                            default:
+                              return (
+                                <Route
+                                  key={index}
+                                  path={match.path + route.path}
+                                  exact={route.exact}
+                                  name={route.name}
+                                  render={() => <route.component />}
+                                />
+                              )
+                          }
+                        } else {
+                          return false
                         }
-
-                        console.log(<Route />)
-
-                        return route.component ? (
-                          <RouteTemplate />
-                        ) : null;
                       })}
                     </Switch>
                   )

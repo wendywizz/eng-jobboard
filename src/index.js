@@ -1,13 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react"
+import ReactDOM from "react-dom"
+import App from "./App"
+import reportWebVitals from "./reportWebVitals"
 
-import 'jquery/dist/jquery';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import '@fortawesome/fontawesome-free/css/all.css';
-import './index.css';
+import "jquery/dist/jquery"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.min.js"
+import "@fortawesome/fontawesome-free/css/all.css";
 
 ReactDOM.render(
   <React.StrictMode>

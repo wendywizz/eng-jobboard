@@ -1,7 +1,10 @@
 import React from "react";
+import { Row, Col } from "reactstrap"
 import { HOME_PATH, RESULT_PATH, DETAIL_PATH } from "Frontend/configs/paths";
-import HeaderNav from "./HeaderNav";
+import HeaderNav from "../HeaderNav";
+
 import navLogo from "Frontend/assets/img/nav-logo.png";
+import "./index.css"
 
 function Header() {
   return (
@@ -13,8 +16,8 @@ function Header() {
       <div className="header-body">
         <div className="menu-animation">
           <div className="container">
-            <div className="row">
-              <div className="col-lg-3">
+            <Row>
+              <Col md={3}>
                 <div className="site-logo">
                   <a href={HOME_PATH}>
                     <img className="nav-logo" src={navLogo} alt="site logo" />
@@ -30,46 +33,10 @@ function Header() {
                         <span className="slicknav_icon-bar"></span>
                       </span>
                     </a>
-                    <ul
-                      className="slicknav_nav slicknav_hidden"
-                      style={{ display: "none" }}
-                      aria-hidden="true"
-                      role="menu"
-                    >
-                      <li className="active has-children slicknav_collapsed slicknav_parent">
-
-                        <a href="/" tabIndex="-1">
-                          home
-                          </a>
-                        <span className="slicknav_arrow">►</span>
-
-                        <ul
-                          role="menu"
-                          className="slicknav_hidden"
-                          style={{ display: "none" }}
-                          aria-hidden="true"
-                        >
-                          <li>
-                            <a href="index.html" role="menuitem" tabIndex="-1">
-                              Home 1
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="index-2.html"
-                              role="menuitem"
-                              tabIndex="-1"
-                            >
-                              Home 2
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
                   </div>
                 </div>
-              </div>
-              <div className="col-lg-5">
+              </Col>
+              <Col md={5}>
                 <div className="header-menu">
                   <nav id="navigation">
                     <ul id="jobguru_navigation">
@@ -82,12 +49,12 @@ function Header() {
                     </ul>
                   </nav>
                 </div>
-              </div>
-              <div className="col-lg-4">
+              </Col>
+              <Col md={4}>
                 <div className="header-right-menu">                
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Row>
           </div>
         </div>
       </div>

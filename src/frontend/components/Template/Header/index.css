@@ -1,0 +1,343 @@
+#header {
+  background-color: #fff;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom: 1px solid #eaeaea;
+}
+#header .nav-logo {
+  max-height: 60px;
+}
+#header .header-body {
+  padding: 25px 0;
+}
+
+.jobguru-header-area {
+	padding: 15px 0
+}
+
+.jobguru-header-area .container-fluid {
+	padding: 0 30px;
+}
+
+.forsticky {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.stick-top {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 12;
+}
+
+.forsticky.sticky {
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: #ffffff;
+	-ms-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+	-o-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+	z-index: 99999
+}
+
+header,
+.menu-animation nav>ul>li,
+.menu-animation,
+.menu-animation ul>li>a.post-jobs {
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.menu-sec .container-fluid {
+	padding: 0 30px;
+}
+
+.site-logo {
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: 35px;
+	margin-right: 20px;
+	margin-top: 5px;
+	position: relative;
+	z-index: 99999
+}
+
+.jobguru-header-area.stick-top.sticky .non-stick-logo {
+	display: none
+}
+
+.jobguru-header-area.stick-top .stick-logo {
+	display: none
+}
+
+.jobguru-header-area.stick-top.sticky .stick-logo {
+	display: block
+}
+
+.header-menu {
+	display: inline-block;
+}
+
+.header-menu ul {
+	margin: 5px 0 0;
+	padding: 0
+}
+
+.header-menu ul li {
+	display: inline-block;
+	position: relative
+}
+
+.header-menu ul li a {
+	display: block;
+	padding: 5px 10px;
+	color: #fff;
+	text-transform: capitalize;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	position: relative
+}
+
+.header-menu ul li.has-children>a:after {
+	font-family: Fontawesome;
+	content: '\f0d7';
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	font-size: 16px;
+	-webkit-transition: .2s;
+	transition: .2s;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	line-height: 17px;
+	width: 17px;
+	height: 17px;
+	color: #fff;
+	display: inline-block;
+	border-radius: 3px;
+	margin-left: 7px;
+	text-indent: 0;
+	top: 1px;
+	position: relative;
+}
+
+.header-menu ul li ul {
+	position: absolute;
+	width: 200px;
+	top: 140%;
+	left: 0;
+	background: #fff none repeat scroll 0 0;
+	box-shadow: 0 0px 8px rgba(16, 16, 16, 0.25);
+	border-radius: 5px;
+	visibility: hidden;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	padding: 10px 0;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	z-index: 99
+}
+
+.header-menu ul li:hover>ul {
+	visibility: visible;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	top: 100%
+}
+
+.header-menu ul li.has-children>ul:before {
+	position: absolute;
+	left: 30px;
+	top: -4px;
+	width: 20px;
+	height: 20px;
+	background: #ffffff;
+	content: "";
+	background: #ffffff;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	border-radius: 3px;
+}
+
+.header-menu ul li.has-inner-child>ul:before {
+	position: absolute;
+	left: -5px;
+	top: 3px;
+	width: 20px;
+	height: 20px;
+	background: #ffffff;
+	content: "";
+	background: #ffffff;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	border-radius: 3px;
+}
+.header-menu ul li ul li {
+	display: block;
+	position: relative;
+	-webkit-transition: all 0.2s ease 0s;
+	transition: all 0.2s ease 0s
+}
+.header-menu ul li ul li:hover {
+	-webkit-transform: translateX(2px);
+	transform: translateX(2px)
+}
+.header-menu ul li ul li a {
+	color: #808080;
+	padding: 3px 20px
+}
+.header-menu ul li ul li a:hover {
+	color: #111
+}
+.header-menu ul li ul li ul {
+	position: absolute;
+	left: 120%;
+	top: 0;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	visibility: hidden;
+}
+.header-menu ul li:hover ul li:hover ul {
+	left: 100%;
+	margin-left: 15px;
+	top: 0;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	visibility: visible;
+}
+.header-right-menu ul {
+	text-align: right
+}
+.header-right-menu ul li {
+	display: inline-block
+}
+.header-right-menu ul li a {
+	display: block;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500
+}
+.header-right-menu ul li a i {
+	margin-right: 5px
+}
+
+.jobguru-header-area.stick-top.sticky .header-right-menu ul li a,
+.jobguru-header-area.stick-top.sticky .header-menu ul li a {
+	color: #393941
+}
+
+.jobguru-header-area.stick-top.sticky .header-menu ul li a:after {
+	color: #393941
+}
+
+.jobguru-header-area.stick-top.sticky .post-jobs {
+	color: #fff !important
+}
+.post-jobs {
+	display: block;
+	padding: 10px 30px !important;
+	background: #25AD60 none repeat scroll 0 0;
+	border-radius: 40px;
+}
+.post-jobs:hover {
+	background: #1e8d4e none repeat scroll 0 0;
+}
+
+.jobguru-responsive-menu {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 0px;
+	width: 100%;
+	z-index: 999;
+}
+
+.slicknav_nav a {
+	font-size: 14px;
+	margin: 0;
+	text-transform: capitalize;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	color: #000
+}
+
+.slicknav_menu {
+	background: transparent;
+}
+
+.slicknav_menutxt {
+	display: none !important;
+}
+
+.slicknav_arrow {
+	float: right;
+	color: #25ad60
+}
+
+.slicknav_nav a:hover {
+	border-radius: 0;
+}
+
+.slicknav_nav .slicknav_row:hover {
+	border-radius: 0
+}
+
+.slicknav_nav a:hover,
+.slicknav_nav .slicknav_row:hover {
+	background: #25ad60 none repeat scroll 0 0;
+	color: #fff
+}
+
+.slicknav_nav a:hover .slicknav_arrow {
+	color: #fff
+}
+
+.slicknav_nav a:hover a {
+	color: #fff
+}
+
+.slicknav_nav li {
+	border-bottom: 1px solid #ddd;
+}
+
+.slicknav_nav li:last-child {
+	border-bottom: 0px solid #ddd
+}
+
+.slicknav_nav {
+	background: #fff none repeat scroll 0 0;
+	border-top: 1px solid #25ad60;
+	box-shadow: 0 0 25px rgba(0, 0, 0, 0.19)
+}
+
+.slicknav_btn {
+	background-color: transparent !important;
+	line-height: 0;
+	margin-right: 0px;
+	margin-top: -5px;
+}
+
+.slicknav_menu .slicknav_icon {
+	float: none !important;
+	margin: 0
+}
+
+.slicknav_icon-bar {
+	height: 3px !important;
+	margin: 5px 0;
+	width: 30px !important;
+}
+
+.slicknav_menu .slicknav_icon-bar {
+	background-color: #fff;
+}
+
+.jobguru-header-area.stick-top.sticky .slicknav_menu .slicknav_icon-bar,
+.jobguru-header-area.home-3-page .slicknav_menu .slicknav_icon-bar {
+	background-color: #111
+}

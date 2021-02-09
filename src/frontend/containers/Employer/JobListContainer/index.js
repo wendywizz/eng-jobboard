@@ -1,8 +1,15 @@
 import React from "react"
+import ListJobItem from "Frontend/components/ListJobItem"
 
 function JobListContainer() {
   return (
-    <h1>Job List Empr</h1>
+    <div>
+      <h1>Job List Empr</h1>
+      <ListJobItem />
+      <ListJobItem />
+      <ListJobItem />
+      <ListJobItem />
+    </div>
   )
 }
 export default JobListContainer

@@ -4,9 +4,16 @@ const DETAIL_PATH = "/view"
 const REGISTER_PATH = "/register"
 const TEST_PATH = "/test"
 const EMPLOYER_PATH = "/employer"
-const EMPLOYER_JOB_PATH = "/usr/:id/job/"
-const EMPLOYER_RESUME_PATH = "/usr/:id/resume/"
-const EMPLOYER_SETTING_PATH = "/usr/:id/setting/"
+
+function EMPLOYER_JOB_PATH(id) {
+  return EMPLOYER_PATH + "/usr/" + id + "/job"
+}
+function EMPLOYER_RESUME_PATH(id) {
+  return EMPLOYER_PATH + "/usr/" + id + "/resume"
+}
+function EMPLOYER_SETTING_PATH(id) {
+  return EMPLOYER_PATH + "/usr/" + id + "/setting"
+}
 
 export {
   HOME_PATH,
