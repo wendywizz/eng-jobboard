@@ -1,30 +1,39 @@
 import React from "react"
-import { Container, Row, Col } from "reactstrap"
 import { Link } from "react-router-dom"
 import Template from "../Template"
 import { EMPLOYER_JOB_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH } from "Frontend/configs/paths"
+import "./index.css"
 
 function TemplateEmployer({ children }) {
   return (
     <Template>
-      <Container>
-        <Row>
-          <Col md={3}>
+      <div className="container-main">
+        <div className="sidebar">
+          <div className="sidebar-header">
+            <h3>Employer Zone</h3>
+          </div>
+          <div className="sidebar-body">
             <ul>
-              <li>
-                <Link to={EMPLOYER_JOB_PATH(123)}>Job</Link>
+              <li className="group">
+                <ul>
+                  <li><Link to={EMPLOYER_JOB_PATH(123)}>จัดการงาน</Link></li>
+                  <li><Link to={EMPLOYER_RESUME_PATH(123)}>ใบสมัครงาน</Link></li>
+                </ul>
               </li>
-              <li>
-                <Link to={EMPLOYER_RESUME_PATH(123)}>Resume</Link>
-              </li>
-              <li>
-                <Link to={EMPLOYER_SETTING_PATH(123)}>Setting</Link>
+              <li className="group">
+                <ul>
+                  <li><Link to={EMPLOYER_SETTING_PATH(123)}>การตั้งค่า</Link></li>
+                </ul>
               </li>
             </ul>
-          </Col>
-          <Col me={4}>{children}</Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+        <div className="template-content">
+          <div className="inner-content">
+            {children}
+          </div>
+        </div>
+      </div>
     </Template>
   )
 }

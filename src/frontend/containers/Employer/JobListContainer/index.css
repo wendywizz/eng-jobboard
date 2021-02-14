@@ -1,0 +1,15 @@
+.box {
+  background-color: #fff;
+  box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%);
+}
+.content .content-header {
+  display: flex;
+  flex-direction: row;
+}
+.content .content-header .content-column {
+  flex: 1;
+  flex-direction: row;
+}
+.content .content-header .content-column.right {
+  text-align: right;
+}

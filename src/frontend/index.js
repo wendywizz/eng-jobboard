@@ -8,6 +8,7 @@ import TemplateEmployer from "./components/TemplateEmployer"
 import { EMPLOYER_PATH } from "./configs/paths"
 import routes from "./configs/routes"
 
+import "draft-js/dist/Draft.css";
 import "./assets/css/theme/greyson.css"
 import "./assets/css/style.css"
 

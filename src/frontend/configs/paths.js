@@ -8,6 +8,12 @@ const EMPLOYER_PATH = "/employer"
 function EMPLOYER_JOB_PATH(id) {
   return EMPLOYER_PATH + "/usr/" + id + "/job"
 }
+function EMPLOYER_JOB_ADD_PATH(id) {
+  return EMPLOYER_JOB_PATH(id) + "/add"
+}
+function EMPLOYER_JOB_EDIT_PATH(id) {
+  return EMPLOYER_JOB_PATH(id) + "/edit"
+}
 function EMPLOYER_RESUME_PATH(id) {
   return EMPLOYER_PATH + "/usr/" + id + "/resume"
 }
@@ -23,6 +29,8 @@ export {
   TEST_PATH,
   EMPLOYER_PATH,
   EMPLOYER_JOB_PATH,
+  EMPLOYER_JOB_ADD_PATH,
+  EMPLOYER_JOB_EDIT_PATH,
   EMPLOYER_RESUME_PATH,
   EMPLOYER_SETTING_PATH,
 }
