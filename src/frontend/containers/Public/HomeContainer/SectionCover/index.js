@@ -1,6 +1,5 @@
 import React from "react"
-import HomeSearchBox from "./HomeSearchBox"
-
+import HomeSearchBox from "../HomeSearchBox"
 import "./index.css";
 
 function SectionCover() {

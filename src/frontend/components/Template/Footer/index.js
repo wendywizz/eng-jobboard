@@ -53,7 +53,7 @@ function Footer() {
                   <i className="fa fa-phone"></i> 012-3456-789
                 </p>
                 <p>
-                  <i className="fa fa-envelope-o"></i> info@jobguru.com
+                  <i className="fa fa-envelope-o"></i> info@eng.psu.ac.th
                 </p>
                 <p>
                   <i className="fa fa-fax"></i> 112-3456-7898

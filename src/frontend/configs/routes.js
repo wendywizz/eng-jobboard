@@ -12,6 +12,11 @@ import {
   EmprResumeContainer,
   EmprSettingContainer
 } from "Frontend/containers/Employer"
+import {
+  ApcProfileContainer,
+  ApcResumeContainer,
+  ApcSettingContainer
+} from "Frontend/containers/Applicant"
 
 import {
   HOME_PATH,  
@@ -20,6 +25,7 @@ import {
   REGISTER_PATH,
   EMPLOYER_PATH,
   TEST_PATH,
+  APPLICANT_PATH,
 }  from "./paths"
 
 const routes = [
@@ -34,6 +40,11 @@ const routes = [
     { name: "Job List", path: "/usr/:id/job", component: EmprJobListContainer },
     { name: "Resume", path: "/usr/:id/resume", component: EmprResumeContainer },
     { name: "Setting", path: "/usr/:id/setting", component: EmprSettingContainer },
+  ]},
+  { name: "Applicant", basePath: APPLICANT_PATH, children: [
+    { name: "Profile", path: "/usr/:id/profile", component: ApcProfileContainer },
+    { name: "Resume", path: "/usr/:id/resume", component: ApcResumeContainer },
+    { name: "Setting", path: "/usr/:id/setting", component: ApcResumeContainer },
   ]},
   { name: "Test", path: TEST_PATH, component: TestContainer, exact: true },
 ]

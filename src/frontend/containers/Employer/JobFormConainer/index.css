@@ -3,3 +3,12 @@
   flex-direction: row;
   justify-content: space-between;
 }
+.group-work-day {
+  display: flex;
+  flex-direction: row;
+}
+.group-work-day .form-check-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

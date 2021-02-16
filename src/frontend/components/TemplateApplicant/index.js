@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Spinner } from "reactstrap"
 import TemplateUserPanel from "Frontend/components/TemplateUserPanel"
-import { EMPLOYER_JOB_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH } from "Frontend/configs/paths"
+import { APPLICANT_PROFILE_PATH, APPLICANT_RESUME_PATH, APPLICANT_SETTING_PATH } from "Frontend/configs/paths"
 
-function TemplateEmployer({ children }) {
+function TemplateApplicant({ children }) {
   const [ready, setReady] = useState(false)
   const [userId, setUserId] = useState(null)
 
@@ -16,13 +16,13 @@ function TemplateEmployer({ children }) {
     return [
       {
         text: "", children: [
-          { text: "จัดการงาน", link: EMPLOYER_JOB_PATH(userId) },
-          { text: "รายการสมัครงาน", link: EMPLOYER_RESUME_PATH(userId) },
+          { text: "โปรไฟล์", link: APPLICANT_PROFILE_PATH(userId) },
+          { text: "การสมัครงาน", link: APPLICANT_RESUME_PATH(userId) },
         ]
       },
       {
         text: "", children: [
-          { text: "ตั้งค่า", link: EMPLOYER_SETTING_PATH(userId) }
+          { text: "ตั้งค่า", link: APPLICANT_SETTING_PATH(userId) }
         ]
       }
     ]
@@ -30,10 +30,10 @@ function TemplateEmployer({ children }) {
 
   return (
     !ready ? <Spinner /> : (
-      <TemplateUserPanel navConfig={setNavConfig()} sidebarTitle="Employer Menu">
+      <TemplateUserPanel navConfig={setNavConfig()} sidebarTitle="Applicant Menu">
         {children}
       </TemplateUserPanel>
     )
   )
 }
-export default TemplateEmployer
+export default TemplateApplicant

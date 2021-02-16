@@ -116,6 +116,59 @@ function JobFormContainer({ ...props }) {
               </Col>
             </Row>
           </FormGroup>
+          <FormGroup tag="fieldset">
+            <Row>
+              <Col md={6} xs={12}>
+                <Label>วันและเวลาปฎิทินงาน</Label>
+                <div className="group-work-day">
+                  <FormGroup check>
+                    <Label>
+                      <Input type="checkbox" name="work-day" />
+                      <span>จันทร์</span>
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check>
+                    <Label check>
+                      <Input type="checkbox" name="work-day" />
+                      <span>อังคาร</span>
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check>
+                    <Label check>
+                      <Input type="checkbox" name="work-day" />
+                      <span>พุธ</span>
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check>
+                    <Label check>
+                      <Input type="checkbox" name="work-day" />
+                      <span>พฤหัส</span>
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check>
+                    <Label check>
+                      <Input type="checkbox" name="work-day" />
+                      <span>ศุกร์</span>
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check>
+                    <Label check>
+                      <Input type="checkbox" name="work-day" />
+                      <span>เสาร์</span>
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check>
+                    <Label check>
+                      <Input type="checkbox" name="work-day" />
+                      <span>อาทิตย์</span>
+                    </Label>
+                  </FormGroup>
+                </div>
+              </Col>
+              <Col md={6} xs={12}>
+              </Col>
+            </Row>
+          </FormGroup>
           <FormGroup>
             <Label>สวัสดิการ</Label>
             <Input type="textarea" rows={4} />

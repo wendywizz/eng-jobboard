@@ -1,12 +1,21 @@
 import React from "react"
+import { useHistory } from "react-router-dom"
 import { Form, FormGroup, Input, Label, Button } from "reactstrap"
 import Select from "react-select"
-import "./HomeSearchBox.css"
+import "./index.css"
+import { RESULT_PATH } from "Frontend/configs/paths"
 
 function HomeSearchBox() {
+  const history = useHistory()
+
+  const _handleSubmit = (e) => {
+    e.preventDefault()
+    history.push(RESULT_PATH)
+  }
+
   return (
     <div className="home-search-box">
-      <Form>
+      <Form onSubmit={_handleSubmit}>
         <FormGroup>
           <Label>สถานที่ทำงาน</Label>
           <Select />

@@ -5,7 +5,8 @@ import {
   Switch
 } from "react-router-dom"
 import TemplateEmployer from "./components/TemplateEmployer"
-import { EMPLOYER_PATH } from "./configs/paths"
+import TemplateApplicant from "./components/TemplateApplicant"
+import { EMPLOYER_PATH, APPLICANT_PATH } from "./configs/paths"
 import routes from "./configs/routes"
 
 import "draft-js/dist/Draft.css";
@@ -37,6 +38,19 @@ function Frontend() {
                                     <TemplateEmployer>
                                       <route.component />
                                     </TemplateEmployer>}
+                                />
+                              )
+                            case APPLICANT_PATH:
+                              return (
+                                <Route
+                                  key={index}
+                                  path={match.path + route.path}
+                                  exact={route.exact}
+                                  name={route.name}
+                                  render={() =>
+                                    <TemplateApplicant>
+                                      <route.component />
+                                    </TemplateApplicant>}
                                 />
                               )
                             default:

@@ -14,12 +14,12 @@ function ListJobItem(props) {
       <div className="detail">
         <Badge>FULL TIME</Badge>
         <h5 className="title">Regional Sales Manager</h5>
-        <p className="desc">
+        <div className="desc">
           <div className="desc-item">
             <FontAwesomeIcon icon={faMapMarkerAlt} />
             <span className="text">สงขลา</span>
           </div>
-        </p>
+        </div>
       </div>
       <div className="link">
         <Link className="btn btn-primary rounded" to="/view">รายละเอียด</Link>
