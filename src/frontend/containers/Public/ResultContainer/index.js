@@ -14,25 +14,29 @@ import "./index.css";
 function ResultContainer() {
   return (
     <Template>
-      <Page className="two-column">
-        <FilterSidebar />
-        <div className="result-content">
-          <div className="search-box-panel box">
-            <InputGroup>
-              <Input type="text" placeholder="Keyword" />
-              <InputGroupAddon addonType="prepend">
-                <Button>ค้นหา</Button>
-              </InputGroupAddon>
-            </InputGroup>
+      <Page>
+        <div className="result-container">
+          <div className="sidebar">
+            <FilterSidebar />
           </div>
-          <div>
-            <ListJobItem />
-            <ListJobItem />
-            <ListJobItem />
-            <ListJobItem />
-            <ListJobItem />
-            <ListJobItem />
-            <ListJobItem />
+          <div className="content">
+            <div className="search-box-panel box">
+              <InputGroup>
+                <Input type="text" placeholder="Keyword" />
+                <InputGroupAddon addonType="prepend">
+                  <Button>ค้นหา</Button>
+                </InputGroupAddon>
+              </InputGroup>
+            </div>
+            <div>
+              <ListJobItem />
+              <ListJobItem />
+              <ListJobItem />
+              <ListJobItem />
+              <ListJobItem />
+              <ListJobItem />
+              <ListJobItem />
+            </div>
           </div>
         </div>
       </Page>

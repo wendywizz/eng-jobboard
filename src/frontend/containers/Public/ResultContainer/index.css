@@ -1,0 +1,11 @@
+.result-container {
+  display: flex;
+  flex-direction: row;
+}
+.result-container > .sidebar {
+  width: 300px;
+}
+.result-container > .content {
+  flex: 1;
+  padding-left: 25px;
+}
