@@ -7,7 +7,7 @@ import './index.css';
 
 function ListJobItem(props) {
   return (
-    <div className="list-job-item">
+    <div className="box list-job-item">
       <div className="image">
         <img src="http://themescare.com/demos/jobguru-v2/assets/img/company-logo-1.png" alt="logo" />
       </div>

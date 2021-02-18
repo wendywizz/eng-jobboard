@@ -1,3 +1,24 @@
 .search-box-panel {
   margin-bottom: 40px;
 }
+.filter-option {
+  padding: 25px 0;
+  border-bottom: 1px solid #cdcdcd;
+}
+.filter-option .title {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.salary-range {
+  display: flex;
+  flex-direction: row;
+}
+.salary-range .option {
+  flex: 1;
+}
+.salary-range .seperator {
+  width: 40px;
+  text-align: center;
+}

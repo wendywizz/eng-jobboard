@@ -3,7 +3,8 @@
 body {
   font-family: PSU-Stidti !important;
   font-size: 14px;
-  background-color: #f2f3fa !important;
+  background-color: #fafafa !important;
+  color: #545454;
 }
 .box {
   padding: 25px 20px;

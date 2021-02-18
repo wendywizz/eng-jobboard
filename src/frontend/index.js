@@ -9,8 +9,11 @@ import TemplateApplicant from "./components/TemplateApplicant"
 import { EMPLOYER_PATH, APPLICANT_PATH } from "./configs/paths"
 import routes from "./configs/routes"
 
+import "jquery/dist/jquery"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.min.js"
+import "@fortawesome/fontawesome-free/css/all.css";
 import "draft-js/dist/Draft.css";
-import "./assets/css/theme/greyson.css"
 import "./assets/css/style.css"
 
 function Frontend() {

@@ -1,11 +1,22 @@
-.result-container {
+.search-box-panel {
+  margin-top: 50px !important;
+  margin-bottom: 50px !important;
+}
+
+.result-content {
   display: flex;
   flex-direction: row;
 }
-.result-container > .sidebar {
+.result-content > .sidebar {
   width: 300px;
 }
-.result-container > .content {
+.result-content > .content {
   flex: 1;
   padding-left: 25px;
+}
+
+.result-count {
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-bottom: 30px;
 }

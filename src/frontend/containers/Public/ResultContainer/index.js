@@ -16,26 +16,27 @@ function ResultContainer() {
     <Template>
       <Page>
         <div className="result-container">
-          <div className="sidebar">
-            <FilterSidebar />
+          <div className="search-box-panel box">
+            <InputGroup>
+              <Input type="text" placeholder="Keyword" />
+              <InputGroupAddon addonType="prepend">
+                <Button>ค้นหา</Button>
+              </InputGroupAddon>
+            </InputGroup>
           </div>
-          <div className="content">
-            <div className="search-box-panel box">
-              <InputGroup>
-                <Input type="text" placeholder="Keyword" />
-                <InputGroupAddon addonType="prepend">
-                  <Button>ค้นหา</Button>
-                </InputGroupAddon>
-              </InputGroup>
+          <div className="result-content">
+            <div className="sidebar">
+              <FilterSidebar />
             </div>
-            <div>
-              <ListJobItem />
-              <ListJobItem />
-              <ListJobItem />
-              <ListJobItem />
-              <ListJobItem />
-              <ListJobItem />
-              <ListJobItem />
+            <div className="content">
+              <p className="result-count">พบ 23 ตำแหน่งงาน</p>
+              <div>
+                <ListJobItem />
+                <ListJobItem />
+                <ListJobItem />
+                <ListJobItem />
+                <ListJobItem />
+              </div>
             </div>
           </div>
         </div>
