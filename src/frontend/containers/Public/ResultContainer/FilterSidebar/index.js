@@ -15,7 +15,7 @@ const options = [
 
 function FilterSidebar() {
   return (
-    <div className="filter-sidebar">
+    <div className="filter-sidebar box">
       <div className="filter-option">
         <h4 className="title">จังหวัด</h4>
         <select className="form-control">

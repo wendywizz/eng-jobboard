@@ -6,6 +6,9 @@ const TEST_PATH = "/test"
 const EMPLOYER_PATH = "/employer"
 const APPLICANT_PATH = "/applicant"
 
+function EMPLOYER_PROFILE_PATH(id) {
+  return EMPLOYER_PATH + "/usr/" + id + "/profile"
+}
 function EMPLOYER_JOB_PATH(id) {
   return EMPLOYER_PATH + "/usr/" + id + "/job"
 }
@@ -40,6 +43,7 @@ export {
   TEST_PATH,
   EMPLOYER_PATH,
   APPLICANT_PATH,
+  EMPLOYER_PROFILE_PATH,
   EMPLOYER_JOB_PATH,
   EMPLOYER_JOB_ADD_PATH,
   EMPLOYER_JOB_EDIT_PATH,

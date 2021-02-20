@@ -5,6 +5,8 @@ import ListJobItem from "Frontend/components/ListJobItem"
 import "./index.css"
 import { EMPLOYER_JOB_ADD_PATH } from "Frontend/configs/paths"
 
+import jobResultData from "Frontend/data/json/job-result.json"
+
 function JobListContainer() {
   const [emprId, setEmprId] = useState(null)
 
@@ -22,11 +24,19 @@ function JobListContainer() {
           <Link className="btn btn-primary" to={EMPLOYER_JOB_ADD_PATH(emprId)}>สร้างงานใหม่</Link>
         </div>
       </div>
-      <div className="content-body box">
-        <ListJobItem />
-        <ListJobItem />
-        <ListJobItem />
-        <ListJobItem />
+      <div className="content-body">
+      {
+        jobResultData.map((value, index) => (
+          <ListJobItem
+            key={index}
+            id={value.jobId}
+            title={value.jobTitle}
+            logoUri={value.image}
+            jobType={value.jobType.name}
+            province={value.province.name}
+          />
+        ))
+      }
       </div>
     </div>
   )

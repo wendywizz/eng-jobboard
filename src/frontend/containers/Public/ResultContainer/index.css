@@ -1,22 +1,24 @@
 .search-box-panel {
-  margin-top: 50px !important;
-  margin-bottom: 50px !important;
+  background-color: #cdcdcd !important;
+  margin-top: 40px !important;
+  margin-bottom: 30px !important;
 }
 
-.result-content {
+.result-content-inner {
   display: flex;
   flex-direction: row;
 }
-.result-content > .sidebar {
+.result-content-inner > .sidebar {
   width: 300px;
 }
-.result-content > .content {
+.result-content-inner > .content {
   flex: 1;
   padding-left: 25px;
 }
 
 .result-count {
   font-weight: 600;
-  font-size: 1.2em;
-  margin-bottom: 30px;
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  margin-left: 325px;
 }

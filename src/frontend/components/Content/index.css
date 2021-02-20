@@ -18,6 +18,6 @@
 .content .content-header .content-column.right {
   text-align: right;
 }
-.content .content-body {
+.content .content-body.padding {
   padding: 15px;
 }

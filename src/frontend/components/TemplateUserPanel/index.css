@@ -5,7 +5,8 @@
 .up-sidebar {
   position: relative;
   width: 300px;
-  background-color: #2f3a40;
+  /*background-color: #2f3a40;*/
+  background-color: #1c1c1c;
   color: #fff;
   min-height: 100vh;
   height: 100%;
@@ -19,6 +20,9 @@
 .up-sidebar .up-sidebar-body ul {
   list-style: none;
   padding: 0;
+}
+.up-sidebar .up-sidebar-body ul li.active {
+  background-color: #111;
 }
 .up-sidebar .up-sidebar-body ul li > a {
   display: block;
@@ -42,6 +46,11 @@
 }
 
 .template-content {
-  padding: 30px;
   width: calc(100% - 300px);
+}
+.template-content > .inner-content {
+  padding: 20px 30px;
+}
+.template-content .breadcrumb {
+  border-radius: 0;
 }

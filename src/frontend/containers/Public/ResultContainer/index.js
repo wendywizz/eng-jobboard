@@ -11,6 +11,8 @@ import ListJobItem from "Frontend/components/ListJobItem";
 import FilterSidebar from "./FilterSidebar";
 import "./index.css";
 
+import jobResultData from "Frontend/data/json/job-result.json"
+
 function ResultContainer() {
   return (
     <Template>
@@ -25,17 +27,26 @@ function ResultContainer() {
             </InputGroup>
           </div>
           <div className="result-content">
-            <div className="sidebar">
-              <FilterSidebar />
-            </div>
-            <div className="content">
-              <p className="result-count">พบ 23 ตำแหน่งงาน</p>
-              <div>
-                <ListJobItem />
-                <ListJobItem />
-                <ListJobItem />
-                <ListJobItem />
-                <ListJobItem />
+            <p className="result-count">{`พบ ${jobResultData.length} ตำแหน่งงาน`}</p>
+            <div className="result-content-inner">
+              <div className="sidebar">
+                <FilterSidebar />
+              </div>
+              <div className="content">
+                <div>
+                  {
+                    jobResultData.map((value, index) => (
+                      <ListJobItem
+                        key={index}
+                        id={value.jobId}
+                        title={value.jobTitle}
+                        logoUri={value.image}
+                        jobType={value.jobType.name}
+                        province={value.province.name}
+                      />
+                    ))
+                  }
+                </div>
               </div>
             </div>
           </div>

@@ -12,6 +12,13 @@
   align-items: center;
   justify-content: flex-start;
 }
+.list-job-item .image .image-source {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 120px;
+  width: 150px;
+}
 .list-job-item .detail {
   flex: 3;
   padding: 7px 10px;

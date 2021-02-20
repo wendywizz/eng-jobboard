@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Spinner } from "reactstrap"
 import TemplateUserPanel from "Frontend/components/TemplateUserPanel"
-import { EMPLOYER_JOB_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH } from "Frontend/configs/paths"
+import { EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH } from "Frontend/configs/paths"
 
 function TemplateEmployer({ children }) {
   const [ready, setReady] = useState(false)
@@ -14,6 +14,11 @@ function TemplateEmployer({ children }) {
 
   function setNavConfig() {
     return [
+      {
+        text: "", children: [
+          { text: "ข้อมูลบริษัท", link: EMPLOYER_PROFILE_PATH(userId) }
+        ]
+      },
       {
         text: "", children: [
           { text: "จัดการงาน", link: EMPLOYER_JOB_PATH(userId) },

@@ -5,24 +5,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons' 
 import './index.css';
 
-function ListJobItem(props) {
+function ListJobItem({ id, title, logoUri, jobType, province }) {
   return (
     <div className="box list-job-item">
       <div className="image">
-        <img src="http://themescare.com/demos/jobguru-v2/assets/img/company-logo-1.png" alt="logo" />
+        <div className="image-source" style={{ backgroundImage: "url("+logoUri+")"}}></div>
       </div>
       <div className="detail">
-        <Badge>FULL TIME</Badge>
-        <h5 className="title">Regional Sales Manager</h5>
+        <Badge>{jobType}</Badge>
+        <h5 className="title">{title}</h5>
         <div className="desc">
           <div className="desc-item">
             <FontAwesomeIcon icon={faMapMarkerAlt} />
-            <span className="text">สงขลา</span>
+            <span className="text">{province}</span>
           </div>
         </div>
       </div>
       <div className="link">
-        <Link className="btn btn-primary rounded" to="/view">รายละเอียด</Link>
+        <Link className="btn btn-primary rounded" to={`view/${id}`}>รายละเอียด</Link>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import {
   RegisterContainer,
 } from "Frontend/containers/Public"
 import {
+  EmprProfileContainer,
   EmprJobDetailContainer,
   EmprJobFormContainer,
   EmprJobListContainer,
@@ -34,6 +35,7 @@ const routes = [
   { name: "Result Page", path: RESULT_PATH, component: ResultContainer },
   { name: "Detail Page", path: DETAIL_PATH, component: DetailContainer },
   { name: "Employer", basePath: EMPLOYER_PATH, children: [
+    { name: "Profile", path: "/usr/:id/profile", component: EmprProfileContainer },
     { name: "Job Add", path: "/usr/:id/job/add", component: EmprJobFormContainer },
     { name: "Job Edit", path: "/usr/:id/job/edit/:id", component: EmprJobFormContainer },
     { name: "Job Detail", path: "/usr/:id/job/:id", component: EmprJobDetailContainer },
