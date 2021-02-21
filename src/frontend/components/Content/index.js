@@ -1,13 +1,17 @@
 import React from "react"
+import classNames from "classnames";
 import ContentHeader from "./ContentHeader"
 import ContentBody from "./ContentBody"
 import ContentFooter from "./ContentFooter"
 import "./index.css"
 
-function Content({ children }) {
+function Content(props) {
+  const classes = classNames({
+    "content": true
+  })
   return (
-    <div className="content">
-      {children}
+    <div className={classes.concat(" "+props.className)}>
+      {props.children}
     </div>
   )
 }

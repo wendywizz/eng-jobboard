@@ -1,0 +1,7 @@
+.group-image-logo .custom-file label {
+  display: none;
+}
+.group-image-logo .img-preview {
+  border: 1px solid #ced4da;
+  height: 150px;
+}

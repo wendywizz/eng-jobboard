@@ -1,0 +1,22 @@
+.content-profile .content-body {
+  padding: 0 !important;
+}
+.content-profile .nav-tabs .nav-item .nav-link{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 0;
+  padding: 13px 32px;
+}
+.content-profile .nav-tabs .nav-item .nav-link.active {
+  border-top: 3px solid #c52423;
+}
+.content-profile .nav-tabs .nav-item:first-child .nav-link {
+  border-left: 0;
+}
+.content-profile .nav-tabs .nav-item .nav-link:hover {
+  border-top: 3px solid #eaeaea;
+  cursor: pointer;
+}
+.content-profile .tab-content .tab-pane{
+  padding: 30px 40px;
+}

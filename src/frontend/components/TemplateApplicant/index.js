@@ -16,7 +16,7 @@ function TemplateApplicant({ children }) {
     return [
       {
         text: "", children: [
-          { text: "โปรไฟล์", link: APPLICANT_PROFILE_PATH(userId) },
+          { text: "โปรไฟล์ส่วนตัว", link: APPLICANT_PROFILE_PATH(userId) },
           { text: "การสมัครงาน", link: APPLICANT_RESUME_PATH(userId) },
         ]
       },

@@ -1,11 +1,13 @@
 import React from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Breadcrumb, BreadcrumbItem } from "reactstrap"
+import { Breadcrumb, BreadcrumbItem, Button } from "reactstrap"
 import className from "classnames"
 import Template from "../Template"
 import "./index.css"
 
-function TemplateUserPanel({ navConfig, sidebarTitle, children }) {
+import defaultAvatar from "Frontend/assets/img/default-logo.jpg"
+
+function TemplateUserPanel({ navConfig, children }) {
   const { pathname } = useLocation()
 
   const renderMenuItems = () => {
@@ -59,7 +61,15 @@ function TemplateUserPanel({ navConfig, sidebarTitle, children }) {
       <div className="container-main">
         <div className="up-sidebar">
           <div className="up-sidebar-header">
-            <h3>{sidebarTitle}</h3>
+            <div className="up-info">
+              <div className="image">
+                <img className="img-thumbnail" src={defaultAvatar} />
+              </div>
+              <div className="detail">
+                <div className="name">login@psu.ac.th</div>                
+                <Button size="sm" color="danger" block outline>Log out</Button>
+              </div>
+            </div>
           </div>
           <div className="up-sidebar-body">
             {renderMenuItems()}
