@@ -1,7 +1,7 @@
 import React from "react"
 import className from "classnames"
 
-function ContentHeader({ title, box=false, padding=false, ...props }) {
+function ContentHeader({ title, box = false, padding = false, ...props }) {
   const classes = className({
     "content-header": true,
     "box": box,
@@ -9,11 +9,11 @@ function ContentHeader({ title, box=false, padding=false, ...props }) {
   })
 
   return (
-    <div className={classes.concat(" "+props.className)}>
+    <div className={classes.concat(" " + props.className)}>
       {
         title && <h1 className="title">{title}</h1>
       }
-      <div>
+      <div className="content-row">
         {props.children}
       </div>
     </div>

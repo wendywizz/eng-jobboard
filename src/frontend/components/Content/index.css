@@ -5,7 +5,7 @@
 .content .content-header,
 .content .content-footer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .content .content-header .content-column {
   flex: 1;
@@ -20,4 +20,8 @@
 }
 .content > *.padding {
   padding: 15px;
+}
+.content .content-row {
+  display: flex;
+  flex-direction: row;
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { TabPane, FormGroup, Input } from "reactstrap";
+import { TabPane } from "reactstrap";
 
 function TabAward() {
   return (

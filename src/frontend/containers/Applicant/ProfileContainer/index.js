@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Nav, NavItem, NavLink, TabContent, Form, Button } from "reactstrap"
 import Content, { ContentBody, ContentHeader, ContentFooter } from "Frontend/components/Content"
-import { TabInfo, TabEducation, TabSkill, TAB_INFO, TAB_EDUCATION, TAB_SKILL, TAG_AWARD, TAB_AWARD, TabAward } from "./Tabs"
+import { TabInfo, TabEducation, TabSkill, TabAward, TAB_INFO, TAB_EDUCATION, TAB_SKILL, TAB_AWARD } from "./Tabs"
 import classnames from "classnames"
 import "./index.css"
 
@@ -14,9 +14,7 @@ function ProfileContainer() {
 
   return (
     <Content className="content-profile">
-      <ContentHeader>
-        <h1 className="title">โปรไฟล์ส่วนตัว</h1>
-      </ContentHeader>
+      <ContentHeader title="โปรไฟล์ส่วนตัว" />
       <ContentBody padding={false}>
         <Form>
           <Nav tabs>

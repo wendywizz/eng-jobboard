@@ -1,12 +1,14 @@
 import React from "react"
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
+import Content, { ContentBody, ContentHeader, ContentFooter } from "Frontend/components/Content"
 import "./index.css"
 import defaultLogo from "Frontend/assets/img/default-logo.jpg"
 
 function ProfileContainer() {
   return (
-    <div className="content">
-      <div className="content-body box">
+    <Content>
+      <ContentHeader title="โปรไฟล์บริษัท" />
+      <ContentBody>
         <Form className="distance">
           <FormGroup>
             <Label>ชื่อบริษัท</Label>
@@ -30,8 +32,11 @@ function ProfileContainer() {
             <Button color="primary">บันทึก</Button>
           </div>
         </Form>
-      </div>
-    </div>
+      </ContentBody>
+      <ContentFooter>
+        
+      </ContentFooter>
+    </Content>
   )
 }
 export default ProfileContainer

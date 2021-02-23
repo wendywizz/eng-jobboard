@@ -63,7 +63,7 @@ function TemplateUserPanel({ navConfig, children }) {
           <div className="up-sidebar-header">
             <div className="up-info">
               <div className="image">
-                <img className="img-thumbnail" src={defaultAvatar} />
+                <img className="img-thumbnail" src={defaultAvatar} alt="user-avatar" />
               </div>
               <div className="detail">
                 <div className="name">login@psu.ac.th</div>                

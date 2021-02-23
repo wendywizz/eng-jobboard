@@ -9,7 +9,7 @@ function HeaderNav() {
     <div className="header-nav">
       <div className="header-nav-col header-nav-left">
         <ul className="navbar-nav">
-          <li className="nav-item"><a className="nav-link" href="/employer/usr/123/job">บริษัท</a></li>
+          <li className="nav-item"><a className="nav-link" href="/employer/usr/123/profile">บริษัท</a></li>
           <li className="nav-item"><a className="nav-link" href="/applicant/usr/123/profile">ผู้หางาน</a></li>
         </ul>
       </div>

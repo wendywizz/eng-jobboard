@@ -46,7 +46,7 @@ const routes = [
   { name: "Applicant", basePath: APPLICANT_PATH, children: [
     { name: "Profile", path: "/usr/:id/profile", component: ApcProfileContainer },
     { name: "Resume", path: "/usr/:id/resume", component: ApcResumeContainer },
-    { name: "Setting", path: "/usr/:id/setting", component: ApcResumeContainer },
+    { name: "Setting", path: "/usr/:id/setting", component: ApcSettingContainer },
   ]},
   { name: "Test", path: TEST_PATH, component: TestContainer, exact: true },
 ]

@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Spinner } from "reactstrap"
 import TemplateUserPanel from "Frontend/components/TemplateUserPanel"
 import { EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH } from "Frontend/configs/paths"
 
 function TemplateEmployer({ children }) {
-  const [ready, setReady] = useState(false)
-  const [userId, setUserId] = useState(null)
-
-  useEffect(() => {
-    setUserId(123)
-    setReady(true)
-  })
+  const [ready] = useState(true)
+  const [userId] = useState(123)
 
   function setNavConfig() {
     return [
