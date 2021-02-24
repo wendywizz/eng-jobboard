@@ -1,0 +1,22 @@
+.section-status {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.section-status > .btn {
+  background-color: #fff;
+  color: #111;
+  border: 1px solid #eaeaea;
+  padding: 12px 15px;
+  font-size: 0.95em;
+}
+.section-status > .btn:not(:last-child) {
+  margin-right: 10px;
+}
+.section-status > .btn:hover,
+.section-status > .btn:focus {
+  background-color: #c52423;
+  border: 1px solid #c52423;
+  color: #fff;
+  text-decoration: none;
+}

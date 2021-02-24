@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import { Input } from "reactstrap"
-import { Link } from "react-router-dom"
+import { Button } from "reactstrap"
 import Content, { ContentHeader, ContentBody, ContentFooter } from "Frontend/components/Content"
 import ListJobItem from "Frontend/components/ListJobItem"
 import "./index.css"
@@ -14,6 +13,12 @@ function JobListContainer() {
   return (
     <Content className="content-empr-joblist">
       <ContentHeader title="จัดการงาน">
+        <div className="section-status">
+          <Button color="link" className="btn-status">ทั้งหมด</Button>
+          <Button color="link" className="btn-status">กำลังรับสมัคร</Button>
+          <Button color="link" className="btn-status">เสร็จสิ้น</Button>
+          <Button color="link" className="btn-status">ยกเลิก</Button>
+        </div>
       </ContentHeader>
       <ContentBody box={false} padding={false}>
         {
