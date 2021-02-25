@@ -13,7 +13,7 @@ import {
 import "./index.css"
 import "draft-js/dist/Draft.css";
 
-function JobFormContainer({ ...props }) {
+function JobFormContainer() {
   const [valSalarySelected, setValSalarySelected] = useState(null)
   const [editorState, setEditorState] = React.useState(() =>
     EditorState.createEmpty()
@@ -76,11 +76,11 @@ function JobFormContainer({ ...props }) {
       <ContentBody fill={true}>
         <Form className="distance">
           <FormGroup>
-            <Label for="job-name">ชื่อตำแหน่งงาน</Label>
+            <Label htmlFor="job-name">ชื่อตำแหน่งงาน</Label>
             <Input type="text" name="job-name" />
           </FormGroup>
           <FormGroup>
-            <Label for="job-desc">รายละเอียดงาน</Label>
+            <Label htmlFor="job-desc">รายละเอียดงาน</Label>
             <div
               className="input-element"
               onClick={focusEditor}
@@ -94,13 +94,13 @@ function JobFormContainer({ ...props }) {
             </div>
           </FormGroup>
           <FormGroup>
-            <Label for="job-scope">ขอบเขตงาน</Label>
+            <Label htmlFor="job-scope">ขอบเขตงาน</Label>
             <Input type="textarea" name="job-scope" rows={4} />
           </FormGroup>
           <FormGroup>
             <Row>
               <Col lg={6} md={6} sm={12}>
-                <Label for="job-salary">อัตราเงินเดือน</Label>
+                <Label htmlFor="job-salary">อัตราเงินเดือน</Label>
                 <Input type="select" name="job-salary" onChange={e => setValSalarySelected(e.target.value)} defaultValue={valSalarySelected}>
                   <option>--- เลือก ---</option>
                   <option value={SPECIFIC_TYPE.value}>{SPECIFIC_TYPE.label}</option>
