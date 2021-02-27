@@ -1,0 +1,13 @@
+.header-nav-sticky {
+  position: fixed;
+  top: 0;
+  background-color: #890403;
+  width: 100%;
+  z-index: 100;
+}
+.header-nav-sticky > .header-nav-inner {
+  padding: 10px 15px;
+}
+.header-nav-sticky .nav-logo {
+  height: 40px;
+}

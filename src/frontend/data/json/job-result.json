@@ -7,9 +7,9 @@
       "id": "1",
       "name": "Full Time"
     },
-    "province": {
+    "location": {
       "id": "64",
-      "name": "สงขลา"
+      "name": "หาดใหญ่ สงขลา"
     }
   },
   {
@@ -20,9 +20,9 @@
       "id": "1",
       "name": "Full Time"
     },
-    "province": {
+    "location": {
       "id": "64",
-      "name": "สงขลา"
+      "name": "หาดใหญ่ สงขลา"
     }
   },
   {
@@ -33,9 +33,9 @@
       "id": "1",
       "name": "Full Time"
     },
-    "province": {
+    "location": {
       "id": "64",
-      "name": "สงขลา"
+      "name": "หาดใหญ่ สงขลา"
     }
   },
   {
@@ -46,9 +46,9 @@
       "id": "3",
       "name": "ฝึกงาน"
     },
-    "province": {
+    "location": {
       "id": "64",
-      "name": "สงขลา"
+      "name": "หาดใหญ่ สงขลา"
     }
   },
   {
@@ -59,9 +59,9 @@
       "id": "2",
       "name": "Part Time"
     },
-    "province": {
+    "location": {
       "id": "1",
-      "name": "กรุงเทพฯ"
+      "name": "บางนา กรุงเทพฯ"
     }
   }
 ]

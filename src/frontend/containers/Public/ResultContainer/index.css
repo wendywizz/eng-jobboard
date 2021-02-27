@@ -4,21 +4,20 @@
   margin-bottom: 30px !important;
 }
 
-.result-content-inner {
+.result-container .result-content-inner {
   display: flex;
   flex-direction: row;
 }
-.result-content-inner > .sidebar {
+.result-container .result-content-inner > .sidebar {
   width: 300px;
+  margin-top: 82px;
 }
-.result-content-inner > .content {
+.result-container .result-content-inner > .content {
   flex: 1;
   padding-left: 25px;
 }
-
-.result-count {
-  font-weight: 600;
-  font-size: 1.1em;
-  margin-bottom: 12px;
-  margin-left: 325px;
+.result-container .nav-filter {
+  margin-top: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

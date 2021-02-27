@@ -1,11 +1,14 @@
 import React from "react"
 import {
   Input,
+  InputGroup,
+  InputGroupAddon,
+  Button,
   FormGroup,
   Label
-} from "reactstrap";
+} from "reactstrap"
 import Select from "react-select"
-import "./index.css";
+import "./index.css"
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -15,7 +18,15 @@ const options = [
 
 function FilterSidebar() {
   return (
-    <div className="filter-sidebar box">
+    <div className="filter-sidebar">
+      <div className="filter-option">
+        <InputGroup>
+          <Input type="text" placeholder="Keyword" />
+          <InputGroupAddon addonType="prepend">
+            <Button>ค้นหา</Button>
+          </InputGroupAddon>
+        </InputGroup>
+      </div>
       <div className="filter-option">
         <h4 className="title">จังหวัด</h4>
         <select className="form-control">

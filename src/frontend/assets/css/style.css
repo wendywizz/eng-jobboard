@@ -6,6 +6,9 @@ body {
   background-color: #fafafa !important;
   color: #545454;
 }
+.form-control {
+  font-size: 14px;
+}
 
 .container {
   max-width: 1280px;
@@ -45,8 +48,8 @@ form.distance .form-group:not(:last-child) {
   margin-bottom: 40px;
 }
 
-.btn {
+/*.btn {
   font-size: 0.9em;
   padding: 12px 15px;
   border-radius: 0;
-}
+}*/

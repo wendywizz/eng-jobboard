@@ -14,7 +14,7 @@ function SectionRecentJob() {
             title={value.jobTitle}
             logoUri={value.image}
             jobType={value.jobType.name}
-            province={value.province.name}
+            location={value.location.name}
           />
         ))
       }
