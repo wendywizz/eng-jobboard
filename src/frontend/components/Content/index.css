@@ -7,21 +7,21 @@
   display: flex;
   flex-direction: column;
 }
-.content .content-header .content-column {
+/*.content .content-header .content-column {
   flex: 1;
   flex-direction: row;
-}
+}*/
 .content .content-header .title {
   font-size: 1.3em;
   margin-bottom: 20px;
 }
-.content .content-header .content-column.right {
+/*.content .content-header .content-column.right {
   text-align: right;
-}
+}*/
 .content > *.padding {
   padding: 15px;
 }
-.content .content-row {
+/*.content .content-row {
   display: flex;
   flex-direction: row;
-}
+}*/

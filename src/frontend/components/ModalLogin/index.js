@@ -11,7 +11,7 @@ function ModalLogin() {
 
   return (
     <>
-      <Button className="rounded" color="success" size="sm" onClick={toggle}>ล็อกอิน</Button>
+      <Button color="success" size="sm" onClick={toggle}>ล็อกอิน</Button>
       <Modal className="modal-signin" isOpen={modal} toggle={toggle} backdrop={true}>
         <ModalHeader toggle={toggle}>ล็อกอินเข้าใช้งาน</ModalHeader>
         <ModalBody>

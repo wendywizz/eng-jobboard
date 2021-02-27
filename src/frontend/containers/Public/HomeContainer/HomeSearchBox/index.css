@@ -1,10 +1,10 @@
 .home-search-box {  
   padding: 25px;
   background-color: #fff;
-  width: 360px;
-  height: 380px;
+  width: 450px;
+  height: 400px;
   z-index: 10;
-  margin-left: 18vw;
+  margin-left: 12vw;
 }
 .home-search-box .btn {
   margin-top: 25px;

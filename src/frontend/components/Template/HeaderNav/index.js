@@ -15,7 +15,7 @@ function HeaderNav() {
       </div>
       <div className="header-nav-col header-nav-right">
         <ul className="navbar-nav">
-          <li className="nav-item"><Link to="/register" className="nav-Link btn btn-primary btn-sm rounded">สมัครใช้งาน</Link></li>
+          <li className="nav-item"><Link to="/register" className="nav-Link btn btn-primary btn-sm">สมัครใช้งาน</Link></li>
           <li className="nav-item"><ModalLogin /></li>
         </ul>
       </div>

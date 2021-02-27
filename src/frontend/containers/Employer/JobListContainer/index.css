@@ -1,23 +1,27 @@
-.section-status {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+.nav-status {
+  margin-bottom: 20px !important;
 }
-.section-status > .btn {
-  background-color: #fff;
-  color: #111;  
-  padding: 12px 15px;
-  font-size: 0.95em;
-  min-width: 120px;
+.nav-status > .nav-item {
   box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%);
+  min-width: 120px;
 }
-.section-status > .btn:not(:last-child) {
+.nav-status > .nav-item:not(:last-child) {
   margin-right: 10px;
 }
-.section-status > .btn:hover,
-.section-status > .btn:focus {
+.nav-status > .nav-item > a {
+  color: #111;  
+  background-color: #fff;
+  padding: 12px 15px;
+  font-size: 0.95em;
+  text-align: center;
+}
+.nav-status > .nav-item.active > a{
   background-color: #c52423;
-  border: 1px solid #c52423;
   color: #fff;
   text-decoration: none;
+}
+.nav-status > .nav-item:not(.active):hover > a,
+.nav-status > .nav-item:not(.active):focus > a {
+  background-color: #eaeaea;
+  color: #666;
 }

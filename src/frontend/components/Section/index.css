@@ -1,8 +1,14 @@
 .section {
   padding: 20px 0;
 }
-.section .title {
-  font-size: 1.3em;
+.section .section-title {
+  font-size: 2.6em;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  color: #111;
+}
+.section .section-title-desc {
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  color: #888;
 }

@@ -6,7 +6,11 @@ body {
   background-color: #fafafa !important;
   color: #545454;
 }
-.box {
+
+.container {
+  max-width: 1280px;
+}
+/*.box {
   padding: 25px 20px;
   background-color: #fff;
   margin-bottom: 25px;
@@ -24,6 +28,14 @@ body {
 }
 .btn.rounded {  
   border-radius: 25px !important;  
+}*/
+
+.input-element {
+  border: 1px solid #ced4da;
+  padding: .375rem .75rem;
+  border-radius: .25em;
+  min-height: 6em;
+  cursor: text
 }
 
 form.distance {
@@ -33,10 +45,8 @@ form.distance .form-group:not(:last-child) {
   margin-bottom: 40px;
 }
 
-.input-element {
-  border: 1px solid #ced4da;
-  padding: .375rem .75rem;
-  border-radius: .25em;
-  min-height: 6em;
-  cursor: text
+.btn {
+  font-size: 0.9em;
+  padding: 12px 15px;
+  border-radius: 0;
 }
