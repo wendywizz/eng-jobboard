@@ -3,6 +3,8 @@ import { TabPane, FormGroup, Input, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 
+const TAB_SKILL_NAME = "skill"
+
 function OptionSkill() {
   return (
     <div className="option-skill">
@@ -12,13 +14,14 @@ function OptionSkill() {
     </div>
   )
 }
+
 function TabSkill() {
   const _handleAdd = (e) => {
     e.preventDefault()
   }
 
   return (
-    <TabPane tabId="skill">
+    <TabPane tabId={TAB_SKILL_NAME}>
       <p>ระบุความสามารถพิเศษของท่าน</p>
       <div className="list-option">
         <OptionSkill />
@@ -34,3 +37,4 @@ function TabSkill() {
   )
 }
 export default TabSkill
+export { TAB_SKILL_NAME }

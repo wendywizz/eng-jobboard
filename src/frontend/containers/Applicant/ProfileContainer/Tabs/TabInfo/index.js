@@ -1,9 +1,11 @@
 import React from "react"
 import { Row, Col, FormGroup, Label, Input, TabPane } from "reactstrap"
 
+const TAB_INFO_NAME = "profile"
+
 function TabInfo() {
   return (
-    <TabPane tabId="profile">
+    <TabPane tabId={TAB_INFO_NAME}>
       <Row>
         <Col>
           <FormGroup>
@@ -72,3 +74,4 @@ function TabInfo() {
   )
 }
 export default TabInfo
+export { TAB_INFO_NAME }

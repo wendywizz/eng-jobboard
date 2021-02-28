@@ -2,6 +2,8 @@ import React from "react"
 import { TabPane, Row, Col, Input, FormGroup } from "reactstrap";
 import "./index.css"
 
+const TAB_EDUCATION_NAME = "education"
+
 function OptionEducation({ label, gpa }) {
   return (
     <div className="option-education">
@@ -32,7 +34,7 @@ function OptionEducation({ label, gpa }) {
 
 function TabEducation() {
   return (
-    <TabPane tabId="education">
+    <TabPane tabId={TAB_EDUCATION_NAME}>
       <OptionEducation label="ปริญญาตรี" />
       <OptionEducation label="ปริญญาโท" />
       <OptionEducation label="ปริญญาเอก" />
@@ -40,3 +42,4 @@ function TabEducation() {
   )
 }
 export default TabEducation
+export { TAB_EDUCATION_NAME }

@@ -9,30 +9,9 @@ body {
 .form-control {
   font-size: 14px;
 }
-
 .container {
   max-width: 1280px;
 }
-/*.box {
-  padding: 25px 20px;
-  background-color: #fff;
-  margin-bottom: 25px;
-}
-.two-column {
-  display: flex;
-  flex-direction: row;
-}
-.two-column .sidebar{
-  flex-grow: 1;
-  margin-right: 30px;
-}
-.two-column .result-content {
-  flex-grow: 2;
-}
-.btn.rounded {  
-  border-radius: 25px !important;  
-}*/
-
 .input-element {
   border: 1px solid #ced4da;
   padding: .375rem .75rem;
@@ -40,16 +19,29 @@ body {
   min-height: 6em;
   cursor: text
 }
-
-form.distance {
-  padding: 40px 30px;
-}
 form.distance .form-group:not(:last-child) {
   margin-bottom: 40px;
 }
 
-/*.btn {
-  font-size: 0.9em;
-  padding: 12px 15px;
-  border-radius: 0;
-}*/
+.content-tab .content-body {
+  padding: 0 !important;
+}
+.content-tab .nav-tabs .nav-item .nav-link{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 0;
+  padding: 13px 32px;
+}
+.content-tab .nav-tabs .nav-item .nav-link.active {
+  border-top: 3px solid #c52423;
+}
+.content-tab .nav-tabs .nav-item:first-child .nav-link {
+  border-left: 0;
+}
+.content-tab .nav-tabs .nav-item .nav-link:not(.active):hover {
+  border-top: 3px solid #eaeaea;
+  cursor: pointer;
+}
+.content-tab .tab-content .tab-pane{
+  padding: 30px 40px;
+}

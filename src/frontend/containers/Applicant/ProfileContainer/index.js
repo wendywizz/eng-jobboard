@@ -1,51 +1,51 @@
 import React, { useState } from "react"
 import { Nav, NavItem, NavLink, TabContent, Form, Button } from "reactstrap"
 import Content, { ContentBody, ContentHeader, ContentFooter } from "Frontend/components/Content"
-import { TabInfo, TabEducation, TabSkill, TabAward, TAB_INFO, TAB_EDUCATION, TAB_SKILL, TAB_AWARD } from "./Tabs"
+import { TabInfo, TabEducation, TabSkill, TabAward, TAB_INFO_NAME, TAB_EDUCATION_NAME, TAB_SKILL_NAME, TAB_AWARD_NAME } from "./Tabs"
 import classnames from "classnames"
 import "./index.css"
 
 function ProfileContainer() {
-  const [activeTab, setActiveTab] = useState(TAB_INFO);
+  const [activeTab, setActiveTab] = useState(TAB_INFO_NAME);
 
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   }
 
   return (
-    <Content className="content-profile">
+    <Content className="content-tab">
       <ContentHeader title="โปรไฟล์ส่วนตัว" />
       <ContentBody padding={false}>
-        <Form>
+        <Form className="distance">
           <Nav tabs>
             <NavItem>
               <NavLink
-                className={classnames({ active: activeTab === TAB_INFO })}
-                onClick={() => { toggle(TAB_INFO); }}
+                className={classnames({ active: activeTab === TAB_INFO_NAME })}
+                onClick={() => { toggle(TAB_INFO_NAME); }}
               >
                 <span>ข้อมูลทั่วไป</span>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className={classnames({ active: activeTab === TAB_EDUCATION })}
-                onClick={() => { toggle(TAB_EDUCATION); }}
+                className={classnames({ active: activeTab === TAB_EDUCATION_NAME })}
+                onClick={() => { toggle(TAB_EDUCATION_NAME); }}
               >
                 <span>การศึกษา</span>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className={classnames({ active: activeTab === TAB_SKILL })}
-                onClick={() => { toggle(TAB_SKILL); }}
+                className={classnames({ active: activeTab === TAB_SKILL_NAME })}
+                onClick={() => { toggle(TAB_SKILL_NAME); }}
               >
                 <span>ความสามารถ</span>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className={classnames({ active: activeTab === TAB_AWARD })}
-                onClick={() => { toggle(TAB_AWARD); }}
+                className={classnames({ active: activeTab === TAB_AWARD_NAME })}
+                onClick={() => { toggle(TAB_AWARD_NAME); }}
               >
                 <span>รางวัลที่ได้รับ</span>
               </NavLink>
