@@ -1,5 +1,5 @@
 import React from "react"
-import { Container } from "reactstrap"
+import { Container, Row, Col } from "reactstrap"
 import Template from "Frontend/components/Template"
 import SectionCover from "./SectionCover"
 import SectionCategory from "./SectionCategory"
@@ -11,7 +11,13 @@ function HomeContainer() {
       <SectionCover />
       <Container>
         <SectionCategory />
-        <SectionRecentJob />
+        <Row>
+          <Col md={9}>
+            <SectionRecentJob />
+          </Col>
+          <Col md={3}>
+          </Col>
+        </Row>
       </Container>
     </Template>
   );

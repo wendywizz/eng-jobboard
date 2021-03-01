@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { Row, Col, Nav, NavItem, NavLink } from "reactstrap"
+import { Row, Col, Nav, NavItem, NavLink, ListGroup, ListGroupItem } from "reactstrap"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import Content, { ContentHeader, ContentBody, ContentFooter } from "Frontend/components/Content"
 import { useQuery } from "Frontend/utils/hook"
-import ListJobItem from "Frontend/components/ListJobItem"
 import { EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
 import { ALL, ACTIVE, INACTIVE, FINISH } from "Frontend/constants/employer-job-status"
 import "./index.css"
@@ -54,18 +53,15 @@ function JobListContainer() {
         </Row>
       </ContentHeader>
       <ContentBody box={false} padding={false}>
-        {
-          jobResultData.map((value, index) => (
-            <ListJobItem
-              key={index}
-              id={value.jobId}
-              title={value.jobTitle}
-              logoUri={value.image}
-              jobType={value.jobType.name}
-              location={value.location.name}
-            />
-          ))
-        }
+        <ListGroup>
+          {
+            jobResultData.map((value, index) => (
+              <ListGroupItem key={index}>
+{value.jobTitle}
+            </ListGroupItem>
+            ))
+          }
+        </ListGroup>
       </ContentBody>
       <ContentFooter></ContentFooter>
     </Content>

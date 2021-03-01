@@ -6,11 +6,16 @@ body {
   background-color: #fafafa !important;
   color: #545454;
 }
-.form-control {
-  font-size: 14px;
-}
 .container {
   max-width: 1280px;
+}
+
+/* Form, Control and Input */
+form.distance .form-group:not(:last-child) {
+  margin-bottom: 40px;
+}
+.form-control {
+  font-size: 14px;
 }
 .input-element {
   border: 1px solid #ced4da;
@@ -19,10 +24,17 @@ body {
   min-height: 6em;
   cursor: text
 }
-form.distance .form-group:not(:last-child) {
-  margin-bottom: 40px;
+.btn {
+  font-size: 1em;
+}
+.btn.btn-sm {
+  font-size: 0.8em;
+}
+.btn.btn-lg {
+  font-size: 1.2em;
 }
 
+/* Content Tab */
 .content-tab .content-body {
   padding: 0 !important;
 }

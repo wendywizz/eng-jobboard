@@ -1,5 +1,7 @@
 import React from "react"
 import { Row, Col, Form, FormGroup, Input, Label, Button } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons"
 import Content, { ContentBody, ContentHeader } from "Frontend/components/Content"
 import Section from "Frontend/components/Section"
 import ToggleCheckbox from "Frontend/components/ToggleCheckbox";
@@ -10,7 +12,7 @@ function SettingContainer() {
     console.log("TOGGLE", e.target.checked)
   }
   return (
-    <Content>
+    <Content className="content-employer-setting">
       <ContentHeader title="การตั้งค่า" />
       <ContentBody box={false}>
         <Section className="section-setting box" title="การแจ้งเตือน" centeredTitle={false}>
@@ -37,36 +39,45 @@ function SettingContainer() {
           <Form>
             <Row>
               <Col md={6} sm={12}>
-                <FormGroup>
-                  <Label>ลิงค์​อีเมล</Label>
-                  <Input type="text" />
-                </FormGroup>
-                <FormGroup>
-                  <Label>เชื่อมโยง Facebook</Label>
-                  <Input type="text" />
-                </FormGroup>
-                <FormGroup>
-                  <Label>เชื่อมโยง Google</Label>
-                  <Input type="text" />
-                </FormGroup>
-              </Col>
-              <Col md={6} sm={12}>
-              <h4>เปลี่ยนรหัสผ่าน</h4>
-                <FormGroup>
-                  <Label>รหัสผ่านเดิม</Label>
-                  <Input type="password" />
-                </FormGroup>
-                <hr />
-                <FormGroup>
-                  <Label>รหัสผ่านใหม่</Label>
-                  <Input type="password" />
-                </FormGroup>
-                <FormGroup>
-                  <Label>ยืนยันรหัสผ่านใหม่</Label>
-                  <Input type="password" />
-                </FormGroup>
-                <div>
-                  <Button color="primary">ยืนยัน</Button>
+                <div className="sub-section-setting">
+                  <h4 className="title">การเชื่อมโยงบัญชี Social Network</h4>
+                  <FormGroup className="form-group-button">
+                    <div className="col-icon">
+                      <FontAwesomeIcon icon={faFacebook} className="link-social-icon facebook" />
+                      <Label>เชื่อมโยงบัญชี Facebook</Label>
+                    </div>
+                    <div className="col-button">
+                      <Button size="sm">ยังไม่เชื่อมโยง</Button>
+                    </div>
+                  </FormGroup>
+                  <FormGroup className="form-group-button">
+                    <div className="col-icon">
+                      <FontAwesomeIcon icon={faGoogle} className="link-social-icon google" />
+                      <Label>เชื่อมโยงบัญชี Google</Label>
+                    </div>
+                    <div className="col-button">
+                      <Button size="sm" color="success">เชื่อมโยงแล้ว</Button>
+                    </div>
+                  </FormGroup>
+                </div>
+                <div className="sub-section-setting">
+                  <h4 className="title">เปลี่ยนรหัสผ่าน</h4>
+                  <FormGroup>
+                    <Label>รหัสผ่านเดิม</Label>
+                    <Input type="password" />
+                  </FormGroup>
+                  <hr />
+                  <FormGroup>
+                    <Label>รหัสผ่านใหม่</Label>
+                    <Input type="password" />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>ยืนยันรหัสผ่านใหม่</Label>
+                    <Input type="password" />
+                  </FormGroup>
+                  <div>
+                    <Button color="primary">ยืนยัน</Button>
+                  </div>
                 </div>
               </Col>
             </Row>
