@@ -61,7 +61,7 @@ function JobFormContainer() {
   }
 
   return (
-    <Content>
+    <Content className="content-jobform">
       <ContentHeader>
         <Row>
           <Col>
@@ -73,7 +73,7 @@ function JobFormContainer() {
           </Col>
         </Row>
       </ContentHeader>
-      <ContentBody fill={true}>
+      <ContentBody>
         <Form className="distance">
           <FormGroup>
             <Label htmlFor="job-name">ชื่อตำแหน่งงาน</Label>

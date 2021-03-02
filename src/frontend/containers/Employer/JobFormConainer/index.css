@@ -1,3 +1,7 @@
+.content-jobform .content-header {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 .group-range-salary {
   display: flex;
   flex-direction: row;

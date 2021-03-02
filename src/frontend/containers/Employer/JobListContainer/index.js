@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { Row, Col, Nav, NavItem, NavLink, ListGroup, ListGroupItem } from "reactstrap"
+import { Row, Col, Nav, NavItem, NavLink, ListGroup, ListGroupItem, Badge } from "reactstrap"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import Content, { ContentHeader, ContentBody, ContentFooter } from "Frontend/components/Content"
+import ToggleCheckbox from "Frontend/components/ToggleCheckbox"
 import { useQuery } from "Frontend/utils/hook"
 import { EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
 import { ALL, ACTIVE, INACTIVE, FINISH } from "Frontend/constants/employer-job-status"
@@ -53,12 +54,26 @@ function JobListContainer() {
         </Row>
       </ContentHeader>
       <ContentBody box={false} padding={false}>
-        <ListGroup>
+        <ListGroup className="list-group-job">
           {
             jobResultData.map((value, index) => (
-              <ListGroupItem key={index}>
-{value.jobTitle}
-            </ListGroupItem>
+              <ListGroupItem key={index} className="list-group-jobitem">
+                <div className="detail">
+                  <div className="job-type">
+                    <Badge color="info">FULL TIME</Badge>
+                  </div>
+                  <span className="title">{value.jobTitle}</span>
+                  <span className="amount">จำนวนรับ 2 ตำแหน่ง</span>
+                </div>
+                <div className="action">
+                  <div className="apply-info">
+                    <ToggleCheckbox />
+                  </div>
+                  <div className="view">
+                    <Link to={`${EMPLOYER_JOB_EDIT_PATH(emprId)}/${value.jobId}`} className="btn btn-outline-primary btn-block">แก้ไข</Link>
+                  </div>
+                </div>
+              </ListGroupItem>
             ))
           }
         </ListGroup>

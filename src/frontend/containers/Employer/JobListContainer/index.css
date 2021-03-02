@@ -25,3 +25,26 @@
   background-color: #eaeaea;
   color: #666;
 }
+
+.list-group-jobitem {
+  display: flex !important;
+  flex-direction: row;
+  padding: 25px 20px !important;
+}
+.list-group-jobitem .detail {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.list-group-jobitem .detail .title {
+  font-size: 1.2em;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+.list-group-jobitem .detail .amount {
+  font-size: 0.9em;
+  color: #cdcdcd;
+}
+.list-group-jobitem .action {
+  width: 200px;
+}

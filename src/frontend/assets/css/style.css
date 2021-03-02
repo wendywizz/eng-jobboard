@@ -11,6 +11,9 @@ body {
 }
 
 /* Form, Control and Input */
+form.distance {
+  padding: 30px 20px;
+}
 form.distance .form-group:not(:last-child) {
   margin-bottom: 40px;
 }
