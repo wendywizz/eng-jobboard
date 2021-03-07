@@ -2,17 +2,41 @@
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
 .group-range-salary {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
+.group-range-salary .seperator {
+  display: flex;
+  align-items: center;
+  padding: 7px 15px;
+}
+
 .group-work-day {
+  padding: 5px 0;
+}
+.group-work-day .checkbox-day {
+  display: inline-block;
+}
+.group-work-day .checkbox-day:not(:last-child) {
+  margin-right: 6px;
+}
+
+.time-range {
   display: flex;
   flex-direction: row;
 }
-.group-work-day .form-check-label {
+.time-range label {
+  font-size: 10px;
+  margin-bottom: 3px;
+}
+.time-range .control {
+  width: 80px;
+}
+.time-range .seperator {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  margin-top: 17px;
+  padding: 7px 15px;
 }

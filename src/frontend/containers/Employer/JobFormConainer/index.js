@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { Row, Col, Button, Form, FormGroup, Input, Label } from "reactstrap"
 import { Link } from "react-router-dom"
-import { Editor, EditorState } from 'draft-js';
 import Content, { ContentHeader, ContentBody } from "Frontend/components/Content"
+import CheckboxTag from "Frontend/components/CheckboxTag"
 import { EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
 import {
   SPECIFIC_TYPE,
@@ -10,19 +10,11 @@ import {
   BETWEEN_TYPE,
   REQUEST_TYPE
 } from "Frontend/constants/salary-type"
+import day from "Frontend/constants/day"
 import "./index.css"
-import "draft-js/dist/Draft.css";
 
 function JobFormContainer() {
   const [valSalarySelected, setValSalarySelected] = useState(null)
-  const [editorState, setEditorState] = React.useState(() =>
-    EditorState.createEmpty()
-  );
-
-  const editor = React.useRef(null);
-  function focusEditor() {
-    editor.current.focus();
-  }
 
   const renderSalaryInput = (value) => {
     const numberVal = value ? Number(value) : null
@@ -44,9 +36,7 @@ function JobFormContainer() {
               <div className="min input">
                 <Input type="number" placeholder="ช่วงต่ำสุด" />
               </div>
-              <div className="seperate">
-                <span>ถึง</span>
-              </div>
+              <div className="seperator">ถึง</div>
               <div className="max input">
                 <Input type="number" placeholder="ช่วงสูงสุด" />
               </div>
@@ -74,28 +64,21 @@ function JobFormContainer() {
         </Row>
       </ContentHeader>
       <ContentBody>
-        <Form className="distance">
+        <Form className="distance form-input">
           <FormGroup>
             <Label htmlFor="job-name">ชื่อตำแหน่งงาน</Label>
             <Input type="text" name="job-name" />
+            <p className="input-desc">ระบุชื่อตำแหน่งงาน</p>
           </FormGroup>
           <FormGroup>
             <Label htmlFor="job-desc">รายละเอียดงาน</Label>
-            <div
-              className="input-element"
-              onClick={focusEditor}
-            >
-              <Editor
-                ref={editor}
-                editorState={editorState}
-                onChange={setEditorState}
-                placeholder="Write something!"
-              />
-            </div>
+            <Input type="textarea" rows={3} />
+            <p className="input-desc">ระบุรายละเอียดของงานที่ผู้สมัครงานต้องรับผิดชอบ</p>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="job-scope">ขอบเขตงาน</Label>
-            <Input type="textarea" name="job-scope" rows={4} />
+            <Label htmlFor="job-desc">ขอบเขตงาน</Label>
+            <Input type="textarea" rows={3} />
+            <p className="input-desc">ระบุขอบเขตหน้าที่ความรับผิดชอบของงาน</p>
           </FormGroup>
           <FormGroup>
             <Row>
@@ -108,6 +91,7 @@ function JobFormContainer() {
                   <option value={STRUCTURAL_TYPE.value}>{STRUCTURAL_TYPE.label}</option>
                   <option value={REQUEST_TYPE.value}>{REQUEST_TYPE.label}</option>
                 </Input>
+                <p className="input-desc">เลือกประเภทของอัตราเงินเดือน</p>
               </Col>
               <Col lg={6} md={6} sm={12}>
                 {
@@ -116,62 +100,38 @@ function JobFormContainer() {
               </Col>
             </Row>
           </FormGroup>
-          <FormGroup tag="fieldset">
-            <Row>
-              <Col md={6} xs={12}>
-                <Label>วันและเวลาปฎิทินงาน</Label>
-                <div className="group-work-day">
-                  <FormGroup check>
-                    <Label>
-                      <Input type="checkbox" name="work-day" />
-                      <span>จันทร์</span>
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="checkbox" name="work-day" />
-                      <span>อังคาร</span>
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="checkbox" name="work-day" />
-                      <span>พุธ</span>
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="checkbox" name="work-day" />
-                      <span>พฤหัส</span>
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="checkbox" name="work-day" />
-                      <span>ศุกร์</span>
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="checkbox" name="work-day" />
-                      <span>เสาร์</span>
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="checkbox" name="work-day" />
-                      <span>อาทิตย์</span>
-                    </Label>
-                  </FormGroup>
-                </div>
-              </Col>
-              <Col md={6} xs={12}>
-              </Col>
-            </Row>
+          <FormGroup>
+            <Label>วันทำงาน</Label>
+            <div className="group-work-day">
+              {
+                day.map((value, index) => (
+                  <CheckboxTag key={index} className="checkbox-day" text={value.text} value={value.value} />
+                ))
+              }
+            </div>
           </FormGroup>
           <FormGroup>
-            <Label>สวัสดิการ</Label>
-            <Input type="textarea" rows={4} />
+            <Label>เวลาทำงาน</Label>
+            <div className="time-range">
+              <div className="input-time start">
+                <Label>เริ่ม</Label>
+                <Input className="control" type="select">
+                  <option>-</option>
+                </Input>
+              </div>
+              <div className="seperator">ถึง</div>
+              <div className="input-time end">
+                <Label>สิ้นสุด</Label>
+                <Input className="control" type="select">
+                  <option>-</option>
+                </Input>
+              </div>
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="job-desc">สวัสดิการ</Label>
+            <Input type="textarea" rows={3} />
+            <p className="input-desc">ระบุสวัสดิการที่ผู้เข้าทำงานจะได้รับ</p>
           </FormGroup>
         </Form>
       </ContentBody>

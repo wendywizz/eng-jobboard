@@ -20,20 +20,18 @@ function RegisterContainer() {
 
   const _handleCallback = (passed) => {
     switch (registState) {
-      case 0:
+      case REGIST_STATE.inputInfo: default:
         if (passed) {
           setRegistState(REGIST_STATE.inputInfo)
         }
         break
-      case 1:
+      case REGIST_STATE.codeChecking:
+        setRegistState(REGIST_STATE.codeChecking)
+        break
+      case REGIST_STATE.finish:
         if (passed) {
           setRegistState(REGIST_STATE.finish)
         }
-        break
-      case 2:
-        setRegistState(REGIST_STATE.codeChecking)
-        break
-      default:
         break
     }
 
@@ -67,7 +65,6 @@ function RegisterContainer() {
               <div className="box-register">
                 {
                   renderPanel()
-
                 }
               </div>
             </Col>

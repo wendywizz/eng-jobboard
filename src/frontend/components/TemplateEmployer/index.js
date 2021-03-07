@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Spinner } from "reactstrap"
 import TemplateUserPanel from "Frontend/components/TemplateUserPanel"
-import { EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH } from "Frontend/configs/paths"
+import { EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, /*EMPLOYER_RESUME_PATH,*/ EMPLOYER_SETTING_PATH } from "Frontend/configs/paths"
 
 function TemplateEmployer({ children }) {
   const [ready] = useState(true)
@@ -17,7 +17,7 @@ function TemplateEmployer({ children }) {
       {
         text: "", children: [
           { text: "จัดการงาน", link: EMPLOYER_JOB_PATH(userId) },
-          { text: "รายการสมัครงาน", link: EMPLOYER_RESUME_PATH(userId) },
+          /*{ text: "รายการสมัครงาน", link: EMPLOYER_RESUME_PATH(userId) },*/
         ]
       },
       {
