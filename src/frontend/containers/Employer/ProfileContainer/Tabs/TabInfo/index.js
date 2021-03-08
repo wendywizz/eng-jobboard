@@ -1,16 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import { FormGroup, Label, Input, TabPane } from "reactstrap"
-import defaultLogo from "Frontend/assets/img/default-logo.jpg"
-import ImageUploader from "react-images-upload";
-
+//import defaultLogo from "Frontend/assets/img/default-logo.jpg"
 
 const TAB_INFO_NAME = "info"
 
 function TabInfo() {
-  const [pictures, setPictures] = useState([]);
-  const onDrop = picture => {
-    setPictures([...pictures, picture]);
-  };
 
   return (
     <TabPane tabId={TAB_INFO_NAME}>
@@ -26,14 +20,7 @@ function TabInfo() {
       </FormGroup>
       <FormGroup>
         <Label>โลโก้บริษัท</Label>
-        <ImageUploader
-          withIcon={true}
-          onChange={onDrop}
-          imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-          maxFileSize={5242880}
-          singleImage={true}
-          withPreview={true}
-        />
+        <Input type="file" />
       </FormGroup>
     </TabPane>
   )

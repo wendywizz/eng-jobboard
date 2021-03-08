@@ -16,27 +16,6 @@
   margin-bottom: 12px;
   border-bottom: 1px solid #eaeaea;
 }
-.list-option {
-  list-style: none;
-  padding: 0;
-}
-.list-option .list-option-item {
-  display: flex;
-  flex-direction: row;
-  padding: 5px 0;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #eaeaea;
-}
-.list-option .list-option-item .desc {
-  display: flex;
-  flex: 3;
-  align-items: center;
-}
-.list-option .list-option-item .control {
-  display: flex;
-  flex: 2;
-  justify-content: flex-end;
-}
 
 .content-employer-setting .col-icon .link-social-icon {
   font-size: 32px;

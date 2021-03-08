@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Spinner } from "reactstrap"
 import TemplateUserPanel from "Frontend/components/TemplateUserPanel"
-import { APPLICANT_PROFILE_PATH, APPLICANT_RESUME_PATH, APPLICANT_SETTING_PATH } from "Frontend/configs/paths"
+import { APPLICANT_PROFILE_PATH, /*APPLICANT_RESUME_PATH,*/ APPLICANT_SETTING_PATH } from "Frontend/configs/paths"
 
 function TemplateApplicant({ children }) {
   const [ready] = useState(true)
@@ -12,7 +12,7 @@ function TemplateApplicant({ children }) {
       {
         text: "", children: [
           { text: "โปรไฟล์ส่วนตัว", link: APPLICANT_PROFILE_PATH(userId) },
-          { text: "การสมัครงาน", link: APPLICANT_RESUME_PATH(userId) },
+          //{ text: "การสมัครงาน", link: APPLICANT_RESUME_PATH(userId) },
         ]
       },
       {

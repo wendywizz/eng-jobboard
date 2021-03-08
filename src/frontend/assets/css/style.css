@@ -17,7 +17,7 @@ body {
 form.form-input .form-group > label{
   font-weight: 600;
 }
-form.form-input .form-group .input-desc {
+.input-desc {
   font-family: PSU-Stidti-Light;
   font-size: 12px;
   color: #444;
@@ -71,5 +71,31 @@ form.distance .form-group:not(:last-child) {
   cursor: pointer;
 }
 .content-tab .tab-content .tab-pane{
-  padding: 30px 40px;
+  padding: 15px 25px;
+}
+
+/* List Option */
+.list-option {
+  list-style: none;
+  padding: 0;
+}
+.list-option .list-option-item {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0;
+  margin-bottom: 15px;
+}
+.list-option .list-option-item:not(:last-child) {
+  border-bottom: 1px solid #eaeaea;
+}
+.list-option .list-option-item .desc {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  align-items: flex-start;
+}
+.list-option .list-option-item .control {
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
 }

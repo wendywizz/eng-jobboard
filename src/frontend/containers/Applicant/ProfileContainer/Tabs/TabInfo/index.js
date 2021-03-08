@@ -6,23 +6,27 @@ const TAB_INFO_NAME = "profile"
 function TabInfo() {
   return (
     <TabPane tabId={TAB_INFO_NAME}>
-      <Row>
-        <Col>
-          <FormGroup>
+      <FormGroup>
+        <Row>
+          <Col>
             <Label>ชื่อ</Label>
             <Input type="text" />
-          </FormGroup>
-        </Col>
-        <Col>
-          <FormGroup>
+          </Col>
+          <Col>
             <Label>นามสกุล</Label>
             <Input type="text" />
-          </FormGroup>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </FormGroup>
       <FormGroup>
-        <Label>ที่อยู่</Label>
+        <Label>รูปถ่าย</Label>
+        <Input type="file" />
+        <p className="input-desc">อัพโหลดรูปถ่ายตนเอง (กรุณาใช้รูปถ่ายจริง)</p>
+      </FormGroup>
+      <FormGroup>
+        <Label>ที่อยู่ปัจจุบัน</Label>
         <Input type="textarea" rows={2} />
+        <p className="input-desc">ระบุที่อยู่ที่สามารถติดต่อได้</p>
       </FormGroup>
       <FormGroup>
         <Row>
@@ -50,7 +54,15 @@ function TabInfo() {
         <Row>
           <Col md={6} sm={12}>
             <Label>เบอร์โทรศัพท์ติดต่อ</Label>
-            <Input type="text" />
+            <Input type="text" placeholder="Ex. 08########" />
+          </Col>
+        </Row>
+      </FormGroup>
+      <FormGroup>
+        <Row>
+          <Col md={6} sm={12}>
+            <Label>อีเมล</Label>
+            <Input type="email" placeholder="example@mail.com" />
           </Col>
         </Row>
       </FormGroup>
