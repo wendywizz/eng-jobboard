@@ -9,7 +9,7 @@ import "./index.css";
 function DetailContainer(props) {
   return (
     <Template>
-      <Page>
+      <Page className="page-job-detail">
         <Section className="section-detail">
           <Row className="row-info">
             <Col md={2} className="col-image">

@@ -1,11 +1,17 @@
 import React from "react"
 import ListJobItem from "Frontend/components/ListJobItem"
-
+import Section from "Frontend/components/Section"
 import jobResultData from "Frontend/data/json/job-result.json"
+import "./index.css"
 
 function SectionRecentJob() {
   return (
-    <div className="section section-recent-job">
+    <Section
+      className="section-job-recent"
+      title="งานล่าสุด"
+      titleDesc="ตำแหน่งงานล่าสุดที่เปิดรับสมัคร"
+      centeredTitle={false}
+    >
       {
         jobResultData.map((value, index) => (
           <ListJobItem
@@ -18,7 +24,7 @@ function SectionRecentJob() {
           />
         ))
       }
-    </div>
+    </Section>
   )
 }
 export default SectionRecentJob

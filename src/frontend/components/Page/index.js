@@ -2,13 +2,13 @@ import React from "react"
 import classNames from "classnames"
 import "./index.css"
 
-function Page({ ...props }) {
+function Page({ centered, ...props }) {
   const classes = classNames({
     "page": true,
-    "centered": props.centered && true,
+    "centered": centered && true
   })
   return (
-    <div className={classes}>
+    <div className={classes.toString() + " " + props.className}>
       { props.children}
     </div>
   )

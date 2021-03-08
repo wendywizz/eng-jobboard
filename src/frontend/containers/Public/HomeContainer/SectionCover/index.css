@@ -1,16 +1,19 @@
 .cover-container {  
-  height: 500px;  
+  min-height: 500px;
+  height: 30vh;  
 }
 .cover-container .image {    
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background: url('Frontend/assets/img/cover-1.jpg') no-repeat center center scroll;
+  background: url('Frontend/assets/img/cover-3.jpg') no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 500px;
+  min-height: 500px;
+  height: 30vh;
   width: 100%;  
 }
 .cover-container .image:before {
@@ -18,7 +21,24 @@
   position: absolute;
   height: 500px;
   width: 100%;
-  background-color: #000;
+  background-color: #121212;
   opacity: 0.7;
   z-index: 1;
+}
+.cover-container .app-title {
+  font-family: PSU-Stidti-Light;
+  font-size: 3.2em;
+  font-weight: 600;
+  text-shadow: #121212 3px 3px;
+  color: #fff;
+  z-index: 10;
+  margin-bottom: 1.2rem;
+}
+.cover-container .app-desc {
+  font-family: PSU-Stidti-Light;
+  font-size: 1.6em;
+  text-shadow: #121212 2px 2px;
+  color: #fff;
+  z-index: 10;
+  margin-bottom: 3rem;
 }

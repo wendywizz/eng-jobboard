@@ -1,6 +1,6 @@
 import React from "react"
 import { HOME_PATH } from "Frontend/configs/paths"
-import navLogo from "Frontend/assets/img/nav-logo.png";
+import navLogo from "Frontend/assets/img/nav-logo-inverse.png";
 import "./index.css"
 
 function HeaderNavSticky() {
