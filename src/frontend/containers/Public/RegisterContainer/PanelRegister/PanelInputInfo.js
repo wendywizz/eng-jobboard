@@ -10,6 +10,7 @@ function PanelInputInfo({ onCallback }) {
 
     onCallback(true)
   }
+  
   return (
     <div className="panel-input-info">
       <div className="block-register-email">

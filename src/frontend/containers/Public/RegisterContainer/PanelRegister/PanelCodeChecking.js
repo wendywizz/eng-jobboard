@@ -11,19 +11,19 @@ function PanelCodeChecking({ onCallback }) {
   }
   return (
     <div className="panel panel-code-checking">
-    <Form onSubmit={_handleSubmit}>
-      <FormGroup>
-        <div className="input-inner">
-          <Label>ตรวจสอบรหัสนักศึกษา</Label>
-          <Input placeholder="ระบุรหัสนักศึกษา" />
-        </div>
-        <Button block color="primary">ตรวจสอบ</Button>
-        <Alert color="info">
-          <b><FontAwesomeIcon icon={faExclamationTriangle} /> หมายเหตุ</b>
-          <p>สมัครใช้งานได้เฉพาะนักศึกษาคณะวิศวกรรมศาสตร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตหาดใหญ่เท่านั้น</p>
-        </Alert>
-      </FormGroup>
-    </Form>
+      <Form onSubmit={_handleSubmit}>
+        <FormGroup>
+          <div className="input-inner">
+            <Label>ตรวจสอบรหัสนักศึกษา</Label>
+            <Input placeholder="ระบุรหัสนักศึกษา" />
+          </div>
+          <Button block color="primary">ตรวจสอบ</Button>
+          <Alert color="info">
+            <b><FontAwesomeIcon icon={faExclamationTriangle} /> หมายเหตุ</b>
+            <p>สมัครใช้งานได้เฉพาะนักศึกษาคณะวิศวกรรมศาสตร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตหาดใหญ่เท่านั้น</p>
+          </Alert>
+        </FormGroup>
+      </Form>
     </div>
   )
 }

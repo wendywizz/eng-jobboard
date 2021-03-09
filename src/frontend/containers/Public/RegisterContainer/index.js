@@ -8,6 +8,7 @@ import {
   PanelFinish
 } from "Frontend/containers/Public/RegisterContainer/PanelRegister"
 import "./index.css"
+import Sizebox from "Frontend/components/Sizebox"
 
 const REGIST_STATE = {
   codeChecking: 0,
@@ -18,23 +19,22 @@ const REGIST_STATE = {
 function RegisterContainer() {
   const [registState, setRegistState] = useState(REGIST_STATE.codeChecking)
 
-  const _handleCallback = (passed) => {
+  const _handleCallback = (passed) => {    
     switch (registState) {
-      case REGIST_STATE.inputInfo: default:
-        if (passed) {
-          setRegistState(REGIST_STATE.inputInfo)
-        }
-        break
       case REGIST_STATE.codeChecking:
-        setRegistState(REGIST_STATE.codeChecking)
+        setRegistState(REGIST_STATE.inputInfo)
         break
-      case REGIST_STATE.finish:
+      case REGIST_STATE.inputInfo: default:
         if (passed) {
           setRegistState(REGIST_STATE.finish)
         }
         break
+      case REGIST_STATE.finish:
+        if (passed) {
+          setRegistState(REGIST_STATE.codeChecking)
+        }
+        break
     }
-
   }
 
   const renderPanel = () => {
@@ -51,7 +51,8 @@ function RegisterContainer() {
   return (
     <Template>
       <Page centered={true}>
-        <div className="container-register">
+        <Sizebox value="30px" />
+        <div className="container-register shadow">
           <Row>
             <Col>
               <h1>สมัครเข้าใช้งาน</h1>
@@ -63,9 +64,9 @@ function RegisterContainer() {
             </Col>
             <Col className="col-input">
               <div className="box-register">
-                {
-                  renderPanel()
-                }
+              {
+                renderPanel()
+              }
               </div>
             </Col>
           </Row>
