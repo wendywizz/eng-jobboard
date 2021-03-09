@@ -1,0 +1,45 @@
+{
+  "_id": "",  
+  "fname": "",
+  "sname": "",
+  "birth_date": "",
+  "photo": "",
+  "location": {
+    "address": "",
+    "sub_area": "",
+    "area": "",
+    "postcode": "",
+    "country": ""
+  },
+  "contact": {
+    "phone": "",
+    "email": "",
+    "website": "",
+    "facebook": ""
+  },  
+  "education": {
+    "bachelor": { 
+      "university": "",
+      "gpa": ""
+    },
+    "master": { 
+      "university": "",
+      "gpa": ""
+    },
+    "phd": { 
+      "university": "",
+      "gpa": ""
+    }
+  },
+  "skill": [
+    { "key": "", "text": "" },
+    { "key": "", "text": "" }
+  ],
+  "award": [
+    { "key": "", "text": "" },
+    { "key": "", "text": "" }
+  ],  
+  "created_at": "",
+  "updated_at": "",
+  "created_by": ""
+}

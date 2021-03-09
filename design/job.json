@@ -1,0 +1,39 @@
+{
+  "_id": "",
+  "position": "",
+  "type": "",
+  "job_scope": "",
+  "performance": "",
+  "welfare": "",  
+  "salary": {
+    "type": "",
+    "min": "",
+    "max": ""
+  },
+  "work_days": {
+    "mon": "",
+    "tue": "",
+    "wed": "",
+    "thu": "",
+    "fri": "",
+    "sat": "",
+    "sun": ""
+  },
+  "work_time": {
+    "start": "",
+    "end": ""
+  },
+  "company_owner": "",
+  "location": {
+    "sub_area": "",
+    "area": "",    
+    "country": ""
+  },
+  "require_amount": "",  
+  "active": "",
+  "deleted": "",
+  "created_at": "",
+  "updated_at": "",
+  "expire_at": "",
+  "created_by": ""
+}

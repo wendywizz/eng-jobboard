@@ -1,0 +1,22 @@
+{
+  "_id": "",
+  "type": "",
+  "email": "",
+  "password": "",    
+  "student_id": "",
+  "person_id": "",
+  "active": "",
+  "setting": {
+    "notify": {
+      "email": "",
+      "sms": ""
+    },
+    "binding": {
+      "facebook": "",
+      "google": ""
+    }
+  },  
+  "created_at": "",
+  "updated_at": "",
+  "latest_login": ""
+}

@@ -1,0 +1,22 @@
+{
+  "_id": "",
+  "name": "",  
+  "logo": "",
+  "about": "",
+  "location": {
+    "address": "",
+    "sub_area": "",
+    "area": "",
+    "postcode": "",
+    "country": ""
+  },
+  "contact": {
+    "phone": "",
+    "email": "",
+    "website": "",
+    "facebook": ""
+  },  
+  "created_at": "",
+  "updated_at": "",
+  "created_by": ""
+}
