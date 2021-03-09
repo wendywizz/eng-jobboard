@@ -1,20 +1,10 @@
-/*.home-search-box {  
-  padding: 25px;
-  background-color: #fff;
-  width: 450px;
-  z-index: 10;
-  margin-left: 12vw;
-}
-.home-search-box .btn {
-  margin-top: 25px;
-}*/
 .home-searchbox {
   background-color: #fff;
   margin-top: 30px;
   padding: 25px;
   z-index: 10;
   width: 50vw;
-  border-top: 6px solid #9c0d0b;
+  border-top: 5px solid #9c0d0b;
 }
 .home-searchbox .form-home-searchbox .form-group label{
   font-size: 14px;

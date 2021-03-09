@@ -1,6 +1,8 @@
 .card-job-item {
   background-color: #fff;
   padding: 20px;
+  border: 1px solid #eaeaea;
+  box-shadow: #cdcdcd 1px 2px 2px;
 }
 .card-job-item .title {
   font-family: PSU-Stidti-Bold;
