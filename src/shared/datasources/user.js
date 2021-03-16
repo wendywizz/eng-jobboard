@@ -1,5 +1,12 @@
-function checkingStudent(studentId, personId) {
+import { sendPost } from "shared/utils/request";
 
+async function checkingStudent(studentCode, cardNo) {
+  const uri = "http://localhost:3333/api/register/identify-student";
+  const bodyData = {
+    std_code: studentCode,
+    card_no: cardNo
+  }
+  return await sendPost(uri, bodyData);
 }
 
 function registerWithEmailAndPassword(email, password) {

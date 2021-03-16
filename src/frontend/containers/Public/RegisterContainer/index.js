@@ -7,8 +7,8 @@ import {
   PanelInputInfo,
   PanelFinish
 } from "Frontend/containers/Public/RegisterContainer/PanelRegister"
-import "./index.css"
 import Sizebox from "Frontend/components/Sizebox"
+import "./index.css"
 
 const REGIST_STATE = {
   codeChecking: 0,
@@ -21,7 +21,7 @@ function RegisterContainer() {
 
   const _handleCallback = (passed) => {    
     switch (registState) {
-      case REGIST_STATE.codeChecking:
+      case REGIST_STATE.codeChecking:       
         setRegistState(REGIST_STATE.inputInfo)
         break
       case REGIST_STATE.inputInfo: default:
