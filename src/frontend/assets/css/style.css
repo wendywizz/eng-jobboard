@@ -11,6 +11,14 @@ body {
 }
 
 /* Form, Control and Input */
+form .validate-message {
+  color: #e74c3c;
+  margin-top: 5px;
+}
+form .validate-message::before {
+  display: inline;
+  content: "⚠ ";
+}
 .form-control {
   border-radius: 0 !important;
 }
