@@ -3,16 +3,21 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
 import { FormGroup, Label, Button } from "reactstrap"
+import { registerWithEmailAndPassword } from "shared/datasources/user"
 import "./index.css"
 
 function PanelInputInfo({ onCallback }) {
   const { register, handleSubmit, watch, errors } = useForm();
-  const password = useRef({});
-  password.current = watch("password", "");
+  const regist_password = useRef({});
+  regist_password.current = watch("regist_password", "");
 
-  const _handleSubmit = (value) => {
-    console.log(value)
-    //onCallback(true)
+  const _handleSubmit = (values) => {
+    const { regist_email, regist_password } = values
+
+    if (regist_email && regist_password) {
+      const result = registerWithEmailAndPassword(regist_email, regist_password)
+      
+    }
   }
   
   return (
@@ -21,46 +26,55 @@ function PanelInputInfo({ onCallback }) {
         <h3>สมัครด้วยอีเมล</h3>
         <form onSubmit={handleSubmit(_handleSubmit)}>
           <FormGroup>
-            <Label for="email">อีเมล</Label>
+            <Label for="regist_email">อีเมล</Label>
             <input 
               type="email" 
-              id="email" 
+              id="regist_email" 
+              name="regist_email"
               className="form-control"
-              ref={register("regist_email", {
-                required: true
+              ref={register({
+                required: true,
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
               })}
               defaultValue="test@gmail.com"
               placeholder="example@mail.com" 
             />
             {errors.regist_email?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.regist_email?.type === "pattern" && <p className="validate-message">Invalid email</p>}
           </FormGroup>
           <FormGroup>
-            <Label for="password">รหัสผ่าน</Label>
+            <Label for="regist_password">รหัสผ่าน</Label>
             <input 
               type="password" 
-              id="password" 
+              id="regist_password" 
+              name="regist_password"
               className="form-control"
-              ref={register("regist_password", {
+              ref={register({
                 required: true,
+                pattern: /^[A-Za-z0-9]/i,
                 min: 8
               })}
               placeholder="ระบุด้วยอักขระ (a-z, A-Z, 0-9)" 
             />
             {errors.regist_password?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.regist_password?.type === "pattern" && <p className="validate-message">Password is allow only (a-z, A-Z, 0-9)</p>}
             {errors.regist_password?.type === "min" && <p className="validate-message">Password at least 8 strings</p>}
           </FormGroup>
           <FormGroup>
-            <Label for="cpassword">ยืนยันรหัสผ่าน</Label>
+            <Label for="regist_cpassword">ยืนยันรหัสผ่าน</Label>
             <input 
               type="password" 
-              id="cpassword"
+              id="regist_cpassword"
+              name="regist_cpassword"
               className="form-control"
-              ref={register("regist_cpassword", {
+              ref={register({
                 required: true,
-              })}              
+                validate: value => regist_password.current === value                
+              })}
               placeholder="ระบุรหัสผ่านอีกครั้ง" 
             />
-            {errors.cpassword && <p className="validate-message">{errors.cpassword.message}</p>}
+            {errors.regist_cpassword?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.regist_cpassword?.type === "validate" && <p className="validate-message">Password did not match</p>}
           </FormGroup>
           <Button color="primary" block>สมัครเข้าใช้งาน</Button>
         </form>

@@ -1,7 +1,7 @@
 import { sendPost } from "shared/utils/request";
 
 async function checkingStudent(studentCode, cardNo) {
-  const uri = "http://localhost:3333/api/register/identify-student";
+  const uri = "http://localhost:3333/api/register/identify-student"
   const bodyData = {
     std_code: studentCode,
     card_no: cardNo
@@ -9,8 +9,8 @@ async function checkingStudent(studentCode, cardNo) {
   return await sendPost(uri, bodyData);
 }
 
-function registerWithEmailAndPassword(email, password) {
-  createUser()
+async function registerWithEmailAndPassword(email, password) {
+  return await createUser(email, password)
 }
 
 function registerWithFaebook() {
@@ -21,8 +21,11 @@ function registerWithGoogle() {
   createUser()
 }
 
-function createUser() {
+async function createUser(email, password) {
+  const uri = "http://localhost:3333/api/register/applicant/email"
+  const bodyData = { email, password }
 
+  return await sendPost(uri, bodyData)
 }
 
 function authenWithEmailAndPassword(email, password) {
