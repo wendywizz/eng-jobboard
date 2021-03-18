@@ -9,8 +9,8 @@ async function checkingStudent(studentCode, cardNo) {
   return await sendPost(uri, bodyData);
 }
 
-async function registerWithEmailAndPassword(email, password) {
-  return await createUser(email, password)
+async function registerWithEmailAndPassword(email, password, studentCode, cardNo) {
+  return await createUser(email, password, studentCode, cardNo)
 }
 
 function registerWithFaebook() {
@@ -21,9 +21,14 @@ function registerWithGoogle() {
   createUser()
 }
 
-async function createUser(email, password) {
+async function createUser(email, password, studentCode, cardNo) {
   const uri = "http://localhost:3333/api/register/applicant/email"
-  const bodyData = { email, password }
+  const bodyData = {
+    email,
+    password,
+    student_code: studentCode,
+    person_id: cardNo
+  }
 
   return await sendPost(uri, bodyData)
 }

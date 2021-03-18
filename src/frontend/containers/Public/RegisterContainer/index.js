@@ -18,14 +18,20 @@ const REGIST_STATE = {
 
 function RegisterContainer() {
   const [registState, setRegistState] = useState(REGIST_STATE.codeChecking)
+  const [studentCode, setStudentCode] = useState(null)
+  const [resultMessage, setResultMessage] = useState(null)
+  const [cardNo, setCardNo] = useState(null)
 
-  const _handleCallback = (passed) => {    
+  const _handleCallback = (passed, optionals) => {    
     switch (registState) {
-      case REGIST_STATE.codeChecking:       
+      case REGIST_STATE.codeChecking:     
+        setStudentCode(optionals.studentCode)
+        setCardNo(optionals.cardNo)  
         setRegistState(REGIST_STATE.inputInfo)
         break
       case REGIST_STATE.inputInfo: default:
         if (passed) {
+          setResultMessage(optionals.message) 
           setRegistState(REGIST_STATE.finish)
         }
         break
@@ -42,9 +48,9 @@ function RegisterContainer() {
       case REGIST_STATE.codeChecking: default:
         return <PanelCodeChecking onCallback={_handleCallback} />
       case REGIST_STATE.inputInfo:
-        return <PanelInputInfo onCallback={_handleCallback} />
+        return <PanelInputInfo onCallback={_handleCallback} studentCode={studentCode} cardNo={cardNo} />
       case REGIST_STATE.finish:
-        return <PanelFinish onCallback={_handleCallback} />
+        return <PanelFinish onCallback={_handleCallback} message={resultMessage} />
     }
   }
 

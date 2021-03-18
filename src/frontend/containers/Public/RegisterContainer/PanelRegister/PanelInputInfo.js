@@ -6,17 +6,23 @@ import { FormGroup, Label, Button } from "reactstrap"
 import { registerWithEmailAndPassword } from "shared/datasources/user"
 import "./index.css"
 
-function PanelInputInfo({ onCallback }) {
+function PanelInputInfo({ onCallback, studentCode, cardNo }) {
   const { register, handleSubmit, watch, errors } = useForm();
   const regist_password = useRef({});
   regist_password.current = watch("regist_password", "");
 
-  const _handleSubmit = (values) => {
+  const _handleSubmit = async(values) => {
     const { regist_email, regist_password } = values
 
     if (regist_email && regist_password) {
-      const result = registerWithEmailAndPassword(regist_email, regist_password)
-      
+      const { status, message } = await registerWithEmailAndPassword(regist_email, regist_password, studentCode, cardNo)
+      switch (status) {
+        case 1: case 0: 
+          onCallback(true, {message})
+          break;
+        case -1: default:
+          break;
+      }
     }
   }
   

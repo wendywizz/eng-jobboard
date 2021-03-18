@@ -12,12 +12,12 @@ function PanelCodeChecking({ onCallback }) {
   const _handleSubmit = async (e) => {
     e.preventDefault()
 
-    const result = await checkingStudent(studentCode, cardNo);
+    const { status, message } = await checkingStudent(studentCode, cardNo);
 
-    if (result.success) {
-      onCallback(true)
+    if (status) {
+      onCallback(true, { studentCode, cardNo })
     } else {
-      setRespMessage(result.message)
+      setRespMessage(message)
     }
   }
 

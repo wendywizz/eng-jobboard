@@ -1,9 +1,9 @@
 import React from "react"
 
-function PanelFinish() {
+function PanelFinish({ message }) {
   return (
     <div>
-      <h2>Panel Finish</h2>
+      <h2>Registration result is: {message}</h2>
     </div>
   )
 }
