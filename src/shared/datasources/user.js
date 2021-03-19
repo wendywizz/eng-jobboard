@@ -21,7 +21,7 @@ function registerWithGoogle() {
   createUser()
 }
 
-async function createUser(email, password, studentCode, cardNo) {
+async function createUser(email, password, studentCode, cardNo) {    
   const uri = "http://localhost:3333/api/register/applicant/email"
   const bodyData = {
     email,

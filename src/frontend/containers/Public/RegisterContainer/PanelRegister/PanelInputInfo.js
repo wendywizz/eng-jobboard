@@ -1,27 +1,27 @@
-import React, { useRef } from "react"
+import React, { useState, useRef } from "react"
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
-import { FormGroup, Label, Button } from "reactstrap"
+import { FormGroup, Label, Button, Alert } from "reactstrap"
 import { registerWithEmailAndPassword } from "shared/datasources/user"
 import "./index.css"
 
 function PanelInputInfo({ onCallback, studentCode, cardNo }) {
-  const { register, handleSubmit, watch, errors } = useForm();
-  const regist_password = useRef({});
-  regist_password.current = watch("regist_password", "");
+  const [message, setMessage] = useState()
+  const { register, handleSubmit, watch, errors } = useForm(); 
+  const regist_password = useRef({})
+  regist_password.current = watch("regist_password", "")
 
   const _handleSubmit = async(values) => {
     const { regist_email, regist_password } = values
-
+    
     if (regist_email && regist_password) {
       const { status, message } = await registerWithEmailAndPassword(regist_email, regist_password, studentCode, cardNo)
-      switch (status) {
-        case 1: case 0: 
-          onCallback(true, {message})
-          break;
-        case -1: default:
-          break;
+      
+      if (status) {
+        onCallback(true, {message})
+      } else {
+        setMessage(message)
       }
     }
   }
@@ -83,6 +83,9 @@ function PanelInputInfo({ onCallback, studentCode, cardNo }) {
             {errors.regist_cpassword?.type === "validate" && <p className="validate-message">Password did not match</p>}
           </FormGroup>
           <Button color="primary" block>สมัครเข้าใช้งาน</Button>
+          {
+            message && <Alert color="danger"><p>{message}</p></Alert>
+          }
         </form>
       </div>
       <hr className="line" />
