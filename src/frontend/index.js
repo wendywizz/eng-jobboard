@@ -40,7 +40,8 @@ function Frontend() {
                                   render={() =>
                                     <TemplateEmployer>
                                       <route.component />
-                                    </TemplateEmployer>}
+                                    </TemplateEmployer>
+                                  }
                                 />
                               )
                             case APPLICANT_PATH:

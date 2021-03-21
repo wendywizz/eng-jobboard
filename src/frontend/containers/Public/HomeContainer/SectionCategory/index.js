@@ -18,7 +18,7 @@ function SectionCategory() {
           categoryItems.map((value, index) => (
             <Col key={index}>
               <div className="category-item">
-                <Link>
+                <Link to="#">
                   <img className="icon" src={value.image} alt={value.name} />
                   <span className="name">{value.name}</span>
                   <p className="desc">{value.desc}</p>

@@ -1,24 +1,30 @@
 import React, { useState } from "react"
 import { Form, FormGroup, Input, Label, Button, Alert } from "reactstrap"
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import useAuthProvider from "Frontend/utils/hook/useAuth"
+import { faExclamationTriangle, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { checkingStudent } from "shared/datasources/user"
 
 function PanelCodeChecking({ onCallback }) {
+  const { identifyStudent } = useAuthProvider()
+  const [loading, setLoading] = useState(false)
   const [studentCode, setStudentCode] = useState(6310130019);
   const [cardNo, setCardNo] = useState(1749900201835);
-  const [respMessage, setRespMessage] = useState(null);
+  const [message, setMessage] = useState(null);
 
-  const _handleSubmit = async (e) => {
+  const _handleSubmit = (e) => {
     e.preventDefault()
 
-    const { status, message } = await checkingStudent(studentCode, cardNo);
-
-    if (status) {
-      onCallback(true, { studentCode, cardNo })
-    } else {
-      setRespMessage(message)
-    }
+    setLoading(true)
+    setTimeout(async () => {
+      const { status, message } = await identifyStudent(studentCode, cardNo);
+      
+      if (status) {
+        onCallback(true, { studentCode, cardNo })
+      } else {
+        setMessage(message)
+      }
+      setLoading(false)
+    }, 1000)
   }
 
   return (
@@ -34,12 +40,14 @@ function PanelCodeChecking({ onCallback }) {
             <Input placeholder="ระบุตัวเลข 13 หลัก Ex. xxxxxxxxxxxxx" value={cardNo} onChange={(e) => setCardNo(e.target.value)} />
           </FormGroup>
         </div>
-        <Button block color="primary">ตรวจสอบ</Button>
+        <Button block color="primary" disabled={loading}>
+          {loading ? <FontAwesomeIcon icon={faSpinner} spin /> : <span>ตรวจสอบ</span>}
+        </Button>
         {
-          respMessage && (
+          message && (
             <Alert color="danger">
               <b><FontAwesomeIcon icon={faExclamationTriangle} /> Error</b>
-              <p>{respMessage}</p>
+              <p>{message}</p>
             </Alert>
           )
         }

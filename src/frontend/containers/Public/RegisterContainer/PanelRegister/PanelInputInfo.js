@@ -1,14 +1,15 @@
 import React, { useState, useRef } from "react"
+import { FormGroup, Label, Button, Alert } from "reactstrap"
 import { useForm } from "react-hook-form";
+import { useAuth } from "Frontend/utils/hook/useAuth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
-import { FormGroup, Label, Button, Alert } from "reactstrap"
-import { registerWithEmailAndPassword } from "shared/datasources/user"
 import "./index.css"
 
 function PanelInputInfo({ onCallback, studentCode, cardNo }) {
+  const { signUpWithEmail } = useAuth()
   const [message, setMessage] = useState()
-  const { register, handleSubmit, watch, errors } = useForm(); 
+  const { register, handleSubmit, watch, errors } = useForm() 
   const regist_password = useRef({})
   regist_password.current = watch("regist_password", "")
 
@@ -16,8 +17,7 @@ function PanelInputInfo({ onCallback, studentCode, cardNo }) {
     const { regist_email, regist_password } = values
     
     if (regist_email && regist_password) {
-      const { status, message } = await registerWithEmailAndPassword(regist_email, regist_password, studentCode, cardNo)
-      
+      const { status, message } = await signUpWithEmail(regist_email, regist_password, studentCode, cardNo)
       if (status) {
         onCallback(true, {message})
       } else {

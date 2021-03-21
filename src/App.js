@@ -1,9 +1,12 @@
 import React from "react"
 import Frontend from "Frontend"
+import { AuthProvider } from "Frontend/utils/hook/useAuth"
 
 function App() {
   return (
-    <Frontend />
+    <AuthProvider>
+      <Frontend />
+    </AuthProvider>
   )
 }
 export default App;
