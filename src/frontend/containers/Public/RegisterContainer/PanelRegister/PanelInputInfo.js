@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react"
-import { FormGroup, Label, Button, Alert } from "reactstrap"
+import { Form, FormGroup, Label, Button, Alert } from "reactstrap"
 import { useForm } from "react-hook-form";
 import { useAuth } from "Frontend/utils/hook/useAuth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -30,7 +30,7 @@ function PanelInputInfo({ onCallback, studentCode, cardNo }) {
     <div className="panel-input-info">
       <div className="block-register-email">
         <h3>สมัครด้วยอีเมล</h3>
-        <form onSubmit={handleSubmit(_handleSubmit)}>
+        <Form onSubmit={handleSubmit(_handleSubmit)}>
           <FormGroup>
             <Label for="regist_email">อีเมล</Label>
             <input 
@@ -86,7 +86,7 @@ function PanelInputInfo({ onCallback, studentCode, cardNo }) {
           {
             message && <Alert color="danger"><p>{message}</p></Alert>
           }
-        </form>
+        </Form>
       </div>
       <hr className="line" />
       <div className="block-register-social">

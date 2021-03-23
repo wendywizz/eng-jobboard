@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react"
 import "./index.css"
 
-function CheckboxTag({ id, name, value, text, ...props}) {
-  const [checked, setChecked] = useState(false)
+function CheckboxTag({ id, name, value, text, checked, ...props}) {
+  const [isChecked, setIsChecked] = useState(checked)
   const [labelWidth, setLabelWidth] = useState(0)
   const labelRef = useRef(null)
 
@@ -12,7 +12,7 @@ function CheckboxTag({ id, name, value, text, ...props}) {
   }, [setLabelWidth])
 
   const _handleChange = (e) => {
-    setChecked(e.target.checked)
+    setIsChecked(e.target.checked)
   }
 
   return (
@@ -23,7 +23,7 @@ function CheckboxTag({ id, name, value, text, ...props}) {
         id={id} 
         value={value} 
         onChange={e => _handleChange(e)} 
-        checked={checked}
+        checked={isChecked}
         style={{ width: labelWidth }}
       />
       <label htmlFor={id} ref={labelRef}>{text}</label>
