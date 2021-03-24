@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect, useReducer } from "react"
 import { Row, Col, Button, Form, FormGroup, Label } from "reactstrap"
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import Content, { ContentHeader, ContentBody } from "Frontend/components/Content"
 import CheckboxTag from "Frontend/components/CheckboxTag"
+import RadioTag from "Frontend/components/RadioTag"
 import { EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
 import {
   SPECIFIC_TYPE,
@@ -18,17 +19,79 @@ import {
 import day from "Frontend/constants/day"
 import "./index.css"
 
+import { createJob, getJobType } from "Shared/states/job/JobDatasource"
+import JobReducer from "Shared/states/job/JobReducer"
+import { ADD_SUCCESS, ADD_FAILED, READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
+
+let INIT_DATA = {
+  loading: true,
+  stauts: false,
+  result: null,
+  message: null
+}
 function JobFormContainer() {
   const refForm = useRef()
   const { register, handleSubmit, errors } = useForm()
+  const [jobType, setJobType] = useState([])
   const [valSalarySelected, setValSalarySelected] = useState(null)
+  const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
 
-  useEffect(() => {
+  useEffect(async () => {
+    async function fetchJobType() {
+      const data = await getJobType()
+        .then(res => res.json())
+        .then(res => {
+          let data = []
 
+          if (res.status) {
+            res.result.map(item => (
+              data.push({
+                text: item.job_type_name,
+                value: item.job_type_id
+              })
+            ))
+          }
+          return data
+        })
+      setJobType(data)
+    }
+
+    fetchJobType()
   })
 
-  const _handleSubmit = async (values) => {    
-    console.log(values)
+  const _handleSubmit = async (values) => {
+    let salary_min = 0, salary_max = 0
+    if (values.salary_type === SPECIFIC_TYPE) {
+      salary_min = values.salary_value
+      salary_max = values.salary_value
+    }
+    const bodyData = {
+      position: values.position,
+      duty: values.duty,
+      welfare: values.welfare,
+      performance: values.performance,
+      salary_type: values.salary_type,
+      salary_min,
+      salary_max,
+      workdays: values.workdays,
+      work_timestart: values.time_start,
+      work_timeend: values.time_end
+    }
+    console.log(bodyData)
+
+    /*await createJob(bodyData)
+      .then(res => res.json())
+      .then(res => {
+        if (res.status) {
+          dispatch({ type: ADD_SUCCESS })
+        } else {
+          dispatch({ type: ADD_FAILED })
+        }
+        console.log(res)
+      })
+      .catch(() => {
+        dispatch({ type: ADD_FAILED })
+      })*/
   }
 
   const renderSalaryInput = (value) => {
@@ -43,13 +106,13 @@ function JobFormContainer() {
               type="number"
               name="salary_value"
               id="salary-value"
-              className="form-control"
+              className={"form-control " + (errors.salary_value?.type && "is-invalid")}
               placeholder="ระบุเงินเดือน"
               ref={register({
                 required: true
               })}
             />
-            {errors.sslary_value?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.salary_value?.type === "required" && <p className="validate-message">Field is required</p>}
           </FormGroup>
         )
       case RANGE_TYPE.value:
@@ -61,24 +124,24 @@ function JobFormContainer() {
                 <input
                   type="number"
                   name="salary_min"
-                  className="form-control"
+                  className={"form-control " + (errors.salary_min?.type && "is-invalid")}
                   placeholder="เริ่มต้น"
                   ref={register({
                     required: true
                   })}
-                />                
+                />
               </div>
               <div className="seperator">ถึง</div>
               <div className="max input">
                 <input
                   type="number"
                   name="salary_max"
-                  className="form-control"
+                  className={"form-control " + (errors.salary_max?.type && "is-invalid")}
                   placeholder="สูงสุด"
                   ref={register({
                     required: true
                   })}
-                />                
+                />
               </div>
             </div>
             {
@@ -110,26 +173,43 @@ function JobFormContainer() {
       <ContentBody>
         <Form className="distance form-input" ref={refForm}>
           <FormGroup>
-            <Label htmlFor="job-name">ชื่อตำแหน่งงาน</Label>
+            <Label htmlFor="position">ชื่อตำแหน่งงาน</Label>
             <input
               type="text"
-              id="job-name"
-              name="job_name"
-              className={"form-control " + (errors.job_name?.type && "is-invalid")}
+              id="position"
+              name="position"
+              className={"form-control " + (errors.position?.type && "is-invalid")}
               ref={register({
                 required: true
               })}
               defaultValue="Test"
             />
             <p className="input-desc">ระบุชื่อตำแหน่งงาน</p>
-            {errors.job_name?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.position?.type === "required" && <p className="validate-message">Field is required</p>}
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="job-position">รายละเอียดงาน</Label>
+            <Label htmlFor="job-type">ประเภทงาน</Label>
+            <div className="group-work-day horizontal">
+              {
+                jobType.map((value, index) => {
+                  return (
+                    <RadioTag
+                      key={index}
+                      name="job_type"
+                      text={value.text}
+                      value={value.value}
+                    />
+                  )
+                })
+              }
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="position">รายละเอียดงาน</Label>
             <textarea
-              id="job-position"
-              name="job_position"
-              className={"form-control " + (errors.job_position?.type && "is-invalid")}
+              id="position"
+              name="position"
+              className={"form-control " + (errors.position?.type && "is-invalid")}
               rows={3}
               ref={register({
                 required: true
@@ -137,14 +217,14 @@ function JobFormContainer() {
               defaultValue="Test"
             />
             <p className="input-desc">ระบุรายละเอียดของงานที่ผู้สมัครงานต้องรับผิดชอบ</p>
-            {errors.job_position?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.position?.type === "required" && <p className="validate-message">Field is required</p>}
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="job-duty">ขอบเขตงาน</Label>
+            <Label htmlFor="duty">ขอบเขตงาน</Label>
             <textarea
-              id="job-duty"
-              name="job_duty"
-              className={"form-control " + (errors.job_duty?.type && "is-invalid")}
+              id="duty"
+              name="duty"
+              className={"form-control " + (errors.duty?.type && "is-invalid")}
               rows={3}
               ref={register({
                 required: true
@@ -152,16 +232,31 @@ function JobFormContainer() {
               defaultValue="Test"
             />
             <p className="input-desc">ระบุขอบเขตหน้าที่ความรับผิดชอบของงาน</p>
-            {errors.job_duty?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.duty?.type === "required" && <p className="validate-message">Field is required</p>}
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="performance">คุณสมบัติผู้สมัคร</Label>
+            <textarea
+              id="performance"
+              name="performance"
+              className={"form-control " + (errors.performance?.type && "is-invalid")}
+              rows={3}
+              ref={register({
+                required: true
+              })}
+              defaultValue="Test"
+            />
+            <p className="input-desc">ระบุคุณสมบัติผู้สมัคร</p>
+            {errors.performance?.type === "required" && <p className="validate-message">Field is required</p>}
           </FormGroup>
           <FormGroup>
             <Row>
               <Col lg={3} md={6} sm={12}>
-                <Label htmlFor="job-salary_type">อัตราเงินเดือน</Label>
+                <Label htmlFor="salary_type">อัตราเงินเดือน</Label>
                 <select
-                  id="job-salary_type"
-                  name="job_salary_type"
-                  className={"form-control " + (errors.job_salary_type?.type && "is-invalid")}
+                  id="salary_type"
+                  name="salary_type"
+                  className={"form-control " + (errors.salary_type?.type && "is-invalid")}
                   onChange={e => setValSalarySelected(e.target.value)}
                   ref={register({
                     required: true
@@ -175,7 +270,7 @@ function JobFormContainer() {
                   }
                 </select>
                 <p className="input-desc">เลือกประเภทของอัตราเงินเดือน</p>
-                {errors.job_salary_type?.type === "required" && <p className="validate-message">Field is required</p>}
+                {errors.salary_type?.type === "required" && <p className="validate-message">Field is required</p>}
               </Col>
               <Col lg={4} md={6} sm={12}>
                 {
@@ -186,16 +281,23 @@ function JobFormContainer() {
           </FormGroup>
           <FormGroup>
             <Label>วันทำงาน</Label>
-            <div className="group-work-day">
+            <div className="group-work-day horizontal">
               {
                 day.map((value, index) => {
                   const isChecked = index < 5 ? true : false
                   return (
-                    <CheckboxTag key={index} className="checkbox-day" text={value.text} value={value.value} checked={isChecked} />
+                    <CheckboxTag
+                      key={index}
+                      name="work_days"
+                      text={value.text}
+                      value={value.value}
+                      checked={isChecked}
+                    />
                   )
                 })
               }
             </div>
+            {errors.work_days?.type === "required" && <p className="validate-message">Field is required</p>}
           </FormGroup>
           <FormGroup>
             <Row>
@@ -248,11 +350,11 @@ function JobFormContainer() {
             </Row>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="job-welfare">สวัสดิการ</Label>
+            <Label htmlFor="welfare">สวัสดิการ</Label>
             <textarea
-              id="job-welfare"
-              name="job_welfare"
-              className={"form-control " + (errors.job_welfare?.type && "is-invalid")}
+              id="welfare"
+              name="welfare"
+              className={"form-control " + (errors.welfare?.type && "is-invalid")}
               rows={3}
               ref={register({
                 required: true
@@ -260,7 +362,7 @@ function JobFormContainer() {
               defaultValue="Test"
             />
             <p className="input-desc">ระบุสวัสดิการที่ผู้เข้าทำงานจะได้รับ</p>
-            {errors.job_welfare?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.welfare?.type === "required" && <p className="validate-message">Field is required</p>}
           </FormGroup>
         </Form>
       </ContentBody>

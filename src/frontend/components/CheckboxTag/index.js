@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react"
 import "./index.css"
 
-function CheckboxTag({ id, name, value, text, checked, ...props}) {
-  const [isChecked, setIsChecked] = useState(checked)
+function CheckboxTag({ref, ...props}) {
+  const [isChecked, setIsChecked] = useState(props.checked)
   const [labelWidth, setLabelWidth] = useState(0)
   const labelRef = useRef(null)
 
@@ -19,14 +19,15 @@ function CheckboxTag({ id, name, value, text, checked, ...props}) {
     <div className={"checkbox-tag " + props.className}>
       <input 
         type="checkbox" 
-        name={name} 
-        id={id} 
-        value={value} 
+        ref={ref}
+        name={props.name} 
+        id={props.id} 
+        value={props.value} 
         onChange={e => _handleChange(e)} 
         checked={isChecked}
         style={{ width: labelWidth }}
       />
-      <label htmlFor={id} ref={labelRef}>{text}</label>
+      <label htmlFor={props.id} ref={labelRef}>{props.text}</label>
     </div>
   )
 }

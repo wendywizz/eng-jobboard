@@ -11,26 +11,12 @@ async function sendPost(uri, bodyData) {
     body: JSON.stringify(bodyData),
     headers: HEADERS
   })
-    .then(res => res.json())
-    .then(data => {
-      return data
-    })
-    .catch(error => {
-      console.error(error.message)
-    })
 }
 async function sendGet(uri, queryParams) {
   return await fetch(uri + querystring.stringify(queryParams), {
     method: "GET",
     headers: HEADERS
   })
-    .then(res => res.json())
-    .then(data => {
-      return data
-    })
-    .catch(error => {
-      console.error(error.message)
-    })
 }
 export {
   sendGet,

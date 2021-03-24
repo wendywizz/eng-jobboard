@@ -19,10 +19,10 @@
 .group-work-day {
   padding: 5px 0;
 }
-.group-work-day .checkbox-day {
+.group-work-day.horizontal > * {
   display: inline-block;
 }
-.group-work-day .checkbox-day:not(:last-child) {
+.group-work-day.horizontal > *:not(:last-child) {
   margin-right: 6px;
 }
 
