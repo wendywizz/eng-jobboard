@@ -3,6 +3,8 @@ import { sendGet, sendPost } from "Shared/utils/request"
 async function createJob(data) {
   const uri = "http://localhost:3333/api/job/add"
   return await sendPost(uri, data)
+    .then(res => res.json())
+    .then(data => data)
 }
 
 async function updateJob(id, data) {
@@ -40,7 +42,17 @@ function getJobByID(id) {
 
 async function getJobType() {
   const uri = "http://localhost:3333/api/job/gettype"
+  
   return await sendGet(uri)
+    .then(res => res.json())
+    .then(data => {
+      const { status, result } = data
+       if (status) {
+         return result
+       } else {
+         return []
+       }
+    })
 }
 
 export {

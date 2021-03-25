@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useReducer } from "react"
 import { Row, Col, Button, Form, FormGroup, Label } from "reactstrap"
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
+import _ from "lodash"
 import Content, { ContentHeader, ContentBody } from "Frontend/components/Content"
 import CheckboxTag from "Frontend/components/CheckboxTag"
 import RadioTag from "Frontend/components/RadioTag"
@@ -36,68 +37,69 @@ function JobFormContainer() {
   const [valSalarySelected, setValSalarySelected] = useState(null)
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
 
-  useEffect(async () => {
+  useEffect(() => {
     async function fetchJobType() {
       const data = await getJobType()
-        .then(res => res.json())
-        .then(res => {
-          let data = []
+      const jobTypeData = data.map(item => ({
+        text: item.job_type_name,
+        value: item.job_type_id
+      }))
 
-          if (res.status) {
-            res.result.map(item => (
-              data.push({
-                text: item.job_type_name,
-                value: item.job_type_id
-              })
-            ))
-          }
-          return data
-        })
-      setJobType(data)
+      setJobType(jobTypeData)
     }
-
     fetchJobType()
-  })
+  }, [])
 
   const _handleSubmit = async (values) => {
     let salary_min = 0, salary_max = 0
-    if (values.salary_type === SPECIFIC_TYPE) {
-      salary_min = values.salary_value
-      salary_max = values.salary_value
+    let workdaysSelect = {}
+
+    switch (values.salary_type) {
+      case SPECIFIC_TYPE.value:
+        salary_min = values.salary_value
+        salary_max = values.salary_value
+        break
+      case RANGE_TYPE.value:
+        salary_min = values.salary_min
+        salary_max = values.salary_max
+        break
+      default:
+        break
     }
+
+    const workdays = values.workdays
+    if (workdays) {
+      workdaysSelect.mon = _.includes(workdays, "mon") ? 1 : 0
+      workdaysSelect.tue = _.includes(workdays, "tue") ? 1 : 0
+      workdaysSelect.wed = _.includes(workdays, "wed") ? 1 : 0
+      workdaysSelect.thu = _.includes(workdays, "thu") ? 1 : 0
+      workdaysSelect.fri = _.includes(workdays, "fri") ? 1 : 0
+      workdaysSelect.sat = _.includes(workdays, "sat") ? 1 : 0
+      workdaysSelect.sun = _.includes(workdays, "sun") ? 1 : 0
+    }
+
     const bodyData = {
       position: values.position,
+      job_type: values.job_type,
+      require: values.require,
       duty: values.duty,
       welfare: values.welfare,
       performance: values.performance,
       salary_type: values.salary_type,
       salary_min,
       salary_max,
-      workdays: values.workdays,
+      workdays: workdaysSelect,
       work_timestart: values.time_start,
-      work_timeend: values.time_end
+      work_timeend: values.time_end,
+      cid: 42,
+      uid: 211
     }
-    console.log(bodyData)
-
-    /*await createJob(bodyData)
-      .then(res => res.json())
-      .then(res => {
-        if (res.status) {
-          dispatch({ type: ADD_SUCCESS })
-        } else {
-          dispatch({ type: ADD_FAILED })
-        }
-        console.log(res)
-      })
-      .catch(() => {
-        dispatch({ type: ADD_FAILED })
-      })*/
+    /*const { status, result, message } = await createJob(bodyData)
+    console.log(status, result, message)*/
   }
 
   const renderSalaryInput = (value) => {
-    const numberVal = value ? Number(value) : null
-
-    switch (numberVal) {
+    switch (value) {
       case SPECIFIC_TYPE.value:
         return (
           <FormGroup>
@@ -191,18 +193,47 @@ function JobFormContainer() {
             <Label htmlFor="job-type">ประเภทงาน</Label>
             <div className="group-work-day horizontal">
               {
-                jobType.map((value, index) => {
+                jobType.map((item, index) => {
                   return (
                     <RadioTag
                       key={index}
                       name="job_type"
-                      text={value.text}
-                      value={value.value}
+                      id={`job_type_${index}`}
+                      text={item.text}
+                      value={item.value}
+                      ref={register({
+                        required: true,
+                      })}
                     />
                   )
                 })
               }
             </div>
+            {errors.job_type?.type === "required" && <p className="validate-message">Please select one of them</p>}
+          </FormGroup>
+          <FormGroup>
+            <Row>
+              <Col lg={3} md={3} sm={12}>
+                <Label htmlFor="position">จำนวนรับสมัคร</Label>
+                <input
+                  type="number"
+                  id="require"
+                  name="require"
+                  className={"form-control " + (errors.require?.type && "is-invalid")}
+                  ref={register({
+                    required: true,
+                    validate: {
+                      onlyPositive: value => parseInt(value, 10) > 0
+                    }
+                  })}
+                  defaultValue={1}
+                  min={1}
+                />
+                <p className="input-desc">ระบุจำนวนรับสมัคร</p>
+                {errors.require?.type === "required" && <p className="validate-message">Field is required</p>}
+                {errors.require?.type === "onlyPositive" && <p className="validate-message">Value must greater than 0</p>}
+              </Col>
+            </Row>
           </FormGroup>
           <FormGroup>
             <Label htmlFor="position">รายละเอียดงาน</Label>
@@ -283,15 +314,18 @@ function JobFormContainer() {
             <Label>วันทำงาน</Label>
             <div className="group-work-day horizontal">
               {
-                day.map((value, index) => {
+                day.map((item, index) => {
                   const isChecked = index < 5 ? true : false
                   return (
                     <CheckboxTag
                       key={index}
-                      name="work_days"
-                      text={value.text}
-                      value={value.value}
+                      name="workdays"
+                      text={item.text}
+                      value={item.value}
                       checked={isChecked}
+                      ref={register({
+                        required: true
+                      })}
                     />
                   )
                 })

@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect, forwardRef } from "react"
 import "./index.css"
 
-function CheckboxTag({ref, ...props}) {
-  const [isChecked, setIsChecked] = useState(props.checked)
+const CheckboxTag = forwardRef(({ id, name, value, text, checked, onChange, ...props }, ref) => {
+  const [isChecked, setIsChecked] = useState(checked)
   const [labelWidth, setLabelWidth] = useState(0)
   const labelRef = useRef(null)
 
@@ -11,8 +11,8 @@ function CheckboxTag({ref, ...props}) {
     setLabelWidth(labelWidth)
   }, [setLabelWidth])
 
-  const _handleChange = (e) => {
-    setIsChecked(e.target.checked)
+  const _handleChange = () => {
+    setIsChecked(() => !isChecked);
   }
 
   return (
@@ -20,15 +20,15 @@ function CheckboxTag({ref, ...props}) {
       <input 
         type="checkbox" 
         ref={ref}
-        name={props.name} 
-        id={props.id} 
-        value={props.value} 
-        onChange={e => _handleChange(e)} 
+        name={name} 
+        id={id} 
+        value={value} 
+        onChange={_handleChange} 
         checked={isChecked}
         style={{ width: labelWidth }}
       />
-      <label htmlFor={props.id} ref={labelRef}>{props.text}</label>
+      <label htmlFor={id} ref={labelRef}>{text}</label>
     </div>
   )
-}
+})
 export default CheckboxTag

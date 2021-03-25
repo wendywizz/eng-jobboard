@@ -1,10 +1,10 @@
 const DAY = [
-  { text: "วันจันทร์", value: 0 },
-  { text: "วันอังคาร", value: 1 },
-  { text: "วันพุธ", value: 2 },
-  { text: "วันพฤหัสบดี", value: 3 },
-  { text: "วันศุกร์", value: 4 },
-  { text: "วันเสาร์​", value: 5 },
-  { text: "วันอาทิตย์", value: 6 },
+  { text: "วันจันทร์", value: "mon" },
+  { text: "วันอังคาร", value: "tue" },
+  { text: "วันพุธ", value: "wed" },
+  { text: "วันพฤหัสบดี", value: "thu" },
+  { text: "วันศุกร์", value: "fri" },
+  { text: "วันเสาร์​", value: "sat" },
+  { text: "วันอาทิตย์", value: "sun" },
 ]
 export default DAY

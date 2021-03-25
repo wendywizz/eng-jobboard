@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect, forwardRef } from "react"
 import "./index.css"
 
-function RadioTag({ id, name, value, text, ...props}) {
-  const [checked, setChecked] = useState(false)
+const RadioTag = forwardRef(({ id, name, value, text, checked, onChange, ...props }, ref) => {
   const [labelWidth, setLabelWidth] = useState(0)
   const labelRef = useRef(null)
 
@@ -12,22 +11,24 @@ function RadioTag({ id, name, value, text, ...props}) {
   }, [setLabelWidth])
 
   const _handleChange = (e) => {
-    setChecked(e.target.checked)
+    const { id } = e.currentTarget;
+    onChange(id);
   }
 
   return (
     <div className={"radio-tag " + props.className}>
       <input 
         type="radio" 
+        ref={ref}
         name={name} 
         id={id} 
         value={value} 
-        onChange={e => _handleChange(e)} 
+        onChange={onChange && _handleChange} 
         checked={checked}
         style={{ width: labelWidth }}
       />
       <label htmlFor={id} ref={labelRef}>{text}</label>
     </div>
   )
-}
+})
 export default RadioTag
