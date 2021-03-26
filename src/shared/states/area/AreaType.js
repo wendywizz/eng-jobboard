@@ -1,0 +1,7 @@
+const READ_SUCCESS = "READ_SUCCESS"
+const READ_FAILED = "READ_FAILED"
+
+export {
+  READ_SUCCESS,
+  READ_FAILED,
+}

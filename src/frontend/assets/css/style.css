@@ -22,7 +22,7 @@ form .validate-message::before {
 .form-control {
   border-radius: 0 !important;
 }
-form.form-input .form-group > label{
+form.form-input .form-group label{
   font-weight: 600;
 }
 .input-desc {

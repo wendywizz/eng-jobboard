@@ -23,6 +23,7 @@ import "./index.css"
 import { createJob, getJobType } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import { ADD_SUCCESS, ADD_FAILED, READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
+import { getDistrictByProvince, getProvince } from "Shared/states/area/AreaDatasource"
 
 let INIT_DATA = {
   loading: true,
@@ -32,22 +33,38 @@ let INIT_DATA = {
 }
 function JobFormContainer() {
   const refForm = useRef()
-  const { register, handleSubmit, errors } = useForm()
+  const { register, handleSubmit, watch, errors } = useForm()
+  const selectedProvince = useRef({}), selectedSalaryType = useRef({})
+  selectedProvince.current = watch("area_province", "")
+  selectedSalaryType.current = watch("salary_type", "")
+
   const [jobType, setJobType] = useState([])
-  const [valSalarySelected, setValSalarySelected] = useState(null)
+  const [province, setProvince] = useState([])
+  const [district, setDistrict] = useState([])
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
 
   useEffect(() => {
     async function fetchJobType() {
-      const data = await getJobType()
-      const jobTypeData = data.map(item => ({
+      const { result } = await getJobType()
+      const jobTypeData = result.map(item => ({
         text: item.job_type_name,
         value: item.job_type_id
       }))
 
       setJobType(jobTypeData)
     }
+    async function fetchProvince() {
+      const { result } = await getProvince()
+      const provinceData = result.map(item => ({
+        text: item.name_th,
+        value: item.id
+      }))
+
+      setProvince(provinceData)
+    }
+
     fetchJobType()
+    fetchProvince()
   }, [])
 
   const _handleSubmit = async (values) => {
@@ -88,14 +105,33 @@ function JobFormContainer() {
       salary_type: values.salary_type,
       salary_min,
       salary_max,
-      workdays: workdaysSelect,
+      work_days: JSON.stringify(workdaysSelect),
       work_timestart: values.time_start,
       work_timeend: values.time_end,
+      area_pid: values.area_province,
+      area_did: values.area_district,
       cid: 42,
       uid: 211
     }
-    /*const { status, result, message } = await createJob(bodyData)
-    console.log(status, result, message)*/
+    const { status, result, message } = await createJob(bodyData)
+    console.log(status, result, message)
+  }
+
+  const _handleProvinceChanged = (e) => {
+    async function fetchDistrict() {
+      const id = e.target.value
+
+      if (id) {
+        const { result } = await getDistrictByProvince(id)        
+        const data = result.map(item => ({
+          text: item.name_th,
+          value: item.id
+        }))
+
+        setDistrict(data)
+      }
+    }
+    fetchDistrict()
   }
 
   const renderSalaryInput = (value) => {
@@ -287,8 +323,7 @@ function JobFormContainer() {
                 <select
                   id="salary_type"
                   name="salary_type"
-                  className={"form-control " + (errors.salary_type?.type && "is-invalid")}
-                  onChange={e => setValSalarySelected(e.target.value)}
+                  className={"form-control " + (errors.salary_type?.type && "is-invalid")}                  
                   ref={register({
                     required: true
                   })}
@@ -305,10 +340,65 @@ function JobFormContainer() {
               </Col>
               <Col lg={4} md={6} sm={12}>
                 {
-                  renderSalaryInput(valSalarySelected)
+                  renderSalaryInput(selectedSalaryType.current)
                 }
               </Col>
             </Row>
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="area-province">พื้นที่</Label>
+            <Row>
+              <Col lg={3} md={4} sm={12}>                
+                <select
+                  id="area-province"
+                  name="area_province"
+                  className={"form-control " + (errors.area_province?.type && "is-invalid")}                  
+                  onChange={_handleProvinceChanged}
+                  ref={register({
+                    validate: {
+                      noSelected: value => value !== "-1"
+                    }
+                  })}
+                  defaultValue="-1"
+                >
+                  <option value="-1">เลือกจังหวัด</option>
+                  {
+                    province.map((item, index) => (
+                      <option key={index} value={item.value}>{item.text}</option>
+                    ))
+                  }
+                </select>                
+              </Col>
+              <Col lg={3} md={4} sm={12}>
+                {
+                  selectedProvince.current !== "-1" && (
+                    <select
+                      id="area-district"
+                      name="area_district"
+                      className={"form-control " + (errors.area_district?.type && "is-invalid")}
+                      ref={register({
+                        validate: {
+                          noSelected: value => value !== "-1"
+                        }
+                      })}         
+                      defaultValue="-1"             
+                    >
+                      <option value="-1">เลือกอำเภอ/เขต</option>
+                      {
+                        district.map((item, index) => (
+                          <option key={index} value={item.value}>{item.text}</option>
+                        ))
+                      }
+                    </select>
+                  )
+                }                
+              </Col>
+            </Row>
+            <p className="input-desc">เลือกพื้นที่ผู้สมัครงานปฎิบัติงาน</p>           
+            {
+              (errors.area_province?.type === "noSelected" || errors.area_district?.type === "noSelected") 
+                && <p className="validate-message">Field is required</p>
+            }
           </FormGroup>
           <FormGroup>
             <Label>วันทำงาน</Label>

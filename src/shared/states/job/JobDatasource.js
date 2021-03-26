@@ -18,9 +18,7 @@ async function updateJob(id, data) {
 
 async function deleteJob(id) {
   const uri = "http://localhost:3333/api/job/remove"
-  const bodyData = {
-    id
-  }
+  const bodyData = { id }
   return await sendPost(uri, bodyData)
 }
 
@@ -29,10 +27,6 @@ function setActiveJob() {
 }
 
 function getJobs() {
-
-}
-
-function getJobsByOwner(id) {
 
 }
 
@@ -45,14 +39,7 @@ async function getJobType() {
   
   return await sendGet(uri)
     .then(res => res.json())
-    .then(data => {
-      const { status, result } = data
-       if (status) {
-         return result
-       } else {
-         return []
-       }
-    })
+    .then(data => data)
 }
 
 export {
@@ -61,7 +48,6 @@ export {
   deleteJob,
   setActiveJob,
   getJobs,
-  getJobsByOwner,
   getJobByID,
   getJobType
 }
