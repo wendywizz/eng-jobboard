@@ -1,49 +1,49 @@
 import {
-  ADD_SUCCESS,
-  ADD_FAILED,
-  SAVE_SUCCESS,
-  SAVE_FAILED,
-  READ_SUCCESS,
-  READ_FAILED,
-  AUTH_FAILED,
-  RE_FETCH
+  ADD_JOB_SUCCESS,
+  ADD_JOB_FAILED,
+  SAVE_JOB_SUCCESS,
+  SAVE_JOB_FAILED,
+  READ_JOB_SUCCESS,
+  READ_JOB_FAILED,
+  AUTH_FAILED
 } from "./JobType"
 
 function JobReducer(state, action) {
   switch (action.type) {
-    case ADD_SUCCESS: 
+    case ADD_JOB_SUCCESS: 
       return {
         loading: false,
         status: true,
         result: action.payload.result,
         message: action.payload.message
       }
-    case ADD_FAILED:
+    case ADD_JOB_FAILED:
       return {
         loading: false,
         status: false,
         result: null,
         message: action.payload.message
       }
-    case SAVE_SUCCESS:
+    case SAVE_JOB_SUCCESS:
       return {
         loading: false,
         status: true,
         message: action.payload.message
       }
-    case SAVE_FAILED:
+    case SAVE_JOB_FAILED:
       return {
         loading: false,
         status: false,
         message: action.payload.message
       }
-    case READ_SUCCESS:
+    case READ_JOB_SUCCESS:
       return {
         loading: false,
-        itemsCount: action.payload.itemsCount,
-        data: action.payload.data
+        itemsCount: action.payload.itemCount,
+        data: action.payload.data,
+        error: null
       }
-    case READ_FAILED:
+    case READ_JOB_FAILED:
       return {
         loading: false,
         itemsCount: 0,
@@ -57,10 +57,6 @@ function JobReducer(state, action) {
           code: 401,
           message: "Unauthorized"
         }
-      }
-    case RE_FETCH:
-      return {
-        loading: true
       }
     default:
       return state
