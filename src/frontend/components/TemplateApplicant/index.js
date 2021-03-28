@@ -5,19 +5,18 @@ import { APPLICANT_PROFILE_PATH, /*APPLICANT_RESUME_PATH,*/ APPLICANT_SETTING_PA
 
 function TemplateApplicant({ children }) {
   const [ready] = useState(true)
-  const [userId] = useState(123)
 
   function setNavConfig() {
     return [
       {
         text: "", children: [
-          { text: "โปรไฟล์ส่วนตัว", link: APPLICANT_PROFILE_PATH(userId) },
-          //{ text: "การสมัครงาน", link: APPLICANT_RESUME_PATH(userId) },
+          { text: "โปรไฟล์ส่วนตัว", link: APPLICANT_PROFILE_PATH },
+          //{ text: "การสมัครงาน", link: APPLICANT_RESUME_PATH },
         ]
       },
       {
         text: "", children: [
-          { text: "ตั้งค่า", link: APPLICANT_SETTING_PATH(userId) }
+          { text: "ตั้งค่า", link: APPLICANT_SETTING_PATH }
         ]
       }
     ]

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import ModalLogin from "Frontend/components/ModalLogin"
 import { useAuth } from "Frontend/utils/hook/useAuth"
@@ -6,11 +6,7 @@ import { useAuth } from "Frontend/utils/hook/useAuth"
 import "./index.css"
 
 function HeaderNav() {
-  const { loggedIn, user } = useAuth()
-
-  useEffect(() => {
-    
-  })
+  const { loggedIn } = useAuth()
 
   return (
     <div className="header-nav">

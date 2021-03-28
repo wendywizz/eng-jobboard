@@ -5,6 +5,8 @@ import {
   SAVE_JOB_FAILED,
   READ_JOB_SUCCESS,
   READ_JOB_FAILED,
+  SEND_REQUEST,
+  STOP_REQUEST,
   AUTH_FAILED
 } from "./JobType"
 
@@ -22,7 +24,8 @@ function JobReducer(state, action) {
         loading: false,
         status: false,
         result: null,
-        message: action.payload.message
+        message: action.payload.message,
+        error: action.payload.error
       }
     case SAVE_JOB_SUCCESS:
       return {
@@ -34,21 +37,27 @@ function JobReducer(state, action) {
       return {
         loading: false,
         status: false,
-        message: action.payload.message
+        message: action.payload.message,
+        error: action.payload.error
       }
     case READ_JOB_SUCCESS:
       return {
         loading: false,
-        itemsCount: action.payload.itemCount,
-        data: action.payload.data,
-        error: null
+        data: action.payload.data
       }
     case READ_JOB_FAILED:
       return {
         loading: false,
-        itemsCount: 0,
         data: null,
-        error: action.error
+        error: action.payload.error
+      }
+    case SEND_REQUEST:
+      return {
+        loading: true
+      }
+    case STOP_REQUEST:
+      return {
+        loading: false
       }
     case AUTH_FAILED:
       return {

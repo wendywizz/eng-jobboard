@@ -10,21 +10,18 @@ import { EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from
 import { ALL, ACTIVE, INACTIVE, FINISH } from "Frontend/constants/employer-job-status"
 import "./index.css"
 
-import { getJobOfOwner } from "Shared/states/job/JobDatasource"
+import { getJobOfCompany } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import { READ_JOB_SUCCESS, READ_JOB_FAILED } from "Shared/states/job/JobType"
-
 
 let INIT_DATA = {
   loading: true,
   stauts: false,
   result: null,
-  itemCount: 0,
   message: null
 }
 function JobListContainer() {
   const query = useQuery()
-  const [emprId] = useState(123)
   const [selectedStatus, setSelectedStatus] = useState()
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
 
@@ -39,15 +36,11 @@ function JobListContainer() {
 
   useEffect(() => {
     // Load Job data
-    async function fetchJob(id) {
-      try {
-        const { data, itemCount }= await getJobOfOwner(id)
-        const payload = { 
-          data, 
-          itemCount
-        }        
-        dispatch({ type: READ_JOB_SUCCESS, payload })
-      } catch (error) {
+    async function fetchJob(id) {     
+      const { data, error }= await getJobOfCompany(id)
+      if (!error) {
+        dispatch({ type: READ_JOB_SUCCESS, payload: { data } })
+      } else {
         dispatch({ type: READ_JOB_FAILED, payload: { error } })
       }
     }
@@ -64,29 +57,29 @@ function JobListContainer() {
       }
     }
   })
-
+  
   return (
     <Content className="content-empr-joblist">
       <ContentHeader title="จัดการงาน">
         <Row>
           <Col>
             <Nav className="nav-status">
-              <NavItem className={(selectedStatus === ALL) && "active"}>
-                <NavLink href={EMPLOYER_JOB_PATH(emprId) + "?status=" + ALL}>ทั้งหมด</NavLink>
+              <NavItem className={(selectedStatus === ALL) ? "active" : ""}>
+                <NavLink href={EMPLOYER_JOB_PATH + "?status=" + ALL}>ทั้งหมด</NavLink>
               </NavItem>
-              <NavItem className={(selectedStatus === ACTIVE) && "active"}>
-                <NavLink href={EMPLOYER_JOB_PATH(emprId) + "?status=" + ACTIVE}>กำลังรับสมัคร</NavLink>
+              <NavItem className={(selectedStatus === ACTIVE) ? "active" : ""}>
+                <NavLink href={EMPLOYER_JOB_PATH + "?status=" + ACTIVE}>กำลังรับสมัคร</NavLink>
               </NavItem>
-              <NavItem className={(selectedStatus === INACTIVE) && "active"}>
-                <NavLink href={EMPLOYER_JOB_PATH(emprId) + "?status=" + INACTIVE}>ปิดรับสมัคร</NavLink>
+              <NavItem className={(selectedStatus === INACTIVE) ? "active" : ""}>
+                <NavLink href={EMPLOYER_JOB_PATH + "?status=" + INACTIVE}>ปิดรับสมัคร</NavLink>
               </NavItem>
-              <NavItem className={(selectedStatus === FINISH) && "active"}>
-                <NavLink href={EMPLOYER_JOB_PATH(emprId) + "?status=" + FINISH}>เสร็จสิ้น</NavLink>
+              <NavItem className={(selectedStatus === FINISH) ? "active" : ""}>
+                <NavLink href={EMPLOYER_JOB_PATH + "?status=" + FINISH}>เสร็จสิ้น</NavLink>
               </NavItem>
             </Nav>
           </Col>
           <Col className="text-right">
-            <Link className="btn btn-primary" to={EMPLOYER_JOB_ADD_PATH(emprId)}>
+            <Link className="btn btn-primary" to={EMPLOYER_JOB_ADD_PATH}>
               <FontAwesomeIcon icon={faPlus} />{" "}
               รับสมัครงานใหม่
             </Link>
@@ -107,17 +100,17 @@ function JobListContainer() {
                       <ListGroupItem key={index} className="list-group-jobitem">
                         <div className="detail">
                           <div className="job-type">
-                            <Badge color="info">{item.jobType}</Badge>
+                            <Badge color="info">{item.jobTypeAsso.name}</Badge>
                           </div>
                           <span className="title">{item.position}</span>
-                          <span className="amount">{`จำนวนรับ ${item.require} ตำแหน่ง`}</span>
+                          <span className="amount">{`จำนวนรับ ${item.amount} ตำแหน่ง`}</span>
                         </div>
                         <div className="action">
                           <div className="apply-info">
                             <ToggleCheckbox />
                           </div>
                           <div className="view">
-                            <Link to={`${EMPLOYER_JOB_EDIT_PATH(emprId)}/${item.id}`} className="btn btn-outline-primary btn-block">แก้ไข</Link>
+                            <Link to={`${EMPLOYER_JOB_EDIT_PATH}/${item.id}`} className="btn btn-outline-primary btn-block">แก้ไข</Link>
                           </div>
                         </div>
                       </ListGroupItem>

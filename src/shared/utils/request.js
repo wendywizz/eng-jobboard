@@ -13,7 +13,7 @@ async function sendPost(uri, bodyData) {
   })
 }
 async function sendGet(uri, queryParams) {
-  return await fetch(uri + querystring.stringify(queryParams), {
+  return await fetch(uri + "?" + querystring.stringify(queryParams), {
     method: "GET",
     headers: HEADERS
   })

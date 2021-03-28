@@ -29,12 +29,12 @@ function Frontend() {
                     <Switch>
                       {value.children.map((route, index) => {
                         if (route.component) {
-                          switch (value.basePath) {
+                          switch (value.basePath) {                            
                             case EMPLOYER_PATH:
                               return (
                                 <Route
                                   key={index}
-                                  path={match.path + route.path}
+                                  path={route.path}
                                   exact={route.exact}
                                   name={route.name}
                                   render={() =>
@@ -48,7 +48,7 @@ function Frontend() {
                               return (
                                 <Route
                                   key={index}
-                                  path={match.path + route.path}
+                                  path={route.path}
                                   exact={route.exact}
                                   name={route.name}
                                   render={() =>

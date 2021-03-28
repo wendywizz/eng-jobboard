@@ -27,7 +27,16 @@ import {
   EMPLOYER_PATH,
   TEST_PATH,
   APPLICANT_PATH,
-}  from "./paths"
+  EMPLOYER_PROFILE_PATH,
+  EMPLOYER_JOB_PATH,
+  EMPLOYER_JOB_ADD_PATH,
+  EMPLOYER_JOB_EDIT_PATH,
+  EMPLOYER_RESUME_PATH,
+  EMPLOYER_SETTING_PATH,
+  APPLICANT_PROFILE_PATH,
+  APPLICANT_RESUME_PATH,
+  APPLICANT_SETTING_PATH,
+} from "./paths"
 
 const routes = [
   { name: "Homepage", path: HOME_PATH, component: HomeContainer, exact: true },
@@ -35,18 +44,18 @@ const routes = [
   { name: "Result Page", path: RESULT_PATH, component: ResultContainer },
   { name: "Detail Page", path: DETAIL_PATH, component: DetailContainer },
   { name: "Employer", basePath: EMPLOYER_PATH, children: [
-    { name: "Profile", path: "/usr/:id/profile", component: EmprProfileContainer },
-    { name: "Job Add", path: "/usr/:id/job/add", component: EmprJobFormContainer },
-    { name: "Job Edit", path: "/usr/:id/job/edit/:id", component: EmprJobFormContainer },
-    { name: "Job Detail", path: "/usr/:id/job/:id", component: EmprJobDetailContainer },    
-    { name: "Job List", path: "/usr/:id/job", component: EmprJobListContainer },        
-    { name: "Resume", path: "/usr/:id/resume", component: EmprResumeContainer },
-    { name: "Setting", path: "/usr/:id/setting", component: EmprSettingContainer },
+    { name: "Profile", path: EMPLOYER_PROFILE_PATH, component: EmprProfileContainer },
+    { name: "Job Add", path: EMPLOYER_JOB_ADD_PATH, component: EmprJobFormContainer },
+    { name: "Job Edit", path: EMPLOYER_JOB_EDIT_PATH + "/:id", component: EmprJobFormContainer },
+    { name: "Job Detail", path: EMPLOYER_JOB_PATH + "/:id", component: EmprJobDetailContainer },    
+    { name: "Job List", path: EMPLOYER_JOB_PATH, component: EmprJobListContainer },        
+    { name: "Resume", path: EMPLOYER_RESUME_PATH, component: EmprResumeContainer },
+    { name: "Setting", path: EMPLOYER_SETTING_PATH, component: EmprSettingContainer },
   ]},
   { name: "Applicant", basePath: APPLICANT_PATH, children: [
-    { name: "Profile", path: "/usr/:id/profile", component: ApcProfileContainer },
-    { name: "Resume", path: "/usr/:id/resume", component: ApcResumeContainer },
-    { name: "Setting", path: "/usr/:id/setting", component: ApcSettingContainer },
+    { name: "Profile", path: APPLICANT_PROFILE_PATH, component: ApcProfileContainer },
+    { name: "Resume", path: APPLICANT_RESUME_PATH, component: ApcResumeContainer },
+    { name: "Setting", path: APPLICANT_SETTING_PATH, component: ApcSettingContainer },
   ]},
   { name: "Test", path: TEST_PATH, component: TestContainer, exact: true },
 ]

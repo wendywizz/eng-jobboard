@@ -24,7 +24,7 @@ const RadioTag = forwardRef(({ id, name, value, text, checked, onChange, ...prop
         id={id} 
         value={value} 
         onChange={onChange && _handleChange} 
-        checked={checked}
+        defaultChecked={checked}
         style={{ width: labelWidth }}
       />
       <label htmlFor={id} ref={labelRef}>{text}</label>

@@ -3,37 +3,19 @@ const RESULT_PATH = "/result"
 const DETAIL_PATH = "/view"
 const REGISTER_PATH = "/register"
 const TEST_PATH = "/test"
+
 const EMPLOYER_PATH = "/employer"
+const EMPLOYER_PROFILE_PATH = EMPLOYER_PATH + "/profile"
+const EMPLOYER_JOB_PATH = EMPLOYER_PATH + "/job"
+const EMPLOYER_JOB_ADD_PATH = EMPLOYER_JOB_PATH + "/add"
+const EMPLOYER_JOB_EDIT_PATH = EMPLOYER_JOB_PATH + "/edit"
+const EMPLOYER_RESUME_PATH = EMPLOYER_PATH + "/resume"
+const EMPLOYER_SETTING_PATH = EMPLOYER_PATH + "/setting"
+
 const APPLICANT_PATH = "/applicant"
-
-function EMPLOYER_PROFILE_PATH(id) {
-  return EMPLOYER_PATH + "/usr/" + id + "/profile"
-}
-function EMPLOYER_JOB_PATH(id) {
-  return EMPLOYER_PATH + "/usr/" + id + "/job"
-}
-function EMPLOYER_JOB_ADD_PATH(id) {
-  return EMPLOYER_JOB_PATH(id) + "/add"
-}
-function EMPLOYER_JOB_EDIT_PATH(id) {
-  return EMPLOYER_JOB_PATH(id) + "/edit"
-}
-function EMPLOYER_RESUME_PATH(id) {
-  return EMPLOYER_PATH + "/usr/" + id + "/resume"
-}
-function EMPLOYER_SETTING_PATH(id) {
-  return EMPLOYER_PATH + "/usr/" + id + "/setting"
-}
-
-function APPLICANT_PROFILE_PATH(id) {
-  return APPLICANT_PATH + "/usr/" + id + "/profile"
-}
-function APPLICANT_RESUME_PATH(id) {
-  return APPLICANT_PATH + "/usr/" + id + "/resume"
-}
-function APPLICANT_SETTING_PATH(id) {
-  return APPLICANT_PATH + "/usr/" + id + "/setting"
-}
+const APPLICANT_PROFILE_PATH = APPLICANT_PATH + "/profile"
+const APPLICANT_RESUME_PATH = APPLICANT_PATH + "/resume"
+const APPLICANT_SETTING_PATH = APPLICANT_PATH + "/setting"
 
 export {
   HOME_PATH,

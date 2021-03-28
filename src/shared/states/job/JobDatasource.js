@@ -1,11 +1,11 @@
 import { sendGet, sendPost } from "Shared/utils/request"
 import { JobMapper, JobTypeMapper } from "./JobMapper"
 
-async function createJob(data) {
+async function createJob(newData) {
   const uri = "http://localhost:3333/api/job/add"
-  return await sendPost(uri, data)
+  return await sendPost(uri, newData)
     .then(res => res.json())
-    .then(data => data)
+    .then(result => result)
 }
 
 async function updateJob(id, data) {
@@ -27,40 +27,81 @@ function setActiveJob() {
 
 }
 
-function getJobs() {
+async function getJobByID(id) {
+  const uri = `http://localhost:3333/api/job/view`
+  const params = { id }
+  let returnData = null, returnMessage = null, error = null
 
-}
+  await sendGet(uri, params)
+    .then(res => res.json())
+    .then(result => {
+      const { data, message } = result
 
-function getJobByID(id) {
+      if (data) {
+        returnData = JobMapper(data)
+        returnMessage = message
+      } 
+    })
+    .catch(error => {
+      error = error.message
+    })
 
+  return {
+    data: returnData,
+    message: returnMessage,
+    error
+  }
 }
 
 async function getJobType() {
   const uri = "http://localhost:3333/api/job/gettype"
-  
-  return await sendGet(uri)
+  let returnData = [], returnMessage = null, error = null
+
+  await sendGet(uri)
     .then(res => res.json())
-    .then(data => data.map(value => JobTypeMapper(value)))
-}
+    .then(result => {
+      const { data, itemCount, message } = result
 
-async function getJobOfOwner(id) {
-  const uri = "http://localhost:3333/api/company/job"
-  const bodyData = { id }
-
-  return await sendPost(uri, bodyData)
-    .then(res => res.json())
-    .then(data => {
-      const { status, result, itemCount } = data
-      let returnData = []
-
-      if (status) {
-        returnData = result.map(value => JobMapper(value))
-      }
-      return {
-        data: returnData,
-        itemCount
+      if (itemCount > 0) {
+        returnData = data.map(value => JobTypeMapper(value))
+        returnMessage = message
       }
     })
+    .catch(error => {
+      error = error.message
+    })
+
+  return {
+    data: returnData,
+    message: returnMessage,
+    error
+  }
+}
+
+async function getJobOfCompany(id) {
+  const uri = "http://localhost:3333/api/job/company"
+  const bodyData = { id }
+  let returnData = [], returnMessage = null, error = null
+
+  await sendPost(uri, bodyData)
+    .then(res => res.json())
+    .then(result => {
+      const { data, itemCount, message } = result
+
+      if (itemCount > 0) {
+        returnData = data.map(value => JobMapper(value))
+        returnMessage = message
+      }
+    })
+    .catch(error => {
+      error = error.message
+    })
+
+  return {
+    data: returnData,
+    message: returnMessage,
+    error
+  }
 }
 
 export {
@@ -68,8 +109,7 @@ export {
   updateJob,
   deleteJob,
   setActiveJob,
-  getJobs,
   getJobByID,
-  getJobOfOwner,
+  getJobOfCompany,
   getJobType
 }

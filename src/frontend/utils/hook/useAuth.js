@@ -114,7 +114,6 @@ export default function useAuthProvider() {
 
     // Cleanup subscription on unmount
     //return () => unsubscribe();
-    console.log('active')
   }, []);
   
   // Return the user object and auth methods

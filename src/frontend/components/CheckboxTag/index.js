@@ -24,7 +24,7 @@ const CheckboxTag = forwardRef(({ id, name, value, text, checked, onChange, ...p
         id={id} 
         value={value} 
         onChange={_handleChange} 
-        checked={isChecked}
+        defaultChecked={isChecked}
         style={{ width: labelWidth }}
       />
       <label htmlFor={id} ref={labelRef}>{text}</label>
