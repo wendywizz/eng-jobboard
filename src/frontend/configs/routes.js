@@ -8,7 +8,8 @@ import {
 import {
   EmprProfileContainer,
   EmprJobDetailContainer,
-  EmprJobFormContainer,
+  EmprJobFormAddContainer,
+  EmprJobFormEditContainer,
   EmprJobListContainer,
   EmprResumeContainer,
   EmprSettingContainer
@@ -45,8 +46,8 @@ const routes = [
   { name: "Detail Page", path: DETAIL_PATH, component: DetailContainer },
   { name: "Employer", basePath: EMPLOYER_PATH, children: [
     { name: "Profile", path: EMPLOYER_PROFILE_PATH, component: EmprProfileContainer },
-    { name: "Job Add", path: EMPLOYER_JOB_ADD_PATH, component: EmprJobFormContainer },
-    { name: "Job Edit", path: EMPLOYER_JOB_EDIT_PATH + "/:id", component: EmprJobFormContainer },
+    { name: "Job Add", path: EMPLOYER_JOB_ADD_PATH, component: EmprJobFormAddContainer },
+    { name: "Job Edit", path: EMPLOYER_JOB_EDIT_PATH + "/:id", component: EmprJobFormEditContainer },
     { name: "Job Detail", path: EMPLOYER_JOB_PATH + "/:id", component: EmprJobDetailContainer },    
     { name: "Job List", path: EMPLOYER_JOB_PATH, component: EmprJobListContainer },        
     { name: "Resume", path: EMPLOYER_RESUME_PATH, component: EmprResumeContainer },

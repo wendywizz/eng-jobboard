@@ -36,7 +36,7 @@ async function getJobByID(id) {
     .then(res => res.json())
     .then(result => {
       const { data, message } = result
-
+      
       if (data) {
         returnData = JobMapper(data)
         returnMessage = message
