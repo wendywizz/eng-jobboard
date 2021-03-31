@@ -38,9 +38,10 @@ function JobListContainer() {
     // Load Job data
     async function fetchJob(id) {     
       const { data, error }= await getJobOfCompany(id)
+      
       if (!error) {
         dispatch({ type: READ_JOB_SUCCESS, payload: { data } })
-      } else {
+      } else {        
         dispatch({ type: READ_JOB_FAILED, payload: { error } })
       }
     }
@@ -92,7 +93,7 @@ function JobListContainer() {
             ? <Spinner />
             : (
               state.error
-                ? <p>{state.error}</p>
+                ? <p>{state.error.message}</p>
                 : (
                   <ListGroup className="list-group-job">
                   {

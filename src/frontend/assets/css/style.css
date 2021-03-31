@@ -111,3 +111,8 @@ form.distance .form-group:not(:last-child) {
 .shadow {
   box-shadow: #cdcdcd 2px 2px 2px;
 }
+
+/* Alert */
+.alert p {
+  margin-bottom: 0;
+}

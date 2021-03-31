@@ -9,14 +9,14 @@ import {
   STRUCTURAL_TYPE,
   RANGE_TYPE,
   REQUEST_TYPE,
-  SALARY_TYPE_OPTION
+  NO_TYPE
 } from "Frontend/constants/salary-type"
 import {
   WORK_TIME_OPTION
 } from "Frontend/constants/time"
 import day from "Frontend/constants/day"
 import "./index.css"
-import { getJobType } from "Shared/states/job/JobDatasource"
+import { getJobType, getSalaryType } from "Shared/states/job/JobDatasource"
 import { getProvince, getDistrictByProvince } from "Shared/states/area/AreaDatasource"
 
 const JobForm = forwardRef(({ editing = false, position, jobType, duty, performance, salaryType, workDays, workTimeStart, workTimeEnd, welfare, province, district, amount, onSubmit }, ref) => {
@@ -28,6 +28,7 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
   selectedSalaryType.current = watch("salary_type", "")
 
   const [jobTypeData, setJobTypeData] = useState([])
+  const [salaryTypeData, setSalaryTypeData] = useState([])
   const [provinceData, setProvinceData] = useState([])
   const [districtData, setDistrictData] = useState([])
 
@@ -41,6 +42,16 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
 
       setJobTypeData(jobTypeData)
     }
+    async function fetchSalaryType() {
+      const { data } = await getSalaryType()
+      
+      const salaryTypeData = data.map(item => ({
+        text: item.name,
+        value: item.id
+      }))
+      
+      setSalaryTypeData(salaryTypeData)
+    }
     async function fetchProvince() {
       const { data } = await getProvince()
       const provinceData = data.map(item => ({
@@ -52,6 +63,7 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
     }
 
     fetchJobType()
+    fetchSalaryType()
     fetchProvince()
 
     if (editing) {
@@ -83,6 +95,7 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
   }))
 
   const _handleSubmit = (values) => {
+    console.log("VALUES", values)
     let salary_min = 0, salary_max = 0
     let workdaysSelect = {}
 
@@ -113,7 +126,7 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
     const bodyData = {
       position: values.position,
       job_type: values.job_type,
-      require: values.require,
+      amount: values.amount,
       duty: values.duty,
       welfare: values.welfare,
       performance: values.performance,
@@ -126,7 +139,7 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
       area_pid: values.area_province,
       area_did: values.area_district,
       cid: 42,
-      uid: 211
+      uid: 32
     }
     onSubmit(bodyData)
   }
@@ -185,7 +198,7 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
             }
           </FormGroup>
         )
-      case STRUCTURAL_TYPE.value: case REQUEST_TYPE.value: default:
+      case STRUCTURAL_TYPE.value: case REQUEST_TYPE.value: case NO_TYPE.value: default:
         return (
           <div />
         )
@@ -237,12 +250,12 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
         <FormGroup>
           <Row>
             <Col lg={3} md={3} sm={12}>
-              <Label htmlFor="position">จำนวนรับสมัคร</Label>
+              <Label htmlFor="amount">จำนวนรับสมัคร</Label>
               <input
                 type="number"
-                id="require"
-                name="require"
-                className={"form-control " + (errors.require?.type && "is-invalid")}
+                id="amount"
+                name="amount"
+                className={"form-control " + (errors.amount?.type && "is-invalid")}
                 ref={register({
                   required: true,
                   validate: {
@@ -253,8 +266,8 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
                 defaultValue={amount}
               />
               <p className="input-desc">ระบุจำนวนรับสมัคร</p>
-              {errors.require?.type === "required" && <p className="validate-message">Field is required</p>}
-              {errors.require?.type === "onlyPositive" && <p className="validate-message">Value must greater than 0</p>}
+              {errors.amount?.type === "required" && <p className="validate-message">Field is required</p>}
+              {errors.amount?.type === "onlyPositive" && <p className="validate-message">Value must greater than 0</p>}
             </Col>
           </Row>
         </FormGroup>
@@ -297,14 +310,17 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
                 name="salary_type"
                 className={"form-control " + (errors.salary_type?.type && "is-invalid")}
                 ref={register({
-                  required: true
+                  validate: {
+                    noSelected: value => value !== "-1"
+                  }
                 })}
-                defaultValue={salaryType}
+                value={salaryType ? salaryType : "-1"}
+                onChange={() => console.log("selected salary")}
               >
-                <option></option>
+                <option value="-1">เลือกเงินเดือน</option>
                 {
-                  SALARY_TYPE_OPTION.map((item, index) => (
-                    <option key={index} value={item.value}>{item.label}</option>
+                  salaryTypeData.map((item, index) => (
+                    <option key={index} value={item.value}>{item.text}</option>                    
                   ))
                 }
               </select>
@@ -332,7 +348,7 @@ const JobForm = forwardRef(({ editing = false, position, jobType, duty, performa
                     noSelected: value => value !== "-1"
                   }
                 })}
-                defaultValue={province ? province : "-1"}
+                value={province ? province : "-1"}
               >
                 <option value="-1">เลือกจังหวัด</option>
                 {

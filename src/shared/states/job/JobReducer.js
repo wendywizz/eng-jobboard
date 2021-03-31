@@ -16,14 +16,14 @@ function JobReducer(state, action) {
       return {
         loading: false,
         status: true,
-        result: action.payload.result,
+        data: action.payload.data,
         message: action.payload.message
       }
     case ADD_JOB_FAILED:
       return {
         loading: false,
         status: false,
-        result: null,
+        data: null,
         message: action.payload.message,
         error: action.payload.error
       }

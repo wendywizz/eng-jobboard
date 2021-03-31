@@ -29,7 +29,7 @@ function JobFormEditContainer() {
     if (match) {
       async function fetchJobData(id) {
         const { data, error } = await getJobByID(id)
-
+console.log("DATA", data)
         if (error) {
           dispatch({ type: READ_JOB_FAILED, payload: { error } })
         } else {
@@ -60,7 +60,7 @@ function JobFormEditContainer() {
           ? <Spinner />
           : (
             state.error
-              ? <p>{state.error}</p>
+              ? <p>{state.error.message}</p>
               : (
                 <>
                   <ContentHeader>
