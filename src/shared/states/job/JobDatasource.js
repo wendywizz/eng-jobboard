@@ -3,12 +3,12 @@ import { JobMapper, JobTypeMapper, SalaryMapper } from "./JobMapper"
 
 async function createJob(newData) {
   const uri = "http://localhost:3333/api/job/add"
-console.log("NEW DATA", newData)
+
   return await sendPost(uri, newData)
     .then(res => res.json())
     .then(result => {
       const { status, data, message, error } = result
-console.log("RETURN", data)
+
       return {
         status,
         data: status ? JobMapper(data) : null,
@@ -27,10 +27,11 @@ async function updateJob(id, data) {
   return await sendPost(uri, bodyData)
     .then(res => res.json())
     .then(result => {
-      const { status, message, error } = result
+      const { status, data, message, error } = result
 
       return {
         status,
+        data: status ? JobMapper(data) : null,
         message,
         error
       }
@@ -67,78 +68,52 @@ async function getJobByID(id) {
 
 async function getJobType() {
   const uri = "http://localhost:3333/api/job/job-type"
-  let returnData = [], returnMessage = null, returnError = null
 
-  await sendGet(uri)
+  return await sendGet(uri)
     .then(res => res.json())
     .then(result => {
-      const { data, itemCount, message } = result
-
-      if (itemCount > 0) {
-        returnData = data.map(value => JobTypeMapper(value))
-        returnMessage = message
+      const { data, message, error } = result
+      
+      return {
+        data: data.map(value => JobTypeMapper(value)),
+        message,
+        error
       }
     })
-    .catch(error => {
-      returnError = error
-    })
-
-  return {
-    data: returnData,
-    message: returnMessage,
-    error: returnError
-  }
 }
 
 async function getSalaryType() {
   const uri = "http://localhost:3333/api/job/salary-type"
-  let returnData = [], returnMessage = null, returnError = null
 
-  await sendGet(uri)
+  return await sendGet(uri)
     .then(res => res.json())
     .then(result => {
-      const { data, itemCount, message } = result
+      const { data, message, error } = result
 
-      if (itemCount > 0) {
-        returnData = data.map(value => SalaryMapper(value))
-        returnMessage = message
+      return {
+        data: data.map(value => SalaryMapper(value)),
+        message,
+        error
       }
     })
-    .catch(error => {
-      returnError = error
-    })
-
-  return {
-    data: returnData,
-    message: returnMessage,
-    error: returnError
-  }
 }
 
 async function getJobOfCompany(id) {
   const uri = "http://localhost:3333/api/job/company"
   const bodyData = { id }
-  let returnData = [], returnMessage = null, returnError = null
 
-  await sendPost(uri, bodyData)
+  return await sendPost(uri, bodyData)
     .then(res => res.json())
     .then(result => {
-      const { data, itemCount, message } = result
+      const { data, itemCount, message, error } = result
 
-      if (itemCount > 0) {
-        returnData = data.map(value => JobMapper(value))
-        returnMessage = message
+      return {
+        data: data.map(value => JobMapper(value)),
+        itemCount,
+        message,
+        error
       }
     })
-    .catch(error => {      
-      returnError = error 
-    })
-    
-  return {
-    data: returnData,
-    message: returnMessage,
-    error: returnError
-  }
 }
 
 export {

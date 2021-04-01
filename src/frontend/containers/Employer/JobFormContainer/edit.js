@@ -1,17 +1,22 @@
-import React, { useEffect, useReducer, useRef } from "react"
-import { Row, Col, Button, Spinner } from "reactstrap"
+import React, { useEffect, useReducer, useRef, useState } from "react"
+import { Row, Col, Button, Spinner, Alert } from "reactstrap"
 import { Link, useParams, useRouteMatch } from "react-router-dom"
 import Content, { ContentHeader, ContentBody } from "Frontend/components/Content"
 import { EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
 import FormJob from "./_form"
 import "./index.css"
 
-import { getJobByID } from "Shared/states/job/JobDatasource"
+import { getJobByID, updateJob } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import {
   READ_JOB_SUCCESS,
-  READ_JOB_FAILED
+  READ_JOB_FAILED,
+  SEND_REQUEST,
+  SAVE_JOB_FAILED,
+  SAVE_JOB_SUCCESS
 } from "Shared/states/job/JobType"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons"
 
 const INIT_DATA = {
   loading: true,
@@ -20,16 +25,17 @@ const INIT_DATA = {
   message: null
 }
 function JobFormEditContainer() {
+  const { id } = useParams()
   const refForm = useRef()
   const match = useRouteMatch(EMPLOYER_JOB_EDIT_PATH)
-  const { id } = useParams()
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
+  const [showResponse, setShowResponse] = useState(false)
 
   useEffect(() => {
     if (match) {
       async function fetchJobData(id) {
         const { data, error } = await getJobByID(id)
-console.log("DATA", data)
+
         if (error) {
           dispatch({ type: READ_JOB_FAILED, payload: { error } })
         } else {
@@ -45,16 +51,53 @@ console.log("DATA", data)
     }
   })
 
-  const _handleCallback = async (data) => {
-    //dispatch({ type: WAITING_JOB_OPERATION })
+  const _handleCallback = async (bodyData) => {
+    dispatch({ type: SEND_REQUEST })
 
-    /*const { status, result, message } = await createJob(bodyData)
-    console.log(status, result, message)*/
-    console.log(data)
+    setTimeout(async () => {
+      const { status, data, message, error } = await updateJob(id, bodyData)
+
+      if (status) {        
+        const payload = { data, message }
+        dispatch({ type: SAVE_JOB_SUCCESS, payload })
+      } else {
+        const payload = { message, error }
+        dispatch({ type: SAVE_JOB_FAILED, payload })
+      }
+
+      // Show response message      
+      setShowResponse(true)      
+
+      if (status) {
+        setTimeout(() => {
+          setShowResponse(false)
+        }, 5000)
+      }
+    }, 2000)
+  }
+
+  const renderResponseMessage = () => {
+    let alertType = "secondary", icon, title
+    if (state.status) {
+      title = "Save success"
+      icon = <FontAwesomeIcon icon={faCheckCircle} />
+      alertType = "success"
+    } else {
+      title = "Save failed"
+      icon = <FontAwesomeIcon icon={faTimesCircle} />
+      alertType = "danger"
+    }
+
+    return (
+      <Alert color={alertType}>
+        <b>{icon} {title}</b>
+        <p>{state.message}</p>
+      </Alert>
+    )
   }
 
   return (
-    <Content className="content-jobform">
+    <>
       {
         state.loading
           ? <Spinner />
@@ -62,22 +105,25 @@ console.log("DATA", data)
             state.error
               ? <p>{state.error.message}</p>
               : (
-                <>
+                <Content className="content-jobform">
                   <ContentHeader>
                     <Row>
                       <Col>
-                        <Link className="btn btn-secondary" to={EMPLOYER_JOB_PATH}>ย้อนกลับ</Link>
+                        <Link to={EMPLOYER_JOB_PATH}>
+                          <Button color="secondary" disabled={state.loading}>ย้อนกลับ</Button>
+                        </Link>
                       </Col>
                       <Col style={{ textAlign: "right" }}>
-                        <Button color="primary" onClick={() => refForm.current.submitForm()}>สร้าง</Button>
-                        <Button color="danger">ยกเลิก</Button>
+                        <Button color="primary" onClick={() => refForm.current.submit()} disabled={state.loading}>บันทึก</Button>                        
                       </Col>
                     </Row>
                   </ContentHeader>
                   <ContentBody>
+                    {showResponse && renderResponseMessage()}
                     <FormJob
-                      ref={refForm}
+                      ref={refForm}                      
                       editing={true}
+                      id={state.data.id}
                       position={state.data.position}
                       jobType={state.data.jobType}
                       duty={state.data.duty}
@@ -93,11 +139,11 @@ console.log("DATA", data)
                       onSubmit={_handleCallback}
                     />
                   </ContentBody>
-                </>
+                </Content>
               )
           )
       }
-    </Content>
+    </>
   )
 }
 export default JobFormEditContainer

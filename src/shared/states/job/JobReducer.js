@@ -31,6 +31,7 @@ function JobReducer(state, action) {
       return {
         loading: false,
         status: true,
+        data: action.payload.data,
         message: action.payload.message
       }
     case SAVE_JOB_FAILED:
