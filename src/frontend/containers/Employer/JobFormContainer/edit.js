@@ -1,35 +1,36 @@
-import React, { useEffect, useReducer, useRef, useState } from "react"
-import { Row, Col, Button, Spinner, Alert } from "reactstrap"
+import React, { useEffect, useState, useReducer, useRef } from "react"
+import { Row, Col, Button, Spinner } from "reactstrap"
 import { Link, useParams, useRouteMatch } from "react-router-dom"
 import Content, { ContentHeader, ContentBody } from "Frontend/components/Content"
 import { EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
+import { useToasts } from 'react-toast-notifications'
 import FormJob from "./_form"
-import "./index.css"
-
 import { getJobByID, updateJob } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import {
-  READ_JOB_SUCCESS,
-  READ_JOB_FAILED,
-  SEND_REQUEST,
-  SAVE_JOB_FAILED,
-  SAVE_JOB_SUCCESS
+  READ_SUCCESS,
+  READ_FAILED,
+  SAVE_FAILED,
+  SAVE_SUCCESS
 } from "Shared/states/job/JobType"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons"
+import { faSave  } from "@fortawesome/free-regular-svg-icons"
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
+import "./index.css"
 
 const INIT_DATA = {
-  loading: true,
-  status: false,
+  success: false,
   data: null,
   message: null
 }
 function JobFormEditContainer() {
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
   const { id } = useParams()
   const refForm = useRef()
   const match = useRouteMatch(EMPLOYER_JOB_EDIT_PATH)
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
-  const [showResponse, setShowResponse] = useState(false)
+  const { addToast } = useToasts()
 
   useEffect(() => {
     if (match) {
@@ -37,69 +38,51 @@ function JobFormEditContainer() {
         const { data, error } = await getJobByID(id)
 
         if (error) {
-          dispatch({ type: READ_JOB_FAILED, payload: { error } })
-        } else {
-          dispatch({ type: READ_JOB_SUCCESS, payload: { data } })
+          dispatch({ type: READ_FAILED, payload: { error } })
+        } else {          
+          dispatch({ type: READ_SUCCESS, payload: { data } })
         }
+        setLoading(false)
       }
 
-      if (state.loading) {
+      if (loading) {
         setTimeout(() => {
           fetchJobData(id)
         }, 1000)
       }
     }
-  })
+  }, [id, loading, match, state.data])
 
   const _handleCallback = async (bodyData) => {
-    dispatch({ type: SEND_REQUEST })
-
+    setSaving(true)
     setTimeout(async () => {
-      const { status, data, message, error } = await updateJob(id, bodyData)
+      const { success, data, message, error } = await updateJob(id, bodyData)
 
-      if (status) {        
-        const payload = { data, message }
-        dispatch({ type: SAVE_JOB_SUCCESS, payload })
+      if (success) {      
+        dispatch({ type: SAVE_SUCCESS, payload: { data, message } })
       } else {
-        const payload = { message, error }
-        dispatch({ type: SAVE_JOB_FAILED, payload })
-      }
-
-      // Show response message      
-      setShowResponse(true)      
-
-      if (status) {
-        setTimeout(() => {
-          setShowResponse(false)
-        }, 5000)
-      }
+        dispatch({ type: SAVE_FAILED, payload: { message, error} })
+      }  
+      setSaving(false)
+      responseMessage(success, message)    
     }, 2000)
   }
 
-  const renderResponseMessage = () => {
-    let alertType = "secondary", icon, title
-    if (state.status) {
-      title = "Save success"
-      icon = <FontAwesomeIcon icon={faCheckCircle} />
-      alertType = "success"
+  const responseMessage = (success, message) => {
+    let type
+    if (success) {
+      type = "success"
     } else {
-      title = "Save failed"
-      icon = <FontAwesomeIcon icon={faTimesCircle} />
-      alertType = "danger"
+      type = "error"
     }
 
-    return (
-      <Alert color={alertType}>
-        <b>{icon} {title}</b>
-        <p>{state.message}</p>
-      </Alert>
-    )
+    addToast(message, { appearance: type })
   }
 
   return (
     <>
       {
-        state.loading
+        loading
           ? <Spinner />
           : (
             state.error
@@ -110,16 +93,29 @@ function JobFormEditContainer() {
                     <Row>
                       <Col>
                         <Link to={EMPLOYER_JOB_PATH}>
-                          <Button color="secondary" disabled={state.loading}>ย้อนกลับ</Button>
+                          <Button color="secondary" disabled={saving}>ย้อนกลับ</Button>
                         </Link>
                       </Col>
                       <Col style={{ textAlign: "right" }}>
-                        <Button color="primary" onClick={() => refForm.current.submit()} disabled={state.loading}>บันทึก</Button>                        
+                        <Button color="primary" onClick={() => refForm.current.submit()} disabled={saving}>
+                          {
+                            saving ? (
+                              <>
+                                <FontAwesomeIcon icon={faCircleNotch} spin />
+                                <span>{" "}กำลังบันทึก</span>
+                              </>
+                            ) : (
+                              <>
+                                <FontAwesomeIcon icon={faSave} />
+                                <span>{" "}บันทึก</span>
+                              </>
+                            )
+                          }
+                        </Button>                        
                       </Col>
                     </Row>
                   </ContentHeader>
                   <ContentBody>
-                    {showResponse && renderResponseMessage()}
                     <FormJob
                       ref={refForm}                      
                       editing={true}
@@ -129,6 +125,8 @@ function JobFormEditContainer() {
                       duty={state.data.duty}
                       performance={state.data.performance}
                       salaryType={state.data.salaryType}
+                      salaryMin={state.data.salaryMin}
+                      salaryMax={state.data.salaryMax}
                       amount={state.data.amount}
                       workDays={state.data.workDays}
                       workTimeStart={state.data.workTimeStart}

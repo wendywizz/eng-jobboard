@@ -19,19 +19,19 @@ import "./index.css"
 import { getJobType, getSalaryType } from "Shared/states/job/JobDatasource"
 import { getProvince, getDistrictByProvince } from "Shared/states/area/AreaDatasource"
 
-const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, performance, salaryType, workDays, workTimeStart, workTimeEnd, welfare, province, district, amount, onSubmit }, ref) => {
-  const [ready, setReady ] = useState(false)
-  const { register, handleSubmit, watch, errors } = useForm()
-  const refForm = useRef()
-  const refSubmit = useRef()
-  const selectedProvince = useRef({}), selectedSalaryType = useRef({})
-  selectedProvince.current = watch("area_province", "")
-  selectedSalaryType.current = watch("salary_type", "")
+const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, performance, salaryType, salaryMax, salaryMin, workDays, workTimeStart, workTimeEnd, welfare, province, district, amount, onSubmit }, ref) => {
+  const [ready, setReady] = useState(false)
+  const { register, handleSubmit, errors } = useForm()
+  const refSubmit = useRef(null)
 
   const [jobTypeData, setJobTypeData] = useState([])
   const [salaryTypeData, setSalaryTypeData] = useState([])
   const [provinceData, setProvinceData] = useState([])
   const [districtData, setDistrictData] = useState([])
+
+  const [selectedSalaryType, setSelectedSalaryType] = useState(salaryType)
+  const [selectedProvince, setSelectedProvince] = useState(province)
+  const [selectedDistrict, setSelectedDistrict] = useState(district)
 
   useEffect(() => {
     if (!ready) {
@@ -64,42 +64,49 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
         setProvinceData(provinceData)
       }
 
-        fetchJobType()
-        fetchSalaryType()
-        fetchProvince()
-      
+      fetchJobType()
+      fetchSalaryType()
+      fetchProvince()
+
+      setReady(true)
     }
-  })
+  }, [editing, ready])
 
-  useEffect(() => {  
-    if (editing) {
-      fetchDistrict(province)
+  useEffect(() => {
+    // Watch on district change
+    async function fetchDistrict(provinceId) {
+      const { data } = await getDistrictByProvince(provinceId)
+      const districtData = data.map(item => ({
+        text: item.nameTh,
+        value: item.id
+      }))
+  
+      setDistrictData(districtData)
     }
-    setReady(true)
-  }, [provinceData, editing, province])
 
-  const fetchDistrict = async (id) => {
-    const { data } = await getDistrictByProvince(id)
-    const districtData = data.map(item => ({
-      text: item.nameTh,
-      value: item.id
-    }))
-
-    setDistrictData(districtData)
-  }
-
-  const _handleProvinceChanged = (e) => {
-    const id = e.target.value
-    fetchDistrict(id)
-  }
+    fetchDistrict(selectedProvince)    
+  }, [editing, selectedProvince])
 
   useImperativeHandle(ref, () => ({
     submit() {
-      //refForm.current.dispatchEvent(new Event('submit', { cancelable: true }))
-      //refForm.current.dispatchEvent(new Event("submit"))    
-      refSubmit.current.dispatchEvent(new Event("click", { cancelable: true }))
+      refSubmit.current.click()
     }
   }))
+
+  const _handleSalaryTypeChanged = (e) => {
+    const salaryTypeId = e.target.value
+    setSelectedSalaryType(salaryTypeId)
+  }
+
+  const _handleProvinceChanged = (e) => {
+    const provinceId = e.target.value
+    setSelectedProvince(provinceId)
+  }
+
+  const _handleDistrictChanged = (e) => {
+    const districtId = e.target.value
+    setSelectedDistrict(districtId)
+  }
 
   const _handleSubmit = (values) => {
     let salary_min = 0, salary_max = 0
@@ -142,75 +149,81 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
     bodyData.work_days = JSON.stringify(workdaysSelect)
     bodyData.work_timestart = values.time_start
     bodyData.work_timeend = values.time_end
-    bodyData.area_pid = values.area_province
-    bodyData.area_did = values.area_district
-    
+    bodyData.province = values.province
+    bodyData.district = values.district
+
     if (!editing) {
-      bodyData.cid = 42
-      bodyData.uid = 32
+      bodyData.company_owner = 42
+      bodyData.created_by = 33
+    } else {
       bodyData.id = id
     }
     onSubmit(bodyData)
   }
 
-  const renderSalaryInput = (value) => {
-    switch (value) {
-      case SPECIFIC_TYPE.value:
-        return (
-          <FormGroup>
-            <Label htmlFor="salary-value">ระบุเงินเดือน</Label>
-            <input
-              type="number"
-              name="salary_value"
-              id="salary-value"
-              className={"form-control " + (errors.salary_value?.type && "is-invalid")}
-              placeholder="ระบุเงินเดือน"
-              ref={register({
-                required: true
-              })}
-            />
-            {errors.salary_value?.type === "required" && <p className="validate-message">Field is required</p>}
-          </FormGroup>
-        )
-      case RANGE_TYPE.value:
-        return (
-          <FormGroup>
-            <Label htmlFor="salary-range">ระบุช่วงเงินเดือน</Label>
-            <div className="group-range-salary" id="salary-range">
-              <div className="min input">
-                <input
-                  type="number"
-                  name="salary_min"
-                  className={"form-control " + (errors.salary_min?.type && "is-invalid")}
-                  placeholder="เริ่มต้น"
-                  ref={register({
-                    required: true
-                  })}
-                />
+  const renderSalaryInput = () => {
+    if (selectedSalaryType) {
+      switch (selectedSalaryType.toString()) {
+        case SPECIFIC_TYPE.value:
+          return (
+            <FormGroup>
+              <Label htmlFor="salary-value">ระบุเงินเดือน</Label>
+              <input
+                type="number"
+                name="salary_value"
+                id="salary-value"
+                className={"form-control " + (errors.salary_value?.type && "is-invalid")}
+                placeholder="ระบุเงินเดือน"
+                ref={register({
+                  required: true
+                })}
+                defaultValue={salaryMin}
+              />
+              {errors.salary_value?.type === "required" && <p className="validate-message">Field is required</p>}
+            </FormGroup>
+          )
+        case RANGE_TYPE.value:
+          return (
+            <FormGroup>
+              <Label htmlFor="salary-range">ระบุช่วงเงินเดือน</Label>
+              <div className="group-range-salary" id="salary-range">
+                <div className="min input">
+                  <input
+                    type="number"
+                    name="salary_min"
+                    className={"form-control " + (errors.salary_min?.type && "is-invalid")}
+                    placeholder="เริ่มต้น"
+                    ref={register({
+                      required: true
+                    })}
+                    defaultValue={salaryMin}
+                  />
+                </div>
+                <div className="seperator">ถึง</div>
+                <div className="max input">
+                  <input
+                    type="number"
+                    name="salary_max"
+                    className={"form-control " + (errors.salary_max?.type && "is-invalid")}
+                    placeholder="สูงสุด"
+                    ref={register({
+                      required: true
+                    })}
+                    defaultValue={salaryMax}
+                  />
+                </div>
               </div>
-              <div className="seperator">ถึง</div>
-              <div className="max input">
-                <input
-                  type="number"
-                  name="salary_max"
-                  className={"form-control " + (errors.salary_max?.type && "is-invalid")}
-                  placeholder="สูงสุด"
-                  ref={register({
-                    required: true
-                  })}
-                />
-              </div>
-            </div>
-            {
-              (errors.salary_min?.type === "required" && errors.salary_max?.type === "required")
-              && <p className="validate-message">Field is required</p>
-            }
-          </FormGroup>
-        )
-      case STRUCTURAL_TYPE.value: case REQUEST_TYPE.value: case NO_TYPE.value: default:
-        return (
-          <div />
-        )
+              {
+                (errors.salary_min?.type === "required" && errors.salary_max?.type === "required")
+                && <p className="validate-message">Field is required</p>
+              }
+            </FormGroup>
+          )
+        case STRUCTURAL_TYPE.value: case REQUEST_TYPE.value: case NO_TYPE.value: default:
+          return (
+            <div />
+          )
+      }
     }
   }
 
@@ -219,8 +232,8 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
       {
         ready && (
           <Suspense fallback={"loading..."}>
-            <Form className="distance form-input" ref={refForm} onSubmit={handleSubmit(_handleSubmit)}>
-              <button ref={refSubmit} type="submit">ss</button>
+            <Form className="distance form-input" onSubmit={handleSubmit(_handleSubmit)}>
+              <button ref={refSubmit} type="submit" style={{ display: "none" }}></button>
               <FormGroup>
                 <Label htmlFor="position">ชื่อตำแหน่งงาน</Label>
                 <input
@@ -326,8 +339,8 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
                           noSelected: value => value !== "-1"
                         }
                       })}
-                      value={salaryType ? salaryType : "-1"}
-                      onChange={() => console.log("selected salary")}
+                      onChange={_handleSalaryTypeChanged}
+                      value={selectedSalaryType}
                     >
                       <option value="-1">เลือกเงินเดือน</option>
                       {
@@ -341,26 +354,26 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
                   </Col>
                   <Col lg={4} md={6} sm={12}>
                     {
-                      renderSalaryInput(selectedSalaryType.current)
+                      renderSalaryInput()
                     }
                   </Col>
                 </Row>
               </FormGroup>
               <FormGroup>
-                <Label htmlFor="area-province">พื้นที่</Label>
+                <Label htmlFor="province">พื้นที่</Label>
                 <Row>
                   <Col lg={3} md={4} sm={12}>
                     <select
-                      id="area-province"
-                      name="area_province"
-                      className={"form-control " + (errors.area_province?.type && "is-invalid")}
+                      id="province"
+                      name="province"
+                      className={"form-control " + (errors.province?.type && "is-invalid")}
                       onChange={_handleProvinceChanged}
                       ref={register({
                         validate: {
                           noSelected: value => value !== "-1"
                         }
                       })}
-                      value={province ? province : "-1"}
+                      value={selectedProvince}
                     >
                       <option value="-1">เลือกจังหวัด</option>
                       {
@@ -372,17 +385,18 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
                   </Col>
                   <Col lg={3} md={4} sm={12}>
                     {
-                      selectedProvince.current !== "-1" && (
+                      selectedProvince !== "-1" && (
                         <select
-                          id="area-district"
-                          name="area_district"
-                          className={"form-control " + (errors.area_district?.type && "is-invalid")}
+                          id="district"
+                          name="district"
+                          className={"form-control " + (errors.district?.type && "is-invalid")}
                           ref={register({
                             validate: {
                               noSelected: value => value !== "-1"
                             }
                           })}
-                          defaultValue={district ? district : "-1"}
+                          onChange={_handleDistrictChanged}
+                          value={selectedDistrict}
                         >
                           <option value="-1">เลือกอำเภอ/เขต</option>
                           {
@@ -397,7 +411,7 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
                 </Row>
                 <p className="input-desc">เลือกพื้นที่ผู้สมัครงานปฎิบัติงาน</p>
                 {
-                  (errors.area_province?.type === "noSelected" || errors.area_district?.type === "noSelected")
+                  (errors.province?.type === "noSelected" || errors.district?.type === "noSelected")
                   && <p className="validate-message">Field is required</p>
                 }
               </FormGroup>

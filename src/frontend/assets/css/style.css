@@ -35,7 +35,7 @@ form.distance {
   padding: 30px 20px;
 }
 form.distance .form-group:not(:last-child) {
-  margin-bottom: 35px;
+  margin-bottom: 50px;
 }
 .form-control {
   font-size: 14px;

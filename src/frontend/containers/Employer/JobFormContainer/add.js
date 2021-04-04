@@ -1,119 +1,95 @@
-import React, { useReducer, useRef, useState } from "react"
-import { Row, Col, Button, Alert, Spinner } from "reactstrap"
+import React, { useReducer, useState, useRef } from "react"
+import { Row, Col, Button } from "reactstrap"
 import { Link } from "react-router-dom"
 import Content, { ContentHeader, ContentBody } from "Frontend/components/Content"
 import { EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
+import { useToasts } from 'react-toast-notifications'
 import FormJob from "./_form"
-import "./index.css"
-
 import { createJob } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import {
-  ADD_JOB_SUCCESS,
-  ADD_JOB_FAILED,
-  SEND_REQUEST
+  ADD_SUCCESS,
+  ADD_FAILED
 } from "Shared/states/job/JobType"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons"
+import { faSave } from "@fortawesome/free-regular-svg-icons"
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
+import "./index.css"
 
 const INIT_DATA = {
-  loading: false,
-  status: false,
+  success: false,
   data: null,
   message: null
 }
 function JobFormAddContainer() {
+  const [saving, setSaving] = useState(false)
   const refForm = useRef()
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
-  const [showResponse, setShowResponse] = useState(false)
+  const { addToast } = useToasts()
 
   const _handleCallback = (bodyData) => {
-    dispatch({ type: SEND_REQUEST })
-
+    setSaving(true)
     setTimeout(async () => {
-      const { status, data, message, error } = await createJob(bodyData)
+      const { success, data, message, error } = await createJob(bodyData)
 
-      if (status) {
-        const payload = { message, data }
-        dispatch({ type: ADD_JOB_SUCCESS, payload })
+      if (success) {
+        dispatch({ type: ADD_SUCCESS, payload: { data, message } })
       } else {
-        const payload = { message, error }
-        dispatch({ type: ADD_JOB_FAILED, payload })
+        dispatch({ type: ADD_FAILED, payload: { message, error } })
       }
-
-      // Show response message      
-      setShowResponse(true)      
-
-      if (status) {
-        setTimeout(() => {
-          setShowResponse(false)
-        }, 5000)
-      }
+      setSaving(false)
+      responseMessage(success, message)
     }, 2000)
   }
 
-  const renderResponseMessage = () => {
-    let alertType = "secondary", icon, title
-    if (state.status) {
-      title = "Save success"
-      icon = <FontAwesomeIcon icon={faCheckCircle} />
-      alertType = "success"
+  const responseMessage = (success, message) => {
+    let type
+    if (success) {
+      type = "success"
     } else {
-      title = "Save failed"
-      icon = <FontAwesomeIcon icon={faTimesCircle} />
-      alertType = "danger"
+      type = "error"
     }
 
-    return (
-      <Alert color={alertType}>
-        <b>{icon} {title}</b>
-        <p>{state.message}</p>
-      </Alert>
-    )
+    addToast(message, { appearance: type })
   }
 
   return (
-    <>
-      {
-        state.loading
-          ? <Spinner />
-          : (
-            <Content className="content-jobform">
-              <ContentHeader>
-                <Row>
-                  <Col>
-                    <Link to={EMPLOYER_JOB_PATH}>
-                      <Button color="secondary" disabled={state.loading}>ย้อนกลับ</Button>
-                    </Link>
-                  </Col>
-                  <Col style={{ textAlign: "right" }}>
-                    <Button color="primary" onClick={() => refForm.current.submit()} disabled={state.loading}>สร้าง</Button>
-                  </Col>
-                </Row>
-              </ContentHeader>
-              <ContentBody>
-                {showResponse && renderResponseMessage()}
-                <FormJob
-                  ref={refForm}
-                  editing={false}
-                  position="HTET"
-                  jobType={1}
-                  duty={"TEST"}
-                  performance={"TEST"}
-                  salaryType={4}
-                  amount={2}
-                  workTimeStart="19:00"
-                  workTimeEnd="22:00"
-                  province={70}
-                  district={928}
-                  welfare={"ESTE"}
-                  onSubmit={_handleCallback}
-                />
-              </ContentBody>
-            </Content>
-          )
-      }
-    </>
+
+    <Content className="content-jobform">
+      <ContentHeader>
+        <Row>
+          <Col>
+            <Link to={EMPLOYER_JOB_PATH}>
+              <Button color="secondary" disabled={saving}>ย้อนกลับ</Button>
+            </Link>
+          </Col>
+          <Col style={{ textAlign: "right" }}>
+            <Button color="primary" onClick={() => refForm.current.submit()} disabled={saving}>
+              {
+                saving ? (
+                  <>
+                    <FontAwesomeIcon icon={faCircleNotch} spin />
+                    <span>{" "}กำลังบันทึก</span>
+                  </>
+                ) : (
+                  <>
+                    <FontAwesomeIcon icon={faSave} />
+                    <span>{" "}สร้าง</span>
+                  </>
+                )
+              }
+            </Button>
+          </Col>
+        </Row>
+      </ContentHeader>
+      <ContentBody>
+        <FormJob
+          ref={refForm}
+          editing={false}
+          onSubmit={_handleCallback}
+        />
+      </ContentBody>
+    </Content>
   )
 }
 export default JobFormAddContainer

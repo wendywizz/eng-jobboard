@@ -1,47 +1,139 @@
-import React, { useState } from "react"
-import { Form, Nav, NavItem, NavLink, TabContent } from "reactstrap"
-import classnames from "classnames"
+import React, { useEffect, useReducer, useRef, useState } from "react"
+import { Row, Col, Button, Spinner } from "reactstrap"
 import Content, { ContentBody, ContentHeader } from "Frontend/components/Content"
-import "./index.css"
-import { TabInfo, TabContact, TAB_INFO_NAME, TAB_CONTACT_NAME } from "./Tabs";
+import { useToasts } from "react-toast-notifications"
+import FormCompany from "./_form"
+import {
+  getCompanyByOwner,
+  saveCompany
+} from "Shared/states/company/CompanyDatasource"
+import CompanyReducer from "Shared/states/company/CompanyReducer"
+import {
+  READ_SUCCESS,
+  READ_FAILED,
+  SAVE_SUCCESS,
+  SAVE_FAILED,
+} from "Shared/states/company/CompanyType"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSave } from "@fortawesome/free-regular-svg-icons"
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
 
-function ProfileContainer() {
-  const [activeTab, setActiveTab] = useState(TAB_INFO_NAME);
+const OWNER_ID = 33
+const INIT_DATA = {
+  success: false,
+  data: null,
+  message: null
+}
+function ProfileFormContainer() {
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const refForm = useRef()
+  const [state, dispatch] = useReducer(CompanyReducer, INIT_DATA)
+  const { addToast } = useToasts()
 
-  const toggle = tab => {
-    if (activeTab !== tab) setActiveTab(tab);
+  useEffect(() => {
+    async function fetchData(id) {
+      const { data, error } = await getCompanyByOwner(id)
+
+      if (error) {
+        dispatch({ type: READ_FAILED, payload: { error } })
+      } else {
+        dispatch({ type: READ_SUCCESS, payload: { data } })
+      }
+      setLoading(false)
+    }
+
+    if (loading) {
+      setTimeout(() => {
+        fetchData(OWNER_ID)
+      }, 1000)
+    }
+  }, [loading, state.data])
+
+  const _handleCallback = async (bodyData) => {
+    setTimeout(async () => {
+      console.log(bodyData)
+      /*const { success, data, message, error } = await saveCompany(OWNER_ID, bodyData)
+
+      if (success) {
+        dispatch({ type: SAVE_SUCCESS, payload: { data, message } })
+      } else {
+        dispatch({ type: SAVE_FAILED, payload: { message, error } })
+      }
+      setSaving(false)
+      responseMessage(success, message)*/
+    }, 2000)
+  }
+
+  const responseMessage = (success, message) => {
+    let type
+    if (success) {
+      type = "success"
+    } else {
+      type = "error"
+    }
+
+    addToast(message, { appearance: type })
   }
 
   return (
-    <Content className="content-tab">
-      <ContentHeader title="โปรไฟล์บริษัท" />
-      <ContentBody padding={false}>
-        <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === TAB_INFO_NAME })}
-              onClick={() => { toggle(TAB_INFO_NAME); }}
-            >
-              <span>ข้อมูลทั่วไป</span>
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === TAB_CONTACT_NAME })}
-              onClick={() => { toggle(TAB_CONTACT_NAME); }}
-            >
-              <span>ข้อมูลติดต่อ</span>
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <Form className="distance form-input">
-          <TabContent activeTab={activeTab}>
-            <TabInfo />
-            <TabContact />
-          </TabContent>
-        </Form>
-      </ContentBody>
-    </Content>
+    <>
+      {
+        loading
+          ? <Spinner />
+          : (
+            state.error
+              ? <p>{state.error}</p>
+              : (
+                <Content className="content-tab">
+                  <ContentHeader>
+                    <Row>
+                      <Col>
+                        <h1 className="title">ข้อมูลบริษัท</h1>
+                      </Col>
+                      <Col style={{ textAlign: "right" }}>
+                        <Button color="primary" onClick={() => refForm.current.submit()} disabled={saving}>
+                          {
+                            saving ? (
+                              <>
+                                <FontAwesomeIcon icon={faCircleNotch} spin />
+                                <span>{" "}กำลังบันทึก</span>
+                              </>
+                            ) : (
+                              <>
+                                <FontAwesomeIcon icon={faSave} />
+                                <span>{" "}บันทึก</span>
+                              </>
+                            )
+                          }
+                        </Button>
+                      </Col>
+                    </Row>
+                  </ContentHeader>
+                  <ContentBody padding={false}>
+                    <FormCompany
+                      ref={refForm}
+                      editing={true}
+                      id={state.data.id}
+                      name={state.data.name}
+                      logoPath={state.data.logoPath}
+                      about={state.data.about}
+                      address={state.data.address}
+                      province={state.data.province}
+                      district={state.data.district}
+                      postCode={state.data.postCode}
+                      phone={state.data.phone}
+                      website={state.data.website}
+                      email={state.data.email}
+                      facebook={state.data.facebook}
+                      onSubmit={_handleCallback}
+                    />
+                  </ContentBody>
+                </Content>
+              )
+          )
+      }
+    </>
   )
 }
-export default ProfileContainer
+export default ProfileFormContainer

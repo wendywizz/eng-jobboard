@@ -7,6 +7,7 @@ import {
 import TemplateEmployer from "./components/TemplateEmployer"
 import TemplateApplicant from "./components/TemplateApplicant"
 import { EMPLOYER_PATH, APPLICANT_PATH } from "./configs/paths"
+import { ToastProvider } from "react-toast-notifications"
 import routes from "./configs/routes"
 
 import "jquery/dist/jquery"
@@ -18,6 +19,11 @@ import "./assets/css/style.css"
 
 function Frontend() {
   return (
+    <ToastProvider
+      autoDismiss
+      autoDismissTimeout={3000}
+      placement="bottom-center"
+    >
     <Router>
       <Switch>
         {
@@ -82,6 +88,7 @@ function Frontend() {
         }
       </Switch>
     </Router>
+    </ToastProvider>
   )
 }
 export default Frontend

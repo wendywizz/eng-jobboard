@@ -2,39 +2,50 @@ import { sendGet } from "Shared/utils/request"
 import { ProvinceMapper, DistrictMapper } from "./AreaMapper"
 
 async function getProvince() {
+  let rData = [], rItemCount = 0, rMessage = null, rError = null
   const uri = "http://localhost:3333/api/area/province"
-  return await sendGet(uri)
+
+  await sendGet(uri)
     .then(res => res.json())
     .then(result => {
-      const { data, itemCount } = result
-      let returnData = []
+      const { data, message, itemCount } = result
 
-      if (itemCount > 0) {
-        returnData = data.map(value => ProvinceMapper(value))
-      }
-      return {
-        data: returnData,
-        itemCount
-      }
+      rData = data.map(value => ProvinceMapper(value))
+      rItemCount = itemCount
+      rMessage = message
     })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    data: rData,
+    itemCount: rItemCount,
+    message: rMessage,
+    error: rError
+  }
 }
 
 async function getDistrictByProvince(id) {
+  let rData = [], rItemCount = 0, rMessage = null, rError = null
   const uri = `http://localhost:3333/api/area/district?id=${id}`
-  return await sendGet(uri)
+
+  await sendGet(uri)
     .then(res => res.json())
     .then(result => {
-      const { data, itemCount } = result
-      let returnData = []
+      const { data, message, itemCount } = result
 
-      if (itemCount > 0) {
-        returnData = data.map(value => DistrictMapper(value))
-      }
-      return {
-        data: returnData,
-        itemCount
-      }
+      rData = data.map(value => DistrictMapper(value))
+      rItemCount = itemCount
+      rMessage = message
     })
+    
+  return {
+    data: rData,
+    itemCount: rItemCount,
+    message: rMessage,
+    error: rError
+  }
 }
 
 export {

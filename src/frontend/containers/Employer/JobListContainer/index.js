@@ -12,16 +12,15 @@ import "./index.css"
 
 import { getJobOfCompany } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
-import { READ_JOB_SUCCESS, READ_JOB_FAILED } from "Shared/states/job/JobType"
+import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
 
 let INIT_DATA = {
-  loading: true,
-  stauts: false,
-  result: null,
+  data: null,
   message: null
 }
 function JobListContainer() {
-  const query = useQuery()
+  const [loading, setLoading] = useState(true)
+  const query = useQuery()  
   const [selectedStatus, setSelectedStatus] = useState()
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
 
@@ -37,19 +36,20 @@ function JobListContainer() {
   useEffect(() => {
     // Load Job data
     async function fetchJob(id) {     
-      const { data, error }= await getJobOfCompany(id)
+      const { data, error } = await getJobOfCompany(id)
       
-      if (!error) {
-        dispatch({ type: READ_JOB_SUCCESS, payload: { data } })
+      if (error) {        
+        dispatch({ type: READ_FAILED, payload: { error } })        
       } else {        
-        dispatch({ type: READ_JOB_FAILED, payload: { error } })
+        dispatch({ type: READ_SUCCESS, payload: { data } })
       }
+      setLoading(false)
     }
 
-    if (state.loading) {
+    if (loading) {
       setTimeout(() => {
         fetchJob(42)
-      }, 1500)      
+      }, 1000)      
     }
 
     return () => {
@@ -89,11 +89,11 @@ function JobListContainer() {
       </ContentHeader>
       <ContentBody box={false} padding={false}>
         {
-          state.loading 
+          loading 
             ? <Spinner />
             : (
               state.error
-                ? <p>{state.error.message}</p>
+                ? <p>{state.error}</p>
                 : (
                   <ListGroup className="list-group-job">
                   {
