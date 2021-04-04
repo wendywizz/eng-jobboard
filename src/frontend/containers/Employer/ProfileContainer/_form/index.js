@@ -15,8 +15,7 @@ const FormCompany = forwardRef(({ id, name, logoPath, about, address, province, 
   }
 
   const _handleSubmit = (values) => {
-    console.log(values)
-    //onSubmit(values)
+    onSubmit(values)    
   }
 
   useImperativeHandle(ref, () => ({

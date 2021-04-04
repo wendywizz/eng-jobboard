@@ -10,13 +10,15 @@ function TabInfo({ name, about, logoPath, formErrors, formRegister }) {
       <FormGroup>
         <Label htmlFor="cname">ชื่อบริษัท</Label>
         <input 
+          id="name"
           type="text"
-          className={"form-control " + (formErrors.cname?.type && "is-invalid")}          
-          {...formRegister("cname", { require: true } )}          
+          name="name"
+          className={"form-control " + (formErrors.name?.type && "is-invalid")}          
+          ref={formRegister({ required: true })}
+          defaultValue={name}
         />
         <p className="input-desc">ระบุชื่อบริษัท</p>
-        {formErrors.cname?.type === "required" && <p className="validate-message">Field is required</p>}
-        {formErrors.cname && "First name is required"}
+        {formErrors.name?.type === "required" && <p className="validate-message">Field is required</p>}
       </FormGroup>
       <FormGroup>
         <Label htmlFor="about">เกี่ยวกับบริษัท</Label>
@@ -38,7 +40,6 @@ function TabInfo({ name, about, logoPath, formErrors, formRegister }) {
           id="logo-img"
           name="logo_img"
           className="form-control"
-          ref={formRegister()}
         />
       </FormGroup>
     </TabPane>

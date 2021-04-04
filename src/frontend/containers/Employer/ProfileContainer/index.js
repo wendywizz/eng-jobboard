@@ -50,10 +50,10 @@ function ProfileFormContainer() {
     }
   }, [loading, state.data])
 
-  const _handleCallback = async (bodyData) => {
+  const _handleCallback = (bodyData) => {
+    setSaving(true)
     setTimeout(async () => {
-      console.log(bodyData)
-      /*const { success, data, message, error } = await saveCompany(OWNER_ID, bodyData)
+      const { success, data, message, error } = await saveCompany(OWNER_ID, bodyData)
 
       if (success) {
         dispatch({ type: SAVE_SUCCESS, payload: { data, message } })
@@ -61,7 +61,7 @@ function ProfileFormContainer() {
         dispatch({ type: SAVE_FAILED, payload: { message, error } })
       }
       setSaving(false)
-      responseMessage(success, message)*/
+      responseMessage(success, message)
     }, 2000)
   }
 

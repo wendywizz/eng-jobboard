@@ -25,11 +25,11 @@ async function getCompanyByOwner(ownerId) {
   }
 }
 
-async function saveCompany(cid, saveData) {
+async function saveCompany(ownerId, saveData) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/company/save"
+  const uri = "http://localhost:3333/api/company/save-owner"
   const bodyData = {
-    cid,
+    owner: ownerId,
     ...saveData
   }
 

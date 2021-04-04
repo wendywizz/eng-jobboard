@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Row, Col, FormGroup, Label, Input, TabPane } from "reactstrap"
+import { Row, Col, FormGroup, Label, TabPane } from "reactstrap"
 import { getProvince, getDistrictByProvince } from "Shared/states/area/AreaDatasource"
 
 const TAB_CONTACT_NAME = "contact"
@@ -56,8 +56,16 @@ function TabContact({ address, province, district, postCode, phone, email, websi
   return (
     <TabPane tabId={TAB_CONTACT_NAME}>
       <FormGroup>
-        <Label>ที่อยู่บริษัท</Label>
-        <Input type="textarea" rows={2} defaultValue={address} />
+        <Label htmlFor="address">ที่อยู่บริษัท</Label>
+        <textarea
+          id="address"
+          name="address"
+          className={"form-control " + (formErrors.address?.type && "is-invalid")}
+          rows={2}
+          ref={formRegister({ required: true })}
+          defaultValue={address}
+        />
+        {formErrors.address?.type === "required" && <p className="validate-message">Field is required</p>}
       </FormGroup>
       <FormGroup>
         <Label htmlFor="province">พื้นที่</Label>
@@ -118,40 +126,78 @@ function TabContact({ address, province, district, postCode, phone, email, websi
       <FormGroup>
         <Row>
           <Col md={6}>
-            <Label>รหัสไปรษณีย์</Label>
-            <Input type="text" defaultValue={postCode} />
+            <Label htmlFor="postcode">รหัสไปรษณีย์</Label>
+            <input
+              type="text"
+              id="postcode"
+              name="postcode"
+              className={"form-control " + (formErrors.postcode?.type && "is-invalid")}
+              ref={formRegister()}
+              defaultValue={postCode}
+            />
           </Col>
         </Row>
       </FormGroup>
       <FormGroup>
         <Row>
           <Col md={6}>
-            <Label>โทรศัพท์</Label>
-            <Input type="text" defaultValue={phone} />
+            <Label htmlFor="phone">โทรศัพท์</Label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              className={"form-control " + (formErrors.phone?.type && "is-invalid")}
+              ref={formRegister()}
+              defaultValue={phone}
+            />
           </Col>
         </Row>
       </FormGroup>
       <FormGroup>
         <Row>
           <Col md={6}>
-            <Label>อีเมล</Label>
-            <Input type="text" defaultValue={email} />
+            <Label htmlFor="email">อีเมล</Label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className={"form-control " + (formErrors.email?.type && "is-invalid")}
+              ref={formRegister({
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+              })}
+              defaultValue={email}
+            />
+            {formErrors.email?.type === "pattern" && <p className="validate-message">Invalid email</p>}
           </Col>
         </Row>
       </FormGroup>
       <FormGroup>
         <Row>
           <Col md={6}>
-            <Label>เว็บไซต์</Label>
-            <Input type="text" defaultValue={website} />
+            <Label htmlFor="website">เว็บไซต์</Label>
+            <input 
+              type="text"
+              id="website"
+              name="website"
+              className={"form-control " + (formErrors.website?.type && "is-invalid")}
+              ref={formRegister()}
+              defaultValue={website}
+            />
           </Col>
         </Row>
       </FormGroup>
       <FormGroup>
         <Row>
           <Col md={6}>
-            <Label>Facebook</Label>
-            <Input type="text" defaultValue={facebook} />
+            <Label htmlFor="facebook">Facebook</Label>
+            <input 
+              type="text"
+              id="facebook"
+              name="facebook"
+              className={"form-control " + (formErrors.facebook?.type && "is-invalid")}
+              ref={formRegister()}
+              defaultValue={facebook}
+            />
           </Col>
         </Row>
       </FormGroup>
