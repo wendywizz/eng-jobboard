@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import ModalLogin from "Frontend/components/ModalLogin"
+import { useAuth } from "Shared/context/AuthContext"
 import "./index.css"
 
 function HeaderNav() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const { currentUser } = useAuth()
   
   return (
     <div className="header-nav">
@@ -12,10 +13,10 @@ function HeaderNav() {
       <div className="header-nav-col header-nav-right">
         <ul className="navbar-nav">
           {
-            loggedIn ? (
+            currentUser ? (
               <li className="nav-item dropdown">
                 <span className="nav-link btn btn-transparent dropdown-toggle" role="button" data-toggle="dropdown">
-                  Stevie                  
+                  {currentUser.email}           
                 </span>
                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a className="dropdown-item" href="http://www.google.co.th">Action</a>

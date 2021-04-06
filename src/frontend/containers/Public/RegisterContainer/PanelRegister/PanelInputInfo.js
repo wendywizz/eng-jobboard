@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
 import { useAuth } from "Shared/context/AuthContext"
+import { APPLICANT_TYPE } from "Shared/constants/user"
 import "./index.css"
 
 function PanelInputInfo({ onCallback, studentCode, personNo }) {
@@ -21,7 +22,11 @@ function PanelInputInfo({ onCallback, studentCode, personNo }) {
         studentCode,
         personNo
       }
-      const { success, message } = await signupWithEmail(email, password, 1, additional)
+      const { success, message, error } = await signupWithEmail(email, password, APPLICANT_TYPE, additional)
+      if (error) {
+        setMessage(error)
+        return
+      }
       if (success) {
         onCallback(true, {message})
       } else {

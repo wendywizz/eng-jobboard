@@ -2,7 +2,7 @@ import React from "react"
 import { Row, Col } from "reactstrap"
 import { Link } from "react-router-dom"
 import Section from "Frontend/components/Section"
-import categoryItems from "Frontend/constants/category-items"
+import categoryItems from "Shared/constants/category-items"
 import "./index.css"
 
 function SectionCategory() {

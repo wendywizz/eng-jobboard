@@ -10,11 +10,11 @@ import {
   RANGE_TYPE,
   REQUEST_TYPE,
   NO_TYPE
-} from "Frontend/constants/salary-type"
+} from "Shared/constants/salary-type"
 import {
   WORK_TIME_OPTION
-} from "Frontend/constants/time"
-import day from "Frontend/constants/day"
+} from "Shared/constants/time"
+import day from "Shared/constants/day"
 import "./index.css"
 import { getJobType, getSalaryType } from "Shared/states/job/JobDatasource"
 import { getProvince, getDistrictByProvince } from "Shared/states/area/AreaDatasource"

@@ -3,11 +3,14 @@ import { Form, FormGroup, Label, Modal, ModalHeader, ModalBody, Button } from "r
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
+import { useAuth } from "Shared/context/AuthContext";
 import "./index.css"
 
 function ModalLogin() {
+  const { login } = useAuth()
   const [modal, setModal] = useState(false)
   const [message, setMessage] = useState(null)
+  const [loading, setLoading] = useState(false)
   const { register, handleSubmit, errors } = useForm()
   const toggle = () => setModal(!modal)
 
@@ -15,13 +18,15 @@ function ModalLogin() {
     const { login_email, login_password } = values
     
     if (login_email && login_password) {
-      /*const { status, message } = await signIn(login_email, login_password)
+      setLoading(true)
+      /*const { status, message,  } = await signIn(login_email, login_password)
 
       if (!status) {
         setMessage(message)
       } else {
         setModal(false)
       }*/
+      await login(login_email, login_password)
     }
   }
 

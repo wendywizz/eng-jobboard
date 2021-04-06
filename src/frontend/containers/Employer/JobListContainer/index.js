@@ -7,7 +7,7 @@ import Content, { ContentHeader, ContentBody, ContentFooter } from "Frontend/com
 import ToggleCheckbox from "Frontend/components/ToggleCheckbox"
 import useQuery from "Frontend/utils/hook/useQuery"
 import { EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
-import { ALL, ACTIVE, INACTIVE, FINISH } from "Frontend/constants/employer-job-status"
+import { ALL, ACTIVE, INACTIVE, FINISH } from "Shared/constants/employer-job-status"
 import "./index.css"
 
 import { getJobOfCompany } from "Shared/states/job/JobDatasource"

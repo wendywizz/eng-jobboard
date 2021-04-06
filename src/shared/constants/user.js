@@ -1,0 +1,9 @@
+const APPLICANT_TYPE = 1
+const EMPLOYER_TYPE = 2
+const ADMIN_TYPE = 0
+
+export {
+  APPLICANT_TYPE,
+  EMPLOYER_TYPE,
+  ADMIN_TYPE
+}
