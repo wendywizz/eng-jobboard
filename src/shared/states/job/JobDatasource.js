@@ -3,16 +3,18 @@ import { JobMapper, JobTypeMapper, SalaryMapper } from "./JobMapper"
 
 async function createJob(newData) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
+
   const uri = "http://localhost:3333/api/job/add"
 
   await sendPost(uri, newData)
     .then(res => res.json())
     .then(result => {
-      const { status, data, message } = result
+      const { status, data, message, error } = result
 
       rSuccess = status
       rData = status ? JobMapper(data) : null
       rMessage = message
+      rError = error
     })
     .catch(e => {
       rError = e.message
@@ -37,11 +39,12 @@ async function updateJob(id, data) {
   await sendPost(uri, bodyData)
     .then(res => res.json())
     .then(result => {
-      const { status, data, message } = result
+      const { status, data, message, error } = result
 
       rSuccess = status
       rData = status ? JobMapper(data) : null
       rMessage = message
+      rError = error
     })
     .catch(e => {
       rError = e.message
@@ -63,10 +66,11 @@ async function deleteJob(id) {
   await sendPost(uri, bodyData)
     .then(res => res.json())
     .then(result => {
-      const { status, message } = result
+      const { status, message, error } = result
 
       rSuccess = status
       rMessage = message
+      rError = error
     })
     .catch(e => {
       rError = e.message
@@ -91,10 +95,11 @@ async function getJobByID(id) {
   await sendGet(uri, params)
     .then(res => res.json())
     .then(result => {
-      const { status, data, message } = result
+      const { status, data, message, error } = result
 
       rData = status ? JobMapper(data) : null
       rMessage = message
+      rError = error
     })
     .catch(e => {
       rError = e.message
@@ -114,11 +119,12 @@ async function getJobType() {
   await sendGet(uri)
     .then(res => res.json())
     .then(result => {
-      const { data, message, itemCount } = result
+      const { data, message, itemCount, error } = result
 
       rData = data.map(value => JobTypeMapper(value))
       rItemCount = itemCount
       rMessage = message
+      rError = error
     })
     .catch(e => {
       rError = e.message
@@ -139,11 +145,12 @@ async function getSalaryType() {
   await sendGet(uri)
     .then(res => res.json())
     .then(result => {
-      const { data, message, itemCount } = result
+      const { data, message, itemCount, error } = result
 
       rData = data.map(value => SalaryMapper(value))
       rItemCount = itemCount
       rMessage = message
+      rError = error
     })
     .catch(e => {
       rError = e.message
@@ -165,11 +172,12 @@ async function getJobOfCompany(id) {
   await sendPost(uri, bodyData)
     .then(res => res.json())
     .then(result => {
-      const { data, itemCount, message } = result
+      const { data, itemCount, message, error } = result
 
       rData = data.map(value => JobMapper(value))
       rItemCount = itemCount
       rMessage = message
+      rError = error
     })
     .catch(e => {
       rError = e.message

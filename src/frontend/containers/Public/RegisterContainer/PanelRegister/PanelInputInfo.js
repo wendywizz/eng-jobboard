@@ -1,24 +1,28 @@
 import React, { useState, useRef } from "react"
 import { Form, FormGroup, Label, Button, Alert } from "reactstrap"
-import { useForm } from "react-hook-form";
-import { useAuth } from "Frontend/utils/hook/useAuth"
+import { useForm } from "react-hook-form"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
+import { useAuth } from "Shared/context/AuthContext"
 import "./index.css"
 
-function PanelInputInfo({ onCallback, studentCode, cardNo }) {
-  const { signUpWithEmail } = useAuth()
+function PanelInputInfo({ onCallback, studentCode, personNo }) {
+  const { signupWithEmail } = useAuth()
   const [message, setMessage] = useState()
   const { register, handleSubmit, watch, errors } = useForm() 
-  const regist_password = useRef({})
-  regist_password.current = watch("regist_password", "")
+  const password = useRef({})
+  password.current = watch("password", "")
 
   const _handleSubmit = async(values) => {
-    const { regist_email, regist_password } = values
+    const { email, password } = values
     
-    if (regist_email && regist_password) {
-      const { status, message } = await signUpWithEmail(regist_email, regist_password, studentCode, cardNo)
-      if (status) {
+    if (email && password) {
+      const additional = {
+        studentCode,
+        personNo
+      }
+      const { success, message } = await signupWithEmail(email, password, 1, additional)
+      if (success) {
         onCallback(true, {message})
       } else {
         setMessage(message)
@@ -32,11 +36,11 @@ function PanelInputInfo({ onCallback, studentCode, cardNo }) {
         <h3>สมัครด้วยอีเมล</h3>
         <Form onSubmit={handleSubmit(_handleSubmit)}>
           <FormGroup>
-            <Label for="regist_email">อีเมล</Label>
+            <Label for="email">อีเมล</Label>
             <input 
               type="email" 
-              id="regist_email" 
-              name="regist_email"
+              id="email" 
+              name="email"
               className="form-control"
               ref={register({
                 required: true,
@@ -45,15 +49,15 @@ function PanelInputInfo({ onCallback, studentCode, cardNo }) {
               defaultValue="test@gmail.com"
               placeholder="example@mail.com" 
             />
-            {errors.regist_email?.type === "required" && <p className="validate-message">Field is required</p>}
-            {errors.regist_email?.type === "pattern" && <p className="validate-message">Invalid email</p>}
+            {errors.email?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.email?.type === "pattern" && <p className="validate-message">Invalid email</p>}
           </FormGroup>
           <FormGroup>
-            <Label for="regist_password">รหัสผ่าน</Label>
+            <Label for="password">รหัสผ่าน</Label>
             <input 
               type="password" 
-              id="regist_password" 
-              name="regist_password"
+              id="password" 
+              name="password"
               className="form-control"
               ref={register({
                 required: true,
@@ -62,9 +66,9 @@ function PanelInputInfo({ onCallback, studentCode, cardNo }) {
               })}
               placeholder="ระบุด้วยอักขระ (a-z, A-Z, 0-9)" 
             />
-            {errors.regist_password?.type === "required" && <p className="validate-message">Field is required</p>}
-            {errors.regist_password?.type === "pattern" && <p className="validate-message">Password is allow only (a-z, A-Z, 0-9)</p>}
-            {errors.regist_password?.type === "min" && <p className="validate-message">Password at least 8 strings</p>}
+            {errors.password?.type === "required" && <p className="validate-message">Field is required</p>}
+            {errors.password?.type === "pattern" && <p className="validate-message">Password is allow only (a-z, A-Z, 0-9)</p>}
+            {errors.password?.type === "min" && <p className="validate-message">Password at least 8 strings</p>}
           </FormGroup>
           <FormGroup>
             <Label for="regist_cpassword">ยืนยันรหัสผ่าน</Label>
@@ -75,7 +79,7 @@ function PanelInputInfo({ onCallback, studentCode, cardNo }) {
               className="form-control"
               ref={register({
                 required: true,
-                validate: value => regist_password.current === value                
+                validate: value => password.current === value                
               })}
               placeholder="ระบุรหัสผ่านอีกครั้ง" 
             />

@@ -1,13 +1,11 @@
 import React, { useState } from "react"
 import { Form, FormGroup, Label, Modal, ModalHeader, ModalBody, Button } from "reactstrap"
 import { useForm } from "react-hook-form";
-import useProvideAuth from "Frontend/utils/hook/useAuth"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
 import "./index.css"
 
 function ModalLogin() {
-  const { signIn } = useProvideAuth()
   const [modal, setModal] = useState(false)
   const [message, setMessage] = useState(null)
   const { register, handleSubmit, errors } = useForm()
@@ -17,13 +15,13 @@ function ModalLogin() {
     const { login_email, login_password } = values
     
     if (login_email && login_password) {
-      const { status, message } = await signIn(login_email, login_password)
+      /*const { status, message } = await signIn(login_email, login_password)
 
       if (!status) {
         setMessage(message)
       } else {
         setModal(false)
-      }     
+      }*/
     }
   }
 

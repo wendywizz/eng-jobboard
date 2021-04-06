@@ -3,8 +3,8 @@
   "type": "",
   "email": "",
   "password": "",    
-  "student_id": "",
-  "person_id": "",
+  "student_code": "",
+  "person_no": "",
   "active": "",
   "setting": {
     "notify": {

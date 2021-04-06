@@ -1,13 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import ModalLogin from "Frontend/components/ModalLogin"
-import { useAuth } from "Frontend/utils/hook/useAuth"
-
 import "./index.css"
 
 function HeaderNav() {
-  const { loggedIn } = useAuth()
-
+  const [loggedIn, setLoggedIn] = useState(false)
+  
   return (
     <div className="header-nav">
       <div className="header-nav-col header-nav-left" />

@@ -8,11 +8,12 @@ async function getProvince() {
   await sendGet(uri)
     .then(res => res.json())
     .then(result => {
-      const { data, message, itemCount } = result
+      const { data, message, itemCount, error } = result
 
       rData = data.map(value => ProvinceMapper(value))
       rItemCount = itemCount
       rMessage = message
+      rError = error
     })
     .catch(e => {
       rError = e.message
@@ -33,11 +34,12 @@ async function getDistrictByProvince(id) {
   await sendGet(uri)
     .then(res => res.json())
     .then(result => {
-      const { data, message, itemCount } = result
+      const { data, message, itemCount, error } = result
 
       rData = data.map(value => DistrictMapper(value))
       rItemCount = itemCount
       rMessage = message
+      rError = error
     })
     
   return {

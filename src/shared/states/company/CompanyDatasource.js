@@ -9,10 +9,11 @@ async function getCompanyByOwner(ownerId) {
   await sendGet(uri, params)
     .then(res => res.json())
     .then(result => {
-      const { status, data, message } = result
+      const { status, data, message, error } = result
 
       rData = status ? CompanyMapper(data) : null
       rMessage = message
+      rError = error
     })
     .catch(e => {     
       rError = e.message
@@ -36,11 +37,12 @@ async function saveCompany(ownerId, saveData) {
   await sendPost(uri, bodyData)
     .then(res => res.json())
     .then(result => {
-      const { status, data, message } = result
+      const { status, data, message, error } = result
 
       rSuccess = status
       rData = status ? CompanyMapper(data) : null
       rMessage = message
+      rError = error
     })
     .catch(e => {
       rError = e.message

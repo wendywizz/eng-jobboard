@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Row, Col } from "reactstrap"
 import Template from "Frontend/components/Template"
 import Page from "Frontend/components/Page"
@@ -15,19 +15,24 @@ const REGIST_STATE = {
   inputInfo: 1,
   finish: 2,
 }
-
 function RegisterContainer() {
   const [registState, setRegistState] = useState(REGIST_STATE.codeChecking)
   const [studentCode, setStudentCode] = useState(null)
   const [registStatus, setRegistStatus] = useState(null)
   const [message, setMessage] = useState(null)
-  const [cardNo, setCardNo] = useState(null)
+  const [personNo, setPersonNo] = useState(null)
+
+  useEffect(() => {
+    return {
+      REGIST_STATE
+    }
+  })
 
   const _handleCallback = (passed, optionals) => {    
     switch (registState) {
       case REGIST_STATE.codeChecking:      
         setStudentCode(optionals.studentCode)
-        setCardNo(optionals.cardNo)  
+        setPersonNo(optionals.personNo)  
         setRegistState(REGIST_STATE.inputInfo)
         break
       case REGIST_STATE.inputInfo: default:
@@ -50,7 +55,7 @@ function RegisterContainer() {
       case REGIST_STATE.codeChecking: default:
         return <PanelCodeChecking onCallback={_handleCallback} />
       case REGIST_STATE.inputInfo:
-        return <PanelInputInfo onCallback={_handleCallback} studentCode={studentCode} cardNo={cardNo} />
+        return <PanelInputInfo onCallback={_handleCallback} studentCode={studentCode} personNo={personNo} />
       case REGIST_STATE.finish:
         return <PanelFinish onCallback={_handleCallback} registStatus={registStatus} message={message} />
     }
@@ -72,9 +77,7 @@ function RegisterContainer() {
             </Col>
             <Col className="col-input">
               <div className="box-register">
-              {
-                renderPanel()
-              }
+                { renderPanel() }
               </div>
             </Col>
           </Row>

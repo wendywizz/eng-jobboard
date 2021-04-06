@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import { Form, FormGroup, Input, Label, Button, Alert } from "reactstrap"
-import useAuthProvider from "Frontend/utils/hook/useAuth"
-import { faExclamationTriangle, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle, faSpinner } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { identifyStudent } from "Shared/states/user/UserDatasource"
 
 function PanelCodeChecking({ onCallback }) {
-  const { identifyStudent } = useAuthProvider()
   const [loading, setLoading] = useState(false)
   const [studentCode, setStudentCode] = useState(6310130019);
   const [cardNo, setCardNo] = useState(1749900201835);
@@ -16,9 +15,9 @@ function PanelCodeChecking({ onCallback }) {
 
     setLoading(true)
     setTimeout(async () => {
-      const { status, message } = await identifyStudent(studentCode, cardNo);
+      const { success, message } = await identifyStudent(studentCode, cardNo);
       
-      if (status) {
+      if (success) {
         onCallback(true, { studentCode, cardNo })
       } else {
         setMessage(message)
