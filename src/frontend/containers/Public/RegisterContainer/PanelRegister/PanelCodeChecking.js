@@ -7,7 +7,7 @@ import { identifyStudent } from "Shared/states/user/UserDatasource"
 function PanelCodeChecking({ onCallback }) {
   const [loading, setLoading] = useState(false)
   const [studentCode, setStudentCode] = useState(6310130019);
-  const [cardNo, setCardNo] = useState(1749900201835);
+  const [personNo, setPersonNo] = useState(1749900201835);
   const [message, setMessage] = useState(null);
 
   const _handleSubmit = (e) => {
@@ -15,10 +15,10 @@ function PanelCodeChecking({ onCallback }) {
 
     setLoading(true)
     setTimeout(async () => {
-      const { success, message } = await identifyStudent(studentCode, cardNo);
+      const { success, message } = await identifyStudent(studentCode, personNo)
       
       if (success) {
-        onCallback(true, { studentCode, cardNo })
+        onCallback(true, { studentCode, personNo })
       } else {
         setMessage(message)
       }
@@ -36,7 +36,7 @@ function PanelCodeChecking({ onCallback }) {
           </FormGroup>
           <FormGroup>
             <Label>รหัสประจำตัวประชาชน</Label>
-            <Input placeholder="ระบุตัวเลข 13 หลัก Ex. xxxxxxxxxxxxx" value={cardNo} onChange={(e) => setCardNo(e.target.value)} />
+            <Input placeholder="ระบุตัวเลข 13 หลัก Ex. xxxxxxxxxxxxx" value={personNo} onChange={(e) => setPersonNo(e.target.value)} />
           </FormGroup>
         </div>
         <Button block color="primary" disabled={loading}>

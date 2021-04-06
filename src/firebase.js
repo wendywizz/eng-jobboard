@@ -1,14 +1,15 @@
 import firebase from "firebase/app"
 import "firebase/auth"
+require("dotenv").config()
 
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyC9Wr3o7qGV2_WdZe68E_X-ZENAQ1lbIug",
-  authDomain: "psu-engineer-jobboard.firebaseapp.com",
-  projectId: "psu-engineer-jobboard",
-  storageBucket: "psu-engineer-jobboard.appspot.com",
-  messagingSenderId: "856725106593",
-  appId: "1:856725106593:web:23913765c629996a0ce5e0",
-  measurementId: "G-JHXDBVYWPL"
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 })
 export const auth = app.auth()
 // Initialize Firebase

@@ -35,7 +35,7 @@ async function identifyStudent(studentCode, personNo) {
     std_code: studentCode,
     person_no: personNo
   }
-  return await sendPost(uri, bodyData);
+  return await sendPost(uri, bodyData)
 }
 
 export {
