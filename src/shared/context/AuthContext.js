@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
       .then(data => {
         // Create user on local database
         const uid = data.user.uid
-        switch (userType) {          
+        switch (userType) {
           // Create new Applicant
           case APPLICANT_TYPE:
             const { studentCode, personNo } = additional
@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
           case EMPLOYER_TYPE:
             createEmployer(uid, email)
             break
-          default:        
+          default:
             break
         }
         success = true
@@ -59,8 +59,8 @@ export function AuthProvider({ children }) {
       .catch(e => {
         error = e.message
       })
-    
-    return { 
+
+    return {
       success,
       message,
       error
@@ -86,15 +86,15 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     async function fetchAuthType(code) {
       const { data } = await getUserType(code)
-      
+
       if (data) {
         setAuthType(data.user_type)
       }
     }
 
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (!authType) {
-       fetchAuthType(user.uid)
+    const unsubscribe = auth.onAuthStateChanged(user => {      
+      if (!authType && user) {
+        fetchAuthType(user.uid)
       }
       setCurrentUser(user)
       setLoading(false)

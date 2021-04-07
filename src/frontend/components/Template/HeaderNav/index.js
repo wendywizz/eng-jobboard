@@ -1,12 +1,17 @@
 import React from "react"
+import { Button } from "reactstrap"
 import { Link } from "react-router-dom"
 import ModalLogin from "Frontend/components/ModalLogin"
 import { useAuth } from "Shared/context/AuthContext"
 import "./index.css"
+import blankUser from "Frontend/assets/img/blank-user.jpg"
 
 function HeaderNav() {
-  const { currentUser } = useAuth()
+  const { currentUser, logout } = useAuth()
   
+  const _handleLogout = () => {
+    logout()
+  }
   return (
     <div className="header-nav">
       <div className="header-nav-col header-nav-left" />
@@ -14,14 +19,24 @@ function HeaderNav() {
         <ul className="navbar-nav">
           {
             currentUser ? (
-              <li className="nav-item dropdown">
-                <span className="nav-link btn btn-transparent dropdown-toggle" role="button" data-toggle="dropdown">
-                  {currentUser.email}           
-                </span>
-                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="http://www.google.co.th">Action</a>
-                </div>
+              <li className="dropdown user user-menu open">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                  <img src={blankUser} className="user-image" alt="User Image" />
+                  <span className="hidden-xs">{currentUser.email}</span>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-right">
+                  <li className="user-header">
+                    <img src={blankUser} className="img-circle" alt="User Image" />
+                    <p>{currentUser.email}</p>
+                  </li>
+                  <li className="user-footer">
+                    <div className="pull-right">
+                      <Button color="danger" block onClick={_handleLogout}>Sign out</Button>
+                    </div>
+                  </li>
+                </ul>
               </li>
+
             ) : (
               <>
                 <li className="nav-item"><Link to="/register" className="nav-Link btn btn-primary btn-sm">สมัครใช้งาน</Link></li>
