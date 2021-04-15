@@ -21,10 +21,10 @@ const INIT_DATA = {
   data: null,
   message: null
 }
-function JobFormAddContainer() {
+function JobFormAddContainer(props) {
   const [saving, setSaving] = useState(false)
   const refForm = useRef()
-  const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
+  const [dispatch] = useReducer(JobReducer, INIT_DATA)
   const { addToast } = useToasts()
 
   const _handleCallback = (bodyData) => {
@@ -86,6 +86,8 @@ function JobFormAddContainer() {
         <FormJob
           ref={refForm}
           editing={false}
+          companyId={props.companyId}
+          userId={props.userId}
           onSubmit={_handleCallback}
         />
       </ContentBody>

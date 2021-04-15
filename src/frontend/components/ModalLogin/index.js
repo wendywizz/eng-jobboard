@@ -7,7 +7,7 @@ import { useAuth } from "Shared/context/AuthContext";
 import "./index.css"
 
 function ModalLogin() {
-  const { login } = useAuth()
+  const { signin } = useAuth()
   const [modal, setModal] = useState(false)
   const [message, setMessage] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -19,14 +19,14 @@ function ModalLogin() {
     
     if (login_email && login_password) {
       setLoading(true)
-      /*const { status, message,  } = await signIn(login_email, login_password)
+      const { success, message } = await signin(login_email, login_password)
 
-      if (!status) {
+      if (!success) {
         setMessage(message)
       } else {
         setModal(false)
-      }*/
-      await login(login_email, login_password)
+      }
+      setLoading(false)
     }
   }
 
@@ -68,7 +68,7 @@ function ModalLogin() {
                 />
                 {errors.login_password?.type === "required" && <p className="validate-message">Field is required</p>}
               </FormGroup>
-              <Button color="primary" block>ตกลง</Button>
+              <Button color="primary" block disabled={loading}>ตกลง</Button>
               {message && <p style={{color: "red"}}>{message}</p>}
             </Form>
           </div>

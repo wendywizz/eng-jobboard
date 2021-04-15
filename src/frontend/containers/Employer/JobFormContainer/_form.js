@@ -19,7 +19,7 @@ import "./index.css"
 import { getJobType, getSalaryType } from "Shared/states/job/JobDatasource"
 import { getProvince, getDistrictByProvince } from "Shared/states/area/AreaDatasource"
 
-const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, performance, salaryType, salaryMax, salaryMin, workDays, workTimeStart, workTimeEnd, welfare, province, district, amount, onSubmit }, ref) => {
+const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, performance, salaryType, salaryMax, salaryMin, workDays, workTimeStart, workTimeEnd, welfare, province, district, amount, currentUser, currentCompany, onSubmit }, ref) => {
   const [ready, setReady] = useState(false)
   const { register, handleSubmit, errors } = useForm()
   const refSubmit = useRef(null)
@@ -153,8 +153,8 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
     bodyData.district = values.district
 
     if (!editing) {
-      bodyData.company_owner = 42
-      bodyData.created_by = 33
+      bodyData.company_owner = currentCompany
+      bodyData.created_by = currentUser
     } else {
       bodyData.id = id
     }

@@ -1,13 +1,16 @@
 import React from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Breadcrumb, BreadcrumbItem, Button } from "reactstrap"
+import { Breadcrumb, BreadcrumbItem } from "reactstrap"
 import className from "classnames"
 import Template from "../Template"
+import { useAuth } from "Shared/context/AuthContext"
 import "./index.css"
 
 import defaultAvatar from "Frontend/assets/img/default-logo.jpg"
+import { EMPLOYER_TYPE } from "Shared/constants/user"
 
 function TemplateUserPanel({ navConfig, children }) {
+  const { currentCompany, currentUser, authType } = useAuth()
   const { pathname } = useLocation()
 
   const renderMenuItems = () => {
@@ -23,7 +26,7 @@ function TemplateUserPanel({ navConfig, children }) {
                       value.children.map((cValue, cIndex) => {
                         const classes = className({
                           "active": cValue.link === pathname ? true : false
-                        })                        
+                        })
                         return (
                           <li key={cIndex} className={classes}>
                             <Link to={cValue.link}>{cValue.text}</Link>
@@ -66,8 +69,12 @@ function TemplateUserPanel({ navConfig, children }) {
                 <img className="img-thumbnail" src={defaultAvatar} alt="user-avatar" />
               </div>
               <div className="detail">
-                <div className="name">login@psu.ac.th</div>                
-                <Button size="sm" color="danger" block outline>Log out</Button>
+                <div className="name">{currentUser ? currentUser.email : "n/a"}</div>
+                <div className="position">
+                  {
+                    authType === EMPLOYER_TYPE ? "ผู้จัดหางาน" : "ผู้สมัครงาน"
+                  }
+                </div>
               </div>
             </div>
           </div>
@@ -77,8 +84,12 @@ function TemplateUserPanel({ navConfig, children }) {
         </div>
         <div className="template-content">
           {renderBreadcrumb()}
-          <div className="inner-content">
-            {children}
+          <div className="inner-content">            
+            { React.cloneElement(children, { 
+                userId: currentUser && currentUser.localId, 
+                companyId: currentCompany && currentCompany.id 
+              }) 
+            }
           </div>
         </div>
       </div>

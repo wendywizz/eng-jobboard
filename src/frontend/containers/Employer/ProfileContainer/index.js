@@ -4,7 +4,7 @@ import Content, { ContentBody, ContentHeader } from "Frontend/components/Content
 import { useToasts } from "react-toast-notifications"
 import FormCompany from "./_form"
 import {
-  getCompanyByOwner,
+  getCompanyItem,
   saveCompany
 } from "Shared/states/company/CompanyDatasource"
 import CompanyReducer from "Shared/states/company/CompanyReducer"
@@ -18,13 +18,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave } from "@fortawesome/free-regular-svg-icons"
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
 
-const OWNER_ID = 33
-const INIT_DATA = {
-  success: false,
+let INIT_DATA = {
   data: null,
   message: null
 }
-function ProfileFormContainer() {
+function ProfileFormContainer(props) {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const refForm = useRef()
@@ -33,7 +31,7 @@ function ProfileFormContainer() {
 
   useEffect(() => {
     async function fetchData(id) {
-      const { data, error } = await getCompanyByOwner(id)
+      const { data, error } = await getCompanyItem(id)
 
       if (error) {
         dispatch({ type: READ_FAILED, payload: { error } })
@@ -44,16 +42,24 @@ function ProfileFormContainer() {
     }
 
     if (loading) {
-      setTimeout(() => {
-        fetchData(OWNER_ID)
-      }, 1000)
+      if (props.companyId) {
+        setTimeout(() => { 
+          fetchData(props.companyId)
+        }, 1000)
+      }
     }
-  }, [loading, state.data])
+
+    return () => {
+      INIT_DATA = {
+        ...state
+      }
+    }
+  })
 
   const _handleCallback = (bodyData) => {
     setSaving(true)
     setTimeout(async () => {
-      const { success, data, message, error } = await saveCompany(OWNER_ID, bodyData)
+      const { success, data, message, error } = await saveCompany(props.companyId, bodyData)
 
       if (success) {
         dispatch({ type: SAVE_SUCCESS, payload: { data, message } })

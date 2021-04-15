@@ -3,7 +3,7 @@ import { Spinner } from "reactstrap"
 import TemplateUserPanel from "Frontend/components/TemplateUserPanel"
 import { EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, /*EMPLOYER_RESUME_PATH,*/ EMPLOYER_SETTING_PATH } from "Frontend/configs/paths"
 
-function TemplateEmployer({ children }) {
+function TemplateEmployer({ children }) {  
   const [ready] = useState(true)
 
   function setNavConfig() {
@@ -29,7 +29,10 @@ function TemplateEmployer({ children }) {
 
   return (
     !ready ? <Spinner /> : (
-      <TemplateUserPanel navConfig={setNavConfig()} sidebarTitle="Employer Menu">
+      <TemplateUserPanel 
+        navConfig={setNavConfig()} 
+        sidebarTitle="Employer Menu"        
+      >
         {children}
       </TemplateUserPanel>
     )

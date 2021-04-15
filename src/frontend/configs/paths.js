@@ -1,4 +1,5 @@
 const HOME_PATH = "/"
+const LOGIN_PATH = "/login"
 const RESULT_PATH = "/result"
 const DETAIL_PATH = "/view"
 const REGISTER_PATH = "/register"
@@ -19,6 +20,7 @@ const APPLICANT_SETTING_PATH = APPLICANT_PATH + "/setting"
 
 export {
   HOME_PATH,
+  LOGIN_PATH,
   RESULT_PATH,
   DETAIL_PATH,
   REGISTER_PATH,

@@ -14,7 +14,7 @@ import {
   SAVE_SUCCESS
 } from "Shared/states/job/JobType"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSave  } from "@fortawesome/free-regular-svg-icons"
+import { faSave } from "@fortawesome/free-regular-svg-icons"
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
 import "./index.css"
 
@@ -23,7 +23,7 @@ const INIT_DATA = {
   data: null,
   message: null
 }
-function JobFormEditContainer() {
+function JobFormEditContainer(props) {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const { id } = useParams()
@@ -39,7 +39,7 @@ function JobFormEditContainer() {
 
         if (error) {
           dispatch({ type: READ_FAILED, payload: { error } })
-        } else {          
+        } else {
           dispatch({ type: READ_SUCCESS, payload: { data } })
         }
         setLoading(false)
@@ -58,13 +58,13 @@ function JobFormEditContainer() {
     setTimeout(async () => {
       const { success, data, message, error } = await updateJob(id, bodyData)
 
-      if (success) {      
+      if (success) {
         dispatch({ type: SAVE_SUCCESS, payload: { data, message } })
       } else {
-        dispatch({ type: SAVE_FAILED, payload: { message, error} })
-      }  
+        dispatch({ type: SAVE_FAILED, payload: { message, error } })
+      }
       setSaving(false)
-      responseMessage(success, message)    
+      responseMessage(success, message)
     }, 2000)
   }
 
@@ -111,13 +111,13 @@ function JobFormEditContainer() {
                               </>
                             )
                           }
-                        </Button>                        
+                        </Button>
                       </Col>
                     </Row>
                   </ContentHeader>
                   <ContentBody>
                     <FormJob
-                      ref={refForm}                      
+                      ref={refForm}
                       editing={true}
                       id={state.data.id}
                       position={state.data.position}
@@ -134,6 +134,8 @@ function JobFormEditContainer() {
                       welfare={state.data.welfare}
                       province={state.data.province}
                       district={state.data.district}
+                      companyId={props.companyId}
+                      userId={props.userId}
                       onSubmit={_handleCallback}
                     />
                   </ContentBody>

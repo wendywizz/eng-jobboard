@@ -18,9 +18,9 @@ let INIT_DATA = {
   data: null,
   message: null
 }
-function JobListContainer() {
+function JobListContainer(props) {
   const [loading, setLoading] = useState(true)
-  const query = useQuery()  
+  const query = useQuery()
   const [selectedStatus, setSelectedStatus] = useState()
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
 
@@ -35,12 +35,12 @@ function JobListContainer() {
 
   useEffect(() => {
     // Load Job data
-    async function fetchJob(id) {     
+    async function fetchJob(id) {
       const { data, error } = await getJobOfCompany(id)
-      
-      if (error) {        
-        dispatch({ type: READ_FAILED, payload: { error } })        
-      } else {        
+
+      if (error) {
+        dispatch({ type: READ_FAILED, payload: { error } })
+      } else {
         dispatch({ type: READ_SUCCESS, payload: { data } })
       }
       setLoading(false)
@@ -48,8 +48,10 @@ function JobListContainer() {
 
     if (loading) {
       setTimeout(() => {
-        fetchJob(42)
-      }, 1000)      
+        if (props.companyId) {
+          fetchJob(props.companyId)
+        }
+      }, 1000)
     }
 
     return () => {
@@ -58,7 +60,7 @@ function JobListContainer() {
       }
     }
   })
-  
+
   return (
     <Content className="content-empr-joblist">
       <ContentHeader title="จัดการงาน">
@@ -89,38 +91,38 @@ function JobListContainer() {
       </ContentHeader>
       <ContentBody box={false} padding={false}>
         {
-          loading 
+          loading
             ? <Spinner />
             : (
               state.error
                 ? <p>{state.error}</p>
                 : (
                   <ListGroup className="list-group-job">
-                  {
-                    state.data.map((item, index) => (
-                      <ListGroupItem key={index} className="list-group-jobitem">
-                        <div className="detail">
-                          <div className="job-type">
-                            <Badge color="info">{item.jobTypeAsso.name}</Badge>
+                    {
+                      state.data.map((item, index) => (
+                        <ListGroupItem key={index} className="list-group-jobitem">
+                          <div className="detail">
+                            <div className="job-type">
+                              <Badge color="info">{item.jobTypeAsso.name}</Badge>
+                            </div>
+                            <span className="title">{item.position}</span>
+                            <span className="amount">{`จำนวนรับ ${item.amount} ตำแหน่ง`}</span>
                           </div>
-                          <span className="title">{item.position}</span>
-                          <span className="amount">{`จำนวนรับ ${item.amount} ตำแหน่ง`}</span>
-                        </div>
-                        <div className="action">
-                          <div className="apply-info">
-                            <ToggleCheckbox />
+                          <div className="action">
+                            <div className="apply-info">
+                              <ToggleCheckbox />
+                            </div>
+                            <div className="view">
+                              <Link to={`${EMPLOYER_JOB_EDIT_PATH}/${item.id}`} className="btn btn-outline-primary btn-block">แก้ไข</Link>
+                            </div>
                           </div>
-                          <div className="view">
-                            <Link to={`${EMPLOYER_JOB_EDIT_PATH}/${item.id}`} className="btn btn-outline-primary btn-block">แก้ไข</Link>
-                          </div>
-                        </div>
-                      </ListGroupItem>
-                    ))
-                  }
-                </ListGroup>
-              )
+                        </ListGroupItem>
+                      ))
+                    }
+                  </ListGroup>
+                )
             )
-        }       
+        }
       </ContentBody>
       <ContentFooter></ContentFooter>
     </Content>

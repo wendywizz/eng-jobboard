@@ -1,4 +1,5 @@
 import { sendPost, sendGet } from "Shared/utils/request"
+import UserMapper from "./UserMapper"
 
 async function createApplicant(uid, email, studentCode, personNo) {
   const uri = "http://localhost:3333/api/register/applicant/email"
@@ -39,8 +40,30 @@ async function identifyStudent(studentCode, personNo) {
   return await sendPost(uri, bodyData).then(res => res.json())
 }
 
+async function getUserByCode(code) {
+  let rData = null, rMessage = null, rError = null
+  const uri = "http://localhost:3333/api/user/user-by-code"
+  const params = { code }
+
+  await sendGet(uri, params)
+    .then(res => res.json())
+    .then(result => {
+      const { success, data, message, error } = result
+
+      rData = success ? UserMapper(data) : null
+      rMessage = message
+      rError = error
+    })
+  
+  return {
+    data: rData,
+    message: rMessage,
+    error: rError
+  }
+}
+
 async function getUserType(code) {
-  const uri = "http://localhost:3333/api/authen/user-type"
+  const uri = "http://localhost:3333/api/user/type-by-code"
   const params = { code }
 
   return await sendGet(uri, params).then(res => res.json())
@@ -50,5 +73,6 @@ export {
   createEmployer,
   createApplicant,
   getUserType,
+  getUserByCode,
   identifyStudent
 }
