@@ -17,6 +17,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave } from "@fortawesome/free-regular-svg-icons"
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
+import { useCompany } from "Shared/context/CompanyContext"
 
 let INIT_DATA = {
   data: null,
@@ -27,6 +28,7 @@ function ProfileFormContainer(props) {
   const [saving, setSaving] = useState(false)
   const refForm = useRef()
   const [state, dispatch] = useReducer(CompanyReducer, INIT_DATA)
+  const {companyID} = useCompany()
   const { addToast } = useToasts()
 
   useEffect(() => {
@@ -42,9 +44,9 @@ function ProfileFormContainer(props) {
     }
 
     if (loading) {
-      if (props.companyId) {
+      if (companyID) {
         setTimeout(() => { 
-          fetchData(props.companyId)
+          fetchData(companyID)
         }, 1000)
       }
     }

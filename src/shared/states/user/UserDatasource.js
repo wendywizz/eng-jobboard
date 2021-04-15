@@ -48,7 +48,7 @@ async function getUserByCode(code) {
   await sendGet(uri, params)
     .then(res => res.json())
     .then(result => {
-      const { success, data, message, error } = result
+      const { success, data, message, error } = result      
 
       rData = success ? UserMapper(data) : null
       rMessage = message

@@ -7,6 +7,9 @@ import {
 import { ToastProvider } from "react-toast-notifications"
 import { AuthProvider } from "Shared/context/AuthContext"
 import routes from "./configs/routes"
+import { APPLICANT_PATH, EMPLOYER_PATH } from "./configs/paths"
+import TemplateApplicant from "./components/TemplateApplicant"
+import TemplateEmployer from "./components/TemplateEmployer"
 
 import "jquery/dist/jquery"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -27,15 +30,49 @@ function RouteApp() {
                   <Route key={index} path={value.basePath} render={({ match }) => {
                     return (
                       <Switch>
-                        {value.children.map((route, index) => (
-                          <Route
-                            key={index}
-                            path={match.path + route.path}
-                            exact={route.exact}
-                            name={route.name}
-                            render={() => <route.component />}
-                          />
-                        ))}
+                        {value.children.map((route, index) => {                       
+                          switch (value.basePath) {
+                            case APPLICANT_PATH:                              
+                              return (
+                                <Route
+                                  key={index}
+                                  path={route.path}
+                                  exact={route.exact}
+                                  name={route.name}
+                                  render={() =>
+                                    <TemplateApplicant>
+                                      <route.component />
+                                    </TemplateApplicant>
+                                  }
+                                />
+                              )
+                            case EMPLOYER_PATH:
+                              return (
+                                <Route
+                                  key={index}
+                                  path={route.path}
+                                  exact={route.exact}
+                                  name={route.name}
+                                  render={() =>
+                                    <TemplateEmployer>
+                                      <route.component />
+                                    </TemplateEmployer>
+                                  }
+                                />
+                              )
+                            default:
+                              return (
+                                <Route
+                                  key={index}
+                                  path={match.path + route.path}
+                                  exact={route.exact}
+                                  name={route.name}
+                                  render={() => <route.component />}
+                                />
+                              )
+                          }
+
+                        })}
                       </Switch>
                     )
                   }} />

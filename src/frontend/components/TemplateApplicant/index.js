@@ -1,11 +1,9 @@
-import React, { useState } from "react"
-import { Spinner } from "reactstrap"
+import React from "react"
 import TemplateUserPanel from "Frontend/components/TemplateUserPanel"
 import { APPLICANT_PROFILE_PATH, /*APPLICANT_RESUME_PATH,*/ APPLICANT_SETTING_PATH } from "Frontend/configs/paths"
 
 function TemplateApplicant({ children }) {
-  const [ready] = useState(true)
-
+  
   function setNavConfig() {
     return [
       {
@@ -23,11 +21,9 @@ function TemplateApplicant({ children }) {
   }
 
   return (
-    !ready ? <Spinner /> : (
-      <TemplateUserPanel navConfig={setNavConfig()} sidebarTitle="Applicant Menu">
-        {children}
-      </TemplateUserPanel>
-    )
+    <TemplateUserPanel navConfig={setNavConfig()} sidebarTitle="Applicant Menu">
+      {children}
+    </TemplateUserPanel>
   )
 }
 export default TemplateApplicant

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import { APPLICANT_TYPE, EMPLOYER_TYPE } from "Shared/constants/user"
-import { createApplicant, createEmployer, getUserByCode } from "Shared/states/user/UserDatasource"
-import { getCompanyByOwner } from "Shared/states/company/CompanyDatasource"
+import { createApplicant, createEmployer } from "Shared/states/user/UserDatasource"
+import { getUserByCode } from "Shared/states/user/UserDatasource"
 import { auth } from "../../firebase"
 
 const AuthContext = React.createContext()
@@ -12,7 +12,6 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [authUser, setAuthUser] = useState()
-  const [authCompany, setAuthCompany] = useState()
   const [authType, setAuthType] = useState()
 
   async function signupWithEmail(email, password, userType, additional) {
@@ -49,41 +48,16 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function settingSession(code, fbUser) {
-    let rSuccess = false, rMessage = null
+  async function createSession(fbUser) {
+    const { data } = await getUserByCode(fbUser.uid)
 
-    const { data, message, error } = await getUserByCode(code)
     if (data) {
-      const authUser = {
-        localId: data.id,
-        userType: data.type,
+      const user = {
+        localID: data.id,
         ...fbUser
       }
+      setAuthUser(user)
       setAuthType(data.type)
-      setAuthUser(authUser)
-
-      // If logged in user is employer get company id
-      if (data.type === EMPLOYER_TYPE) {
-        const cData = await getCompanyByOwner(data.id)
-
-        if (cData) {
-          setAuthCompany(cData.data)
-        }
-      }
-
-      rSuccess = true
-    } else {
-      if (error) {
-        rMessage = error
-      } else {
-        rMessage = message
-      }
-      signout()
-    }
-
-    return {
-      success: rSuccess,
-      message: rMessage
     }
   }
 
@@ -91,12 +65,11 @@ export function AuthProvider({ children }) {
     let rSuccess = false, rMessage = "Sign in failed"
 
     const fbUser = await signinFirebase(email, password)
-    const code = fbUser.uid
+    if (fbUser) {
+      await createSession(fbUser)
 
-    if (code) {
-      const { success, message } = settingSession(code, fbUser)
-      rSuccess = success
-      rMessage = message
+      rSuccess = true
+      rMessage = "Sign in success"
     }
 
     return {
@@ -114,9 +87,6 @@ export function AuthProvider({ children }) {
   }
 
   function signout() {
-    setAuthUser(null)
-    setAuthType(null)
-
     return auth.signOut()
   }
 
@@ -133,8 +103,13 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setAuthUser(user)
+    async function setSession(fbUser) {
+      await createSession(fbUser)
+    }
+    const unsubscribe = auth.onAuthStateChanged(user => {   
+      if (user) {   
+        setSession(user)
+      }
     })
 
     return unsubscribe
@@ -142,7 +117,6 @@ export function AuthProvider({ children }) {
 
   const value = {
     authUser,
-    authCompany,
     authType,
     signin,
     signupWithEmail,

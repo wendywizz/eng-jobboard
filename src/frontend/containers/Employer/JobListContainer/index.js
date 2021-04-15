@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import Content, { ContentHeader, ContentBody, ContentFooter } from "Frontend/components/Content"
 import ToggleCheckbox from "Frontend/components/ToggleCheckbox"
-import useQuery from "Frontend/utils/hook/useQuery"
+import useQuery from "Shared/utils/hook/useQuery"
 import { EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
 import { ALL, ACTIVE, INACTIVE, FINISH } from "Shared/constants/employer-job-status"
 import "./index.css"
@@ -13,16 +13,18 @@ import "./index.css"
 import { getJobOfCompany } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
+import { useCompany } from "Shared/context/CompanyContext"
 
 let INIT_DATA = {
   data: null,
   message: null
 }
 function JobListContainer(props) {
-  const [loading, setLoading] = useState(true)
   const query = useQuery()
+  const [loading, setLoading] = useState(true)
   const [selectedStatus, setSelectedStatus] = useState()
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
+  const { companyID } = useCompany()
 
   useEffect(() => {
     const status = query.get("status")
@@ -47,11 +49,11 @@ function JobListContainer(props) {
     }
 
     if (loading) {
-      setTimeout(() => {
-        if (props.companyId) {
-          fetchJob(props.companyId)
-        }
-      }, 1000)
+      if (companyID) {
+        setTimeout(() => {
+          fetchJob(companyID)
+        }, 1000)
+      }
     }
 
     return () => {

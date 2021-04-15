@@ -1,10 +1,9 @@
-import React, { useState } from "react"
-import { Spinner } from "reactstrap"
+import React from "react"
 import TemplateUserPanel from "Frontend/components/TemplateUserPanel"
 import { EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, /*EMPLOYER_RESUME_PATH,*/ EMPLOYER_SETTING_PATH } from "Frontend/configs/paths"
+import { CompanyProvider } from "Shared/context/CompanyContext"
 
-function TemplateEmployer({ children }) {  
-  const [ready] = useState(true)
+function TemplateEmployer({ children }) {
 
   function setNavConfig() {
     return [
@@ -28,14 +27,14 @@ function TemplateEmployer({ children }) {
   }
 
   return (
-    !ready ? <Spinner /> : (
-      <TemplateUserPanel 
-        navConfig={setNavConfig()} 
-        sidebarTitle="Employer Menu"        
-      >
+    <TemplateUserPanel
+      navConfig={setNavConfig()}
+      sidebarTitle="Employer Menu"
+    >
+      <CompanyProvider>
         {children}
-      </TemplateUserPanel>
-    )
+      </CompanyProvider>
+    </TemplateUserPanel>
   )
 }
 export default TemplateEmployer
