@@ -1,0 +1,22 @@
+.modal-filter-area {
+  max-width: 800px!important;
+}
+.modal-filter-area .modal-body .col-data{
+  height: 400px;
+  overflow-y: scroll;
+}
+.modal-filter-area .modal-footer .row {
+  flex: 1;
+}
+.modal-filter-area .modal-footer .row .col-action {
+  text-align: right;
+}
+
+.list-area-data li:hover {
+  cursor: pointer;
+}
+.list-area-data li.active {
+  background-color:#890403;
+  border: 0;
+  color: #fff;
+}

@@ -1,5 +1,5 @@
 import { sendGet, sendPost } from "Shared/utils/request"
-import { JobMapper, JobTypeMapper, SalaryMapper } from "./JobMapper"
+import { JobMapper, JobTypeMapper, JobCategoryMapper, SalaryMapper } from "./JobMapper"
 
 async function createJob(newData) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
@@ -9,10 +9,10 @@ async function createJob(newData) {
   await sendPost(uri, newData)
     .then(res => res.json())
     .then(result => {
-      const { status, data, message, error } = result
+      const { success, data, message, error } = result
 
-      rSuccess = status
-      rData = status ? JobMapper(data) : null
+      rSuccess = success
+      rData = success ? JobMapper(data) : null
       rMessage = message
       rError = error
     })
@@ -39,10 +39,10 @@ async function updateJob(id, data) {
   await sendPost(uri, bodyData)
     .then(res => res.json())
     .then(result => {
-      const { status, data, message, error } = result
+      const { success, data, message, error } = result
 
-      rSuccess = status
-      rData = status ? JobMapper(data) : null
+      rSuccess = success
+      rData = success ? JobMapper(data) : null
       rMessage = message
       rError = error
     })
@@ -66,9 +66,9 @@ async function deleteJob(id) {
   await sendPost(uri, bodyData)
     .then(res => res.json())
     .then(result => {
-      const { status, message, error } = result
+      const { sucess, message, error } = result
 
-      rSuccess = status
+      rSuccess = sucess
       rMessage = message
       rError = error
     })
@@ -83,10 +83,6 @@ async function deleteJob(id) {
   }
 }
 
-function setActiveJob() {
-
-}
-
 async function getJobByID(id) {
   let rData = null, rMessage = null, rError = null
   const uri = `http://localhost:3333/api/job/view`
@@ -95,9 +91,9 @@ async function getJobByID(id) {
   await sendGet(uri, params)
     .then(res => res.json())
     .then(result => {
-      const { status, data, message, error } = result
+      const { data, message, error } = result
 
-      rData = status ? JobMapper(data) : null
+      rData = data ? JobMapper(data) : null
       rMessage = message
       rError = error
     })
@@ -122,6 +118,32 @@ async function getJobType() {
       const { data, message, itemCount, error } = result
 
       rData = data.map(value => JobTypeMapper(value))
+      rItemCount = itemCount
+      rMessage = message
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    data: rData,
+    itemCount: rItemCount,
+    message: rMessage,
+    error: rError
+  }
+}
+
+async function getJobCategory() {
+  let rData = [], rItemCount = 0, rMessage = null, rError = null
+  const uri = "http://localhost:3333/api/job/job-category"
+
+  await sendGet(uri)
+    .then(res => res.json())
+    .then(result => {
+      const { data, message, itemCount, error } = result
+
+      rData = data.map(value => JobCategoryMapper(value))
       rItemCount = itemCount
       rMessage = message
       rError = error
@@ -191,13 +213,39 @@ async function getJobOfCompany(id) {
   }
 }
 
+async function setActiveJob(id) {
+  let rSuccess = false, rMessage = null, rError = null
+  const uri = "http://localhost:3333/api/job/active"
+  const bodyData = { id }
+
+  await sendPost(uri, bodyData)
+    .then(res => res.json())
+    .then(result => {
+      const { success, message, error } = result
+
+      rSuccess = success
+      rMessage = message
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    success: rSuccess,
+    message: rMessage,
+    error: rError
+  }
+}
+
 export {
   createJob,
   updateJob,
   deleteJob,
-  setActiveJob,
   getJobByID,
   getJobOfCompany,
   getJobType,
-  getSalaryType
+  getJobCategory,
+  getSalaryType,
+  setActiveJob,
 }

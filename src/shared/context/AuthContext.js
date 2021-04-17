@@ -53,7 +53,7 @@ export function AuthProvider({ children }) {
 
     if (data) {
       const user = {
-        localID: data.id,
+        localId: data.id,
         ...fbUser
       }
       setAuthUser(user)

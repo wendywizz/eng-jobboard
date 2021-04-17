@@ -1,4 +1,5 @@
-.content-jobform .content-header {
+.content-jobform .content-header,
+.content-jobform .content-footer {
   padding-top: 15px;
   padding-bottom: 15px;
 }
@@ -24,6 +25,10 @@
 }
 .group-work-day.horizontal > *:not(:last-child) {
   margin-right: 6px;
+}
+
+.group-category .radio-tag label{
+  width: 100%;
 }
 
 .time-range {

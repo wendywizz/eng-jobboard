@@ -1,5 +1,13 @@
 import { isset } from "Shared/utils/string"
 
+function JobCategoryMapper(data) {
+  return {
+    id: isset(data.id),
+    name: isset(data.name),
+    image: isset(data.image)
+  }
+}
+
 function JobTypeMapper(data) {
   return {
     id: isset(data.id),
@@ -22,6 +30,8 @@ function JobMapper(data) {
     position: isset(data.job_position),
     jobType: isset(data.job_type),
     jobTypeAsso: isset(data.job_type_asso) && JobTypeMapper(data.job_type_asso),
+    jobCategory: isset(data.job_category),
+    jobCategoryAsso: isset(data.job_category_asso) && JobCategoryMapper(data.job_category_asso),
     duty: isset(data.job_duty),
     performance: isset(data.job_performance),
     welfare: isset(data.job_welfare),
@@ -48,5 +58,6 @@ function JobMapper(data) {
 export {
   JobMapper,
   JobTypeMapper,
+  JobCategoryMapper,
   SalaryMapper
 }

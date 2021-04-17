@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useReducer, useRef } from "react"
 import { Row, Col, Button, Spinner } from "reactstrap"
 import { Link, useParams, useRouteMatch } from "react-router-dom"
-import Content, { ContentHeader, ContentBody } from "Frontend/components/Content"
+import Content, { ContentHeader, ContentBody, ContentFooter } from "Frontend/components/Content"
 import { EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
 import { useToasts } from 'react-toast-notifications'
 import FormJob from "./_form"
@@ -16,6 +16,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave } from "@fortawesome/free-regular-svg-icons"
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
+import { useCompany } from "Shared/context/CompanyContext"
+import { useAuth } from "Shared/context/AuthContext"
 import "./index.css"
 
 const INIT_DATA = {
@@ -23,7 +25,9 @@ const INIT_DATA = {
   data: null,
   message: null
 }
-function JobFormEditContainer(props) {
+function JobFormEditContainer() {
+  const { companyId } = useCompany()
+  const { authUser } = useAuth()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const { id } = useParams()
@@ -79,6 +83,35 @@ function JobFormEditContainer(props) {
     addToast(message, { appearance: type })
   }
 
+  const controlPanel = () => {
+    return (
+      <Row>
+        <Col>
+          <Link to={EMPLOYER_JOB_PATH}>
+            <Button color="secondary" disabled={saving}>ย้อนกลับ</Button>
+          </Link>
+        </Col>
+        <Col style={{ textAlign: "right" }}>
+          <Button color="primary" onClick={() => refForm.current.submit()} disabled={saving}>
+            {
+              saving ? (
+                <>
+                  <FontAwesomeIcon icon={faCircleNotch} spin />
+                  <span>{" "}กำลังบันทึก</span>
+                </>
+              ) : (
+                <>
+                  <FontAwesomeIcon icon={faSave} />
+                  <span>{" "}บันทึก</span>
+                </>
+              )
+            }
+          </Button>
+        </Col>
+      </Row>
+    )
+  }
+
   return (
     <>
       {
@@ -90,55 +123,40 @@ function JobFormEditContainer(props) {
               : (
                 <Content className="content-jobform">
                   <ContentHeader>
-                    <Row>
-                      <Col>
-                        <Link to={EMPLOYER_JOB_PATH}>
-                          <Button color="secondary" disabled={saving}>ย้อนกลับ</Button>
-                        </Link>
-                      </Col>
-                      <Col style={{ textAlign: "right" }}>
-                        <Button color="primary" onClick={() => refForm.current.submit()} disabled={saving}>
-                          {
-                            saving ? (
-                              <>
-                                <FontAwesomeIcon icon={faCircleNotch} spin />
-                                <span>{" "}กำลังบันทึก</span>
-                              </>
-                            ) : (
-                              <>
-                                <FontAwesomeIcon icon={faSave} />
-                                <span>{" "}บันทึก</span>
-                              </>
-                            )
-                          }
-                        </Button>
-                      </Col>
-                    </Row>
+                    {controlPanel()}
                   </ContentHeader>
                   <ContentBody>
-                    <FormJob
-                      ref={refForm}
-                      editing={true}
-                      id={state.data.id}
-                      position={state.data.position}
-                      jobType={state.data.jobType}
-                      duty={state.data.duty}
-                      performance={state.data.performance}
-                      salaryType={state.data.salaryType}
-                      salaryMin={state.data.salaryMin}
-                      salaryMax={state.data.salaryMax}
-                      amount={state.data.amount}
-                      workDays={state.data.workDays}
-                      workTimeStart={state.data.workTimeStart}
-                      workTimeEnd={state.data.workTimeEnd}
-                      welfare={state.data.welfare}
-                      province={state.data.province}
-                      district={state.data.district}
-                      companyId={props.companyId}
-                      userId={props.userId}
-                      onSubmit={_handleCallback}
-                    />
+                    {
+                      state.data && (
+                        <FormJob
+                          ref={refForm}
+                          editing={true}
+                          id={state.data.id}
+                          position={state.data.position}
+                          jobType={state.data.jobType}
+                          jobCategory={state.data.jobCategory}
+                          duty={state.data.duty}
+                          performance={state.data.performance}
+                          salaryType={state.data.salaryType}
+                          salaryMin={state.data.salaryMin}
+                          salaryMax={state.data.salaryMax}
+                          amount={state.data.amount}
+                          workDays={state.data.workDays}
+                          workTimeStart={state.data.workTimeStart}
+                          workTimeEnd={state.data.workTimeEnd}
+                          welfare={state.data.welfare}
+                          province={state.data.province}
+                          district={state.data.district}
+                          companyId={companyId}
+                          userId={authUser.localId}
+                          onSubmit={_handleCallback}
+                        />
+                      )
+                    }
                   </ContentBody>
+                  <ContentFooter>
+                    {controlPanel()}
+                  </ContentFooter>
                 </Content>
               )
           )

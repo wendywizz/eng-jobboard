@@ -1,15 +1,26 @@
-import React from "react"
+import React, { useState }  from "react"
 import {
   Input,
   InputGroup,
   InputGroupAddon,
   Button,
   FormGroup,
-  Label
+  Label,
+  Modal
 } from "reactstrap"
+import { DialogAreaFilter } from "Frontend/components/Filter"
 import "./index.css"
 
 function FilterSidebar() {
+  const _handleSubmit =() =>{
+
+  }
+
+  const _handleOnAreaSelected = (province, district) => {
+    console.log("PROV", province)
+    console.log("DIST", district)
+  }
+
   return (
     <div className="filter-sidebar">
       <div className="filter-option">
@@ -22,9 +33,7 @@ function FilterSidebar() {
       </div>
       <div className="filter-option">
         <h4 className="title">จังหวัด</h4>
-        <select className="form-control">
-          <option>ทุกจังหวัด</option>
-        </select>
+        <DialogAreaFilter onSelected={_handleOnAreaSelected} />
       </div>
       <div className="filter-option">
         <h4 className="title">ประเภทงาน</h4>

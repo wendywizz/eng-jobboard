@@ -5,7 +5,7 @@ import { useToasts } from "react-toast-notifications"
 import FormCompany from "./_form"
 import {
   getCompanyItem,
-  saveCompany
+  saveCompanyByOwner
 } from "Shared/states/company/CompanyDatasource"
 import CompanyReducer from "Shared/states/company/CompanyReducer"
 import {
@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave } from "@fortawesome/free-regular-svg-icons"
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
 import { useCompany } from "Shared/context/CompanyContext"
+import { useAuth } from "Shared/context/AuthContext"
 
 let INIT_DATA = {
   data: null,
@@ -28,7 +29,8 @@ function ProfileFormContainer(props) {
   const [saving, setSaving] = useState(false)
   const refForm = useRef()
   const [state, dispatch] = useReducer(CompanyReducer, INIT_DATA)
-  const {companyID} = useCompany()
+  const { companyId } = useCompany()
+  const { authUser } = useAuth()
   const { addToast } = useToasts()
 
   useEffect(() => {
@@ -44,9 +46,9 @@ function ProfileFormContainer(props) {
     }
 
     if (loading) {
-      if (companyID) {
-        setTimeout(() => { 
-          fetchData(companyID)
+      if (companyId) {
+        setTimeout(() => {
+          fetchData(companyId)
         }, 1000)
       }
     }
@@ -61,7 +63,8 @@ function ProfileFormContainer(props) {
   const _handleCallback = (bodyData) => {
     setSaving(true)
     setTimeout(async () => {
-      const { success, data, message, error } = await saveCompany(props.companyId, bodyData)
+      const ownerId = authUser.localId
+      const { success, data, message, error } = await saveCompanyByOwner(ownerId, bodyData)
 
       if (success) {
         dispatch({ type: SAVE_SUCCESS, payload: { data, message } })
@@ -83,7 +86,7 @@ function ProfileFormContainer(props) {
 
     addToast(message, { appearance: type })
   }
-
+  
   return (
     <>
       {
@@ -119,23 +122,27 @@ function ProfileFormContainer(props) {
                     </Row>
                   </ContentHeader>
                   <ContentBody padding={false}>
-                    <FormCompany
-                      ref={refForm}
-                      editing={true}
-                      id={state.data.id}
-                      name={state.data.name}
-                      logoPath={state.data.logoPath}
-                      about={state.data.about}
-                      address={state.data.address}
-                      province={state.data.province}
-                      district={state.data.district}
-                      postCode={state.data.postCode}
-                      phone={state.data.phone}
-                      website={state.data.website}
-                      email={state.data.email}
-                      facebook={state.data.facebook}
-                      onSubmit={_handleCallback}
-                    />
+                    {
+                      state.data && (
+                        <FormCompany
+                          ref={refForm}
+                          editing={true}
+                          id={state.data.id}
+                          name={state.data.name}
+                          logoPath={state.data.logoPath}
+                          about={state.data.about}
+                          address={state.data.address}
+                          province={state.data.province}
+                          district={state.data.district}
+                          postCode={state.data.postCode}
+                          phone={state.data.phone}
+                          website={state.data.website}
+                          email={state.data.email}
+                          facebook={state.data.facebook}
+                          onSubmit={_handleCallback}
+                        />
+                      )
+                    }
                   </ContentBody>
                 </Content>
               )

@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useRef } from "react"
 import { Row, Col, Button } from "reactstrap"
 import { Link } from "react-router-dom"
-import Content, { ContentHeader, ContentBody } from "Frontend/components/Content"
+import Content, { ContentHeader, ContentBody, ContentFooter } from "Frontend/components/Content"
 import { EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
 import { useToasts } from 'react-toast-notifications'
 import FormJob from "./_form"
@@ -14,6 +14,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave } from "@fortawesome/free-regular-svg-icons"
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
+import { useHistory } from "react-router-dom/"
+import { useCompany } from "Shared/context/CompanyContext"
+import { useAuth } from "Shared/context/AuthContext"
 import "./index.css"
 
 const INIT_DATA = {
@@ -21,10 +24,13 @@ const INIT_DATA = {
   data: null,
   message: null
 }
-function JobFormAddContainer(props) {
+function JobFormAddContainer() {
+  const history = useHistory()
+  const {companyId} = useCompany()
+  const {authUser} = useAuth()
   const [saving, setSaving] = useState(false)
   const refForm = useRef()
-  const [dispatch] = useReducer(JobReducer, INIT_DATA)
+  const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
   const { addToast } = useToasts()
 
   const _handleCallback = (bodyData) => {
@@ -36,9 +42,12 @@ function JobFormAddContainer(props) {
         dispatch({ type: ADD_SUCCESS, payload: { data, message } })
       } else {
         dispatch({ type: ADD_FAILED, payload: { message, error } })
-      }
-      setSaving(false)
+      }      
       responseMessage(success, message)
+      setTimeout(() => {
+        setSaving(false)
+        history.push(EMPLOYER_JOB_PATH)
+      }, 1500)
     }, 2000)
   }
 
@@ -53,11 +62,9 @@ function JobFormAddContainer(props) {
     addToast(message, { appearance: type })
   }
 
-  return (
-
-    <Content className="content-jobform">
-      <ContentHeader>
-        <Row>
+  const controlPanel = () => {
+    return (
+      <Row>
           <Col>
             <Link to={EMPLOYER_JOB_PATH}>
               <Button color="secondary" disabled={saving}>ย้อนกลับ</Button>
@@ -81,16 +88,27 @@ function JobFormAddContainer(props) {
             </Button>
           </Col>
         </Row>
+    )
+  }
+
+  return (
+
+    <Content className="content-jobform">
+      <ContentHeader>
+        {controlPanel()}
       </ContentHeader>
       <ContentBody>
         <FormJob
           ref={refForm}
           editing={false}
-          companyId={props.companyId}
-          userId={props.userId}
+          companyOwner={companyId}
+          owner={authUser.localId}
           onSubmit={_handleCallback}
         />
       </ContentBody>
+      <ContentFooter>
+        {controlPanel()}
+      </ContentFooter>
     </Content>
   )
 }

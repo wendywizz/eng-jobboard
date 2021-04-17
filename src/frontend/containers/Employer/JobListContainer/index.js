@@ -24,7 +24,7 @@ function JobListContainer(props) {
   const [loading, setLoading] = useState(true)
   const [selectedStatus, setSelectedStatus] = useState()
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
-  const { companyID } = useCompany()
+  const { companyId } = useCompany()
 
   useEffect(() => {
     const status = query.get("status")
@@ -49,9 +49,9 @@ function JobListContainer(props) {
     }
 
     if (loading) {
-      if (companyID) {
+      if (companyId) {
         setTimeout(() => {
-          fetchJob(companyID)
+          fetchJob(companyId)
         }, 1000)
       }
     }
@@ -62,6 +62,10 @@ function JobListContainer(props) {
       }
     }
   })
+
+  const _handleChangeActive = (e) => {
+    console.log("ACTIVE", e.target.value)
+  }
 
   return (
     <Content className="content-empr-joblist">
@@ -112,7 +116,10 @@ function JobListContainer(props) {
                           </div>
                           <div className="action">
                             <div className="apply-info">
-                              <ToggleCheckbox />
+                              <ToggleCheckbox 
+                                defaultChecked={item.active}
+                                onChange={_handleChangeActive}
+                              />
                             </div>
                             <div className="view">
                               <Link to={`${EMPLOYER_JOB_EDIT_PATH}/${item.id}`} className="btn btn-outline-primary btn-block">แก้ไข</Link>

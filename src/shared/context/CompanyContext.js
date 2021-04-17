@@ -10,26 +10,26 @@ export function useCompany() {
 
 export function CompanyProvider({ children }) {
   const [loaded, setLoaded] = useState(false)
-  const [companyID, setCompanyID] = useState()
+  const [companyId, setCompanyId] = useState()
   const {authUser} = useAuth()
 
   async function getData(id) {
     const { data } = await getCompanyByOwner(id)
     if (data) {
-      setCompanyID(data.id)
+      setCompanyId(data.id)
       setLoaded(true)
     }
   }
 
   useEffect(() => {
     if (!loaded && authUser) {
-      const ownerID = authUser.localID
-      getData(ownerID)
+      const ownerId = authUser.localId
+      getData(ownerId)
     }
   }, [authUser, loaded])
 
   const value = {
-    companyID
+    companyId
   }
 
   return (

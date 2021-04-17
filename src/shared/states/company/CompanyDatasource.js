@@ -51,7 +51,7 @@ async function getCompanyByOwner(ownerId) {
   }
 }
 
-async function saveCompany(ownerId, saveData) {
+async function saveCompanyByOwner(ownerId, saveData) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
   const uri = "http://localhost:3333/api/company/save-owner"
   const bodyData = {
@@ -62,10 +62,10 @@ async function saveCompany(ownerId, saveData) {
   await sendPost(uri, bodyData)
     .then(res => res.json())
     .then(result => {
-      const { status, data, message, error } = result
+      const { success, data, message, error } = result
 
-      rSuccess = status
-      rData = status ? CompanyMapper(data) : null
+      rSuccess = success
+      rData = success ? CompanyMapper(data) : null
       rMessage = message
       rError = error
     })
@@ -82,7 +82,7 @@ async function saveCompany(ownerId, saveData) {
 }
 
 export {
-  saveCompany,
+  saveCompanyByOwner,
   getCompanyItem,
   getCompanyByOwner
 }

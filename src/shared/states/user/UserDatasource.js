@@ -48,13 +48,13 @@ async function getUserByCode(code) {
   await sendGet(uri, params)
     .then(res => res.json())
     .then(result => {
-      const { success, data, message, error } = result      
+      const { data, message, error } = result
 
-      rData = success ? UserMapper(data) : null
+      rData = data ? UserMapper(data) : null
       rMessage = message
       rError = error
     })
-  
+
   return {
     data: rData,
     message: rMessage,
@@ -66,7 +66,7 @@ async function getUserType(code) {
   const uri = "http://localhost:3333/api/user/type-by-code"
   const params = { code }
 
-  return await sendGet(uri, params).then(res => res.json())
+  return sendGet(uri, params).then(res => res.json())
 }
 
 export {

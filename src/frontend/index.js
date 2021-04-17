@@ -4,12 +4,11 @@ import {
   Route,
   Switch
 } from "react-router-dom"
-import { ToastProvider } from "react-toast-notifications"
 import { AuthProvider } from "Shared/context/AuthContext"
-import routes from "./configs/routes"
+import { ToastProvider } from "react-toast-notifications"
 import { APPLICANT_PATH, EMPLOYER_PATH } from "./configs/paths"
-import TemplateApplicant from "./components/TemplateApplicant"
-import TemplateEmployer from "./components/TemplateEmployer"
+import { ApplicantRoute, EmployerRoute } from "./components/Route"
+import routes from "./configs/routes"
 
 import "jquery/dist/jquery"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -22,66 +21,53 @@ function RouteApp() {
   return (
     <Router>
       <Switch>
-        <AuthProvider>
-          {
-            routes.map((value, index) => (
-              value.children && value.children.length > 0
-                ? (
-                  <Route key={index} path={value.basePath} render={({ match }) => {
-                    return (
-                      <Switch>
-                        {value.children.map((route, index) => {                       
-                          switch (value.basePath) {
-                            case APPLICANT_PATH:                              
-                              return (
-                                <Route
-                                  key={index}
-                                  path={route.path}
-                                  exact={route.exact}
-                                  name={route.name}
-                                  render={() =>
-                                    <TemplateApplicant>
-                                      <route.component />
-                                    </TemplateApplicant>
-                                  }
-                                />
-                              )
-                            case EMPLOYER_PATH:
-                              return (
-                                <Route
-                                  key={index}
-                                  path={route.path}
-                                  exact={route.exact}
-                                  name={route.name}
-                                  render={() =>
-                                    <TemplateEmployer>
-                                      <route.component />
-                                    </TemplateEmployer>
-                                  }
-                                />
-                              )
-                            default:
-                              return (
-                                <Route
-                                  key={index}
-                                  path={match.path + route.path}
-                                  exact={route.exact}
-                                  name={route.name}
-                                  render={() => <route.component />}
-                                />
-                              )
-                          }
-
-                        })}
-                      </Switch>
-                    )
-                  }} />
-                ) : (
-                  <Route key={index} path={value.path} component={value.component} {...value} />
-                )
-            ))
-          }
-        </AuthProvider>
+        {
+          routes.map((value, index) => (
+            value.children && value.children.length > 0
+              ? (
+                <Route key={index} path={value.basePath} render={({ match }) =>
+                  <Switch>
+                    {value.children.map((route, index) => {
+                      switch (value.basePath) {
+                        case APPLICANT_PATH:
+                          return (
+                            <ApplicantRoute
+                              key={index}
+                              path={route.path}
+                              exact={route.exact}
+                              name={route.name}
+                              component={route.component}
+                            />
+                          )
+                        case EMPLOYER_PATH:
+                          return (
+                            <EmployerRoute
+                              key={index}
+                              path={route.path}
+                              exact={route.exact}
+                              name={route.name}
+                              component={route.component}
+                            />
+                          )
+                        default:
+                          return (
+                            <Route
+                              key={index}
+                              path={match.path + route.path}
+                              exact={route.exact}
+                              name={route.name}
+                              component={route.component}
+                            />
+                          )
+                      }
+                    })}
+                  </Switch>
+                } />
+              ) : (
+                <Route key={index} path={value.path} component={value.component} {...value} />
+              )
+          ))
+        }
       </Switch>
     </Router>
   )
@@ -94,7 +80,9 @@ function Frontend() {
       autoDismissTimeout={3000}
       placement="bottom-center"
     >
-      <RouteApp />
+      <AuthProvider>
+        <RouteApp />
+      </AuthProvider>
     </ToastProvider>
   )
 }

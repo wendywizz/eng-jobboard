@@ -16,15 +16,16 @@ import {
 } from "Shared/constants/time"
 import day from "Shared/constants/day"
 import "./index.css"
-import { getJobType, getSalaryType } from "Shared/states/job/JobDatasource"
+import { getJobType, getJobCategory, getSalaryType } from "Shared/states/job/JobDatasource"
 import { getProvince, getDistrictByProvince } from "Shared/states/area/AreaDatasource"
 
-const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, performance, salaryType, salaryMax, salaryMin, workDays, workTimeStart, workTimeEnd, welfare, province, district, amount, currentUser, currentCompany, onSubmit }, ref) => {
+const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategory, duty, performance, salaryType, salaryMax, salaryMin, workDays, workTimeStart, workTimeEnd, welfare, province, district, amount, owner, companyOwner, onSubmit }, ref) => {
   const [ready, setReady] = useState(false)
   const { register, handleSubmit, errors } = useForm()
   const refSubmit = useRef(null)
 
   const [jobTypeData, setJobTypeData] = useState([])
+  const [jobCategoryData, setJobCategoryData] = useState([])
   const [salaryTypeData, setSalaryTypeData] = useState([])
   const [provinceData, setProvinceData] = useState([])
   const [districtData, setDistrictData] = useState([])
@@ -43,6 +44,15 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
         }))
 
         setJobTypeData(jobTypeData)
+      }
+      async function fetchJobCategory() {
+        const { data } = await getJobCategory()
+        const jobCategoryData = data.map(item => ({
+          text: item.name,
+          value: item.id
+        }))
+
+        setJobCategoryData(jobCategoryData)
       }
       async function fetchSalaryType() {
         const { data } = await getSalaryType()
@@ -65,6 +75,7 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
       }
 
       fetchJobType()
+      fetchJobCategory()
       fetchSalaryType()
       fetchProvince()
 
@@ -80,11 +91,11 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
         text: item.nameTh,
         value: item.id
       }))
-  
+
       setDistrictData(districtData)
     }
 
-    fetchDistrict(selectedProvince)    
+    fetchDistrict(selectedProvince)
   }, [editing, selectedProvince])
 
   useImperativeHandle(ref, () => ({
@@ -139,6 +150,7 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
     const bodyData = {}
     bodyData.position = values.position
     bodyData.job_type = values.job_type
+    bodyData.category = values.category
     bodyData.amount = values.amount
     bodyData.duty = values.duty
     bodyData.welfare = values.welfare
@@ -153,8 +165,8 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
     bodyData.district = values.district
 
     if (!editing) {
-      bodyData.company_owner = currentCompany
-      bodyData.created_by = currentUser
+      bodyData.company_owner = companyOwner
+      bodyData.created_by = owner
     } else {
       bodyData.id = id
     }
@@ -271,6 +283,32 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
                   }
                 </div>
                 {errors.job_type?.type === "required" && <p className="validate-message">Please select one of them</p>}
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="category">หมวดหมู่</Label>
+                <div className="group-category">
+                  <Row>
+                    {
+                      jobCategoryData.map((item, index) => {
+                        return (
+                          <Col lg={4} md={4} sm={12} key={index}>
+                            <RadioTag
+                              name="category"
+                              id={`category_${index}`}
+                              text={item.text}
+                              value={item.value}
+                              ref={register({
+                                required: true
+                              })}
+                              checked={jobCategory === item.value}
+                            />
+                          </Col>
+                        )
+                      })
+                    }
+                  </Row>
+                </div>
+                {errors.category?.type === "required" && <p className="validate-message">Please select one of them</p>}
               </FormGroup>
               <FormGroup>
                 <Row>
@@ -421,9 +459,12 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, duty, perf
                   {
                     day.map((item, index) => {
                       let isChecked = 0
+
                       if (editing) {
-                        const wdJSON = JSON.parse(workDays)
-                        isChecked = wdJSON[item.value] ? true : false
+                        if (workDays) {
+                          const wdJSON = JSON.parse(workDays)
+                          isChecked = wdJSON[item.value] ? true : false
+                        }
                       } else {
                         isChecked = index < 5 ? true : false
                       }
