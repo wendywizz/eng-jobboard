@@ -1,19 +1,30 @@
 import React from "react"
 import { FormGroup, Label, TabPane } from "reactstrap"
-//import defaultLogo from "Frontend/assets/img/default-logo.jpg"
+import { SingleThumbUpload } from "Frontend/components/Upload"
+import { uploadLogo } from "Shared/states/company/CompanyDatasource"
+import { useCompany } from "Shared/context/CompanyContext"
+import { useAuth } from "Shared/context/AuthContext"
+import "./index.css"
 
 const TAB_INFO_NAME = "info"
 
 function TabInfo({ name, about, logoPath, formErrors, formRegister }) {
+  const {companyId} = useCompany()
+  const {authUser} = useAuth()
+
+  const _handleUploadLogo = async (image) => {
+    await uploadLogo(companyId, authUser.localId, image)
+  }
+
   return (
     <TabPane tabId={TAB_INFO_NAME}>
       <FormGroup>
         <Label htmlFor="cname">ชื่อบริษัท</Label>
-        <input 
+        <input
           id="name"
           type="text"
           name="name"
-          className={"form-control " + (formErrors.name?.type && "is-invalid")}          
+          className={"form-control " + (formErrors.name?.type && "is-invalid")}
           ref={formRegister({ required: true })}
           defaultValue={name}
         />
@@ -22,38 +33,25 @@ function TabInfo({ name, about, logoPath, formErrors, formRegister }) {
       </FormGroup>
       <FormGroup>
         <Label htmlFor="about">เกี่ยวกับบริษัท</Label>
-        <textarea 
+        <textarea
           id="about"
           name="about"
           className="form-control"
-          rows={3} 
+          rows={3}
           ref={formRegister()}
-          defaultValue={about} 
+          defaultValue={about}
         />
         <p className="input-desc">อธิบายข้อมูลของบริษัทโดยคร่าวๆ ว่าบริษัททำธุรกิจอะไร</p>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="logo-img">โลโก้บริษัท</Label>
-        <img src={logoPath} alt="company-logo" />
-        <input
-          type="file" 
-          id="logo-img"
-          name="logo_img"
-          className="form-control"
-        />
+        <Label htmlFor="logo-img">โลโก้บริษัท</Label>  
+        <SingleThumbUpload 
+          defaultImage={logoPath}
+          onUpload={_handleUploadLogo}
+        />    
       </FormGroup>
     </TabPane>
   )
 }
 export default TabInfo
 export { TAB_INFO_NAME }
-
-
-
-/*<div className="group-image-logo">
-<div className="custom-file">
-  <input type="file" className="custom-file-input form-control" id="input-image-logo" />
-  <label className="custom-file-label" htmlFor="input-image-logo">เลือกไฟล์</label>
-</div>
-<img className="img-preview" src={defaultLogo} alt="default-logo" />
-</div>*/

@@ -42,15 +42,16 @@ export default function DialogAreaFilter({ onSelected }) {
     if (selectedProvince) {
       fetchDistrict()
     }
-  }, [selectedProvince])
-
-  useEffect(() => {
     showTextResult()
   }, [selectedProvince, selectedDistrict])
 
   const _handleSelected = () => {
     if (onSelected) {
-      onSelected(selectedProvince.id, selectedDistrict.id)
+      const values = {
+        province: selectedProvince.id,
+        district: selectedDistrict.id
+      }
+      onSelected(values)
       setToggle(false)
     }
   }
@@ -139,7 +140,9 @@ export default function DialogAreaFilter({ onSelected }) {
         </ModalFooter>
       </Modal>
       <select className="form-control" onClick={_handleToggle}>
-        <option>{textResult}</option>
+        {
+          textResult && <option>{textResult}</option>
+        }
       </select>
     </>
   )

@@ -1,24 +1,19 @@
-import React, { useState }  from "react"
+import React from "react"
 import {
   Input,
   InputGroup,
   InputGroupAddon,
   Button,
   FormGroup,
-  Label,
-  Modal
+  Label
 } from "reactstrap"
 import { DialogAreaFilter } from "Frontend/components/Filter"
 import "./index.css"
 
 function FilterSidebar() {
-  const _handleSubmit =() =>{
-
-  }
-
-  const _handleOnAreaSelected = (province, district) => {
-    console.log("PROV", province)
-    console.log("DIST", district)
+  const _handleOnAreaSelected = (value) => {
+    console.log("PROV", value.province)
+    console.log("DIST", value.district)
   }
 
   return (

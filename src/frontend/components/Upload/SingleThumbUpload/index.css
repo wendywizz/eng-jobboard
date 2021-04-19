@@ -1,0 +1,28 @@
+.control-upload {
+  max-width: 260px;
+}
+.control-upload .preview {
+  width: 100%;
+  height: 220px;
+  border: 1px solid #eaeaea;
+  background-size: cover;
+}
+
+.upload.hide {
+  opacity: 0;
+}
+.upload-label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+.upload-desc {
+  font-size: 12px;
+}
+.btn-upload *{
+  color: #fff;
+}
+.text-error {
+  color: red;
+}

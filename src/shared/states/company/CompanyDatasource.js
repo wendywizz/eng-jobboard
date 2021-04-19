@@ -1,4 +1,4 @@
-import { sendGet, sendPost } from "Shared/utils/request"
+import { sendGet, sendPost, formPost } from "Shared/utils/request"
 import { CompanyMapper } from "./CompanyMapper"
 
 async function getCompanyItem(id) {
@@ -10,12 +10,12 @@ async function getCompanyItem(id) {
     .then(res => res.json())
     .then(result => {
       const { data, message, error } = result
-      
+
       rData = data ? CompanyMapper(data) : null
       rMessage = message
       rError = error
     })
-    .catch(e => {     
+    .catch(e => {
       rError = e.message
     })
 
@@ -35,12 +35,12 @@ async function getCompanyByOwner(ownerId) {
     .then(res => res.json())
     .then(result => {
       const { data, message, error } = result
-      
+
       rData = data ? CompanyMapper(data) : null
       rMessage = message
       rError = error
     })
-    .catch(e => {     
+    .catch(e => {
       rError = e.message
     })
 
@@ -81,8 +81,23 @@ async function saveCompanyByOwner(ownerId, saveData) {
   }
 }
 
+async function uploadLogo(companyId, ownerId, logo) {
+  const uri = "http://localhost:3333/api/company/upload-logo"
+  const formData = new FormData()
+  formData.append('imageLogo', logo)
+  formData.append('company_id', companyId)
+  formData.append('owner_id', ownerId)
+
+  await formPost(uri, formData)
+    .then(res => res.json())
+    .then(result => {
+      console.log(result)
+    })
+}
+
 export {
   saveCompanyByOwner,
   getCompanyItem,
-  getCompanyByOwner
+  getCompanyByOwner,
+  uploadLogo
 }
