@@ -4,37 +4,63 @@ import { Badge } from "reactstrap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import './index.css';
+import { fullDate } from "Shared/utils/datetime"
+import { RANGE_TYPE, SPECIFIC_TYPE } from "Shared/constants/salary-type"
 
-function ListJobItem({ id, title, logoUri, jobType, location }) {
+function ListJobItem({
+  id,
+  title,
+  jobType,
+  companyName,
+  companyLogoUrl,
+  area, 
+  amount, 
+  salaryTypeId, 
+  salaryTypeName, 
+  salaryMin, 
+  salaryMax, 
+  createAt 
+}) {
+  const renderSalaryType = () => {    
+    switch (salaryTypeId.toString()) {
+      case SPECIFIC_TYPE.value:
+        return salaryMin + " บาท"
+      case RANGE_TYPE.value:
+        return salaryMin + " - " + salaryMax + " บาท"
+      default:
+        return salaryTypeName
+    }
+  }
+
   return (
     <div className="box list-job-item">
       <div className="image">
-        <div className="image-source" style={{ backgroundImage: "url(" + logoUri + ")" }}></div>
+        <img className="image-source" src={companyLogoUrl} alt="logo-company" />
       </div>
       <div className="detail">
         <Badge>{jobType}</Badge>
         <h5 className="title">{title}</h5>
         <div className="desc">
           <div className="desc-item">
-            บริษัท ไทยยูเนี่ยนกรุ๊ป จำกัด
+            {companyName}
           </div>
           <div className="desc-item">
             <FontAwesomeIcon icon={faMapMarkerAlt} />
-            <span className="text">{location}</span>
+            <span className="text">{area}</span>
           </div>
         </div>
       </div>
       <div className="link">
         <div>
-          <div>จำนวน 2 ตำแหน่ง</div>
+          <div>จำนวน {amount} ตำแหน่ง</div>
           <div>
-            ประกาศเมื่อ 25 มกราคม 2564
-        </div>
+            ประกาศเมื่อ {fullDate(createAt)}
+          </div>
           <div>
-            เงินเดือน: 25000 - 35000 บาท
+            เงินเดือน: {renderSalaryType()}
+          </div>
         </div>
-        </div>
-        <Link className="btn btn-outline-info" to={`view/${id}`}>รายละเอียด</Link>
+        <Link className="btn btn-outline-info" target="_blank" to={`view/${id}`}>รายละเอียด</Link>
       </div>
     </div>
   );

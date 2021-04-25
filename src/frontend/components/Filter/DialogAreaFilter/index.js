@@ -47,9 +47,13 @@ export default function DialogAreaFilter({ onSelected }) {
 
   const _handleSelected = () => {
     if (onSelected) {
-      const values = {
-        province: selectedProvince.id,
-        district: selectedDistrict.id
+      let values = {}
+
+      if (selectedProvince) {
+        values.province = selectedProvince.id
+      }
+      if (selectedDistrict) {
+        values.district = selectedDistrict.id
       }
       onSelected(values)
       setToggle(false)
@@ -75,10 +79,10 @@ export default function DialogAreaFilter({ onSelected }) {
   const showTextResult = () => {
     let text = null
     if (selectedProvince) {
-      text = selectedProvince.nameTh
+      text = selectedProvince.name
     }
     if (selectedDistrict) {
-      text += TITLE_SEPERATOR + selectedDistrict.nameTh
+      text += TITLE_SEPERATOR + selectedDistrict.name
     }
     setTextResult(text)
   }
@@ -104,7 +108,7 @@ export default function DialogAreaFilter({ onSelected }) {
                       key={index}
                       onClick={() => _handleSelectProvince(item)}
                     >
-                      {item.nameTh}
+                      {item.name}
                     </ListGroupItem>
                   ))
                 }
@@ -119,7 +123,7 @@ export default function DialogAreaFilter({ onSelected }) {
                       className={selectedDistrict && (selectedDistrict.id === item.id && "active")}
                       onClick={() => _handleSelectDistrict(item)}
                     >
-                      {item.nameTh}
+                      {item.name}
                     </ListGroupItem>
                   ))
                 }

@@ -1,24 +1,60 @@
 .search-box-panel {
   margin-bottom: 40px;
 }
-.filter-option {
-  padding: 25px 0;
-  border-bottom: 1px solid #cdcdcd;
+
+/* Filter sidebar */
+.filter-sidebar {
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  background-color: #fff;
 }
-.filter-option .title {
-  font-size: 1.1em;
-  font-weight: 600;
-  margin-bottom: 20px;
+.filter-sidebar .form-check {
+  margin-bottom: 15px;
 }
 
-.salary-range {
-  display: flex;
-  flex-direction: row;
+/* Filter option */
+.filter-option {
+  padding: 30px 0;
 }
-.salary-range .option {
-  flex: 1;
+.filter-option > .card {
+  border: 0;
+  margin-bottom: 20px;
 }
-.salary-range .seperator {
-  width: 40px;
-  text-align: center;
+.filter-option > .card > .card-header {
+  background: #fff;
+  padding: 0 15px;
+  border-bottom: 0;
+}
+.filter-option > .card > .card-header button {
+  font-size: 20px;
+  text-decoration: none;
+  color: #272f46;
+}
+
+/* Filter Category */
+.option-category .body .list{
+  height: 250px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.option-category ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+.option-category ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+/* Filter Salary */
+.option-salary {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.option-salary .display-value {
+  margin-bottom: 10px;
+}
+.option-salary .display-value.max {
+  text-align: right;
 }

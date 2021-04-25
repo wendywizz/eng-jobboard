@@ -4,7 +4,7 @@ body {
   font-family: PSU-Stidti !important;
   font-size: 14px;
   background-color: #fafafa !important;
-  color: #545454;
+  color: #667488;
 }
 .container {
   max-width: 1280px;
@@ -37,9 +37,6 @@ form.distance {
 form.distance .form-group:not(:last-child) {
   margin-bottom: 50px;
 }
-.form-control {
-  font-size: 14px;
-}
 .input-element {
   border: 1px solid #ced4da;
   padding: .375rem .75rem;
@@ -55,6 +52,18 @@ form.distance .form-group:not(:last-child) {
 }
 .btn.btn-lg {
   font-size: 1.2em;
+}
+
+/* Checkbox and Radio */
+.form-check-input {
+  margin-top: .25rem;
+  margin-left: -165px;
+}
+.form-check-label {
+  margin-left: 10px;
+}
+.form-check-label:hover {
+  cursor: pointer !important;
 }
 
 /* Content Tab */

@@ -15,6 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
 import "@fortawesome/fontawesome-free/css/all.css";
 import "draft-js/dist/Draft.css";
+import 'rc-slider/assets/index.css';
 import "./assets/css/style.css"
 
 function RouteApp() {

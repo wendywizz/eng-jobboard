@@ -13,7 +13,7 @@ function HomeContainer() {
         <SectionCategory />
         <Row>
           <Col md={9}>
-            <SectionRecentJob />
+            
           </Col>
           <Col md={3}>
           </Col>

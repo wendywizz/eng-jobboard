@@ -9,15 +9,13 @@
 .list-job-item .image {  
   display: flex;
   width: 160px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 }
 .list-job-item .image .image-source {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  height: 120px;
-  width: 160px;
+  max-height: 150px;
+  width: 100%;
+  object-fit: cover;
 }
 .list-job-item .detail {
   flex: 1;

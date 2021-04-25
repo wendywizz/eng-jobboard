@@ -43,7 +43,7 @@ const routes = [
   { name: "Login Page", path: LOGIN_PATH, component: LoginContainer, exact: true },
   { name: "Register Page", path: REGISTER_PATH, component: RegisterContainer, exact: true },
   { name: "Result Page", path: RESULT_PATH, component: ResultContainer },
-  { name: "Detail Page", path: DETAIL_PATH, component: DetailContainer },
+  { name: "Detail Page", path: DETAIL_PATH + "/:id", component: DetailContainer },
   { name: "Employer", basePath: EMPLOYER_PATH, children: [
     { name: "Profile", path: EMPLOYER_PROFILE_PATH, component: EmprProfileContainer },
     { name: "Job Add", path: EMPLOYER_JOB_ADD_PATH, component: EmprJobFormAddContainer },

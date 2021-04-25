@@ -49,7 +49,7 @@ async function updateJob(id, data) {
     .catch(e => {
       rError = e.message
     })
-    
+
   return {
     success: rSuccess,
     data: rData,
@@ -78,6 +78,64 @@ async function deleteJob(id) {
 
   return {
     success: rSuccess,
+    message: rMessage,
+    error: rError
+  }
+}
+
+async function searchJob(params) {
+  let rData = null, rItemCount = null, rMessage = null, rError = null
+
+  const uri = `http://localhost:3333/api/job/search`
+  let query = {}
+
+  if (params) {
+    const { keyword, category, type, area, salary } = params
+
+    if (params.keyword) {
+      query.keyword = keyword
+    }
+    if (params.category) {
+      query.category = category
+    }
+    if (params.type) {
+      query.type = type
+    }
+    if (params.area) {
+      if (area.district) {
+        query.district = area.district
+      }
+      if (area.province) {
+        query.province = area.province
+      }
+    }
+    if (params.salary) {
+      if (salary.min) {
+        query.salary_min = salary.min
+      }
+      if (salary.max) {
+        query.salary_max = salary.max
+      }
+    }
+  }
+
+  await sendGet(uri, query)
+    .then(res => res.json())
+    .then(result => {
+      const { data, itemCount, message, error } = result
+
+      rData = itemCount > 0 ? data.map(value => JobMapper(value)) : []
+      rItemCount = itemCount
+      rMessage = message
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    data: rData,
+    itemCount: rItemCount,
     message: rMessage,
     error: rError
   }
@@ -242,6 +300,7 @@ export {
   createJob,
   updateJob,
   deleteJob,
+  searchJob,
   getJobByID,
   getJobOfCompany,
   getJobType,

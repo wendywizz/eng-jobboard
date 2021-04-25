@@ -1,0 +1,28 @@
+.btn-filter {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 8px 15px;
+  border: 1px solid #eaeaea;
+  margin-bottom: 8px;
+  margin-right: 10px;
+}
+.btn-filter:hover {
+  background-color: #890403;
+  color: #fff;
+  cursor: pointer;
+}
+.btn-filter:hover .close {
+  color: #fff;
+  opacity: 1;
+}
+.btn-filter .inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.btn-filter .inner .close {
+  margin-left: 5px;
+  margin-bottom: 3px;
+}

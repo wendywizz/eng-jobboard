@@ -1,4 +1,5 @@
 import { isset } from "Shared/utils/string"
+import { DistrictMapper, ProvinceMapper } from "../area/AreaMapper"
 
 function CompanyMapper(data) {
   return {
@@ -8,7 +9,9 @@ function CompanyMapper(data) {
     about: isset(data.about),
     address: isset(data.address),
     province: isset(data.province),
+    provinceAsso: isset(data.province_asso) && ProvinceMapper(data.province_asso),
     district: isset(data.district),
+    districtAsso: isset(data.district_asso) && DistrictMapper(data.district_asso),
     postCode: isset(data.postcode),
     country: isset(data.country),
     phone: isset(data.phone),

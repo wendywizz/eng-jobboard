@@ -26,11 +26,11 @@ const INIT_DATA = {
   message: null
 }
 function JobFormEditContainer() {
+  const { id } = useParams()
   const { companyId } = useCompany()
   const { authUser } = useAuth()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-  const { id } = useParams()
   const refForm = useRef()
   const match = useRouteMatch(EMPLOYER_JOB_EDIT_PATH)
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)

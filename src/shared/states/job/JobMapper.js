@@ -1,4 +1,6 @@
 import { isset } from "Shared/utils/string"
+import { DistrictMapper, ProvinceMapper } from "../area/AreaMapper"
+import { CompanyMapper } from "../company/CompanyMapper"
 
 function JobCategoryMapper(data) {
   return {
@@ -43,7 +45,9 @@ function JobMapper(data) {
     workTimeStart: isset(data.work_time_start),
     workTimeEnd: isset(data.work_time_end),
     district: isset(data.district),
+    districtAsso: isset(data.district_asso) && DistrictMapper(data.district_asso),
     province: isset(data.province),    
+    provinceAsso: isset(data.province_asso) && ProvinceMapper(data.province_asso),
     region: isset(data.region),
     amount: isset(data.amount),
     active: isset(data.active),
@@ -52,6 +56,7 @@ function JobMapper(data) {
     updatedAt: isset(data.updated_at),
     expireAt: isset(data.expire_at),
     companyOwner: isset(data.company_owner),
+    companyOwnerAsso: isset(data.company_owner_asso) && CompanyMapper(data.company_owner_asso),
     createdBy: isset(data.created_by)
   }
 }

@@ -4,8 +4,7 @@ function ProvinceMapper(data) {
   return {
     id: isset(data.id),
     code: isset(data.code),
-    nameTh: isset(data.name_th),
-    nameEn: isset(data.name_en),
+    name: isset(data.name_th),
     region: isset(data.region)
   }
 }
@@ -14,8 +13,7 @@ function DistrictMapper(data) {
   return {
     id: isset(data.id),
     code: isset(data.code),
-    nameTh: isset(data.name_th),
-    nameEn: isset(data.name_en),
+    name: isset(data.name_th),
     province: isset(data.province)
   }
 }
