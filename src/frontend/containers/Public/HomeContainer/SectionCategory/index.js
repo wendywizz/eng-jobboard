@@ -11,7 +11,7 @@ function SectionCategory() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data, error } = await getJobCategory()
+      const { data } = await getJobCategory()
 
       if (data) {
         setCategories(data)

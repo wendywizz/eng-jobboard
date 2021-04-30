@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import { Input, Button } from "reactstrap"
 import Sizebox from "Frontend/components/Sizebox";
-import { OPTION_KEYWORD } from "Shared/constants/option-filter";
+import { PARAM_KEYWORD } from "Shared/constants/option-filter";
 
-export default function KeywordOption({ onChange }) {
+export default function KeywordOption({ defaultValue, onChange }) {
   const [keyword, setKeyword] = useState()
 
   const _handleClick = () => {
-    const type = OPTION_KEYWORD
+    const type = PARAM_KEYWORD
 
     if (keyword) {
       onChange(type, keyword)
@@ -21,7 +21,13 @@ export default function KeywordOption({ onChange }) {
 
   return (
     <>
-      <Input type="text" placeholder="Keyword" bsSize="md" onChange={e => _handleChange(e)} />
+      <Input 
+        type="text" 
+        placeholder="Keyword" 
+        bsSize="md" 
+        onChange={e => _handleChange(e)} 
+        defaultValue={defaultValue} 
+      />
       <Sizebox value="10px" />
       <Button color="primary" block onClick={_handleClick}>ค้นหา</Button>
     </>

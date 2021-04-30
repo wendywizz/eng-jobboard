@@ -1,13 +1,13 @@
-const OPTION_KEYWORD = "keyword"
-const OPTION_CATEGORY = "category"
-const OPTION_TYPE = "type"
-const OPTION_AREA = "area"
-const OPTION_SALARY = "salary"
+const PARAM_KEYWORD = "keyword"
+const PARAM_CATEGORY = "category"
+const PARAM_TYPE = "type"
+const PARAM_AREA = "area"
+const PARAM_SALARY = "salary"
 
 export {
-  OPTION_KEYWORD,
-  OPTION_CATEGORY,
-  OPTION_TYPE,
-  OPTION_AREA,
-  OPTION_SALARY
+  PARAM_KEYWORD,
+  PARAM_CATEGORY,
+  PARAM_TYPE,
+  PARAM_AREA,
+  PARAM_SALARY
 }

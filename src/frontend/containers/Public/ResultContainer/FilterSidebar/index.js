@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { Accordion } from "Frontend/components/Accordion";
-import { OPTION_KEYWORD, OPTION_CATEGORY, OPTION_TYPE, OPTION_AREA, OPTION_SALARY } from "Shared/constants/option-filter"
+import { PARAM_KEYWORD, PARAM_CATEGORY, PARAM_TYPE, PARAM_AREA, PARAM_SALARY } from "Shared/constants/option-filter"
 import { KeywordOption, CategoryOption, TypeOption, AreaOption, SalaryOption } from "Frontend/containers/Public/ResultContainer/FilterSidebar/FilterOption"
 import { isset } from "Shared/utils/string";
 import "./index.css"
 
-function FilterSidebar({ onFilterChanged }) {
+function FilterSidebar({ defaultParams, onFilterChanged }) {
   const [keyword, setKeyword] = useState()
   const [category, setCategory] = useState([])
   const [type, setType] = useState()
@@ -14,19 +14,19 @@ function FilterSidebar({ onFilterChanged }) {
 
   const _handleSubmitSearch = (filterType, value) => {
     switch (filterType) {
-      case OPTION_KEYWORD:
+      case PARAM_KEYWORD:
         setKeyword(value)
         break
-      case OPTION_CATEGORY:
+      case PARAM_CATEGORY:
         setCategory(value)
         break
-      case OPTION_TYPE:
+      case PARAM_TYPE:
         setType(value)
         break
-      case OPTION_AREA:
+      case PARAM_AREA:
         setArea(value)
         break
-      case OPTION_SALARY:
+      case PARAM_SALARY:
         setSalary(value)
         break
       default:
@@ -35,12 +35,19 @@ function FilterSidebar({ onFilterChanged }) {
   }
 
   useEffect(() => {
+    setKeyword(defaultParams[PARAM_KEYWORD])
+    setCategory(defaultParams[PARAM_CATEGORY])
+    setType(defaultParams[PARAM_TYPE])
+    setArea(defaultParams[PARAM_AREA])
+  }, [])
+
+  useEffect(() => {
     const filters = {
-      [OPTION_KEYWORD]: isset(keyword),
-      [OPTION_CATEGORY]: isset(category),
-      [OPTION_TYPE]: isset(type),
-      [OPTION_AREA]: isset(area),
-      [OPTION_SALARY]: isset(salary)
+      [PARAM_KEYWORD]: isset(keyword),
+      [PARAM_CATEGORY]: isset(category),
+      [PARAM_TYPE]: isset(type),
+      [PARAM_AREA]: isset(area),
+      [PARAM_SALARY]: isset(salary)
     }
     onFilterChanged(filters)
   }, [keyword, category, type, area, salary])
@@ -51,25 +58,28 @@ function FilterSidebar({ onFilterChanged }) {
         <Accordion.Item open>
           <Accordion.Header>คำค้นหา</Accordion.Header>
           <Accordion.Body>
-            <KeywordOption onChange={_handleSubmitSearch} />            
+            <KeywordOption defaultValue={keyword} onChange={_handleSubmitSearch} />            
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item open>
           <Accordion.Header>กลุ่มงาน</Accordion.Header>
           <Accordion.Body>
-            <CategoryOption onChange={_handleSubmitSearch} />
+            <CategoryOption defaultValue={category} onChange={_handleSubmitSearch} />
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item open>
           <Accordion.Header>ประเภทงาน</Accordion.Header>
           <Accordion.Body>
-            <TypeOption onChange={_handleSubmitSearch} />
+            <TypeOption defaultValue={type} onChange={_handleSubmitSearch} />
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item open>
           <Accordion.Header>พื้นที่</Accordion.Header>
           <Accordion.Body>
-            <AreaOption onChange={_handleSubmitSearch} />
+            <AreaOption 
+              defaultValue={area}
+              onChange={_handleSubmitSearch} 
+            />
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item open>

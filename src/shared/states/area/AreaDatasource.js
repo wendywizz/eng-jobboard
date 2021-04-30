@@ -1,9 +1,9 @@
 import { sendGet } from "Shared/utils/request"
 import { ProvinceMapper, DistrictMapper } from "./AreaMapper"
 
-async function getProvince() {
+async function listProvince() {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/area/province"
+  const uri = "http://localhost:3333/api/area/list_province"
 
   await sendGet(uri)
     .then(res => res.json())
@@ -27,9 +27,9 @@ async function getProvince() {
   }
 }
 
-async function getDistrictByProvince(id) {
+async function listDistrictByProvince(id) {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
-  const uri = `http://localhost:3333/api/area/district?id=${id}`
+  const uri = `http://localhost:3333/api/area/list_district?id=${id}`
 
   await sendGet(uri)
     .then(res => res.json())
@@ -50,7 +50,59 @@ async function getDistrictByProvince(id) {
   }
 }
 
+async function getProvince(id) {
+  let rData = null, rMessage = null, rError = null
+  const uri = "http://localhost:3333/api/area/province"
+  const params = { id }
+
+  await sendGet(uri, params)
+    .then(res => res.json())
+    .then(result => {
+      const { data, message, error } = result
+
+      rData = data ? ProvinceMapper(data) : null
+      rMessage = message
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    data: rData,
+    message: rMessage,
+    error: rError
+  }
+}
+
+async function getDistrict(id) {
+  let rData = null, rMessage = null, rError = null
+  const uri = "http://localhost:3333/api/area/district"
+  const params = { id }
+
+  await sendGet(uri, params)
+    .then(res => res.json())
+    .then(result => {
+      const { data, message, error } = result
+
+      rData = data ? DistrictMapper(data) : null
+      rMessage = message
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    data: rData,
+    message: rMessage,
+    error: rError
+  }
+}
+
 export {
+  listProvince,
+  listDistrictByProvince,
   getProvince,
-  getDistrictByProvince
+  getDistrict
 }

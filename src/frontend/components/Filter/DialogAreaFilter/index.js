@@ -1,35 +1,44 @@
 import React, { useState, useEffect } from "react"
 import { Row, Col, Modal, ModalBody, ListGroup, ListGroupItem, ModalFooter, Button, ModalHeader } from "reactstrap"
-import { getDistrictByProvince, getProvince } from "Shared/states/area/AreaDatasource"
+import { listDistrictByProvince, listProvince } from "Shared/states/area/AreaDatasource"
 import "./index.css"
 
 const TITLE_SELECT_PROVINCE = "เลือกจังหวัด"
 const TITLE_SELECT_DISTRICT = "เลือกเขต/อำเภอ"
 const TITLE_SEPERATOR = " > "
 
-export default function DialogAreaFilter({ onSelected }) {
+export default function DialogAreaFilter({ defaultProvinceValue, defaultDistrictValue, onSelected }) {
   const [toggle, setToggle] = useState(false)
   const [ready, setReady] = useState()
   const [title, setTitle] = useState(TITLE_SELECT_PROVINCE)
   const [textResult, setTextResult] = useState()
   const [provinceData, setProvinceData] = useState([])
   const [districtData, setDistrictData] = useState([])
-  const [selectedProvince, setSelectedProvince] = useState(null)
-  const [selectedDistrict, setSelectedDistrict] = useState(null)
+  const [selectedProvince, setSelectedProvince] = useState()
+  const [selectedDistrict, setSelectedDistrict] = useState()
 
   const fetchProvince = async () => {
-    const { data } = await getProvince()
+    const { data } = await listProvince()
     if (data) {
       setProvinceData(data)
     }
   }
 
   const fetchDistrict = async () => {
-    const { data } = await getDistrictByProvince(selectedProvince.id)
+    const { data } = await listDistrictByProvince(selectedProvince.id)
     if (data) {
       setDistrictData(data)
     }
   }
+
+  useEffect(() => {
+    if (defaultDistrictValue) {
+      setSelectedDistrict(defaultDistrictValue)
+    }
+    if (defaultProvinceValue) {
+      setSelectedProvince(defaultProvinceValue)
+    }
+  }, [defaultDistrictValue, defaultProvinceValue])
 
   useEffect(() => {
     if (!ready) {

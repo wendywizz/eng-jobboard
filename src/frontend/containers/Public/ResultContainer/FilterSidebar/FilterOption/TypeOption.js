@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Input, FormGroup, Label } from "reactstrap"
-import { OPTION_TYPE } from "Shared/constants/option-filter"
+import { PARAM_TYPE } from "Shared/constants/option-filter"
 import { getJobType } from "Shared/states/job/JobDatasource"
 
-export default function TypeOption({ onChange }) {
+export default function TypeOption({ defaultValue, onChange }) {
   const [ready, setReady] = useState(false)
   const [items, setItems] = useState([])
 
@@ -21,7 +21,7 @@ export default function TypeOption({ onChange }) {
   })
 
   const _handleCheckItem = (e) => {
-    const type = OPTION_TYPE
+    const type = PARAM_TYPE
     const value = e.target.value
 
     if (value) {
@@ -32,13 +32,22 @@ export default function TypeOption({ onChange }) {
   return (
     <>
       {
-        items.map((item, index) => (
-          <FormGroup check key={index}>
-            <Label check>
-              <Input type="radio" name="type" value={item.id} onChange={_handleCheckItem} /> {item.name}
-            </Label>
-          </FormGroup>
-        ))
+        items.map((item, index) => {
+          const isChecked = (defaultValue === item.id.toString() ? true : false)        
+          return (
+            <FormGroup check key={index}>
+              <Label check>
+                <Input
+                  type="radio"
+                  name="type"
+                  value={item.id}
+                  defaultChecked={isChecked}
+                  onChange={_handleCheckItem} />
+                {item.name}
+              </Label>
+            </FormGroup>
+          )
+        })
       }
     </>
   )

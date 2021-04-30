@@ -1,5 +1,6 @@
 import React, { useState, useReducer, useEffect } from "react"
-import { Row, Col, Input, Spinner, Badge } from "reactstrap"
+import { useHistory, useLocation } from "react-router";
+import { Row, Col, Input, Spinner } from "reactstrap"
 import Template from "Frontend/components/Template"
 import Page from "Frontend/components/Page"
 import ListJobItem from "Frontend/components/ListJobItem";
@@ -8,6 +9,10 @@ import ButtonFilter from "Frontend/components/Filter/ButtonFilter";
 import { searchJob } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
+import useQuery from "Shared/utils/hook/useQuery";
+import { createQueryString, serializeParams } from "Shared/utils/params";
+import { PARAM_AREA, PARAM_CATEGORY, PARAM_KEYWORD, PARAM_SALARY, PARAM_TYPE } from "Shared/constants/option-filter";
+import { RESULT_PATH } from "Frontend/configs/paths";
 import "./index.css";
 
 let INIT_DATA = {
@@ -16,11 +21,16 @@ let INIT_DATA = {
 }
 function ResultContainer() {
   const [loading, setLoading] = useState(true)
-  const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
   const [params, setParams] = useState()
+  const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
+  const location = useLocation()
+  const query = useQuery()
+  const history = useHistory()
 
   const getData = async (params) => {
-    const { data, error } = await searchJob(params)
+    const query = serializeParams(params)
+    const { data, error } = await searchJob(query)
+
     if (error) {
       dispatch({ type: READ_FAILED, payload: { error } })
     } else {
@@ -29,10 +39,28 @@ function ResultContainer() {
     setLoading(false)
   }
 
-  useEffect(() => {
+  const initParams = () => {
+    const paramArea = query.get(PARAM_AREA)
+    const paramKeyword = query.get(PARAM_KEYWORD)
+    const paramCategory = query.get(PARAM_CATEGORY)
+    const paramType = query.get(PARAM_TYPE)
+    const paramSalary = query.get(PARAM_SALARY)
+
+    const params = {
+      [PARAM_AREA]: paramArea,
+      [PARAM_KEYWORD]: paramKeyword,
+      [PARAM_CATEGORY]: paramCategory,
+      [PARAM_TYPE]: paramType,
+      [PARAM_SALARY]: paramSalary
+    }
+    return params
+  }
+
+  useEffect(() => {   
+    console.log("SSS=",location.state) 
     if (loading) {
       setTimeout(() => {
-        getData()
+        getData(initParams())
       }, 800)
     }
   })
@@ -45,12 +73,14 @@ function ResultContainer() {
   }, [params])
 
   const _handleFilterChanged = (params) => {
-    setParams(params)
-    setLoading(true)
+    const queryString = createQueryString(params)
+    setParams(queryString)
+
+    history.push(RESULT_PATH + "?" + queryString)
+    //setLoading(true)
   }
 
   const renderArea = (data) => {
-    console.log(data)
     return data.districtAsso.name + " " + data.provinceAsso.name
   }
 
@@ -60,7 +90,10 @@ function ResultContainer() {
         <div className="result-container">
           <div className="result-content-inner">
             <div className="sidebar">
-              <FilterSidebar onFilterChanged={_handleFilterChanged} />
+              <FilterSidebar 
+                defaultParams={initParams()}
+                onFilterChanged={_handleFilterChanged} 
+              />
             </div>
             <div className="content">              
               <div className="nav-filter">

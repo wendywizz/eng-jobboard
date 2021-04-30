@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { FormGroup, Label, Input } from "reactstrap"
 import { getJobCategory } from "Shared/states/job/JobDatasource"
-import { OPTION_CATEGORY } from "Shared/constants/option-filter"
+import { PARAM_CATEGORY } from "Shared/constants/option-filter"
 
-export default function CategoryOption({ onChange }) {
+export default function CategoryOption({ defaultValue, onChange }) {
   const [ready, setReady] = useState(false)
   const [items, setItems] = useState([])
 
@@ -21,7 +21,7 @@ export default function CategoryOption({ onChange }) {
   })
 
   const _handleCheckItem = () => {
-    const type = OPTION_CATEGORY
+    const type = PARAM_CATEGORY
     const oItems = document.querySelectorAll(".item-check");
     let checkedItems = []
 
@@ -38,20 +38,33 @@ export default function CategoryOption({ onChange }) {
       <div className="body">
         <div className="list">
           {
-            items.map((item, index) => (
-              <FormGroup check key={index}>
-                <Label check for={`filter-cat-${index}`}>
-                  <Input
-                    type="checkbox"
-                    id={`filter-cat-${index}`}
-                    name="job-cat"
-                    className="item-check"
-                    value={item.id}
-                    onChange={_handleCheckItem}
-                  /> {item.name}
-                </Label>
-              </FormGroup>
-            ))
+            items.map((item, index) => {
+              let defaultChecked = []
+              const isArray = Array.isArray(defaultValue)
+              
+              if (isArray) {
+                defaultChecked = [...defaultValue]
+              } else {
+                defaultChecked = [ defaultValue ]
+              }
+              const isChecked = defaultChecked.includes(item.id.toString())
+
+              return (
+                <FormGroup check key={index}>
+                  <Label check for={`filter-cat-${index}`}>
+                    <Input
+                      type="checkbox"
+                      id={`filter-cat-${index}`}
+                      name="job-cat"
+                      className="item-check"
+                      value={item.id}
+                      defaultChecked={isChecked}
+                      onChange={_handleCheckItem}
+                    /> {item.name}
+                  </Label>
+                </FormGroup>
+              )
+            })
           }
         </div>
       </div>

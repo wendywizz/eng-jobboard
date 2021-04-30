@@ -83,7 +83,58 @@ async function deleteJob(id) {
   }
 }
 
-async function searchJob(params) {
+async function searchJob(query) {
+  let rData = null, rItemCount = null, rMessage = null, rError = null
+  const uri = `http://localhost:3333/api/job/search`
+
+  await sendGet(uri, query)
+    .then(res => res.json())
+    .then(result => {
+      const { data, itemCount, message, error } = result
+
+      rData = itemCount > 0 ? data.map(value => JobMapper(value)) : []
+      rItemCount = itemCount
+      rMessage = message
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    data: rData,
+    itemCount: rItemCount,
+    message: rMessage,
+    error: rError
+  }
+}
+
+async function getJobByID(id) {
+  let rData = null, rMessage = null, rError = null
+  const uri = `http://localhost:3333/api/job/view`
+  const params = { id }
+
+  await sendGet(uri, params)
+    .then(res => res.json())
+    .then(result => {
+      const { data, message, error } = result
+
+      rData = data ? JobMapper(data) : null
+      rMessage = message
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    data: rData,
+    message: rMessage,
+    error: rError
+  }
+}
+
+/*async function searchJob(params) {
   let rData = null, rItemCount = null, rMessage = null, rError = null
 
   const uri = `http://localhost:3333/api/job/search`
@@ -139,32 +190,7 @@ async function searchJob(params) {
     message: rMessage,
     error: rError
   }
-}
-
-async function getJobByID(id) {
-  let rData = null, rMessage = null, rError = null
-  const uri = `http://localhost:3333/api/job/view`
-  const params = { id }
-
-  await sendGet(uri, params)
-    .then(res => res.json())
-    .then(result => {
-      const { data, message, error } = result
-
-      rData = data ? JobMapper(data) : null
-      rMessage = message
-      rError = error
-    })
-    .catch(e => {
-      rError = e.message
-    })
-
-  return {
-    data: rData,
-    message: rMessage,
-    error: rError
-  }
-}
+}*/
 
 async function getJobType() {
   let rData = [], rItemCount = 0, rMessage = null, rError = null

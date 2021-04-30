@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useReducer } from "react"
 import { useParams } from "react-router-dom"
-import { Row, Col, Button, Badge, Spinner } from "reactstrap"
+import { Row, Col, Button, Spinner } from "reactstrap"
 import Template from "Frontend/components/Template"
 import BoxJobInfo from "./BoxJobInfo"
 import JobReducer from "Shared/states/job/JobReducer"
@@ -78,7 +78,7 @@ function DetailContainer() {
                         <Row>
                           <Col>
                             <div className="info-company">
-                              <img className="company-logo" src={state.data.companyOwnerAsso.logoPath} />
+                              <img className="company-logo" src={state.data.companyOwnerAsso.logoPath} alt={state.data.companyOwnerAsso.name} />
                               <div className="company-detail">
                                 <h1 className="name">{state.data.companyOwnerAsso.name}</h1>
                                 <div className="row-contact">{renderAddress(state.data.companyOwnerAsso)}</div>

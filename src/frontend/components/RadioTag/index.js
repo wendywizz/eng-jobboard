@@ -11,8 +11,12 @@ const RadioTag = forwardRef(({ id, name, value, text, checked, onChange, ...prop
   }, [setLabelWidth])
 
   const _handleChange = (e) => {
-    const { id } = e.currentTarget;
-    onChange(id);
+    //const { id } = e.currentTarget
+    //conChange(id)
+    if (onChange) {
+      const value = e.target.value
+      onChange(value)
+    }
   }
 
   return (

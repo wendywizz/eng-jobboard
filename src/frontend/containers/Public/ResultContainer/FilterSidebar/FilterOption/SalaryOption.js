@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Row, Col } from "reactstrap"
 import { Range } from "rc-slider"
-import { OPTION_SALARY } from "Shared/constants/option-filter"
+import { PARAM_SALARY } from "Shared/constants/option-filter"
 import { toMoney } from "Shared/utils/money"
 
 const MAX_SALARY = 100000
@@ -18,7 +18,7 @@ export default function SalaryOption({ onChange }) {
 
   useEffect(() => {
     const timeOutId = setTimeout(() => {
-      onChange(OPTION_SALARY, { min: minSalary, max: maxSalary })
+      onChange(PARAM_SALARY, { min: minSalary, max: maxSalary })
     }, 500)
 
     return () => clearTimeout(timeOutId);

@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Redirect } from "react-router-dom"
+import { Route } from "react-router-dom"
 import { EMPLOYER_TYPE } from "Shared/constants/user"
 import { useAuth } from "Shared/context/AuthContext"
 import TemplateEmployer from "Frontend/components/TemplateEmployer"

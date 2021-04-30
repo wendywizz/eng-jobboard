@@ -17,7 +17,7 @@ import {
 import day from "Shared/constants/day"
 import "./index.css"
 import { getJobType, getJobCategory, getSalaryType } from "Shared/states/job/JobDatasource"
-import { getProvince, getDistrictByProvince } from "Shared/states/area/AreaDatasource"
+import { listProvince, listDistrictByProvince } from "Shared/states/area/AreaDatasource"
 
 const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategory, duty, performance, salaryType, salaryMax, salaryMin, workDays, workTimeStart, workTimeEnd, welfare, province, district, amount, owner, companyOwner, onSubmit }, ref) => {
   const [ready, setReady] = useState(false)
@@ -65,9 +65,9 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
         setSalaryTypeData(salaryTypeData)
       }
       async function fetchProvince() {
-        const { data } = await getProvince()
+        const { data } = await listProvince()
         const provinceData = data.map(item => ({
-          text: item.nameTh,
+          text: item.name,
           value: item.id
         }))
 
@@ -86,9 +86,9 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
   useEffect(() => {
     // Watch on district change
     async function fetchDistrict(provinceId) {
-      const { data } = await getDistrictByProvince(provinceId)
+      const { data } = await listDistrictByProvince(provinceId)
       const districtData = data.map(item => ({
-        text: item.nameTh,
+        text: item.name,
         value: item.id
       }))
 

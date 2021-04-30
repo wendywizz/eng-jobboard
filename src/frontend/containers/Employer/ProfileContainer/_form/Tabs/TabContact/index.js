@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Row, Col, FormGroup, Label, TabPane } from "reactstrap"
-import { getProvince, getDistrictByProvince } from "Shared/states/area/AreaDatasource"
+import { listProvince, listDistrictByProvince } from "Shared/states/area/AreaDatasource"
 
 const TAB_CONTACT_NAME = "contact"
 
@@ -13,7 +13,7 @@ function TabContact({ address, province, district, postCode, phone, email, websi
 
   useEffect(() => {
     async function fetchProvince() {
-      const { data } = await getProvince()
+      const { data } = await listProvince()
       const provinceData = data.map(item => ({
         text: item.nameTh,
         value: item.id
@@ -31,7 +31,7 @@ function TabContact({ address, province, district, postCode, phone, email, websi
   useEffect(() => {
     // Watch on district change
     async function fetchDistrict(provinceId) {
-      const { data } = await getDistrictByProvince(provinceId)
+      const { data } = await listDistrictByProvince(provinceId)
       const districtData = data.map(item => ({
         text: item.nameTh,
         value: item.id
