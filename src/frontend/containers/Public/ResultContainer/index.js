@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useEffect } from "react"
-import { useHistory, useLocation } from "react-router";
+import { useLocation } from "react-router";
 import { Row, Col, Input, Spinner } from "reactstrap"
 import Template from "Frontend/components/Template"
 import Page from "Frontend/components/Page"
@@ -9,10 +9,7 @@ import ButtonFilter from "Frontend/components/Filter/ButtonFilter";
 import { searchJob } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
-import useQuery from "Shared/utils/hook/useQuery";
-import { createQueryString, serializeParams } from "Shared/utils/params";
-import { PARAM_AREA, PARAM_CATEGORY, PARAM_KEYWORD, PARAM_SALARY, PARAM_TYPE } from "Shared/constants/option-filter";
-import { RESULT_PATH } from "Frontend/configs/paths";
+import { dispatchParams } from "Shared/utils/params";
 import "./index.css";
 
 let INIT_DATA = {
@@ -20,16 +17,15 @@ let INIT_DATA = {
   message: null
 }
 function ResultContainer() {
+  const [init, setInit] = useState(true)
   const [loading, setLoading] = useState(true)
   const [params, setParams] = useState()
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
   const location = useLocation()
-  const query = useQuery()
-  const history = useHistory()
 
   const getData = async (params) => {
-    const query = serializeParams(params)
-    const { data, error } = await searchJob(query)
+    const searchParams = dispatchParams(params)
+    const { data, error } = await searchJob(searchParams)
 
     if (error) {
       dispatch({ type: READ_FAILED, payload: { error } })
@@ -39,29 +35,22 @@ function ResultContainer() {
     setLoading(false)
   }
 
-  const initParams = () => {
-    const paramArea = query.get(PARAM_AREA)
-    const paramKeyword = query.get(PARAM_KEYWORD)
-    const paramCategory = query.get(PARAM_CATEGORY)
-    const paramType = query.get(PARAM_TYPE)
-    const paramSalary = query.get(PARAM_SALARY)
+  const getInitParams = () => {
+    const { params } = location.state
 
-    const params = {
-      [PARAM_AREA]: paramArea,
-      [PARAM_KEYWORD]: paramKeyword,
-      [PARAM_CATEGORY]: paramCategory,
-      [PARAM_TYPE]: paramType,
-      [PARAM_SALARY]: paramSalary
+    if (params) {
+      return location.state.params
+    } else {
+      return null
     }
-    return params
   }
 
-  useEffect(() => {   
-    console.log("SSS=",location.state) 
-    if (loading) {
-      setTimeout(() => {
-        getData(initParams())
-      }, 800)
+  useEffect(() => {
+    if (init) {
+      setInit(false)
+
+      const initParams = getInitParams()
+      setParams(initParams)
     }
   })
 
@@ -69,15 +58,14 @@ function ResultContainer() {
     setTimeout(() => {
       getData(params)
       setLoading(false)
-    }, 800)
+    }, 500)
   }, [params])
 
   const _handleFilterChanged = (params) => {
-    const queryString = createQueryString(params)
-    setParams(queryString)
-
-    history.push(RESULT_PATH + "?" + queryString)
-    //setLoading(true)
+    if (!init) {
+      setParams(params)
+      setLoading(true)
+    }
   }
 
   const renderArea = (data) => {
@@ -90,12 +78,12 @@ function ResultContainer() {
         <div className="result-container">
           <div className="result-content-inner">
             <div className="sidebar">
-              <FilterSidebar 
-                defaultParams={initParams()}
-                onFilterChanged={_handleFilterChanged} 
+              <FilterSidebar
+                defaultParams={getInitParams()}
+                onFilterChanged={_handleFilterChanged}
               />
             </div>
-            <div className="content">              
+            <div className="content">
               <div className="nav-filter">
                 <ButtonFilter text="ว่างงาน" />
               </div>

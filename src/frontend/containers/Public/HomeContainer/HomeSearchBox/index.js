@@ -7,7 +7,6 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { DialogAreaFilter } from "Frontend/components/Filter"
 import { TypeOption, CategoryOption } from "./FilterOption"
 import "./index.css"
-import { createQueryString } from "Shared/utils/params"
 import { PARAM_AREA, PARAM_CATEGORY, PARAM_KEYWORD, PARAM_TYPE } from "Shared/constants/option-filter"
 
 function HomeSearchBox() {
@@ -26,12 +25,9 @@ function HomeSearchBox() {
       [PARAM_KEYWORD]: paramKeyword,
       [PARAM_TYPE]: paramType
     }
-    const queryString = createQueryString(params)
-    //history.push(RESULT_PATH + "?" + queryString)
-
     history.push({
       pathname: RESULT_PATH,
-      state: { query: queryString }
+      state: { params }
     })
   }
 
