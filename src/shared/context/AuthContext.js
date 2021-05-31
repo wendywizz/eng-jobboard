@@ -11,7 +11,6 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [ready, setReady] = useState(false)
   const [authUser, setAuthUser] = useState()
   const [authType, setAuthType] = useState()
 

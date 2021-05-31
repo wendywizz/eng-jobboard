@@ -8,14 +8,13 @@ export default function ApplicantRoute({ component: Component, ...rest }) {
   const { authUser, authType } = useAuth()  
 
   const checkIfApplicant = () => {
-    console.log('AUTH user=', authUser)
     if (authUser) {
       return authType === APPLICANT_TYPE
     } else {
       return false
     }
   }
-console.log('work=', authUser)
+
   return (
     <>
       {
