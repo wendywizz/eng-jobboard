@@ -28,8 +28,8 @@ function RouteApp() {
               ? (
                 <Route key={index} path={value.basePath} render={({ match }) =>
                   <Switch>
-                    {value.children.map((route, index) => {
-                      switch (value.basePath) {
+                    {value.children.map((route, index) => {                      
+                      switch (value.basePath) {                        
                         case APPLICANT_PATH:
                           return (
                             <ApplicantRoute

@@ -1,5 +1,6 @@
 import { sendGet, sendPost } from "Shared/utils/request"
 import { JobMapper, JobTypeMapper, JobCategoryMapper, SalaryMapper } from "./JobMapper"
+import { ACTIVE, INACTIVE } from "Shared/constants/employer-job-status"
 
 async function createJob(newData) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
@@ -83,11 +84,20 @@ async function deleteJob(id) {
   }
 }
 
-async function searchJob(query) {
+async function searchJob(query, length, start) {
   let rData = null, rItemCount = null, rMessage = null, rError = null
   const uri = `http://localhost:3333/api/job/search`
 
-  await sendGet(uri, query)
+  let extendQuery = {}
+  if (length) {
+    extendQuery.length = length
+  }
+  if (start) {
+    extendQuery.start = start
+  }
+  const sendQuery = {...query, ...extendQuery}
+
+  await sendGet(uri, sendQuery)
     .then(res => res.json())
     .then(result => {
       const { data, itemCount, message, error } = result
@@ -133,64 +143,6 @@ async function getJobByID(id) {
     error: rError
   }
 }
-
-/*async function searchJob(params) {
-  let rData = null, rItemCount = null, rMessage = null, rError = null
-
-  const uri = `http://localhost:3333/api/job/search`
-  let query = {}
-
-  if (params) {
-    const { keyword, category, type, area, salary } = params
-
-    if (params.keyword) {
-      query.keyword = keyword
-    }
-    if (params.category) {
-      query.category = category
-    }
-    if (params.type) {
-      query.type = type
-    }
-    if (params.area) {
-      if (area.district) {
-        query.district = area.district
-      }
-      if (area.province) {
-        query.province = area.province
-      }
-    }
-    if (params.salary) {
-      if (salary.min) {
-        query.salary_min = salary.min
-      }
-      if (salary.max) {
-        query.salary_max = salary.max
-      }
-    }
-  }
-
-  await sendGet(uri, query)
-    .then(res => res.json())
-    .then(result => {
-      const { data, itemCount, message, error } = result
-
-      rData = itemCount > 0 ? data.map(value => JobMapper(value)) : []
-      rItemCount = itemCount
-      rMessage = message
-      rError = error
-    })
-    .catch(e => {
-      rError = e.message
-    })
-
-  return {
-    data: rData,
-    itemCount: rItemCount,
-    message: rMessage,
-    error: rError
-  }
-}*/
 
 async function getJobType() {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
@@ -270,10 +222,23 @@ async function getSalaryType() {
   }
 }
 
-async function getJobOfCompany(id) {
+async function getJobOfCompany(id, length, start, status) {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
   const uri = "http://localhost:3333/api/job/company"
-  const bodyData = { id }
+
+  let extendQuery = {}
+  if (length) {
+    extendQuery.length = length
+  }
+  if (start) {
+    extendQuery.start = start
+  }
+  if (status === ACTIVE) {
+    extendQuery.status = true
+  } else if (status === INACTIVE) {
+    extendQuery.status = false
+  }
+  const bodyData = { id, ...extendQuery }
 
   await sendPost(uri, bodyData)
     .then(res => res.json())
@@ -322,6 +287,28 @@ async function setActiveJob(id) {
   }
 }
 
+async function countAllActiveJob() {
+  let rItemCount = 0, rError = null
+  const uri = "http://localhost:3333/api/job/countall-active-job"
+
+  await sendGet(uri)
+    .then(res => res.json())
+    .then(result => {
+      const { itemCount, error } = result
+
+      rItemCount = itemCount
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    itemCount: rItemCount,
+    error: rError
+  }
+}
+
 export {
   createJob,
   updateJob,
@@ -333,4 +320,5 @@ export {
   getJobCategory,
   getSalaryType,
   setActiveJob,
+  countAllActiveJob
 }

@@ -8,12 +8,14 @@ import "./index.css"
 
 const TAB_INFO_NAME = "info"
 
-function TabInfo({ name, about, logoPath, formErrors, formRegister }) {
+function TabInfo({ name, about, logoUrl, formErrors, formRegister }) {
   const {companyId} = useCompany()
   const {authUser} = useAuth()
 
   const _handleUploadLogo = async (image) => {
-    await uploadLogo(companyId, authUser.localId, image)
+    const data = await uploadLogo(companyId, authUser.localId, image)
+
+    console.log(data)
   }
 
   return (
@@ -46,7 +48,7 @@ function TabInfo({ name, about, logoPath, formErrors, formRegister }) {
       <FormGroup>
         <Label htmlFor="logo-img">โลโก้บริษัท</Label>  
         <SingleThumbUpload 
-          defaultImage={logoPath}
+          defaultImage={logoUrl}
           onUpload={_handleUploadLogo}
         />    
       </FormGroup>

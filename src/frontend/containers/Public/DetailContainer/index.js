@@ -1,136 +1,84 @@
-import React, { useEffect, useState, useReducer } from "react"
-import { useParams } from "react-router-dom"
-import { Row, Col, Button, Spinner } from "reactstrap"
-import Template from "Frontend/components/Template"
-import BoxJobInfo from "./BoxJobInfo"
+import React, { useState, useReducer, useEffect } from "react"
+import { Spinner } from "reactstrap"
+import ListJobItem from "Frontend/components/ListJobItem"
+import Section from "Frontend/components/Section"
+import { searchJob } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
-import { getJobByID } from "Shared/states/job/JobDatasource"
-import { READ_FAILED, READ_SUCCESS } from "Shared/states/job/JobType"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
+import "./index.css"
 
-import { faEnvelope, faMapMarkerAlt, faPhone } from "@fortawesome/free-solid-svg-icons"
-import "./index.css";
-
-const INIT_DATA = {
-  data: null,
+const DISPLAY_COUNT = 5
+let INIT_DATA = {
+  data: [],
+  itemCount: 0,
   message: null
 }
-function DetailContainer() {
-  const { id } = useParams()
+function SectionRecentJob() {
   const [loading, setLoading] = useState(true)
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
 
-  useEffect(() => {
-    async function fetchData(jobId) {
-      const { data, error } = await getJobByID(jobId)
-      if (error) {
-        dispatch({ type: READ_FAILED, payload: { error } })
-      } else {
-        dispatch({ type: READ_SUCCESS, payload: { data } })
-      }
-      setLoading(false)
-    }
+  const getData = async () => {
+    const { data, itemCount, error } = await searchJob(null, DISPLAY_COUNT)
 
-    if (id) {
-      if (loading) {
-        fetchData(id)
-      }
+    if (error) {
+      dispatch({ type: READ_FAILED, payload: { error } })
+    } else {
+      dispatch({ type: READ_SUCCESS, payload: { data, itemCount } })
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        getData()
+        setLoading(false)
+      }, 500)
     }
   })
 
-  const renderAddress = (data) => {
-    return (
-      <div className="address">
-        <FontAwesomeIcon icon={faMapMarkerAlt} />{" "}
-        {data.address + " " + data.districtAsso.name + " " + data.provinceAsso.name}
-      </div>
-    )
+  const renderArea = (data) => {
+    return data.districtAsso.name + " " + data.provinceAsso.name
   }
 
-  const renderContact = (data) => {
-    return (
-      <div className="contact">
-        <div className="item">
-          <FontAwesomeIcon icon={faPhone} />{" "}
-          {data.phone}
-        </div>
-        <div className="item">
-          <FontAwesomeIcon icon={faEnvelope} />{" "}
-          {data.email}
-        </div>
-      </div>
-    )
-  }
-  
   return (
-    <Template>
+    <Section
+      className="section-job-recent"
+      title="งานล่าสุด"
+      titleDesc="ตำแหน่งงานล่าสุดที่เปิดรับสมัคร"
+      centeredTitle={false}
+    >
       {
-        state.loading
+        loading
           ? <Spinner />
           : (
             state.error
               ? <p>{state.error}</p>
               : (
-                state.data && (
-                  <>
-                    <div className="section-header">
-                      <div className="bg-cover">
-                        <Row>
-                          <Col>
-                            <div className="info-company">
-                              <img className="company-logo" src={state.data.companyOwnerAsso.logoPath} alt={state.data.companyOwnerAsso.name} />
-                              <div className="company-detail">
-                                <h1 className="name">{state.data.companyOwnerAsso.name}</h1>
-                                <div className="row-contact">{renderAddress(state.data.companyOwnerAsso)}</div>
-                                <div className="row-contact">{renderContact(state.data.companyOwnerAsso)}</div>
-                              </div>
-                            </div>
-                          </Col>
-                          <Col>
-                            <div className="section-apply">
-                              <Button size="lg" color="primary">สมัครงานนี้</Button>
-                            </div>
-                          </Col>
-                        </Row>
-                      </div>
-                    </div>
-                    <div className="section-content">
-                      <Row>
-                        <Col lg={7} md={6} sm={12}>
-                          <div className="section-desc">
-                            <h4 className="title">ลักษณะงาน</h4>
-                            <p className="content">{state.data.duty}</p>
-                          </div>
-                          <div className="section-desc">
-                            <h4 className="title">คุณสมบัติผู้สมัคร</h4>
-                            <p className="content">{state.data.performance}</p>
-                          </div>
-                          <div className="section-desc">
-                            <h4 className="title">สวัสดิการ</h4>
-                            <p className="content">{state.data.welfare}</p>
-                          </div>
-                        </Col>
-                        <Col lg={5} md={6} sm={12}>
-                          <BoxJobInfo 
-                            jobTypeId={state.data.jobTypeAsso.id}
-                            jobTypeName={state.data.jobTypeAsso.name}
-                            jobCategory={state.data.jobCategoryAsso.name}
-                            area={state.data.districtAsso.name + " " +state.data.provinceAsso.name}
-                            salaryTypeId={state.data.salaryType}
-                            salaryTypeName={state.data.salaryTypeAsso.name}
-                            salaryMin={state.data.salaryMin}
-                            salaryMax={state.data.salaryMax}
-                            amount={state.data.amount}
-                          />
-                        </Col>
-                      </Row>
-                    </div>
-                  </>
-                )
+                <>
+                  {
+                    state.data.map((item, index) =>
+                      <ListJobItem
+                        key={index}
+                        id={item.id}
+                        title={item.position}                        
+                        jobType={item.jobTypeAsso.name}
+                        companyName={item.companyOwnerAsso.name}
+                        companyLogoUrl={item.companyLogoUrl + item.companyOwnerAsso.logoFile}
+                        amount={item.amount}
+                        salaryTypeId={item.salaryType}
+                        salaryTypeName={item.salaryTypeAsso.name}
+                        salaryMin={item.salaryMin}
+                        salaryMax={item.salaryMax}
+                        area={renderArea(item)}
+                      />
+                    )
+                  }
+                </>
               )
           )
       }
-    </Template>
-  );
+    </Section>
+  )
 }
-export default DetailContainer
+export default SectionRecentJob

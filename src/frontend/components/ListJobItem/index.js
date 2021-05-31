@@ -3,16 +3,17 @@ import { Link } from "react-router-dom"
 import { Badge } from "reactstrap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-import './index.css';
 import { fullDate } from "Shared/utils/datetime"
 import { RANGE_TYPE, SPECIFIC_TYPE } from "Shared/constants/salary-type"
+import defaultLogo from "Frontend/assets/img/default-logo.jpg"
+import './index.css';
 
 function ListJobItem({
   id,
   title,
   jobType,
   companyName,
-  companyLogoUrl,
+  logoUrl,
   area, 
   amount, 
   salaryTypeId, 
@@ -35,7 +36,10 @@ function ListJobItem({
   return (
     <div className="box list-job-item">
       <div className="image">
-        <img className="image-source" src={companyLogoUrl} alt="logo-company" />
+        <img className="image-source" 
+          src={logoUrl} alt="logo-company" 
+          onError={(e)=>{e.target.onerror = null; e.target.src=defaultLogo}} 
+        />
       </div>
       <div className="detail">
         <Badge>{jobType}</Badge>

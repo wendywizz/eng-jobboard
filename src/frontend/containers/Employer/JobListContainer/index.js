@@ -1,30 +1,44 @@
 import React, { useState, useEffect, useReducer } from "react"
 import { Row, Col, Nav, NavItem, NavLink, ListGroup, ListGroupItem, Badge, Spinner } from "reactstrap"
 import { Link } from "react-router-dom"
+import ReactPaginate from "react-paginate"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import Content, { ContentHeader, ContentBody, ContentFooter } from "Frontend/components/Content"
 import ToggleCheckbox from "Frontend/components/ToggleCheckbox"
 import useQuery from "Shared/utils/hook/useQuery"
 import { EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
-import { ALL, ACTIVE, INACTIVE, FINISH } from "Shared/constants/employer-job-status"
-import "./index.css"
-
+import { ALL, ACTIVE, INACTIVE } from "Shared/constants/employer-job-status"
 import { getJobOfCompany } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
 import { useCompany } from "Shared/context/CompanyContext"
+import "./index.css"
 
+const PAGE_DISPLAY_LENGTH = 5
 let INIT_DATA = {
   data: null,
   message: null
 }
-function JobListContainer(props) {
+function JobListContainer() {
   const query = useQuery()
   const [loading, setLoading] = useState(true)
   const [selectedStatus, setSelectedStatus] = useState()
+  const [currentPage, setCurrentPage] = useState(0)
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
   const { companyId } = useCompany()
+
+  const getData = async (id) => {
+    const offset = PAGE_DISPLAY_LENGTH * (currentPage)
+    const { data, itemCount, error } = await getJobOfCompany(id, PAGE_DISPLAY_LENGTH, offset, selectedStatus)
+
+    if (error) {
+      dispatch({ type: READ_FAILED, payload: { error } })
+    } else {
+      dispatch({ type: READ_SUCCESS, payload: { data, itemCount } })
+    }
+    setLoading(false)
+  }
 
   useEffect(() => {
     const status = query.get("status")
@@ -36,35 +50,54 @@ function JobListContainer(props) {
   }, [selectedStatus, query])
 
   useEffect(() => {
-    // Load Job data
-    async function fetchJob(id) {
-      const { data, error } = await getJobOfCompany(id)
-
-      if (error) {
-        dispatch({ type: READ_FAILED, payload: { error } })
-      } else {
-        dispatch({ type: READ_SUCCESS, payload: { data } })
-      }
-      setLoading(false)
-    }
-
     if (loading) {
       if (companyId) {
         setTimeout(() => {
-          fetchJob(companyId)
-        }, 1000)
+          getData(companyId)
+        }, 500)
       }
     }
 
-    return () => {
+    /*return () => {
       INIT_DATA = {
         ...state
       }
+    }*/
+  }, [loading, companyId, currentPage])
+
+  const renderPagination = () => {
+    if (state.itemCount > 0) {
+      return (
+        <div className="nav-paginate">
+          <ReactPaginate
+            pageCount={Math.ceil(state.itemCount / PAGE_DISPLAY_LENGTH)}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={3}
+            containerClassName="pagination"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            previousLinkClassName="page-link"
+            nextClassName="page-item"
+            nextLinkClassName="page-link"
+            activeClassName="active"
+            breakClassName="page-item"
+            breakLinkClassName="page-link"
+            onPageChange={_handlePageChanged}
+            forcePage={currentPage}
+          />
+        </div>
+      )
     }
-  })
+  }
+
+  const _handlePageChanged = ({ selected }) => {
+    setCurrentPage(selected)
+    setLoading(true)
+  }
 
   const _handleChangeActive = (e) => {
-    console.log("ACTIVE", e.target.value)
+    console.log(e.target.value)
   }
 
   return (
@@ -81,9 +114,6 @@ function JobListContainer(props) {
               </NavItem>
               <NavItem className={(selectedStatus === INACTIVE) ? "active" : ""}>
                 <NavLink href={EMPLOYER_JOB_PATH + "?status=" + INACTIVE}>ปิดรับสมัคร</NavLink>
-              </NavItem>
-              <NavItem className={(selectedStatus === FINISH) ? "active" : ""}>
-                <NavLink href={EMPLOYER_JOB_PATH + "?status=" + FINISH}>เสร็จสิ้น</NavLink>
               </NavItem>
             </Nav>
           </Col>
@@ -116,7 +146,7 @@ function JobListContainer(props) {
                           </div>
                           <div className="action">
                             <div className="apply-info">
-                              <ToggleCheckbox 
+                              <ToggleCheckbox
                                 defaultChecked={item.active}
                                 onChange={_handleChangeActive}
                               />
@@ -133,7 +163,9 @@ function JobListContainer(props) {
             )
         }
       </ContentBody>
-      <ContentFooter></ContentFooter>
+      <ContentFooter>
+        { renderPagination() }
+      </ContentFooter>
     </Content>
   )
 }

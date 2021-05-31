@@ -11,6 +11,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
+  const [ready, setReady] = useState(false)
   const [authUser, setAuthUser] = useState()
   const [authType, setAuthType] = useState()
 
@@ -115,7 +116,7 @@ export function AuthProvider({ children }) {
     return unsubscribe
   }, [])
 
-  const value = {
+  const values = {
     authUser,
     authType,
     signin,
@@ -127,7 +128,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={values}>
       {children}
     </AuthContext.Provider>
   )

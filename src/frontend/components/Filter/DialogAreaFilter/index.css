@@ -11,6 +11,9 @@
 .modal-filter-area .modal-footer .row .col-action {
   text-align: right;
 }
+.modal-filter-area .top-bar {
+  margin-bottom: 10px;
+}
 
 .list-area-data li:hover {
   cursor: pointer;

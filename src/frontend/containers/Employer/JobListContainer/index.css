@@ -1,3 +1,9 @@
+.content-empr-joblist .content-body {
+  min-height: 50vh;
+}
+.content-empr-joblist .content-footer{
+  padding: 25px 0;
+}
 .nav-status {
   margin-bottom: 20px !important;
 }

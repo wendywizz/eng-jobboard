@@ -24,7 +24,7 @@ let INIT_DATA = {
   data: null,
   message: null
 }
-function ProfileFormContainer(props) {
+function ProfileFormContainer() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const refForm = useRef()
@@ -129,7 +129,7 @@ function ProfileFormContainer(props) {
                           editing={true}
                           id={state.data.id}
                           name={state.data.name}
-                          logoPath={state.data.logoPath}
+                          logoUrl={state.data.logoUrl}
                           about={state.data.about}
                           address={state.data.address}
                           province={state.data.province}

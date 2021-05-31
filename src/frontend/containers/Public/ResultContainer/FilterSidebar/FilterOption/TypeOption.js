@@ -31,9 +31,20 @@ export default function TypeOption({ defaultValue, onChange }) {
 
   return (
     <>
+      <FormGroup check>
+        <Label check>
+          <Input
+            type="radio"
+            name="type"
+            value="*"
+            defaultChecked={!defaultValue ? true : false}
+            onChange={_handleCheckItem} />
+          {"ทั้งหมด"}
+        </Label>
+      </FormGroup>
       {
         items.map((item, index) => {
-          const isChecked = (defaultValue === item.id.toString() ? true : false)        
+          const isChecked = (defaultValue === item.id.toString() ? true : false)
           return (
             <FormGroup check key={index}>
               <Label check>

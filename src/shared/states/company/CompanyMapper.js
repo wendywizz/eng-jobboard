@@ -5,7 +5,8 @@ function CompanyMapper(data) {
   return {
     id: isset(data.company_id),
     name: isset(data.company_name),
-    logoPath: isset(data.logo_path),
+    logoFile: isset(data.logo_file),    
+    logoUrl: isset(data.logo_url),
     about: isset(data.about),
     address: isset(data.address),
     province: isset(data.province),

@@ -5,7 +5,7 @@ import classnames from "classnames"
 import { TabInfo, TabContact, TAB_INFO_NAME, TAB_CONTACT_NAME } from "./Tabs";
 import "./index.css"
 
-const FormCompany = forwardRef(({ id, name, logoPath, about, address, province, district, postCode, phone, website, email, facebook, onSubmit }, ref) => {
+const FormCompany = forwardRef(({ id, name, logoUrl, about, address, province, district, postCode, phone, website, email, facebook, onSubmit }, ref) => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [activeTab, setActiveTab] = useState(TAB_INFO_NAME);
   const refSubmit = useRef(null)
@@ -50,7 +50,7 @@ const FormCompany = forwardRef(({ id, name, logoPath, about, address, province, 
           <TabInfo
             name={name}
             about={about}
-            logoPath={logoPath}
+            logoUrl={logoUrl}
             formRegister={register}
             formErrors={errors}
           />

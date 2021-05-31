@@ -6,16 +6,18 @@ import "./index.css"
 const TITLE_SELECT_PROVINCE = "เลือกจังหวัด"
 const TITLE_SELECT_DISTRICT = "เลือกเขต/อำเภอ"
 const TITLE_SEPERATOR = " > "
+const TEXT_ALL_AREA = "ทุกจังหวัด"
 
 export default function DialogAreaFilter({ defaultProvinceValue, defaultDistrictValue, onSelected }) {
   const [toggle, setToggle] = useState(false)
   const [ready, setReady] = useState()
   const [title, setTitle] = useState(TITLE_SELECT_PROVINCE)
-  const [textResult, setTextResult] = useState()
+  const [textResult, setTextResult] = useState(TEXT_ALL_AREA)
   const [provinceData, setProvinceData] = useState([])
   const [districtData, setDistrictData] = useState([])
   const [selectedProvince, setSelectedProvince] = useState()
   const [selectedDistrict, setSelectedDistrict] = useState()
+  const [selectedAll, setSelectedAll] = useState(false)
 
   const fetchProvince = async () => {
     const { data } = await listProvince()
@@ -70,30 +72,42 @@ export default function DialogAreaFilter({ defaultProvinceValue, defaultDistrict
   }
 
   const _handleSelectProvince = (province) => {
+    setSelectedAll(false)
+    setSelectedDistrict(null)
     setSelectedProvince(province)
 
     // Set title
     const title = TITLE_SELECT_PROVINCE + TITLE_SEPERATOR + TITLE_SELECT_DISTRICT
     setTitle(title)
 
-    // Clear district value
-    setSelectedDistrict(null)
+    // Get district data
     setDistrictData([])
   }
 
   const _handleSelectDistrict = (district) => {
+    setSelectedAll(false)
     setSelectedDistrict(district)
   }
 
-  const showTextResult = () => {
-    let text = null
-    if (selectedProvince) {
-      text = selectedProvince.name
+  const _handleSelectAll = () => {
+    setSelectedDistrict(null)
+    setSelectedProvince(null)
+    setSelectedAll(true)
+  }
+
+  const showTextResult = () => {    
+    if (!selectedAll) {
+      let text = null
+      if (selectedProvince) {
+        text = selectedProvince.name
+      }
+      if (selectedDistrict) {
+        text += TITLE_SEPERATOR + selectedDistrict.name
+      }      
+      setTextResult(text)
+    } else {
+      setTextResult(TEXT_ALL_AREA)
     }
-    if (selectedDistrict) {
-      text += TITLE_SEPERATOR + selectedDistrict.name
-    }
-    setTextResult(text)
   }
 
   const _handleToggle = () => {
@@ -107,6 +121,9 @@ export default function DialogAreaFilter({ defaultProvinceValue, defaultDistrict
           {title}
         </ModalHeader>
         <ModalBody>
+          <div className="top-bar">
+            <Button color="secondary" onClick={_handleSelectAll}>เลือกทุกจังหวัด</Button>
+          </div>
           <Row>
             <Col className="col-data" md={6}>
               <ListGroup className="list-area-data">

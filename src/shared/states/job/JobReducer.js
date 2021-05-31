@@ -37,7 +37,8 @@ function JobReducer(state, action) {
       }
     case READ_SUCCESS:
       return {
-        data: action.payload.data
+        data: action.payload.data,
+        itemCount: action.payload.itemCount
       }
     case READ_FAILED:
       return {

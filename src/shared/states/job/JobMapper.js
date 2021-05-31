@@ -57,7 +57,8 @@ function JobMapper(data) {
     expireAt: isset(data.expire_at),
     companyOwner: isset(data.company_owner),
     companyOwnerAsso: isset(data.company_owner_asso) && CompanyMapper(data.company_owner_asso),
-    createdBy: isset(data.created_by)
+    createdBy: isset(data.created_by),
+    logoSourceUrl: isset(data.logo_source_url)
   }
 }
 export {

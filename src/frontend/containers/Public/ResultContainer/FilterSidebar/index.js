@@ -35,11 +35,13 @@ function FilterSidebar({ defaultParams, onFilterChanged }) {
   }
 
   useEffect(() => {
-    setKeyword(defaultParams[PARAM_KEYWORD])
-    setCategory(defaultParams[PARAM_CATEGORY])
-    setType(defaultParams[PARAM_TYPE])
-    setArea(defaultParams[PARAM_AREA])
-  }, [])
+    if (defaultParams) {
+      setKeyword(defaultParams[PARAM_KEYWORD])
+      setCategory(defaultParams[PARAM_CATEGORY])
+      setType(defaultParams[PARAM_TYPE])
+      setArea(defaultParams[PARAM_AREA])
+    }
+  }, [defaultParams])
 
   useEffect(() => {
     const filters = {

@@ -10,14 +10,18 @@
 .section-category .section-title-desc {
   margin-bottom: 30px;
 }
-.category-item a {
+.category-item .btn {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 210px;
   color: #545454;
   padding: 25px 25px;
   transition: box-shadow 0.3s ease-in-out;
   text-align: center;
+}
+.category-item .btn:hover {
+  background-color: #eee;
 }
 .category-item .icon {
   height: 80px;

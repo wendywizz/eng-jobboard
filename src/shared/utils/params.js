@@ -7,10 +7,10 @@ function dispatchParams(obj) {
     if (obj[PARAM_KEYWORD]) {
       params.keyword = obj[PARAM_KEYWORD]
     }
-    if (obj[PARAM_TYPE]) {
+    if (obj[PARAM_TYPE] && (obj[PARAM_TYPE] !== "*")) {
       params.type = obj[PARAM_TYPE]
     }
-    if (obj[PARAM_CATEGORY]) {
+    if (obj[PARAM_CATEGORY] && (obj[PARAM_CATEGORY] !== "*")) {
       params.category = obj[PARAM_CATEGORY]
     }
     if (obj[PARAM_AREA]) {
