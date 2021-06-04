@@ -1,0 +1,10 @@
+				@font-face {
+					font-family: 'psu-stidti-regular';
+					src: url('/eng-jobboard/wp-content/uploads/useanyfont/5448PSU-Stidti-Regular.woff2') format('woff2'),
+						url('/eng-jobboard/wp-content/uploads/useanyfont/5448PSU-Stidti-Regular.woff') format('woff');
+					font-display: auto;
+				}
+
+				.psu-stidti-regular{font-family: 'psu-stidti-regular' !important;}
+
+		

@@ -1,0 +1,848 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Addon Jobsearch Resume Export\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-29 10:59+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.4.3; wp-5.5.1"
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:256
+#: templates/jobsearch-candidate-resume-template-eleven.php:442
+msgid " of Experience"
+msgstr ""
+
+#: addon-jobsearch-export-resume.php:154
+msgid ""
+"<em><b>Addon Jobsearch Resume Export</b></em> needs the <b>WP Jobsearch</b> "
+"plugin. Please install and activate it."
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:233
+#: includes/jobsearch-resume-export-admin-hooks.php:1050
+#: templates/jobsearch-candidate-resume-template-eleven.php:481
+#: templates/jobsearch-candidate-resume-template-thirteen.php:627
+#: templates/jobsearch-candidate-resume-template-ten.php:453
+#: templates/jobsearch-candidate-resume-template-four.php:187
+#: templates/jobsearch-candidate-resume-template-four.php:356
+#: templates/jobsearch-candidate-resume-template-seven.php:645
+#: templates/jobsearch-candidate-resume-template-nine.php:547
+#: templates/jobsearch-candidate-resume-template-fifteen.php:529
+#: templates/jobsearch-candidate-resume-template-twelve.php:418
+#: templates/jobsearch-candidate-resume-template-eighteen.php:477
+#: templates/jobsearch-candidate-resume-template-six.php:640
+#: templates/jobsearch-candidate-resume-template-eight.php:451
+#: templates/jobsearch-candidate-resume-default-template.php:218
+#: templates/jobsearch-candidate-resume-default-template.php:393
+#: templates/jobsearch-candidate-resume-default-template.php:439
+#: templates/jobsearch-candidate-resume-template-seventeen.php:217
+#: templates/jobsearch-candidate-resume-template-seventeen.php:391
+#: templates/jobsearch-candidate-resume-template-one.php:391
+#: templates/jobsearch-candidate-resume-template-twenty.php:487
+#: templates/jobsearch-candidate-resume-template-fourteen.php:509
+msgid "About Me"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-two.php:207
+#: templates/jobsearch-candidate-resume-template-two.php:435
+#: templates/jobsearch-candidate-resume-template-four.php:443
+#: templates/jobsearch-candidate-resume-template-five.php:552
+msgid "About me"
+msgstr ""
+
+#: addon-jobsearch-export-resume.php:119 addon-jobsearch-export-resume.php:132
+#: includes/jobsearch-resume-export-hooks.php:224
+#: includes/jobsearch-resume-export-hooks.php:512
+msgid "Active"
+msgstr ""
+
+#: includes/common-functions.php:135
+msgid "Add Resume Introduction"
+msgstr ""
+
+#. Name of the plugin
+msgid "Addon Jobsearch Resume Export"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:234
+#: templates/jobsearch-candidate-resume-template-thirteen.php:490
+#: templates/jobsearch-candidate-resume-template-twenty.php:239
+#: templates/jobsearch-candidate-resume-template-twenty.php:426
+msgid "Address"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:205
+#: templates/jobsearch-candidate-resume-template-eleven.php:392
+#: templates/jobsearch-candidate-resume-template-four.php:200
+#: templates/jobsearch-candidate-resume-template-four.php:368
+#: templates/jobsearch-candidate-resume-template-twelve.php:203
+#: templates/jobsearch-candidate-resume-template-twelve.php:357
+#: templates/jobsearch-candidate-resume-default-template.php:193
+#: templates/jobsearch-candidate-resume-default-template.php:359
+#: templates/jobsearch-candidate-resume-template-fourteen.php:222
+#: templates/jobsearch-candidate-resume-template-fourteen.php:421
+msgid "Address:"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-three.php:202
+#: templates/jobsearch-candidate-resume-template-three.php:356
+#, php-format
+msgid "Address: %s"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-three.php:176
+#: templates/jobsearch-candidate-resume-template-three.php:330
+msgid "Biography"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-one.php:206
+#: templates/jobsearch-candidate-resume-template-one.php:353
+msgid "biography"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:350
+#: includes/jobsearch-resume-export-admin-hooks.php:543
+#: includes/common-functions.php:501
+msgid "Candidate PDF Resume"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:520
+msgid "Click image to select Template"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nine.php:198
+#: templates/jobsearch-candidate-resume-template-nine.php:411
+#: templates/jobsearch-candidate-resume-template-eighteen.php:214
+#: templates/jobsearch-candidate-resume-template-eighteen.php:394
+#: templates/jobsearch-candidate-resume-template-eight.php:199
+#: templates/jobsearch-candidate-resume-template-eight.php:366
+#: templates/jobsearch-candidate-resume-template-one.php:173
+#: templates/jobsearch-candidate-resume-template-one.php:320
+msgid "Contact"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-six.php:221
+#: templates/jobsearch-candidate-resume-template-six.php:489
+msgid "Contact Me"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-ten.php:221
+#: templates/jobsearch-candidate-resume-template-ten.php:391
+msgid "Contact me"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nine.php:195
+#: templates/jobsearch-candidate-resume-template-nine.php:408
+msgid "Description"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:241
+#: templates/jobsearch-candidate-resume-template-eleven.php:428
+#: templates/jobsearch-candidate-resume-template-four.php:194
+#: templates/jobsearch-candidate-resume-template-four.php:362
+#: templates/jobsearch-candidate-resume-default-template.php:361
+#: templates/jobsearch-candidate-resume-template-fourteen.php:212
+#: templates/jobsearch-candidate-resume-template-fourteen.php:411
+msgid "DOB:"
+msgstr ""
+
+#: includes/jobsearch-resume-export-hooks.php:248
+#: includes/jobsearch-resume-export-hooks.php:527
+msgid "Download PDF"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:304
+#: templates/jobsearch-candidate-resume-template-thirteen.php:534
+#: templates/jobsearch-candidate-resume-template-fifteen.php:256
+#: templates/jobsearch-candidate-resume-template-fifteen.php:464
+msgid "Dribbble"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:560
+#: templates/jobsearch-candidate-resume-template-seven.php:323
+#: templates/jobsearch-candidate-resume-template-seven.php:336
+#: templates/jobsearch-candidate-resume-template-seven.php:588
+#: templates/jobsearch-candidate-resume-template-seven.php:601
+#: templates/jobsearch-candidate-resume-template-five.php:232
+#: templates/jobsearch-candidate-resume-template-five.php:458
+msgid "Dribble"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:179
+#: includes/jobsearch-resume-export-admin-hooks.php:1142
+#: templates/jobsearch-candidate-resume-template-two.php:713
+#: templates/jobsearch-candidate-resume-template-nineteen.php:632
+#: templates/jobsearch-candidate-resume-template-eighteen.php:685
+#: templates/jobsearch-candidate-resume-default-template.php:631
+#: templates/jobsearch-candidate-resume-template-seventeen.php:649
+#: templates/jobsearch-candidate-resume-template-three.php:590
+#: templates/jobsearch-candidate-resume-template-one.php:607
+#: templates/jobsearch-candidate-resume-template-twenty.php:660
+msgid "EDUCATION"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:669
+#: templates/jobsearch-candidate-resume-template-thirteen.php:818
+#: templates/jobsearch-candidate-resume-template-ten.php:615
+#: templates/jobsearch-candidate-resume-template-four.php:618
+#: templates/jobsearch-candidate-resume-template-seven.php:824
+#: templates/jobsearch-candidate-resume-template-nine.php:745
+#: templates/jobsearch-candidate-resume-template-twelve.php:585
+#: templates/jobsearch-candidate-resume-template-six.php:827
+#: templates/jobsearch-candidate-resume-template-eight.php:651
+#: templates/jobsearch-candidate-resume-template-five.php:722
+#: templates/jobsearch-candidate-resume-template-fourteen.php:606
+msgid "Education"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:213
+#: templates/jobsearch-candidate-resume-template-thirteen.php:469
+#: templates/jobsearch-candidate-resume-template-fifteen.php:267
+#: templates/jobsearch-candidate-resume-template-fifteen.php:475
+#: templates/jobsearch-candidate-resume-template-twenty.php:217
+#: templates/jobsearch-candidate-resume-template-twenty.php:404
+msgid "Email"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-two.php:186
+#: templates/jobsearch-candidate-resume-template-two.php:415
+msgid "Email. "
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:117
+#: templates/jobsearch-candidate-resume-default-template.php:190
+#: templates/jobsearch-candidate-resume-default-template.php:357
+msgid "EMAIL:"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:223
+#: templates/jobsearch-candidate-resume-template-eleven.php:410
+#: templates/jobsearch-candidate-resume-template-four.php:212
+#: templates/jobsearch-candidate-resume-template-four.php:380
+#: templates/jobsearch-candidate-resume-template-nine.php:207
+#: templates/jobsearch-candidate-resume-template-nine.php:420
+#: templates/jobsearch-candidate-resume-template-twelve.php:208
+#: templates/jobsearch-candidate-resume-template-twelve.php:362
+#: templates/jobsearch-candidate-resume-template-fourteen.php:243
+#: templates/jobsearch-candidate-resume-template-fourteen.php:442
+msgid "Email:"
+msgstr ""
+
+#: includes/common-functions.php:73
+msgid "Enable/Disable My Resume Box in Candidate dashboard => My Resume"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-sixteen.php:207
+#: templates/jobsearch-candidate-resume-template-sixteen.php:378
+msgid "Executive Summary"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nineteen.php:580
+#: templates/jobsearch-candidate-resume-template-eighteen.php:624
+#: templates/jobsearch-candidate-resume-template-seventeen.php:594
+#: templates/jobsearch-candidate-resume-template-twenty.php:610
+msgid "EXPERIENCE"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:618
+#: templates/jobsearch-candidate-resume-template-eleven.php:829
+#: templates/jobsearch-candidate-resume-template-two.php:670
+#: templates/jobsearch-candidate-resume-template-ten.php:561
+#: templates/jobsearch-candidate-resume-template-nine.php:689
+#: templates/jobsearch-candidate-resume-template-fifteen.php:658
+#: templates/jobsearch-candidate-resume-template-twelve.php:542
+#: templates/jobsearch-candidate-resume-template-sixteen.php:583
+#: templates/jobsearch-candidate-resume-template-fourteen.php:553
+msgid "Experience"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:248
+#: templates/jobsearch-candidate-resume-template-two.php:786
+#: templates/jobsearch-candidate-resume-template-four.php:700
+#: templates/jobsearch-candidate-resume-template-seven.php:905
+#: templates/jobsearch-candidate-resume-template-six.php:919
+#: templates/jobsearch-candidate-resume-template-eight.php:738
+#: templates/jobsearch-candidate-resume-default-template.php:758
+#: templates/jobsearch-candidate-resume-template-three.php:681
+#: templates/jobsearch-candidate-resume-template-one.php:682
+#: templates/jobsearch-candidate-resume-template-five.php:795
+msgid "EXPERTISE"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:754
+#: templates/jobsearch-candidate-resume-template-thirteen.php:915
+#: templates/jobsearch-candidate-resume-template-nine.php:839
+#: templates/jobsearch-candidate-resume-template-nineteen.php:716
+#: templates/jobsearch-candidate-resume-template-fifteen.php:800
+#: templates/jobsearch-candidate-resume-template-twelve.php:661
+#: templates/jobsearch-candidate-resume-template-eighteen.php:797
+#: templates/jobsearch-candidate-resume-template-eighteen.php:805
+#: templates/jobsearch-candidate-resume-template-eighteen.php:857
+#: templates/jobsearch-candidate-resume-template-seventeen.php:743
+#: templates/jobsearch-candidate-resume-template-sixteen.php:757
+#: templates/jobsearch-candidate-resume-template-twenty.php:747
+msgid "Expertise"
+msgstr ""
+
+#: addon-jobsearch-export-resume.php:129
+#: includes/jobsearch-resume-export-hooks.php:857
+msgid "Export"
+msgstr ""
+
+#: includes/jobsearch-resume-export-hooks.php:871
+msgid "Export To Excel"
+msgstr ""
+
+#: addon-jobsearch-export-resume.php:131
+#: includes/jobsearch-resume-export-hooks.php:567
+#: includes/jobsearch-resume-export-admin-hooks.php:581
+msgid "Export to Excel"
+msgstr ""
+
+#: includes/jobsearch-resume-export-hooks.php:865
+msgid "Export To PDF"
+msgstr ""
+
+#: addon-jobsearch-export-resume.php:130
+#: includes/jobsearch-resume-export-hooks.php:569
+#: includes/jobsearch-resume-export-admin-hooks.php:587
+msgid "Export to PDF"
+msgstr ""
+
+#: includes/user-uploaded-resume-export.php:83
+#: includes/user-uploaded-resume-export.php:144
+msgid "Export Uploaded Resumes"
+msgstr ""
+
+#. Author of the plugin
+msgid "Eyecix"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:265
+#: templates/jobsearch-candidate-resume-template-thirteen.php:521
+#: templates/jobsearch-candidate-resume-template-seven.php:284
+#: templates/jobsearch-candidate-resume-template-seven.php:549
+#: templates/jobsearch-candidate-resume-template-fifteen.php:230
+#: templates/jobsearch-candidate-resume-template-fifteen.php:438
+#: templates/jobsearch-candidate-resume-template-five.php:208
+#: templates/jobsearch-candidate-resume-template-five.php:434
+msgid "Facebook"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nine.php:242
+#: templates/jobsearch-candidate-resume-template-nine.php:455
+msgid "Facebook:"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-six.php:278
+#: templates/jobsearch-candidate-resume-template-six.php:546
+msgid "Follow Me"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-five.php:205
+#: templates/jobsearch-candidate-resume-template-five.php:431
+msgid "follow me"
+msgstr ""
+
+#: includes/jobsearch-resume-export-hooks.php:29
+msgid "Generate PDF"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-seven.php:226
+#: templates/jobsearch-candidate-resume-template-seven.php:490
+msgid "Hello "
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nine.php:218
+#: templates/jobsearch-candidate-resume-template-nine.php:431
+msgid "Home:"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:206
+#: includes/jobsearch-resume-export-admin-hooks.php:1172
+#: templates/jobsearch-candidate-resume-default-template.php:661
+msgid "HONORS & AWARDS"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:721
+#: templates/jobsearch-candidate-resume-template-two.php:757
+#: templates/jobsearch-candidate-resume-template-thirteen.php:879
+#: templates/jobsearch-candidate-resume-template-ten.php:665
+#: templates/jobsearch-candidate-resume-template-four.php:664
+#: templates/jobsearch-candidate-resume-template-seven.php:874
+#: templates/jobsearch-candidate-resume-template-nine.php:800
+#: templates/jobsearch-candidate-resume-template-nineteen.php:683
+#: templates/jobsearch-candidate-resume-template-fifteen.php:765
+#: templates/jobsearch-candidate-resume-template-twelve.php:634
+#: templates/jobsearch-candidate-resume-template-eighteen.php:749
+#: templates/jobsearch-candidate-resume-template-six.php:883
+#: templates/jobsearch-candidate-resume-template-eight.php:707
+#: templates/jobsearch-candidate-resume-template-seventeen.php:707
+#: templates/jobsearch-candidate-resume-template-three.php:645
+#: templates/jobsearch-candidate-resume-template-one.php:653
+#: templates/jobsearch-candidate-resume-template-five.php:770
+#: templates/jobsearch-candidate-resume-template-sixteen.php:709
+#: templates/jobsearch-candidate-resume-template-twenty.php:711
+#: templates/jobsearch-candidate-resume-template-fourteen.php:659
+msgid "Honors & Awards"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://themeforest.net/user/eyecix/"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-seven.php:228
+#: templates/jobsearch-candidate-resume-template-seven.php:492
+msgid "I am "
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:324
+#: templates/jobsearch-candidate-resume-template-thirteen.php:580
+#: templates/jobsearch-candidate-resume-template-seven.php:230
+#: templates/jobsearch-candidate-resume-template-seven.php:494
+msgid "I am a "
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-twenty.php:254
+#: templates/jobsearch-candidate-resume-template-twenty.php:441
+msgid "I'm a "
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:194
+#: templates/jobsearch-candidate-resume-template-thirteen.php:450
+msgid "INFO"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-five.php:224
+#: templates/jobsearch-candidate-resume-template-five.php:450
+msgid "Instagram"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eight.php:597
+msgid "Job Experience"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-four.php:568
+#: templates/jobsearch-candidate-resume-template-six.php:776
+#: templates/jobsearch-candidate-resume-template-three.php:535
+#: templates/jobsearch-candidate-resume-template-five.php:681
+msgid "Job Experiences"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:787
+#: templates/jobsearch-candidate-resume-template-two.php:865
+#: templates/jobsearch-candidate-resume-template-thirteen.php:950
+#: templates/jobsearch-candidate-resume-template-ten.php:731
+#: templates/jobsearch-candidate-resume-template-four.php:739
+#: templates/jobsearch-candidate-resume-template-seven.php:939
+#: templates/jobsearch-candidate-resume-template-nine.php:879
+#: templates/jobsearch-candidate-resume-template-nineteen.php:746
+#: templates/jobsearch-candidate-resume-template-fifteen.php:835
+#: templates/jobsearch-candidate-resume-template-twelve.php:693
+#: templates/jobsearch-candidate-resume-template-eighteen.php:849
+#: templates/jobsearch-candidate-resume-template-six.php:958
+#: templates/jobsearch-candidate-resume-default-template.php:714
+#: templates/jobsearch-candidate-resume-template-seventeen.php:777
+#: templates/jobsearch-candidate-resume-template-three.php:765
+#: templates/jobsearch-candidate-resume-template-one.php:709
+#: templates/jobsearch-candidate-resume-template-five.php:829
+#: templates/jobsearch-candidate-resume-template-sixteen.php:797
+#: templates/jobsearch-candidate-resume-template-twenty.php:775
+#: templates/jobsearch-candidate-resume-template-fourteen.php:728
+msgid "Languages"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:291
+#: templates/jobsearch-candidate-resume-template-thirteen.php:547
+msgid "LinkedIn"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-seven.php:310
+#: templates/jobsearch-candidate-resume-template-seven.php:575
+msgid "Linkedin"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-fifteen.php:243
+#: templates/jobsearch-candidate-resume-template-fifteen.php:451
+msgid "LinkedIn Profile"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nine.php:259
+#: templates/jobsearch-candidate-resume-template-nine.php:267
+#: templates/jobsearch-candidate-resume-template-nine.php:275
+#: templates/jobsearch-candidate-resume-template-nine.php:472
+#: templates/jobsearch-candidate-resume-template-nine.php:480
+#: templates/jobsearch-candidate-resume-template-nine.php:488
+msgid "Linkedin:"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-fourteen.php:693
+msgid "My Expertise"
+msgstr ""
+
+#: includes/common-functions.php:119
+msgid "My Resume Box"
+msgstr ""
+
+#: includes/common-functions.php:72
+msgid "My Resume Box on/off"
+msgstr ""
+
+#: includes/jobsearch-resume-export-hooks.php:720
+#: includes/jobsearch-resume-export-hooks.php:745
+#: includes/jobsearch-resume-export-hooks.php:766
+msgid "No Data"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-six.php:211
+#: templates/jobsearch-candidate-resume-template-six.php:479
+msgid "Objective"
+msgstr ""
+
+#: includes/common-functions.php:77
+msgid "Off"
+msgstr ""
+
+#: includes/common-functions.php:76
+msgid "On"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:520
+msgid "Package Already used"
+msgstr ""
+
+#: includes/common-functions.php:630
+msgid "Package Subscribed Successfully."
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eight.php:776
+msgid "Personal Skills"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-two.php:183
+#: templates/jobsearch-candidate-resume-template-two.php:412
+msgid "ph. +"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:202
+#: templates/jobsearch-candidate-resume-template-thirteen.php:458
+#: templates/jobsearch-candidate-resume-template-fifteen.php:278
+#: templates/jobsearch-candidate-resume-template-fifteen.php:486
+#: templates/jobsearch-candidate-resume-template-twenty.php:206
+#: templates/jobsearch-candidate-resume-template-twenty.php:393
+msgid "Phone"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:115
+#: templates/jobsearch-candidate-resume-default-template.php:188
+#: templates/jobsearch-candidate-resume-default-template.php:355
+msgid "PHONE:"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:214
+#: templates/jobsearch-candidate-resume-template-eleven.php:401
+#: templates/jobsearch-candidate-resume-template-four.php:206
+#: templates/jobsearch-candidate-resume-template-four.php:374
+#: templates/jobsearch-candidate-resume-template-nine.php:201
+#: templates/jobsearch-candidate-resume-template-nine.php:414
+#: templates/jobsearch-candidate-resume-template-twelve.php:197
+#: templates/jobsearch-candidate-resume-template-twelve.php:351
+#: templates/jobsearch-candidate-resume-template-fourteen.php:232
+#: templates/jobsearch-candidate-resume-template-fourteen.php:431
+msgid "Phone:"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-two.php:817
+#: templates/jobsearch-candidate-resume-template-thirteen.php:996
+#: templates/jobsearch-candidate-resume-template-ten.php:772
+#: templates/jobsearch-candidate-resume-template-four.php:791
+#: templates/jobsearch-candidate-resume-template-seven.php:983
+#: templates/jobsearch-candidate-resume-template-nine.php:929
+#: templates/jobsearch-candidate-resume-template-nineteen.php:788
+#: templates/jobsearch-candidate-resume-template-fifteen.php:879
+#: templates/jobsearch-candidate-resume-template-twelve.php:734
+#: templates/jobsearch-candidate-resume-template-eighteen.php:909
+#: templates/jobsearch-candidate-resume-template-six.php:1004
+#: templates/jobsearch-candidate-resume-template-eight.php:827
+#: templates/jobsearch-candidate-resume-default-template.php:791
+#: templates/jobsearch-candidate-resume-template-seventeen.php:827
+#: templates/jobsearch-candidate-resume-template-three.php:715
+#: templates/jobsearch-candidate-resume-template-one.php:557
+#: templates/jobsearch-candidate-resume-template-five.php:874
+#: templates/jobsearch-candidate-resume-template-sixteen.php:846
+#: templates/jobsearch-candidate-resume-template-twenty.php:816
+#: templates/jobsearch-candidate-resume-template-fourteen.php:772
+msgid "Portfolio"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:849
+#: templates/jobsearch-candidate-resume-template-two.php:839
+#: templates/jobsearch-candidate-resume-template-thirteen.php:1018
+#: templates/jobsearch-candidate-resume-template-ten.php:792
+#: templates/jobsearch-candidate-resume-template-four.php:815
+#: templates/jobsearch-candidate-resume-template-seven.php:1003
+#: templates/jobsearch-candidate-resume-template-nine.php:953
+#: templates/jobsearch-candidate-resume-template-nineteen.php:808
+#: templates/jobsearch-candidate-resume-template-fifteen.php:899
+#: templates/jobsearch-candidate-resume-template-twelve.php:754
+#: templates/jobsearch-candidate-resume-template-eighteen.php:932
+#: templates/jobsearch-candidate-resume-template-six.php:1025
+#: templates/jobsearch-candidate-resume-template-eight.php:848
+#: templates/jobsearch-candidate-resume-default-template.php:810
+#: templates/jobsearch-candidate-resume-template-seventeen.php:849
+#: templates/jobsearch-candidate-resume-template-three.php:737
+#: templates/jobsearch-candidate-resume-template-one.php:577
+#: templates/jobsearch-candidate-resume-template-five.php:895
+#: templates/jobsearch-candidate-resume-template-sixteen.php:868
+#: templates/jobsearch-candidate-resume-template-twenty.php:836
+#: templates/jobsearch-candidate-resume-template-fourteen.php:792
+msgid "Portfolio URL: "
+msgstr ""
+
+#: includes/jobsearch-resume-export-hooks.php:740
+#: includes/jobsearch-resume-export-admin-hooks.php:156
+#: includes/jobsearch-resume-export-admin-hooks.php:753
+#: includes/jobsearch-resume-export-admin-hooks.php:1117
+#: templates/jobsearch-candidate-resume-template-eleven.php:633
+#: templates/jobsearch-candidate-resume-template-two.php:683
+#: templates/jobsearch-candidate-resume-template-thirteen.php:782
+#: templates/jobsearch-candidate-resume-template-ten.php:583
+#: templates/jobsearch-candidate-resume-template-four.php:588
+#: templates/jobsearch-candidate-resume-template-seven.php:788
+#: templates/jobsearch-candidate-resume-template-nine.php:712
+#: templates/jobsearch-candidate-resume-template-nineteen.php:600
+#: templates/jobsearch-candidate-resume-template-fifteen.php:677
+#: templates/jobsearch-candidate-resume-template-twelve.php:556
+#: templates/jobsearch-candidate-resume-template-eighteen.php:649
+#: templates/jobsearch-candidate-resume-template-six.php:794
+#: templates/jobsearch-candidate-resume-template-eight.php:618
+#: templates/jobsearch-candidate-resume-default-template.php:606
+#: templates/jobsearch-candidate-resume-template-seventeen.php:611
+#: templates/jobsearch-candidate-resume-template-three.php:556
+#: templates/jobsearch-candidate-resume-template-one.php:532
+#: templates/jobsearch-candidate-resume-template-five.php:696
+#: templates/jobsearch-candidate-resume-template-sixteen.php:607
+#: templates/jobsearch-candidate-resume-template-twenty.php:626
+#: templates/jobsearch-candidate-resume-template-fourteen.php:570
+msgid "Present"
+msgstr ""
+
+#: includes/jobsearch-resume-export-hooks.php:253
+msgid "Price: "
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nineteen.php:240
+#: templates/jobsearch-candidate-resume-template-nineteen.php:414
+msgid "PROFILE"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eight.php:239
+#: templates/jobsearch-candidate-resume-template-eight.php:408
+#: templates/jobsearch-candidate-resume-template-five.php:185
+#: templates/jobsearch-candidate-resume-template-five.php:411
+msgid "Profile"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:329
+msgid "Profile PDF"
+msgstr ""
+
+#: includes/common-functions.php:626
+msgid "redirecting..."
+msgstr ""
+
+#: includes/common-functions.php:133
+msgid "Resume Export Settings"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-default-template.php:364
+msgid "Sector:"
+msgstr ""
+
+#: includes/jobsearch-resume-export-hooks.php:542
+#: includes/jobsearch-resume-export-admin-hooks.php:555
+msgid "Select All"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:423
+msgid "Select PDF Templates"
+msgstr ""
+
+#: includes/common-functions.php:619
+msgid "Selected Package Product not found."
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:339
+msgid "Show in PDF"
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:282
+#: includes/jobsearch-resume-export-admin-hooks.php:1201
+#: templates/jobsearch-candidate-resume-template-eleven.php:872
+#: templates/jobsearch-candidate-resume-template-two.php:903
+#: templates/jobsearch-candidate-resume-template-thirteen.php:1041
+#: templates/jobsearch-candidate-resume-template-ten.php:699
+#: templates/jobsearch-candidate-resume-template-ten.php:816
+#: templates/jobsearch-candidate-resume-template-four.php:838
+#: templates/jobsearch-candidate-resume-template-seven.php:1027
+#: templates/jobsearch-candidate-resume-template-nine.php:976
+#: templates/jobsearch-candidate-resume-template-nineteen.php:833
+#: templates/jobsearch-candidate-resume-template-fifteen.php:922
+#: templates/jobsearch-candidate-resume-template-twelve.php:777
+#: templates/jobsearch-candidate-resume-template-eighteen.php:954
+#: templates/jobsearch-candidate-resume-template-six.php:1050
+#: templates/jobsearch-candidate-resume-template-eight.php:874
+#: templates/jobsearch-candidate-resume-default-template.php:691
+#: templates/jobsearch-candidate-resume-template-seventeen.php:872
+#: templates/jobsearch-candidate-resume-template-three.php:808
+#: templates/jobsearch-candidate-resume-template-one.php:743
+#: templates/jobsearch-candidate-resume-template-five.php:919
+#: templates/jobsearch-candidate-resume-template-sixteen.php:896
+#: templates/jobsearch-candidate-resume-template-twenty.php:857
+#: templates/jobsearch-candidate-resume-template-fourteen.php:815
+msgid "Skills"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:256
+#: templates/jobsearch-candidate-resume-template-thirteen.php:512
+msgid "Social"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-seven.php:276
+#: templates/jobsearch-candidate-resume-template-seven.php:541
+msgid "Social Link"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nine.php:239
+#: templates/jobsearch-candidate-resume-template-nine.php:452
+msgid "Social Links:"
+msgstr ""
+
+#: includes/common-functions.php:120
+msgid ""
+"The text will show above the packages list in user dashboard in my resume."
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-seven.php:227
+#: templates/jobsearch-candidate-resume-template-seven.php:491
+msgid "There"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"This addon is useful for exporting CVs like PDFs and excel 'xlsx' formate."
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:351
+msgid "This package is useful for candidates to have multiple resume designs."
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:278
+#: templates/jobsearch-candidate-resume-template-seven.php:297
+#: templates/jobsearch-candidate-resume-template-seven.php:562
+#: templates/jobsearch-candidate-resume-template-five.php:216
+#: templates/jobsearch-candidate-resume-template-five.php:442
+msgid "Twitter"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nine.php:251
+#: templates/jobsearch-candidate-resume-template-nine.php:464
+msgid "Twitter:"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-two.php:189
+#: templates/jobsearch-candidate-resume-template-two.php:418
+msgid "URL. "
+msgstr ""
+
+#: includes/user-uploaded-resume-export.php:23
+#: includes/jobsearch-resume-export-admin-hooks.php:1232
+msgid "User Uploaded Resumes"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:853
+#: templates/jobsearch-candidate-resume-template-two.php:844
+#: templates/jobsearch-candidate-resume-template-thirteen.php:1022
+#: templates/jobsearch-candidate-resume-template-ten.php:796
+#: templates/jobsearch-candidate-resume-template-four.php:819
+#: templates/jobsearch-candidate-resume-template-seven.php:1007
+#: templates/jobsearch-candidate-resume-template-nine.php:957
+#: templates/jobsearch-candidate-resume-template-nineteen.php:812
+#: templates/jobsearch-candidate-resume-template-fifteen.php:903
+#: templates/jobsearch-candidate-resume-template-twelve.php:758
+#: templates/jobsearch-candidate-resume-template-eighteen.php:936
+#: templates/jobsearch-candidate-resume-template-six.php:1029
+#: templates/jobsearch-candidate-resume-template-eight.php:852
+#: templates/jobsearch-candidate-resume-default-template.php:815
+#: templates/jobsearch-candidate-resume-template-seventeen.php:853
+#: templates/jobsearch-candidate-resume-template-three.php:741
+#: templates/jobsearch-candidate-resume-template-one.php:582
+#: templates/jobsearch-candidate-resume-template-five.php:899
+#: templates/jobsearch-candidate-resume-template-sixteen.php:872
+#: templates/jobsearch-candidate-resume-template-twenty.php:840
+#: templates/jobsearch-candidate-resume-template-fourteen.php:796
+msgid "Video URL: "
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-nine.php:213
+#: templates/jobsearch-candidate-resume-template-nine.php:426
+msgid "Web:"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:224
+#: templates/jobsearch-candidate-resume-template-thirteen.php:480
+#: templates/jobsearch-candidate-resume-template-twenty.php:229
+#: templates/jobsearch-candidate-resume-template-twenty.php:416
+msgid "Website"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-eleven.php:232
+#: templates/jobsearch-candidate-resume-template-eleven.php:419
+#: templates/jobsearch-candidate-resume-template-four.php:219
+#: templates/jobsearch-candidate-resume-template-four.php:387
+#: templates/jobsearch-candidate-resume-template-twelve.php:213
+#: templates/jobsearch-candidate-resume-template-twelve.php:367
+#: templates/jobsearch-candidate-resume-template-fourteen.php:254
+#: templates/jobsearch-candidate-resume-template-fourteen.php:453
+msgid "Website:"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-thirteen.php:191
+#: templates/jobsearch-candidate-resume-template-thirteen.php:447
+msgid "what's up guys"
+msgstr ""
+
+#: templates/jobsearch-candidate-resume-template-ten.php:214
+#: templates/jobsearch-candidate-resume-template-ten.php:384
+msgid "Who am i"
+msgstr ""
+
+#: includes/common-functions.php:607
+msgid "WooCommerce Plugin not exist."
+msgstr ""
+
+#: includes/jobsearch-resume-export-admin-hooks.php:140
+#: includes/jobsearch-resume-export-admin-hooks.php:1100
+#: templates/jobsearch-candidate-resume-template-thirteen.php:761
+#: templates/jobsearch-candidate-resume-template-seven.php:773
+#: templates/jobsearch-candidate-resume-default-template.php:590
+#: templates/jobsearch-candidate-resume-template-one.php:518
+msgid "Work Experience"
+msgstr ""
+
+#: includes/common-functions.php:635
+msgid "You are not a candidate."
+msgstr ""
+
+#: includes/common-functions.php:601
+msgid "You have already subscribed to this package."
+msgstr ""
