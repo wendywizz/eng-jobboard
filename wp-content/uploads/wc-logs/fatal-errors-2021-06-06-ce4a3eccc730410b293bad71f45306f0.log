@@ -1,0 +1,24 @@
+2021-06-06T12:28:14+00:00 CRITICAL Uncaught Error: Class 'careerfy_mobile_menu_walker' not found in C:\xampp\htdocs\eng-jobboard\wp-content\themes\careerfy\inc\header-functions.php:1545
+Stack trace:
+#0 C:\xampp\htdocs\eng-jobboard\wp-includes\class-wp-hook.php(292): careerfy_mobile_navigation('')
+#1 C:\xampp\htdocs\eng-jobboard\wp-includes\class-wp-hook.php(316): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\eng-jobboard\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\eng-jobboard\wp-content\themes\careerfy\inc\header-functions.php(1682): do_action('careerfy_mobile...')
+#4 C:\xampp\htdocs\eng-jobboard\wp-includes\class-wp-hook.php(292): careerfy_mobile_sidebar_html(NULL)
+#5 C:\xampp\htdocs\eng-jobboard\wp-includes\plugin.php(212): WP_Hook->apply_filters(NULL, Array)
+#6 C:\xampp\htdocs\eng-jobboard\wp-content\themes\careerfy\header.php(20): apply_filters('careerfy_theme_...', '')
+#7 C:\xampp\htdocs\eng-jobboard\wp-includes\template.php(730): require_once('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\eng-jobboard\wp in C:\xampp\htdocs\eng-jobboard\wp-content\themes\careerfy\inc\header-functions.php on line 1545
+
+2021-06-06T12:28:14+00:00 CRITICAL Uncaught Error: Class 'careerfy_mobile_menu_walker' not found in C:\xampp\htdocs\eng-jobboard\wp-content\themes\careerfy\inc\header-functions.php:1545
+Stack trace:
+#0 C:\xampp\htdocs\eng-jobboard\wp-includes\class-wp-hook.php(292): careerfy_mobile_navigation('')
+#1 C:\xampp\htdocs\eng-jobboard\wp-includes\class-wp-hook.php(316): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\eng-jobboard\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\eng-jobboard\wp-content\themes\careerfy\inc\header-functions.php(1682): do_action('careerfy_mobile...')
+#4 C:\xampp\htdocs\eng-jobboard\wp-includes\class-wp-hook.php(292): careerfy_mobile_sidebar_html(NULL)
+#5 C:\xampp\htdocs\eng-jobboard\wp-includes\plugin.php(212): WP_Hook->apply_filters(NULL, Array)
+#6 C:\xampp\htdocs\eng-jobboard\wp-content\themes\careerfy\header.php(20): apply_filters('careerfy_theme_...', '')
+#7 C:\xampp\htdocs\eng-jobboard\wp-includes\template.php(730): require_once('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\eng-jobboard\wp in C:\xampp\htdocs\eng-jobboard\wp-content\themes\careerfy\inc\header-functions.php on line 1545
+

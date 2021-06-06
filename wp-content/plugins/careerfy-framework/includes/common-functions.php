@@ -991,6 +991,7 @@ if (!function_exists('careerfy_breadcrumbs')) {
         );
         ?>
         <div class="<?php echo apply_filters('careerfy_breadcrum_main_con_class', $bread_crumb_args) ?>">
+            <div class="container">
             <?php
             echo '<ul>' . sprintf($linkhome, $homeLink, $text['home']) . $delimiter;
             if (is_category()) {
@@ -1090,6 +1091,7 @@ if (!function_exists('careerfy_breadcrumbs')) {
             }
             echo '</ul>';
             ?>
+            </div>
         </div>
         <?php
     }
