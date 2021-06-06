@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Careerfy Framework\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 12:51+0000\n"
-"PO-Revision-Date: 2021-06-06 14:39+0000\n"
+"PO-Revision-Date: 2021-06-05 15:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: ไทย\n"
 "Language: th\n"
@@ -1152,7 +1152,7 @@ msgstr "อาชีพการเรียกร้องให้ดําเ
 
 #. Name of the plugin
 msgid "Careerfy Framework"
-msgstr "Careerfy Framework"
+msgstr "กรอบอาชีพ"
 
 #. Description of the plugin
 msgid "Careerfy Framework is a supporting plugin."
