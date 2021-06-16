@@ -48,9 +48,9 @@ function uaf_get_options(){
 	$GLOBALS['uaf_user_settings']['uaf_server_url']		= $GLOBALS['uaf_fix_settings']['serverUrl'][$GLOBALS['uaf_user_settings']['uaf_server_url_type']];
 }
 
-function ucf_api_key_activate(){
+function uaf_api_key_activate(){
 	$uaf_api_key 			= trim($_POST['uaf_api_key']);
-	$uaf_site_url			= home_url();
+	$uaf_site_url			= site_url();
 	if (!empty($uaf_api_key)){
 		$api_key_return = wp_remote_get($GLOBALS['uaf_user_settings']['uaf_server_url'].'/uaf_convertor/validate_key.php?license_key='.$uaf_api_key.'&url='.$uaf_site_url, array('timeout'=>300,'sslverify'=>false,'user-agent'=>get_bloginfo( 'url' )));
 		if ( is_wp_error( $api_key_return ) ) {
@@ -62,6 +62,7 @@ function ucf_api_key_activate(){
 			if ($api_key_return->status == 'success'){
 				update_option('uaf_api_key', $uaf_api_key);
 				update_option('uaf_activated_url', base64_encode($uaf_site_url));
+				update_option('uaf_hide_key', 'no');
 				uaf_get_options();
 				uaf_write_css();
 			}
@@ -76,7 +77,7 @@ function ucf_api_key_activate(){
 }
 
 
-function ucf_api_key_deactivate(){
+function uaf_api_key_deactivate(){
 	$uaf_api_key			= $GLOBALS['uaf_user_settings']['uaf_api_key'];
 	$uaf_activated_url		= base64_decode($GLOBALS['uaf_user_settings']['uaf_activated_url']);
 
@@ -99,12 +100,20 @@ function ucf_api_key_deactivate(){
 	return $return;
 }
 
+function uaf_api_key_hide(){
+	update_option('uaf_hide_key','yes');
+	$return['status']   = 'success';
+	$return['body'] 	= 'Key hidden. You must remove the key and add again to see it back.';
+	uaf_get_options();
+	return $return;
+}
+
 function uaf_plugin_initialize(){	
 	if (get_option('uaf_current_version') != $GLOBALS['uaf_current_version']){
 		add_option('uaf_install_date', date('Y-m-d'));
 		
 		if (!empty(trim(get_option('uaf_api_key')))){
-			update_option('uaf_activated_url',base64_encode(home_url()));
+			update_option('uaf_activated_url',base64_encode(site_url()));
 		}
 
 		uaf_create_folder();
@@ -147,7 +156,7 @@ function uaf_max_upload_size_for_php($sendinbytes = false){
 function uaf_check_site_url(){
 	$uaf_api_key 		= $GLOBALS['uaf_user_settings']['uaf_api_key'];
 	$uaf_site_url 		= $GLOBALS['uaf_user_settings']['uaf_site_url'];
-	$uaf_current_url	= base64_encode(home_url());
+	$uaf_current_url	= base64_encode(site_url());
 
 	if (!empty($uaf_api_key) && ($uaf_site_url != $uaf_current_url)){
 		uaf_write_css();
@@ -214,12 +223,16 @@ function uaf_admin_notices(){
 function uaf_trigger_actions(){
 	$actionReturn = array();
 
-	if (isset($_POST['ucf_api_key_activate'])){
-    	$actionReturn = ucf_api_key_activate();
+	if (isset($_POST['uaf_api_key_activate'])){
+    	$actionReturn = uaf_api_key_activate();
 	}
 
-	if (isset($_POST['ucf_api_key_deactivate'])){
-	    $actionReturn = ucf_api_key_deactivate();
+	if (isset($_POST['uaf_api_key_deactivate'])){
+	    $actionReturn = uaf_api_key_deactivate();
+	}
+
+	if (isset($_POST['uaf_api_key_hide'])){
+	    $actionReturn = uaf_api_key_hide();
 	}
 
 	if (isset($_POST['submit-uaf-font-js'])){   

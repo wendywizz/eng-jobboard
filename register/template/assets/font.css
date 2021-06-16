@@ -1,0 +1,12 @@
+@font-face {
+  font-family: PSU-Stidti;
+  src: url("./fonts/PSU_Stidti/PSU-Stidti-Regular.otf");
+}
+@font-face {
+  font-family: PSU-Stidti-Bold;
+  src: url("./fonts/PSU_Stidti/PSU-Stidti-Bold.otf");
+}
+@font-face {
+  font-family: PSU-Stidti-Light;
+  src: url("./fonts/PSU_Stidti/PSU-Stidti-Light.otf");
+}

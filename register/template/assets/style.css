@@ -1,0 +1,23 @@
+body {
+  font-family: PSU-Stidti;
+  font-size: 14px;
+}
+
+.form-registration .form-group{
+  margin-bottom: 30px;
+}
+.panel-desc .title{
+  color: #222;
+  margin-bottom: 15px;
+}
+.panel-desc .sub-title {
+  color: rgb(113, 114, 117);
+  font-size: 1.2em;
+  letter-spacing: 1px;
+}
+.form-registration .invalid-feedback {
+  display: none;
+}
+.form-registration .invalid-feedback.show {
+  display: block;
+}

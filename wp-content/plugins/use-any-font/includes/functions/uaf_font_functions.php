@@ -249,8 +249,8 @@ function uaf_write_css(){
 		fclose($fh);
 	ob_end_clean();
 	update_option('uaf_css_updated_timestamp', time()); // Time entry for stylesheet version
-	update_option('uaf_site_url', base64_encode(home_url()));
-	uaf_clear_plugins_cache(); // CLEAN plugin's cache.
+	update_option('uaf_site_url', base64_encode(site_url()));
+	uaf_clear_plugins_cache(); // CLEAN plugin's cache.	
 }
 
 
