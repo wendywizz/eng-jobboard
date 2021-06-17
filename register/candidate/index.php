@@ -1,5 +1,5 @@
 <?php include_once("../template/header.php") ?>
-<div class="container">
+
   <div class="row">
     <div class="col-lg-6">
       <div class="panel-desc">
@@ -8,27 +8,28 @@
       </div>
     </div>
     <div class="col-lg-6">
-      <form class="form-registration" id="form-register">
+      <form class="form-registration" action="./action.php" method="post" id="form-register">
+        <input type="hidden" name="action" value="insert" />
         <div class="form-group">
           <label for="email">อีเมลแอดเดรส</label>
-          <input type="email" class="form-control form-control-lg" id="email" placeholder="example@mail.com">          
+          <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="example@mail.com" value="example@gmail1.com">          
           <small class="invalid-feedback" id="fb-email"></small>  
         </div>
         <div class="form-group">
           <label for="password">รหัสผ่าน</label>
-          <input type="password" class="form-control form-control-lg" id="password">
+          <input type="password" class="form-control form-control-lg" name="password" id="password" value="T1212312121">
           <small class="invalid-feedback" id="fb-password"></small>  
         </div>
         <div class="form-group">
           <label for="cpassword">ยืนยันรหัสผ่าน</label>
-          <input type="password" class="form-control form-control-lg" id="cpassword">
+          <input type="password" class="form-control form-control-lg" id="cpassword" value="T1212312121">
           <small class="invalid-feedback" id="fb-cpassword"></small>  
         </div>
         <button type="submit" id="btn-submit" class="btn btn-primary">สมัครใช้งาน</button>
       </form>
     </div>
   </div>
-</div>
+
 <script type="text/javascript">    
   var inputEmail = $('#email'), inputPassword = $('#password'), inputCpassword = $('#cpassword')
   var fbEmail = $('#fb-email'), fbPassword = $('#fb-password'), fbCpassword = $('#fb-cpassword')
@@ -41,8 +42,7 @@
     return value.match(/^([a-zA-Z0-9]{8,})$/) ? true : false
   }
 
-  $('#form-register').submit(function(e) {
-    e.preventDefault()
+  $('#btn-submit').click(function(e) {
     var email = inputEmail.val()
     var password = inputPassword.val()    
     var cpassword = inputCpassword.val()
@@ -76,6 +76,8 @@
       inputCpassword.removeClass('is-invalid')
       fbCpassword.removeClass('show').text('')
     }
+    
+    $('#form-registration').submit()
   })
   
   $('#form-register .form-control').focus(function(){
