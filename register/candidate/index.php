@@ -8,8 +8,15 @@
       </div>
     </div>
     <div class="col-lg-6">
-      <form class="form-registration" action="./action.php" method="post" id="form-register">
+      <form class="form-registration" action="./action.php" method="post" id="form-registration">        
         <input type="hidden" name="action" value="insert" />
+        <div class="row">
+          <div class="form-group">
+            <label for="email">อีเมลแอดเดรส</label>
+            <input type="email" class="form-control form-control-lg" name="email" id="email" />  
+            <small class="invalid-feedback" id="fb-email"></small>  
+          </div>
+        </div>
         <div class="form-group">
           <label for="email">อีเมลแอดเดรส</label>
           <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="example@mail.com" value="example@gmail1.com">          
@@ -42,7 +49,8 @@
     return value.match(/^([a-zA-Z0-9]{8,})$/) ? true : false
   }
 
-  $('#btn-submit').click(function(e) {
+  $('#form-registration').submit(function(e) {
+    e.preventDefault()
     var email = inputEmail.val()
     var password = inputPassword.val()    
     var cpassword = inputCpassword.val()
@@ -51,7 +59,7 @@
     if (!validateEmail(email)) {
       inputEmail.addClass('is-invalid')
       fbEmail.addClass('show').text('รูปแบบอีเมลไม่ถูกต้อง')
-      return
+      return false
     } else {
       inputEmail.removeClass('is-invalid')
       fbEmail.removeClass('show').text('')
@@ -61,7 +69,7 @@
     if (!validatePassword(password)) {
       inputPassword.addClass('is-invalid')
       fbPassword.addClass('show').text('รหัสผ่านควรประกอบไปด้วยอักขระ A-Z a-z และ 0-9 อย่างน้อย 8 อักขระ')
-      return
+      return false
     } else {
       inputPassword.removeClass('is-invalid')
       fbPassword.removeClass('show').text('')
@@ -71,16 +79,16 @@
     if (password !== cpassword) {
       inputCpassword.addClass('is-invalid')
       fbCpassword.addClass('show').text('รหัสผ่านยืนยันไม่ตรงกับรหัสผ่าน')
-      return
+      return false
     } else {
       inputCpassword.removeClass('is-invalid')
       fbCpassword.removeClass('show').text('')
-    }
+    }    
     
-    $('#form-registration').submit()
+    this.submit()
   })
   
-  $('#form-register .form-control').focus(function(){
+  $('#form-registration .form-control').focus(function(){
     inputPassword.removeClass('is-invalid')
     inputCpassword.removeClass('is-invalid')
     fbPassword.removeClass('show').text('')

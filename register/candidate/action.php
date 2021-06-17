@@ -5,7 +5,10 @@
 
   switch ($action) {
     case "insert":
-      print_r($_POST);
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+
+      echo $email . ' ' .$password;
     break;
     default:
       echo "test";
