@@ -17,5 +17,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
   </head>
   <body>

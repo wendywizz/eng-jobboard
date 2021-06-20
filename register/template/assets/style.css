@@ -21,3 +21,6 @@ body {
 .form-registration .invalid-feedback.show {
   display: block;
 }
+*.hide {
+  display: none !important;
+}
