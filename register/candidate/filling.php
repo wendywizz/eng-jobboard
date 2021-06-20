@@ -1,6 +1,4 @@
-<?php 
-  include_once("../template/header.php") ?>
-
+<?php include_once("../template/header.php") ?>
   <?php
     $code = isset($_GET['code']) ? $_GET['code'] : null;
     $student = null;
@@ -22,6 +20,7 @@
   <div class="row">
     <div class="col-lg-6">
       <div class="panel-desc">
+        <img class="image" src="../assets/img/cadidate-register.png" />
         <h1 class="title">สมัครใช้งานสำหรับผู้หางาน</h1>
         <p class="sub-title">มีหลักฐานที่เป็นข้อเท็จจริงยืนยันมานานแล้ว ว่าเนื้อหาที่อ่านรู้เรื่องนั้นจะไปกวนสมาธิของคนอ่านให้เขวไปจากส่วนที้เป็น</p>
       </div>
@@ -60,7 +59,9 @@
           <input type="password" class="form-control form-control-lg" id="cpassword" value="T1212312121">
           <small class="invalid-feedback" id="fb-cpassword"></small>  
         </div>
+        <div class="d-grid gap-2">
         <button type="submit" id="btn-submit" class="btn btn-primary">สมัครใช้งาน</button>
+        </div>
       </form>
     </div>
   </div>
@@ -68,6 +69,7 @@
   <script type="text/javascript">      
     var inputFirstname = $('#firstname'), inputLastname = $('#lastname'), inputEmail = $('#email'), inputPassword = $('#password'), inputCpassword = $('#cpassword'), inputCode = $('#code')
     var fbFirstname = $('#fb-firstname'), fbLastname = $('#fb-lastname'), fbEmail = $('#fb-email'), fbPassword = $('#fb-password'), fbCpassword = $('#fb-cpassword')
+    var buttonSubmit = $('#btn-submit')
 
     function validateEmail(email) {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -133,26 +135,31 @@
       } else {
         inputCpassword.removeClass('is-invalid')
         fbCpassword.removeClass('show').text('')
-      }        
+      } 
       
-      const data = {
-        username: inputCode.val(),
-        email: inputEmail.val(),
-        password: inputPassword.val(),  
-        role: 'jobsearch_candidate',
-        meta: {
-          first_name: inputFirstname.val(),
-          last_name: inputLastname.val()
+      buttonSubmit.attr('disabled', 'disabled')
+      buttonSubmit.html('<i class="fas fa-circle-notch fa-spin"></i> Loading...')
+      
+      setTimeout(function() {
+        const data = {
+          username: inputCode.val(),
+          email: inputEmail.val(),
+          password: inputPassword.val(),  
+          role: 'jobsearch_candidate',
+          meta: {
+            first_name: inputFirstname.val(),
+            last_name: inputLastname.val()
+          }
         }
-      }
-      createUser(data)
+        createUser(data)
+      }, 1500)     
     })
 
-    function createUser(data) {
+    async function createUser(data) {
       const url = 'http://localhost/eng-jobboard/wp-json/wp/v2/users/register'
-      axios.post(url, data)
+      await axios.post(url, data)
         .then(function(res){
-          alert('ลงทะเบียนเรียบร้อย') 
+          window.location = 'http://localhost/eng-jobboard/register/candidate/finish.php'
         })
         .catch(function(error){
           const data = error.response.data
@@ -164,7 +171,10 @@
               alert(data.message)
             break
           }
-        })
+
+          buttonSubmit.removeAttr('disabled')
+          buttonSubmit.html('สมัครใช้งาน')
+        })      
     }
     
     $('#form-registration .form-control').focus(function(){
