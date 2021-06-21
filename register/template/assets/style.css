@@ -3,9 +3,11 @@ body {
   font-size: 14px;
 }
 
-.form-registration .form-group{
-  margin-bottom: 30px;
+#container {
+  padding: 30px 0;
 }
+
+/* Panel description */
 .panel-desc .image {
   height: 350px;  
   margin-bottom: 30px;
@@ -19,7 +21,43 @@ body {
 .panel-desc .sub-title {  
   color: rgb(113, 114, 117);
   font-size: 16px;
-  letter-spacing: 1px;
+  line-height: 1.6em;
+}
+
+/* Panel result */
+.panel-result {
+  text-align: center;  
+  margin-top: 10vh;
+}
+.panel-result .image {
+  margin-bottom: 25px;
+  height: 100px;
+}
+.panel-result .title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 15px;
+}
+.panel-result .desc {
+  color: rgb(113, 114, 117);
+  font-size: 16px;
+  line-height: 1.6em;
+  margin-bottom: 40px;
+}
+
+/* Form input */
+.form-input .title {
+  font-size: 24px;
+}
+.form-input .line {
+  margin: 10px 0 35px 0;  
+  background-color: #555;
+}
+
+/* Form Registration */
+.form-registration .form-group{
+  margin-bottom: 30px;
 }
 .form-registration .invalid-feedback {
   display: none;

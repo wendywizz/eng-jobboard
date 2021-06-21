@@ -3,7 +3,7 @@
 Plugin Name: Media Library Folders for WordPress
 Plugin URI: http://maxgalleria.com
 Description: Gives you the ability to adds folders and move files in the WordPress Media Library.
-Version: 6.1.5
+Version: 7.0.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -52,7 +52,7 @@ class MaxGalleriaMediaLib {
 
 	public function set_global_constants() {	
 		define('MAXGALLERIA_MEDIA_LIBRARY_VERSION_KEY', 'maxgalleria_media_library_version');
-		define('MAXGALLERIA_MEDIA_LIBRARY_VERSION_NUM', '6.1.5');
+		define('MAXGALLERIA_MEDIA_LIBRARY_VERSION_NUM', '7.0.0');
 		define('MAXGALLERIA_MEDIA_LIBRARY_IGNORE_NOTICE', 'maxgalleria_media_library_ignore_notice');
 		define('MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_NAME);
@@ -3970,7 +3970,7 @@ and meta_key = '_wp_attached_file'";
     </div>
 		<img id="mlpp-logo" alt="Media Library Folders Pro Logo" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/mlfp.png" width="235" height="235" >
   </div>
-
+  
   <div class="section features-section">
     <div class="features">
       <div class="container">
@@ -3993,6 +3993,7 @@ and meta_key = '_wp_attached_file'";
               <li><span>Multisite Supported</span></li>
               <li><span>Category Interchangability with Enhanced Media Library</span></li>							
               <li><span>Embed PDF files in a page via a shortcode and Embed PDF file shortcode generator</span></li>							
+              <li><span>Media Library Maintenance and Bulk File Import</span></li>							
               <!--<li><span>Jetpack and the Wordpress Gallery Integration</span></li>-->
             </ul>
           </div>
@@ -4025,21 +4026,25 @@ and meta_key = '_wp_attached_file'";
       <div class="container">
         <div class="row">
           <div class="width-100">
+            
+            <p class="mflp-into">
+              MLF Pro integrates with post and page editor pages to let you select <br>and add images to your posts and pages for the editor.
+            </p>            
             <h4>
               Add Images to Your Posts and Pages
             </h4>
             <p>
-              MLF Pro integrates with post and page editor pages to let you select and add images to your posts and pages for the editor.
+              Media Library Folders Pro helps you organize your WordPress Media Library including functions for using and managing your files and images, thubnails, image categorizes and media library maintenance.
             </p>
             <p>
-              Media Library Folders Pro lets you create new MaxGalleria and NextGEN Galleries directly from your MLF folders. This is where your images are so it is a logical place to select them and build your Gallery. Creating a Gallery with MaxGalleria comes standard with MLF.
+              Media Library Folders Pro lets you create MaxGalleria and NextGEN Galleries directly from your MLF folders. This is where your images are so it is a logical place to select them and build your Gallery.
             </p>
-            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/add-images.png" alt="img" />
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/new-add-images.png" alt="img" />
           </div>
         </div>
       </div>
     </div>
-    <div class="option">
+<!--    <div class="option">
       <div class="container">
         <div class="row">
           <div class="width-100">
@@ -4049,26 +4054,12 @@ and meta_key = '_wp_attached_file'";
             <p>
               MLFP includes an integration with The WordPress Gallery which ships with the core of WordPress.  Our integration lets you create a gallery from your post and page editor.
             </p>
-            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/jetpack.png" alt="img" />
+            <img class="img-responsive" src="< ?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/jetpack.png" alt="img" />
           </div>
         </div>
       </div>
-    </div>
-    <div class="option">
-      <div class="container">
-        <div class="row">
-          <div class="width-100">
-            <h4>
-              NextGEN Galleries
-            </h4>
-            <p>
-              Media Library Folders Pro lets you create a NextGEN gallery from the Media Library Pro Plus directory. We recommend using this capability when creating new NextGEN galleries.
-            </p>
-            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/nextgen.png" alt="img" />
-          </div>
-        </div>
-      </div>
-    </div>
+    </div>-->
+
     <div class="option">
       <div class="container">
         <div class="row">
@@ -4087,6 +4078,176 @@ and meta_key = '_wp_attached_file'";
         </div>
       </div>
     </div>
+
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+             Thumbnail Management 
+            </h4>
+            <p>
+             Reduce the number of image thumbnail files generated by WordPress.
+            </p>
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/thumbnail-management.png" alt="img" />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+              Media Library Maintenance
+            </h4>
+            <p>
+              Over time a site's media library often builds up a number of unneeded files, especially auto generated extra thumbnail file sizes that are no longer necessary due to theme or plugin changes or perhaps multiple thumbnail regenerations. 
+            </p>
+            <p>
+              Media Library Maintenance allows site administrators to find, view and remove or import these uncatalogued files.
+            </p>
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/maintenance.png" alt="img" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+               Bulk File Import
+            </h4>
+            <p>
+              Our Media Library Maintenance feature makes it easy to bulk import images and files into the Media Library.  
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+             Assign and Group Images by Categories
+            </h4>
+            <p>
+              Media Library Folders Pro implements image categories which are compatible with categories created by the Enhanced Media Library plugin.
+            </p>
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/image-categories.png" alt="img" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+             Import/Export & Backup
+            </h4>
+            <p>
+              The Import/Export feature allows an administrator to export a sites media library from one site to another. 
+            </p>
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/import-export.png" alt="img" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+             File Replacement
+            </h4>
+            <p>
+              Replace an existing file with another one of the same type in the Media Library
+            </p>
+            <p>
+              You can export and download the contents of your media library from one WordPress site and then upload and import it into the media library of another WordPress site. 
+            </p>
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/file-replacement.png" alt="img" />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+             Frontend Upload
+            </h4>
+            <p>
+              Frontend uploading of files is available via a shortcode.
+            </p>
+            <p>
+              Allows your signed in users to upload files to specified folders without needing to grant them access to your dashboard or media library.
+            </p>
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/frontend-upload.png" alt="img" />
+          </div>
+        </div>
+      </div>
+    </div>        
+    
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+             Embed PDF, Audio or Video Files
+            </h4>
+            <p>
+              Media Library Folders Pro allows the embedding of PDF, audio or video files into posts and pages via a shortcode and a builtin embed file shortcode genreator.
+            </p>
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/embed-file.png" alt="img" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+             Create Audio and Video Playlists
+            </h4>
+            <p>
+              Use Media Library Folders Pro's playlist shortcode generator to create your own audio or video playlists.
+            </p>
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/audio-playlist-generator.png" alt="img" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option">
+      <div class="container">
+        <div class="row">
+          <div class="width-100">
+            <h4>
+              NextGEN Galleries
+            </h4>
+            <p>
+              Media Library Folders Pro lets you create a NextGEN gallery from the Media Library Pro Plus directory. We recommend using this capability when creating new NextGEN galleries.
+            </p>
+            <img class="img-responsive" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/assets/nextgen.png" alt="img" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 
   <div class="section options-section last-section">

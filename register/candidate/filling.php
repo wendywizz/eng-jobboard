@@ -1,32 +1,31 @@
-<?php include_once("../template/header.php") ?>
+<?php 
+  include_once("../lib/function.php");
+  include_once("../template/header.php");  
+?>
   <?php
     $code = isset($_GET['code']) ? $_GET['code'] : null;
     $student = null;
     if (!$code) {
-      header('location: http://localhost/eng-jobboard/register/candidate');
+      header('location: ' . baseUrl() . '/candidate');
       exit();
     } else {
-      include_once("../lib/function.php");
-
       $data = verifyStudentCode($code);
       if ($data['item_count'] > 0) {
         $student = $data['data'];
       } else {
-        header('location: http://localhost/eng-jobboard/register/candidate');
+        header('location: ' . baseUrl() . '/candidate');
         exit();
       }
     }
   ?>
   <div class="row">
-    <div class="col-lg-6">
-      <div class="panel-desc">
-        <img class="image" src="../assets/img/cadidate-register.png" />
-        <h1 class="title">สมัครใช้งานสำหรับผู้หางาน</h1>
-        <p class="sub-title">มีหลักฐานที่เป็นข้อเท็จจริงยืนยันมานานแล้ว ว่าเนื้อหาที่อ่านรู้เรื่องนั้นจะไปกวนสมาธิของคนอ่านให้เขวไปจากส่วนที้เป็น</p>
-      </div>
+    <div class="col-lg-5">
+      <?php include_once "./inc/register-desc.php"; ?>
     </div>
-    <div class="col-lg-6">
-      <form class="form-registration" id="form-registration">      
+    <div class="col-lg-6 offset-lg-1">
+      <form class="form-input form-registration" id="form-registration">     
+        <h3 class="title">ระบุข้อมูลเข้าใช้งาน</h3> 
+        <hr class="line" />
         <input type="hidden" id="code" value="<?= $code ?>" />  
         <div class="row">
           <div class="col-lg-6">
@@ -87,7 +86,7 @@
       } else {
         o.removeClass('is-invalid')
         fb.removeClass('show').text('')
-        return TextTrackCue
+        return true
       }
     }
 
@@ -152,23 +151,23 @@
           }
         }
         createUser(data)
-      }, 1500)     
+      }, 1000)     
     })
 
     async function createUser(data) {
-      const url = 'http://localhost/eng-jobboard/wp-json/wp/v2/users/register'
+      const url = '<?= hostname() ?>/wp-json/wp/v2/users/register'
       await axios.post(url, data)
         .then(function(res){
-          window.location = 'http://localhost/eng-jobboard/register/candidate/finish.php'
+          window.location = '<?= baseUrl() ?>candidate/result.php?status=1'
         })
         .catch(function(error){
           const data = error.response.data
           switch (data.code) {
-            case 406:
-              alert('รหัสนักศึกษา ' + inputCode.val() + ' ได้ลงทะเบียนแล้ว')
+            case 406:              
+              window.location = '<?= baseUrl() ?>candidate/result.php?status=2&code=' + inputCode.val()
             break
             default:
-              alert(data.message)
+              window.location = '<?= baseUrl() ?>candidate/result.php?status=0'
             break
           }
 

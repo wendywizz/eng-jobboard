@@ -272,6 +272,10 @@ img {
 	margin: 10px auto;
 }
 
+.mflp-into {
+  text-align: center;
+}
+
 
 @media (max-width: 1030px) {
 	.width-50 {
