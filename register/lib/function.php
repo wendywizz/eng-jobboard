@@ -22,4 +22,24 @@
 
     return array('item_count'=>count($resData) > 1 ? 1 : 0, 'data'=>$resData);
   }
+
+  function baseUrl(){
+    if(isset($_SERVER['HTTPS'])){
+      $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+    } else {
+      $protocol = 'http';
+    }
+
+    return $protocol . "://" . $_SERVER['HTTP_HOST'] . "/eng-jobboard/register/";
+  }
+
+  function hostname() {
+    if(isset($_SERVER['HTTPS'])){
+      $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+    } else {
+      $protocol = 'http';
+    }
+
+    return $protocol . "://" . $_SERVER['SERVER_NAME'] . "/eng-jobboard";
+  }
 ?>
