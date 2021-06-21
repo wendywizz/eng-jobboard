@@ -1,4 +1,4 @@
-<?php include_once "lib/function.php"; ?>
+<?php include_once "../lib/function.php"; ?>
 <html>
   <head>    
     <link rel="stylesheet" href="<?= baseUrl(); ?>node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
