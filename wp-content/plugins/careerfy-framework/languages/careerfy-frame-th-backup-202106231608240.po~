@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Careerfy Framework\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 12:51+0000\n"
-"PO-Revision-Date: 2021-06-23 16:36+0000\n"
+"PO-Revision-Date: 2021-06-06 14:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: ไทย\n"
 "Language: th\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.5.3; wp-5.7.2"
+"X-Loco-Version: 2.5.2; wp-5.7.2"
 
 #: includes/careerfy-detail-pages.php:72 includes/careerfy-detail-pages.php:96
 #: includes/careerfy-detail-pages.php:129
@@ -3456,7 +3456,7 @@ msgstr "จ้างฉัน"
 
 #: includes/common-functions.php:967
 msgid "Home"
-msgstr "หน้าแรก"
+msgstr "บ้าน"
 
 #: includes/vc-support/vc-shortcodes.php:5893
 #: includes/elementor-widget/careerfy-framework-elements/home-page-slider.php:45
@@ -4693,7 +4693,7 @@ msgstr "ไอคอนตัวทําเครื่องหมาย"
 
 #: includes/elementor-widget/wp-jobsearch-elements/post-new-job.php:1599
 msgid "Max"
-msgstr "เงินเดือนสูงสุด"
+msgstr "สูง สุด"
 
 #: shortcodes/vc-shortcodes/careerfy-news-letter-shortcode.php:49
 #: shortcodes/vc-shortcodes/careerfy-news-letter-shortcode.php:132
@@ -4782,7 +4782,7 @@ msgstr "ข้อความ : %s"
 
 #: includes/elementor-widget/wp-jobsearch-elements/post-new-job.php:1594
 msgid "Min"
-msgstr "เงินเดือนเริ่มต้น"
+msgstr "นาที"
 
 #: admin/ReduxFramework/careerfy-options/options-config.php:1436
 msgid "Mobile Header Background Color"

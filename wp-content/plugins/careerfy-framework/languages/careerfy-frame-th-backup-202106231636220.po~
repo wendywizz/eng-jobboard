@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Careerfy Framework\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 12:51+0000\n"
-"PO-Revision-Date: 2021-06-23 16:36+0000\n"
+"PO-Revision-Date: 2021-06-23 16:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: ไทย\n"
 "Language: th\n"
@@ -4693,7 +4693,7 @@ msgstr "ไอคอนตัวทําเครื่องหมาย"
 
 #: includes/elementor-widget/wp-jobsearch-elements/post-new-job.php:1599
 msgid "Max"
-msgstr "เงินเดือนสูงสุด"
+msgstr "สูง สุด"
 
 #: shortcodes/vc-shortcodes/careerfy-news-letter-shortcode.php:49
 #: shortcodes/vc-shortcodes/careerfy-news-letter-shortcode.php:132
@@ -4782,7 +4782,7 @@ msgstr "ข้อความ : %s"
 
 #: includes/elementor-widget/wp-jobsearch-elements/post-new-job.php:1594
 msgid "Min"
-msgstr "เงินเดือนเริ่มต้น"
+msgstr "นาที"
 
 #: admin/ReduxFramework/careerfy-options/options-config.php:1436
 msgid "Mobile Header Background Color"
