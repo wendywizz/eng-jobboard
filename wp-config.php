@@ -32,10 +32,10 @@ define( 'DB_PASSWORD', '12123' );
 define( 'DB_HOST', 'localhost' );
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8mb4' );
+define( 'DB_CHARSET', 'utf8_general_ci' );
 
 /** The Database Collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '' );
+define( 'DB_COLLATE', 'utf8_general_ci' );
 
 /**#@+
  * Authentication Unique Keys and Salts.

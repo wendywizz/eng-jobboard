@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WP JobSearch\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 12:51+0000\n"
-"PO-Revision-Date: 2021-06-23 15:41+0000\n"
+"PO-Revision-Date: 2021-06-24 04:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: ไทย\n"
 "Language: th\n"
@@ -52,7 +52,7 @@ msgstr "%s - ข้อความแบบฟอร์มการติดต�
 #: templates/user-dashboard/employer/user-manage-jobs.php:395
 #, php-format
 msgid "%s Application(s)"
-msgstr "โปรแกรมประยุกต์ %s"
+msgstr "สมัครแล้ว %s"
 
 #: modules/careerbuilder-integration/include/careerbuilder-jobs-hooks.php:297
 #, php-format
@@ -2443,7 +2443,7 @@ msgstr "ผู้สมัคร: %s"
 #: includes/common-functions/common-functions.php:6562
 #: includes/common-functions/common-functions.php:6569
 msgid "Application closed."
-msgstr "โปรแกรมประยุกต์ถูกปิดแล้ว"
+msgstr "รับสมัครครบแล้ว"
 
 #: shortcodes/vc-shortcodes/user-job-shortcode.php:1483
 msgid "Application Deadline"
@@ -2466,7 +2466,7 @@ msgstr "ใบสมัครสิ้นสุดใน 9m 10d 16h 7 นาท�
 #: includes/common-functions/job-functions.php:2840
 #, php-format
 msgid "Application ends in %s"
-msgstr "โปรแกรมประยุกต์สิ้นสุดใน %s"
+msgstr "ปิดการรับสมัคร %s"
 
 #: includes/classes/email-templates/class-user-rejected-for-interview.php:49
 #: includes/classes/email-templates/class-user-rejected-for-interview.php:50
@@ -2478,7 +2478,7 @@ msgstr "ใบสมัครที่ถูกปฏิเสธสําหร
 #: templates/user-dashboard/candidate/user-packages.php:149
 #: templates/user-dashboard/employer/user-manage-jobs.php:176
 msgid "Applications"
-msgstr "โปรแกรม ประยุกต์"
+msgstr "การรับสมัคร"
 
 #: admin/ReduxFramework/jobsearch-options/options-config.php:3523
 msgid "Applications Count"
@@ -6846,7 +6846,7 @@ msgstr "งานโปรด: %s"
 #: templates/user-dashboard/employer/user-manage-jobs.php:177
 #: templates/user-dashboard/employer/user-manage-jobs.php:407
 msgid "Featured"
-msgstr "น่า สนใจ"
+msgstr "งานเด่น"
 
 #: includes/classes/email-templates/class-job-approved-to-employer.php:96
 #: includes/classes/email-templates/class-job-submitted-admin.php:94
@@ -6854,7 +6854,7 @@ msgstr "น่า สนใจ"
 #: includes/classes/email-templates/class-job-update-to-employer.php:91
 #: includes/classes/email-templates/class-candidate-message-employer.php:112
 msgid "featured"
-msgstr "น่า สนใจ"
+msgstr "งานเด่น"
 
 #: includes/meta-boxes/candidate-metabox.php:552
 msgid "Featured Candidate"
@@ -10209,7 +10209,7 @@ msgstr "งานอื่นๆ จาก "
 #: shortcodes/vc-shortcodes/jobs-listing-shortcode.php:1690
 #: shortcodes/vc-shortcodes/jobs-listing-shortcode.php:1702
 msgid "Most Recent"
-msgstr "ล่าสุด"
+msgstr "ล่าสุด1"
 
 #: includes/common-functions/common-functions.php:5080
 #: includes/common-functions/job-functions.php:3769
@@ -13827,7 +13827,7 @@ msgstr "เหลือ"
 
 #: includes/classes/email-templates/class-candidates-package-expire-alert.php:89
 msgid "Remaining Applications"
-msgstr "โปรแกรมประยุกต์ที่เหลือ"
+msgstr "จำนวนรับสมัครที่เหลือ"
 
 #: includes/classes/email-templates/class-cvs-package-expire-alert.php:89
 msgid "Remaining CVs"
@@ -16253,7 +16253,7 @@ msgstr ""
 #: templates/user-dashboard/employer/user-packages.php:76
 #: templates/user-dashboard/employer/user-transactions.php:68
 msgid "Status"
-msgstr ""
+msgstr "สถานะ"
 
 #: includes/classes/email-templates/class-job-approved-to-employer.php:106
 #: includes/classes/email-templates/class-job-submitted-admin.php:104
@@ -16261,15 +16261,15 @@ msgstr ""
 #: includes/classes/email-templates/class-job-update-to-employer.php:101
 #: includes/classes/email-templates/class-candidate-message-employer.php:122
 msgid "status"
-msgstr ""
+msgstr "สถานะ"
 
 #: admin/ReduxFramework/jobsearch-options/options-config.php:164
 msgid "Status Settings"
-msgstr ""
+msgstr "ตั้งค่าสถานะ"
 
 #: admin/ReduxFramework/jobsearch-options/options-config.php:165
 msgid "Status settings."
-msgstr ""
+msgstr "ตั้งค่าสถานะ"
 
 #: includes/class-jobsearch-plugin.php:957
 #: admin/ReduxFramework/jobsearch-options/options-config.php:669
@@ -16342,7 +16342,7 @@ msgstr ""
 #: includes/classes/class-wc-subscriptions.php:606
 #: includes/classes/class-wc-subscriptions.php:906
 msgid "Subscription Status"
-msgstr ""
+msgstr "สถานะการติดตาม"
 
 #: includes/user-account-links.php:96 includes/user-account-links.php:242
 #: includes/user-account-links.php:417 includes/user-account-links.php:568
