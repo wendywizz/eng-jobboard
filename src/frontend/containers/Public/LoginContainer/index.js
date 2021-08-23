@@ -44,7 +44,7 @@ function LoginContainer() {
               <span className="icon icon-facebook">
                 <FontAwesomeIcon icon={faFacebookF} />
               </span>
-              <span className="icon icon-google">                
+              <span className="icon icon-google">
                 <FontAwesomeIcon icon={faGoogle} />
               </span>
             </div>
@@ -96,13 +96,14 @@ function LoginContainer() {
               </div>
             </Form>
           </CardBody>
-          <CardFooter>
-            <Button className="link" color="transparent"><Link to={REGISTER_PATH}>สมัครใช้งาน</Link></Button>
-            <Button className="link" color="transparent"><Link to="/">ลืมรหัสผ่าน</Link></Button>
-          </CardFooter>
         </Card>
       </div>
     </Template >
   )
 }
 export default LoginContainer
+
+/*<CardFooter>
+  <Button className="link" color="transparent"><Link to={REGISTER_PATH}>สมัครใช้งาน</Link></Button>
+  <Button className="link" color="transparent"><Link to="/">ลืมรหัสผ่าน</Link></Button>
+</CardFooter>*/
