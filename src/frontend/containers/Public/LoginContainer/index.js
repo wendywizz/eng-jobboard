@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import { Card, CardHeader, CardBody, CardFooter, Form, Button } from "reactstrap"
+import { Card, CardHeader, CardBody, Form, Button } from "reactstrap"
 import { useHistory } from "react-router-dom"
 import Template from "Frontend/components/Template"
 import { useForm } from "react-hook-form"
@@ -8,7 +7,7 @@ import { useAuth } from "Shared/context/AuthContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
-import { HOME_PATH, REGISTER_PATH } from "Frontend/configs/paths"
+import { HOME_PATH } from "Frontend/configs/paths"
 import "./index.css"
 
 function LoginContainer() {
@@ -28,7 +27,7 @@ function LoginContainer() {
       setLoading(false)
       if (!success) {
         setMessage(message)
-      } else {
+      } else {        
         history.push(HOME_PATH)
       }
     }

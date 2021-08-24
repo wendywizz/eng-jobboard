@@ -21,9 +21,9 @@ export function CompanyProvider({ children }) {
     }
   }
 
-  useEffect(() => {
-    if (!loaded && authUser) {
-      const ownerId = authUser.localId
+  useEffect(() => {    
+    if (!loaded && authUser) {            
+      const ownerId = authUser.id
       getData(ownerId)
     }
   }, [authUser, loaded])

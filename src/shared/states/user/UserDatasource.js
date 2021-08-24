@@ -1,31 +1,31 @@
-import { sendPost, sendGet } from "Shared/utils/request"
-import UserMapper from "./UserMapper"
+import { sendPost } from "Shared/utils/request"
 
-async function createApplicant(uid, email, studentCode, personNo) {
+async function createApplicant(email, password, studentCode, personNo) {
   const uri = "http://localhost:3333/api/register/applicant/email"
   const userType = 1
   const body = {
     email,
+    password,
     user_type: userType,
     std_code: studentCode,
     person_no: personNo
   }
-  return await createUser(uri, uid, body)
+  return await createUser(uri, body)
 }
 
-async function createEmployer(uid, email) {
+async function createEmployer(email, password) {
   const uri = "http://localhost:3333/api/register/employer/email"
   const userType = 2
   const body = {
     email,
+    password,
     user_type: userType
   }
-  return await createUser(uri, uid, body)
+  return await createUser(uri, body)
 }
 
-async function createUser(uri, uid, data) {
+async function createUser(uri, data) {
   const bodyData = {
-    user_code: uid,
     ...data
   }
   return await sendPost(uri, bodyData).then(res => res.json())
@@ -40,7 +40,15 @@ async function identifyStudent(studentCode, personNo) {
   return await sendPost(uri, bodyData).then(res => res.json())
 }
 
-async function getUserByCode(code) {
+export {
+  createEmployer,
+  createApplicant,
+  identifyStudent
+  /*getUserType,
+  getUserByCode,*/  
+}
+
+/*async function getUserByCode(code) {
   let rData = null, rMessage = null, rError = null
   const uri = "http://localhost:3333/api/user/user-by-code"
   const params = { code }
@@ -67,12 +75,4 @@ async function getUserType(code) {
   const params = { code }
 
   return sendGet(uri, params).then(res => res.json())
-}
-
-export {
-  createEmployer,
-  createApplicant,
-  getUserType,
-  getUserByCode,
-  identifyStudent
-}
+}*/

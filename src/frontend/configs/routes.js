@@ -13,6 +13,7 @@ import {
   EmprResumeContainer,
   EmprSettingContainer
 } from "Frontend/containers/Employer"
+
 import {
   ApcProfileContainer,
   ApcResumeContainer,
@@ -37,6 +38,13 @@ import {
   APPLICANT_RESUME_PATH,
   APPLICANT_SETTING_PATH,
 } from "./paths"
+
+/*const EmprProfileContainer = React.lazy(() => import("Frontend/containers/Employer/ProfileContainer"))
+const EmprJobFormAddContainer = React.lazy(() => import("Frontend/containers/Employer/JobFormContainer/add"))
+const EmprJobFormEditContainer = React.lazy(() => import("Frontend/containers/Employer/JobFormContainer/edit"))
+const EmprJobListContainer = React.lazy(() => import("Frontend/containers/Employer/JobListContainer"))
+const EmprResumeContainer = React.lazy(() => import("Frontend/containers/Employer/ResumeContainer"))
+const EmprSettingContainer = React.lazy(() => import("Frontend/containers/Employer/SettingContainer"))*/
 
 const routes = [
   { name: "Homepage", path: HOME_PATH, component: HomeContainer, exact: true },

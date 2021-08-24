@@ -1,129 +1,125 @@
-import React, { useContext, useState, useEffect } from "react"
-import { APPLICANT_TYPE, EMPLOYER_TYPE } from "Shared/constants/user"
-import { createApplicant, createEmployer } from "Shared/states/user/UserDatasource"
-import { getUserByCode } from "Shared/states/user/UserDatasource"
-import { auth } from "../../firebase"
+import React, { useEffect, useContext, useState } from "react";
+import { APPLICANT_TYPE, EMPLOYER_TYPE } from "Shared/constants/user";
+import {
+  createApplicant,
+  createEmployer,
+} from "Shared/states/user/UserDatasource";
+import { sendGet, sendPost } from "Shared/utils/request";
 
-const AuthContext = React.createContext()
+const AuthContext = React.createContext();
+const TOKEN_KEY_NAME = 'token'
 
 export function useAuth() {
-  return useContext(AuthContext)
+  return useContext(AuthContext);
 }
 
 export function AuthProvider({ children }) {
-  const [authUser, setAuthUser] = useState()
-  const [authType, setAuthType] = useState()
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [authUser, setAuthUser] = useState();
+  const [authType, setAuthType] = useState();
 
   async function signupWithEmail(email, password, userType, additional) {
-    let success = false, message = "Create user failed", error = null
+    let success = false,
+      message = "Create user failed",
+      error = null;
 
-    await auth.createUserWithEmailAndPassword(email, password)
-      .then(res => {
-        // Create user on local database
-        const uid = res.user.uid
-        switch (userType) {
-          // Create new Applicant
-          case APPLICANT_TYPE:
-            const { studentCode, personNo } = additional
-            createApplicant(uid, email, studentCode, personNo)
-            break;
-          // Create new Employer
-          case EMPLOYER_TYPE:
-            createEmployer(uid, email)
-            break
-          default:
-            break
-        }
-        success = true
-        message = "Create user successed"
-      })
-      .catch(e => {
-        error = e.message
-      })
+    switch (userType) {
+      // Create new Applicant
+      case APPLICANT_TYPE:
+        const { studentCode, personNo } = additional;
+        await createApplicant(email, password, studentCode, personNo);
+        break;
+      // Create new Employer
+      case EMPLOYER_TYPE:
+        await createEmployer(email, password);
+        break;
+      default:
+        break;
+    }
 
     return {
       success,
       message,
-      error
-    }
-  }
-
-  async function createSession(fbUser) {
-    const { data } = await getUserByCode(fbUser.uid)
-
-    if (data) {
-      const user = {
-        localId: data.id,
-        ...fbUser
-      }
-      setAuthUser(user)
-      setAuthType(data.type)
-    }
+      error,
+    };
   }
 
   async function signin(email, password) {
-    let rSuccess = false, rMessage = "Sign in failed"
+    return await signinWithJWT(email, password)
+      .then((res) => res.json())
+      .then((result) => {
+        const { success, data, token, message } = result;
+        
+        if (result.success) {
+          setAccessToken(token)
+          createSession(data);
+        }
+        return { success, message };
+      });
+  }
 
-    const fbUser = await signinFirebase(email, password)
-    if (fbUser) {
-      await createSession(fbUser)
+  async function signinWithJWT(email, password) {
+    const uri = "http://localhost:3333/api/authen/signin";
+    const bodyData = { email, password };
 
-      rSuccess = true
-      rMessage = "Sign in success"
+    return await sendPost(uri, bodyData);
+  }
+
+  function createSession(data) {
+    if (data) {
+      setAuthType(data.type);
+      setAuthUser(data);
+      setIsAuthenticated(true)
     }
-
-    return {
-      success: rSuccess,
-      message: rMessage
-    }
   }
 
-  async function signinFirebase(email, password) {
-    return await auth.signInWithEmailAndPassword(email, password)
-      .then(res => res.user)
-      .catch(e => {
-        console.log(e.message)
-      })
-  }
+  async function signout() {
+    clearAccessToken()
 
-  function signout() {
-    return auth.signOut()
-  }
-
-  function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email)
-  }
-
-  function updateEmail(email) {
-    return authUser.updateEmail(email)
-  }
-
-  function updatePassword(password) {
-    return authUser.updatePassword(password)
+    setAuthUser(null)
+    setAuthType(null)
+    setIsAuthenticated(false)
   }
 
   useEffect(() => {
-    async function setSession(fbUser) {
-      await createSession(fbUser)
-    }
-    const unsubscribe = auth.onAuthStateChanged(user => {   
-      if (user) {   
-        setSession(user)
-      }
-    })
+    async function verifyToken() {
+      const token = getAccessToken()    
+      const HEADERS = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + process.env.AUTHORIZE_TOKEN,
+        "x-access-token": token,
+        "mode": "cors",
+      };
+      await sendGet("http://localhost:3333/api/authen/user-info", null, HEADERS )
+        .then((res) => res.json())
+        .then(result => {
+          if (result.success) {
+            createSession(result.data);
+          }
+        })
+    }    
+    verifyToken()
+  }, []);
 
-    return unsubscribe
-  }, [])
+  function setAccessToken(token) {
+    localStorage.setItem(TOKEN_KEY_NAME, token);
+  }
+
+  function getAccessToken() {
+    return localStorage.getItem(TOKEN_KEY_NAME)
+  }
+
+  function clearAccessToken() {
+    localStorage.removeItem(TOKEN_KEY_NAME)
+  }
 
   const values = {
+    isAuthenticated,
     authUser,
     authType,
-    signin,
     signupWithEmail,
-    signout,
-    resetPassword,
-    updateEmail,
-    updatePassword,
+    signin,        
+    signout
   }
 
   return (

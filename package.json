@@ -23,7 +23,6 @@
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "numeral": "^2.0.6",
-    "query-string": "^7.0.0",
     "querystring": "^0.2.1",
     "randomstring": "^1.1.5",
     "rc-slider": "^9.7.2",

@@ -29,19 +29,6 @@ function ResultContainer() {
   const location = useLocation()
   const history = useHistory()
 
-  const getData = async (params) => {
-    const searchParams = dispatchParams(params)
-    const offset = PAGE_DISPLAY_LENGTH * (currentPage)
-    const { data, itemCount, error } = await searchJob(searchParams, PAGE_DISPLAY_LENGTH, offset)
-
-    if (error) {
-      dispatch({ type: READ_FAILED, payload: { error } })
-    } else {
-      dispatch({ type: READ_SUCCESS, payload: { data, itemCount } })
-    }
-    setLoading(false)
-  }
-
   useEffect(() => {
     // Init params from home page
     if (init) {
@@ -56,9 +43,22 @@ function ResultContainer() {
   }, [init, history, location.state])
 
   useEffect(() => {
+    const fetchData = async () => {
+      const searchParams = dispatchParams(params)
+      const offset = PAGE_DISPLAY_LENGTH * (currentPage)
+      const { data, itemCount, error } = await searchJob(searchParams, PAGE_DISPLAY_LENGTH, offset)
+  
+      if (error) {
+        dispatch({ type: READ_FAILED, payload: { error } })
+      } else {
+        dispatch({ type: READ_SUCCESS, payload: { data, itemCount } })
+      }
+      setLoading(false)
+    }
+
     if (loading) {
       setTimeout(() => {
-        getData(params)
+        fetchData()
       }, 500)
     }
   }, [loading, params, currentPage])
