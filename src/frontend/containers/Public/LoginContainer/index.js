@@ -63,7 +63,7 @@ function LoginContainer() {
                     required: true,
                     pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   })}
-                  defaultValue="test@gmail.com"
+                  defaultValue="employer@gmail.com"
                 />
                 {errors.login_email?.type === "required" && <p className="validate-message">Field is required</p>}
                 {errors.login_email?.type === "pattern" && <p className="validate-message">Invalid email</p>}
@@ -81,7 +81,7 @@ function LoginContainer() {
                   ref={register({
                     required: true
                   })}
-                  defaultValue="1212312121"
+                  defaultValue="12123"
                 />
                 {errors.login_password?.type === "required" && <p className="validate-message">Field is required</p>}
               </div>

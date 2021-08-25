@@ -1,9 +1,10 @@
 import { sendGet } from "Shared/utils/request"
 import { ProvinceMapper, DistrictMapper } from "./AreaMapper"
+import { apiEndpoint } from "Frontend/configs/uri"
 
 async function listProvince() {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/area/list_province"
+  const uri = `${apiEndpoint}area/list_province`
 
   await sendGet(uri)
     .then(res => res.json())
@@ -29,7 +30,7 @@ async function listProvince() {
 
 async function listDistrictByProvince(id) {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
-  const uri = `http://localhost:3333/api/area/list_district?id=${id}`
+  const uri = `${apiEndpoint}area/list_district?id=${id}`
 
   await sendGet(uri)
     .then(res => res.json())
@@ -52,7 +53,7 @@ async function listDistrictByProvince(id) {
 
 async function getProvince(id) {
   let rData = null, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/area/province"
+  const uri = `${apiEndpoint}area/province`
   const params = { id }
 
   await sendGet(uri, params)
@@ -77,7 +78,7 @@ async function getProvince(id) {
 
 async function getDistrict(id) {
   let rData = null, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/area/district"
+  const uri = `${apiEndpoint}area/district`
   const params = { id }
 
   await sendGet(uri, params)

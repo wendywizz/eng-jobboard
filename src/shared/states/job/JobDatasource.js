@@ -1,11 +1,12 @@
 import { sendGet, sendPost } from "Shared/utils/request"
 import { JobMapper, JobTypeMapper, JobCategoryMapper, SalaryMapper } from "./JobMapper"
 import { ACTIVE, INACTIVE } from "Shared/constants/employer-job-status"
+import { apiEndpoint } from "Frontend/configs/uri"
 
 async function createJob(newData) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
 
-  const uri = "http://localhost:3333/api/job/add"
+  const uri = `${apiEndpoint}job/add`
 
   await sendPost(uri, newData)
     .then(res => res.json())
@@ -31,7 +32,7 @@ async function createJob(newData) {
 
 async function updateJob(id, data) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/job/save"
+  const uri = `${apiEndpoint}job/save`
   const bodyData = {
     id,
     ...data
@@ -61,7 +62,7 @@ async function updateJob(id, data) {
 
 async function deleteJob(id) {
   let rSuccess = false, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/job/remove"
+  const uri = `${apiEndpoint}job/remove`
   const bodyData = { id }
 
   await sendPost(uri, bodyData)
@@ -86,7 +87,7 @@ async function deleteJob(id) {
 
 async function searchJob(query, length, start) {
   let rData = null, rItemCount = null, rMessage = null, rError = null
-  const uri = `http://localhost:3333/api/job/search`
+  const uri = `${apiEndpoint}job/search`
 
   let extendQuery = {}
   if (length) {
@@ -121,7 +122,7 @@ async function searchJob(query, length, start) {
 
 async function getJobByID(id) {
   let rData = null, rMessage = null, rError = null
-  const uri = `http://localhost:3333/api/job/view`
+  const uri = `${apiEndpoint}job/view`
   const params = { id }
 
   await sendGet(uri, params)
@@ -146,7 +147,7 @@ async function getJobByID(id) {
 
 async function getJobType() {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/job/job-type"
+  const uri = `${apiEndpoint}job/job-type`
 
   await sendGet(uri)
     .then(res => res.json())
@@ -172,7 +173,7 @@ async function getJobType() {
 
 async function getJobCategory() {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/job/job-category"
+  const uri = `${apiEndpoint}job/job-category`
 
   await sendGet(uri)
     .then(res => res.json())
@@ -198,7 +199,7 @@ async function getJobCategory() {
 
 async function getSalaryType() {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/job/salary-type"
+  const uri = `${apiEndpoint}job/salary-type`
 
   await sendGet(uri)
     .then(res => res.json())
@@ -224,7 +225,7 @@ async function getSalaryType() {
 
 async function getJobOfCompany(id, length, start, status) {
   let rData = [], rItemCount = 0, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/job/company"
+  const uri = `${apiEndpoint}job/company`
 
   let extendQuery = {}
   if (length) {
@@ -264,7 +265,7 @@ async function getJobOfCompany(id, length, start, status) {
 
 async function setActiveJob(id) {
   let rSuccess = false, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/job/active"
+  const uri = `${apiEndpoint}job/active`
   const bodyData = { id }
 
   await sendPost(uri, bodyData)
@@ -289,7 +290,7 @@ async function setActiveJob(id) {
 
 async function countAllActiveJob() {
   let rItemCount = 0, rError = null
-  const uri = "http://localhost:3333/api/job/countall-active-job"
+  const uri = `${apiEndpoint}job/countall-active-job`
 
   await sendGet(uri)
     .then(res => res.json())

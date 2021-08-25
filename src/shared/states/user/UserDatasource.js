@@ -1,7 +1,8 @@
 import { sendPost } from "Shared/utils/request"
+import { apiEndpoint } from "Frontend/configs/uri"
 
 async function createApplicant(email, password, studentCode, personNo) {
-  const uri = "http://localhost:3333/api/register/applicant/email"
+  const uri = `${apiEndpoint}register/applicant/email`
   const userType = 1
   const body = {
     email,
@@ -14,7 +15,7 @@ async function createApplicant(email, password, studentCode, personNo) {
 }
 
 async function createEmployer(email, password) {
-  const uri = "http://localhost:3333/api/register/employer/email"
+  const uri = `${apiEndpoint}register/employer/email`
   const userType = 2
   const body = {
     email,
@@ -32,7 +33,7 @@ async function createUser(uri, data) {
 }
 
 async function identifyStudent(studentCode, personNo) {
-  const uri = "http://localhost:3333/api/register/identify-student"
+  const uri = `${apiEndpoint}register/identify-student`
   const bodyData = {
     std_code: studentCode,
     person_no: personNo

@@ -1,9 +1,10 @@
 import { sendGet, sendPost, formPost } from "Shared/utils/request"
 import { CompanyMapper } from "./CompanyMapper"
+import { apiEndpoint } from "Frontend/configs/uri"
 
 async function getCompanyItem(id) {
   let rData = null, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/company/view"
+  const uri = `${apiEndpoint}company/view`
   const params = { id: id }
 
   await sendGet(uri, params)
@@ -28,7 +29,7 @@ async function getCompanyItem(id) {
 
 async function getCompanyByOwner(ownerId) {
   let rData = null, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/company/info-owner"
+  const uri = `${apiEndpoint}company/info-owner`
   const params = { owner: ownerId }
 
   await sendGet(uri, params)
@@ -53,7 +54,7 @@ async function getCompanyByOwner(ownerId) {
 
 async function saveCompanyByOwner(ownerId, saveData) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/company/save-owner"
+  const uri = `${apiEndpoint}company/save-owner`
   const bodyData = {
     owner: ownerId,
     ...saveData
@@ -82,7 +83,7 @@ async function saveCompanyByOwner(ownerId, saveData) {
 }
 
 async function uploadLogo(companyId, ownerId, logo) {
-  const uri = "http://localhost:3333/api/company/upload-logo"
+  const uri = `${apiEndpoint}company/upload-logo`
   const formData = new FormData()
   formData.append('imageLogo', logo)
   formData.append('company_id', companyId)
