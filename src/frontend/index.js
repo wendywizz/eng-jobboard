@@ -2,9 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AuthProvider } from "Shared/context/AuthContext";
 import { ToastProvider } from "react-toast-notifications";
-import { APPLICANT_PATH, EMPLOYER_PATH } from "./configs/paths";
-import { ApplicantRoute, EmployerRoute } from "./components/Route";
-import routes from "./configs/routes";
+
 
 import "jquery/dist/jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,64 +11,41 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "draft-js/dist/Draft.css";
 import "rc-slider/assets/index.css";
 import "./assets/css/style.css";
+import { ApplicantRoute, EmployerRoute } from "./components/Route";
+import { APPLICANT_PROFILE_PATH, APPLICANT_RESUME_PATH, APPLICANT_SETTING_PATH, DETAIL_PATH, EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH, HOME_PATH, LOGIN_PATH, REGISTER_PATH, RESULT_PATH } from "./configs/paths";
+import {
+  EmprProfileContainer,
+  EmprJobFormAddContainer,
+  EmprJobFormEditContainer,
+  EmprJobListContainer,
+  EmprResumeContainer,
+  EmprSettingContainer
+} from "Frontend/containers/Employer"
+import { DetailContainer, HomeContainer, LoginContainer, RegisterContainer, ResultContainer } from "./containers/Public";
+import { ApcProfileContainer, ApcResumeContainer, ApcSettingContainer } from "./containers/Applicant";
 
-function RouteApp() {
+function RouteApp() {  
   return (
     <Router>
-      <Switch>
-        {routes.map((value, index) =>
-          value.children && value.children.length > 0 ? (
-            <Route
-              key={index}
-              path={value.basePath}
-              render={({ match }) => (
-                <Switch>
-                  {value.children.map((route, index) => {
-                    switch (value.basePath) {
-                      case APPLICANT_PATH:
-                        return (
-                          <ApplicantRoute
-                            key={index}
-                            path={route.path}
-                            exact={route.exact}
-                            name={route.name}
-                            component={route.component}
-                          />
-                        );
-                      case EMPLOYER_PATH:
-                        return (
-                          <EmployerRoute
-                            key={index}
-                            path={route.path}
-                            exact={route.exact}
-                            name={route.name}
-                            component={route.component}
-                          />
-                        )
-                      default:
-                        return (
-                          <Route
-                            key={index}
-                            path={match.path + route.path}
-                            exact={route.exact}
-                            name={route.name}
-                            component={route.component}
-                          />
-                        );
-                    }
-                  })}
-                </Switch>
-              )}
-            />
-          ) : (
-            <Route
-              key={index}
-              path={value.path}
-              component={value.component}
-              {...value}
-            />
-          )
-        )}
+      <Switch>               
+        <Route path={HOME_PATH} component={HomeContainer} exact />
+        <Route path={LOGIN_PATH} component={LoginContainer} exact />
+        <Route path={REGISTER_PATH} component={RegisterContainer} exact />
+        <Route path={RESULT_PATH} component={ResultContainer} />
+        <Route path={DETAIL_PATH + "/:id"} component={DetailContainer} />
+        <ApplicantRoute>
+          <Route path={APPLICANT_PROFILE_PATH} component={ApcProfileContainer} exact />
+          <Route path={APPLICANT_RESUME_PATH} component={ApcResumeContainer} exact />
+          <Route path={APPLICANT_SETTING_PATH} component={ApcSettingContainer} exact />
+        </ApplicantRoute>
+        <EmployerRoute>
+          <Route path={EMPLOYER_PROFILE_PATH} component={EmprProfileContainer} exact/>
+          <Route path={EMPLOYER_JOB_ADD_PATH} component={EmprJobFormAddContainer} exact />
+          <Route path={EMPLOYER_JOB_EDIT_PATH} component={EmprJobFormEditContainer} exact />
+          <Route path={EMPLOYER_JOB_PATH} component={EmprJobListContainer} exact />
+          <Route path={EMPLOYER_RESUME_PATH} component={EmprResumeContainer} exact />
+          <Route path={EMPLOYER_SETTING_PATH} component={EmprSettingContainer} exact />
+        </EmployerRoute>     
       </Switch>
     </Router>
   );

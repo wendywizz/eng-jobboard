@@ -17,6 +17,7 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [authUser, setAuthUser] = useState();
   const [authType, setAuthType] = useState();
+  const [ready, setReady] = useState(false)
 
   async function signupWithEmail(email, password, userType, additional) {
     let success = false,
@@ -70,6 +71,7 @@ export function AuthProvider({ children }) {
       setAuthType(data.type);
       setAuthUser(data);
       setIsAuthenticated(true)
+      setReady(true)
     }
   }
 
@@ -99,6 +101,13 @@ export function AuthProvider({ children }) {
         })
     }    
     verifyToken()
+
+    return () => {
+      setAuthUser(null)
+      setAuthType(null)
+      setIsAuthenticated(false)
+      setReady(false)
+    }
   }, []);
 
   function setAccessToken(token) {
@@ -117,6 +126,7 @@ export function AuthProvider({ children }) {
     isAuthenticated,
     authUser,
     authType,
+    ready,
     signupWithEmail,
     signin,        
     signout

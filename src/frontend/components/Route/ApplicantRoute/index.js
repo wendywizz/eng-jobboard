@@ -1,15 +1,17 @@
 import React from "react"
-import { Route } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import { APPLICANT_TYPE } from "Shared/constants/user"
 import { useAuth } from "Shared/context/AuthContext"
+import { HOME_PATH } from "Frontend/configs/paths";
 import TemplateApplicant from "Frontend/components/TemplateApplicant"
 
-export default function ApplicantRoute({ component: Component, ...rest }) {
-  const { authUser, authType } = useAuth()  
+export default function ApplicantRoute({ children, ...rest }) {
+  const { isAuthenticated, ready, authType } = useAuth()
 
-  const checkIfApplicant = () => {
-    if (authUser) {
-      return authType === APPLICANT_TYPE
+  const verifyRoute = () => {
+    console.log('authType=', authType)
+    if (isAuthenticated && (authType === APPLICANT_TYPE)) {
+      return true
     } else {
       return false
     }
@@ -18,17 +20,19 @@ export default function ApplicantRoute({ component: Component, ...rest }) {
   return (
     <>
       {
-        authUser ? (
+        ready ? (
           <TemplateApplicant>
             <Route
               {...rest}
-              render={props => {
-                return checkIfApplicant() ? <Component {...props} /> : <div>TEST</div>
+              render={() => {
+                return verifyRoute() ? children : <Redirect to={HOME_PATH} />
               }}
             ></Route>
           </TemplateApplicant>
         ) : (
-          <div />
+          <div>
+            <h1>Please to to login</h1>
+          </div>
         )
       }
     </>
