@@ -23,6 +23,7 @@ import {
 } from "Frontend/containers/Employer"
 import { DetailContainer, HomeContainer, LoginContainer, RegisterContainer, ResultContainer } from "./containers/Public";
 import { ApcProfileContainer, ApcResumeContainer, ApcSettingContainer } from "./containers/Applicant";
+import { E404Container } from "./containers/Public/ErrorContainer";
 
 function RouteApp() {  
   return (
@@ -33,19 +34,20 @@ function RouteApp() {
         <Route path={REGISTER_PATH} component={RegisterContainer} exact />
         <Route path={RESULT_PATH} component={ResultContainer} />
         <Route path={DETAIL_PATH + "/:id"} component={DetailContainer} />
-        <ApplicantRoute>
+        <ApplicantRoute path="/applicant">
           <Route path={APPLICANT_PROFILE_PATH} component={ApcProfileContainer} exact />
           <Route path={APPLICANT_RESUME_PATH} component={ApcResumeContainer} exact />
           <Route path={APPLICANT_SETTING_PATH} component={ApcSettingContainer} exact />
         </ApplicantRoute>
-        <EmployerRoute>
-          <Route path={EMPLOYER_PROFILE_PATH} component={EmprProfileContainer} exact/>
+        <EmployerRoute path="/employer">
+          <Route path={EMPLOYER_PROFILE_PATH} component={EmprProfileContainer} exact />
           <Route path={EMPLOYER_JOB_ADD_PATH} component={EmprJobFormAddContainer} exact />
-          <Route path={EMPLOYER_JOB_EDIT_PATH} component={EmprJobFormEditContainer} exact />
+          <Route path={EMPLOYER_JOB_EDIT_PATH + "/:id"} component={EmprJobFormEditContainer} />
           <Route path={EMPLOYER_JOB_PATH} component={EmprJobListContainer} exact />
           <Route path={EMPLOYER_RESUME_PATH} component={EmprResumeContainer} exact />
           <Route path={EMPLOYER_SETTING_PATH} component={EmprSettingContainer} exact />
         </EmployerRoute>     
+        <Route component={E404Container} />
       </Switch>
     </Router>
   );

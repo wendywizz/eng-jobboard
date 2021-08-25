@@ -1,0 +1,13 @@
+.card-company-info .header {
+  display: flex;
+  flex-direction: row;
+}
+.card-company-info .header .logo {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+}
+.card-company-info .header .name {
+  font-size: 24px;
+  margin-left: 10px;
+}

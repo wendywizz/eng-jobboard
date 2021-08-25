@@ -30,7 +30,7 @@ function JobFormAddContainer() {
   const {authUser} = useAuth()
   const [saving, setSaving] = useState(false)
   const refForm = useRef()
-  const [dispatch] = useReducer(JobReducer, INIT_DATA)
+  const [state, dispatch] = useReducer(JobReducer, INIT_DATA)
   const { addToast } = useToasts()
 
   const _handleCallback = (bodyData) => {
@@ -102,7 +102,7 @@ function JobFormAddContainer() {
           ref={refForm}
           editing={false}
           companyOwner={companyId}
-          owner={authUser.localId}
+          owner={authUser.id}
           onSubmit={_handleCallback}
         />
       </ContentBody>

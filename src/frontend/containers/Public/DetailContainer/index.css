@@ -1,4 +1,18 @@
-.section-header .bg-cover { 
+.page-job-detail {
+  min-height: 80vh;
+}
+.page-job-detail .page-inner {
+  padding: 50px 45px;
+  background-color: #fff;
+}
+.section-detail .section-content {
+  font-size: 16px;
+  line-height: 2em;
+}
+.section-detail .section-heading .section-title {
+  font-size: 18px;
+}
+/*.section-header .bg-cover { 
   display: flex;
   height: 35vh;
   padding: 30px 0;
@@ -86,3 +100,4 @@
   line-height: 2em;
   letter-spacing: 0.04em;
 }
+*/
