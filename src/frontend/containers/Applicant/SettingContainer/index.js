@@ -1,7 +1,5 @@
 import React, { useState } from "react"
 import { Row, Col, Form, FormGroup, Input, Label, Button } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons"
 import Content, { ContentBody, ContentHeader } from "Frontend/components/Content"
 import Section from "Frontend/components/Section"
 import ToggleCheckbox from "Frontend/components/ToggleCheckbox";
@@ -89,30 +87,7 @@ function SettingContainer() {
                     <Button color="primary">ยืนยัน</Button>
                   </div>
                 </div>
-              </Col>
-              <Col md={6} sm={12}>
-                <div className="sub-section-setting">
-                  <h4 className="title">การเชื่อมโยงบัญชี Social Network</h4>
-                  <FormGroup className="form-group-button">
-                    <div className="col-icon">
-                      <FontAwesomeIcon icon={faFacebook} className="link-social-icon facebook" />
-                      <Label>เชื่อมโยงบัญชี Facebook</Label>
-                    </div>
-                    <div className="col-button">
-                      <Button size="sm">ยังไม่เชื่อมโยง</Button>
-                    </div>
-                  </FormGroup>
-                  <FormGroup className="form-group-button">
-                    <div className="col-icon">
-                      <FontAwesomeIcon icon={faGoogle} className="link-social-icon google" />
-                      <Label>เชื่อมโยงบัญชี Google</Label>
-                    </div>
-                    <div className="col-button">
-                      <Button size="sm" color="success">เชื่อมโยงแล้ว</Button>
-                    </div>
-                  </FormGroup>
-                </div>
-              </Col>
+              </Col>            
             </Row>
           </Form>
         </Section>

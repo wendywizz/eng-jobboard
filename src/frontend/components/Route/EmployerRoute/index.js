@@ -1,10 +1,10 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import TemplateEmployer from "Frontend/components/TemplateEmployer";
-import { useAuth } from "Shared/context/AuthContext";
-import { HOME_PATH } from "Frontend/configs/paths";
-import { EMPLOYER_TYPE } from "Shared/constants/user";
-import BackToLoginContainer from "Frontend/containers/Public/ErrorContainer/BackToLoginContainer";
+import React from "react"
+import { Route, Redirect } from "react-router-dom"
+import { useAuth } from "Shared/context/AuthContext"
+import { HOME_PATH } from "Frontend/configs/paths"
+import { EMPLOYER_TYPE } from "Shared/constants/user"
+import TemplateEmployer from "Frontend/components/TemplateEmployer"
+import BackToLoginContainer from "Frontend/containers/Public/ErrorContainer/BackToLoginContainer"
 
 export default function EmployerRoute({ children, ...rest }) {
   const { isAuthenticated, ready, authType } = useAuth()

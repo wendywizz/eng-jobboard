@@ -1,10 +1,9 @@
 import React, { useEffect, useReducer, useRef, useState } from "react"
 import { Row, Col, Button } from "reactstrap"
 import Content, { ContentBody, ContentHeader } from "Frontend/components/Content"
-import { useToasts } from "react-toast-notifications"
 import FormCompany from "./_form"
 import {
-  getCompanyItem,
+  getCompanyByOwner,
   saveCompanyByOwner
 } from "Shared/states/company/CompanyDatasource"
 import CompanyReducer from "Shared/states/company/CompanyReducer"
@@ -17,8 +16,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave } from "@fortawesome/free-regular-svg-icons"
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
-import { useCompany } from "Shared/context/CompanyContext"
 import { useAuth } from "Shared/context/AuthContext"
+import { useToasts } from "react-toast-notifications"
 import LoadingPage from "Frontend/components/LoadingPage"
 
 let INIT_DATA = {
@@ -26,17 +25,16 @@ let INIT_DATA = {
   message: null
 }
 function ProfileFormContainer() {
-  const [loading, setLoading] = useState(true)
-  const [saving, setSaving] = useState(false)
   const refForm = useRef()
-  const [state, dispatch] = useReducer(CompanyReducer, INIT_DATA)
-  const { companyId } = useCompany()
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)  
+  const [state, dispatch] = useReducer(CompanyReducer, INIT_DATA)  
   const { authUser } = useAuth()
   const { addToast } = useToasts()
 
   useEffect(() => {
     async function fetchData(id) {
-      const { data, error } = await getCompanyItem(id)
+      const { data, error } = await getCompanyByOwner(id)
 
       if (error) {
         dispatch({ type: READ_FAILED, payload: { error } })
@@ -47,9 +45,9 @@ function ProfileFormContainer() {
     }
 
     if (loading) {
-      if (companyId) {
+      if (authUser) {
         setTimeout(() => {
-          fetchData(companyId)
+          fetchData(authUser.id)
         }, 1000)
       }
     }
@@ -74,7 +72,7 @@ function ProfileFormContainer() {
       }
       setSaving(false)
       responseMessage(success, message)
-    }, 2000)
+    }, 1000)
   }
 
   const responseMessage = (success, message) => {

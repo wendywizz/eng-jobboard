@@ -5,7 +5,6 @@ import Template from "Frontend/components/Template"
 import { useForm } from "react-hook-form"
 import { useAuth } from "Shared/context/AuthContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { HOME_PATH } from "Frontend/configs/paths"
 import "./index.css"
@@ -38,15 +37,7 @@ function LoginContainer() {
       <div className="d-flex justify-content-center h-100 login-container">
         <Card>
           <CardHeader>
-            <h1 className="title">LOGIN</h1>
-            <div className="d-flex justify-content-end social-icon">
-              <span className="icon icon-facebook">
-                <FontAwesomeIcon icon={faFacebookF} />
-              </span>
-              <span className="icon icon-google">
-                <FontAwesomeIcon icon={faGoogle} />
-              </span>
-            </div>
+            <h1 className="title">LOGIN</h1>           
           </CardHeader>
           <CardBody>
             <Form onSubmit={handleSubmit(_handleSubmit)}>
@@ -63,7 +54,7 @@ function LoginContainer() {
                     required: true,
                     pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   })}
-                  defaultValue="employer@gmail.com"
+                  defaultValue="student@gmail.com"
                 />
                 {errors.login_email?.type === "required" && <p className="validate-message">Field is required</p>}
                 {errors.login_email?.type === "pattern" && <p className="validate-message">Invalid email</p>}
