@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useReducer, useRef } from "react"
-import { Row, Col, Button, Spinner } from "reactstrap"
+import { Row, Col, Button } from "reactstrap"
 import { Link, useParams, useRouteMatch } from "react-router-dom"
 import Content, { ContentHeader, ContentBody, ContentFooter } from "Frontend/components/Content"
 import { EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
@@ -19,6 +19,7 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
 import { useCompany } from "Shared/context/CompanyContext"
 import { useAuth } from "Shared/context/AuthContext"
 import "./index.css"
+import LoadingPage from "Frontend/components/LoadingPage"
 
 const INIT_DATA = {
   success: false,
@@ -116,7 +117,7 @@ function JobFormEditContainer() {
     <>
       {
         loading
-          ? <Spinner />
+          ? <LoadingPage />
           : (
             state.error
               ? <p>{state.error.message}</p>

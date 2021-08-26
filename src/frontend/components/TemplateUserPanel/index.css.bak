@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
 }
+
 .up-sidebar {
   position: relative;
   width: 300px;
@@ -9,66 +10,76 @@
   color: #fff;
   min-height: 100vh;
 }
+
 .up-sidebar .up-sidebar-header {
   padding: 30px 20px;
   border-bottom: 1px solid #242b2f;
 }
-.up-sidebar .up-sidebar-header .position {    
-  font-size: 1.4em;  
-}
-.up-sidebar .up-sidebar-header .name {
-  font-family: PSU-Stidti-Light;
-}
+
 .up-sidebar .up-sidebar-body ul {
   list-style: none;
   padding: 0;
 }
-.up-sidebar .up-sidebar-body ul li .item {    
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  color: #ededed;
-}
-.up-sidebar .up-sidebar-body ul li .item .icon {
-  width: 40px;
-}
-.up-sidebar .up-sidebar-body ul li .item .icon * {
-  font-size: 24px;
-}
+
 .up-sidebar .up-sidebar-body ul li.active {
   background-color: #111;
 }
-.up-sidebar .up-sidebar-body ul li > .nav-link {
-  display: flex;
-  flex-direction: row;
+
+.up-sidebar .up-sidebar-body ul li>a {
+  display: block;
   color: #fff;
   padding: 20px 15px;
 }
-.up-sidebar .up-sidebar-body ul li > .nav-link:after {    
+
+.up-sidebar .up-sidebar-body ul li>a:after {
+  float: right;
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f054";
 }
-.up-sidebar .up-sidebar-body ul li > .nav-link:hover {
-  cursor: pointer;
+
+.up-sidebar .up-sidebar-body ul li>a:hover {
   background-color: #242b2f;
   text-decoration: none;
 }
+
 .up-sidebar .up-sidebar-body .group {
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #242b2f
 }
+
 .up-info {
   display: flex;
   flex-direction: fow;
 }
+
+.up-info .image {
+  width: 58px;
+  height: 58px;
+  margin-right: 12px;
+}
+
+.up-info .image img {
+  border-radius: 50%;
+}
+
+.up-info .detail .name {
+  display: inline-block;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
 .template-content {
   width: calc(100% - 300px);
 }
+
 .template-content>.inner-content {
   padding: 20px 30px;
 }
+
 .template-content .breadcrumb {
   border-radius: 0;
 }

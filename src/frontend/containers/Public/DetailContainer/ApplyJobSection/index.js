@@ -4,7 +4,7 @@ import "./index.css"
 
 export default function ApplyJobSection({ jobId, deadlineDate }) {  
   return (
-    <div class="section-apply-job">
+    <div className="section-apply-job">
       <Button color="primary" size="lg" block>
         สมัครงานนี้
       </Button>

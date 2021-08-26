@@ -25,7 +25,7 @@ function SalaryMapper(data) {
 }
 
 function JobMapper(data) {  
-  const workDays = JSON.parse(JSON.stringify(data.work_days))
+  //const workDays = JSON.parse(JSON.stringify(data.work_days))
 
   return {
     id: isset(data.job_id),
@@ -41,9 +41,9 @@ function JobMapper(data) {
     salaryTypeAsso: isset(data.salary_type_asso) && SalaryMapper(data.salary_type_asso),
     salaryMin: isset(data.salary_min),
     salaryMax: isset(data.salary_max),
-    workDays: workDays ? workDays : {mon:0,tue:0,wed:0,thu:0,fri:0,sat:0,sun:0},
+    /*workDays: workDays ? workDays : {mon:0,tue:0,wed:0,thu:0,fri:0,sat:0,sun:0},
     workTimeStart: isset(data.work_time_start),
-    workTimeEnd: isset(data.work_time_end),
+    workTimeEnd: isset(data.work_time_end),*/
     district: isset(data.district),
     districtAsso: isset(data.district_asso) && DistrictMapper(data.district_asso),
     province: isset(data.province),    

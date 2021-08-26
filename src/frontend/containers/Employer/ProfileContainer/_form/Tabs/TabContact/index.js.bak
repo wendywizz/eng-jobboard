@@ -15,7 +15,7 @@ function TabContact({ address, province, district, postCode, phone, email, websi
     async function fetchProvince() {
       const { data } = await listProvince()
       const provinceData = data.map(item => ({
-        text: item.name,
+        text: item.nameTh,
         value: item.id
       }))
 
@@ -33,7 +33,7 @@ function TabContact({ address, province, district, postCode, phone, email, websi
     async function fetchDistrict(provinceId) {
       const { data } = await listDistrictByProvince(provinceId)
       const districtData = data.map(item => ({
-        text: item.name,
+        text: item.nameTh,
         value: item.id
       }))
 
@@ -116,7 +116,8 @@ function TabContact({ address, province, district, postCode, phone, email, websi
               )
             }
           </Col>
-        </Row>        
+        </Row>
+        <p className="input-desc">เลือกพื้นที่ผู้สมัครงานปฎิบัติงาน</p>
         {
           (formErrors.province?.type === "noSelected" || formErrors.district?.type === "noSelected")
           && <p className="validate-message">Field is required</p>

@@ -9,7 +9,6 @@ export default function ApplicantRoute({ children, ...rest }) {
   const { isAuthenticated, ready, authType } = useAuth()
 
   const verifyRoute = () => {
-    console.log('authType=', authType)
     if (isAuthenticated && (authType === APPLICANT_TYPE)) {
       return true
     } else {

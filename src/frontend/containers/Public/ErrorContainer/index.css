@@ -1,0 +1,14 @@
+.page-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+}
+.page-error .page-title {
+  font-size: 26px;
+  font-weight: bold;
+}
+.page-error .page-desc {
+  font-size: 14px;
+}

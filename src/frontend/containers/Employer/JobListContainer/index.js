@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react"
-import { Row, Col, Nav, NavItem, NavLink, ListGroup, ListGroupItem, Badge, Spinner } from "reactstrap"
+import { Row, Col, Nav, NavItem, NavLink, ListGroup, ListGroupItem, Button } from "reactstrap"
 import { Link } from "react-router-dom"
 import ReactPaginate from "react-paginate"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -9,10 +9,12 @@ import ToggleCheckbox from "Frontend/components/ToggleCheckbox"
 import useQuery from "Shared/utils/hook/useQuery"
 import { EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH } from "Frontend/configs/paths"
 import { ALL, ACTIVE, INACTIVE } from "Shared/constants/employer-job-status"
-import { getJobOfCompany } from "Shared/states/job/JobDatasource"
+import { deleteJob, getJobOfCompany, setActiveJob } from "Shared/states/job/JobDatasource"
 import JobReducer from "Shared/states/job/JobReducer"
 import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
 import { useCompany } from "Shared/context/CompanyContext"
+import LoadingPage from "Frontend/components/LoadingPage"
+import JobTypeTag from "Frontend/components/JobTypeTag"
 import "./index.css"
 
 const PAGE_DISPLAY_LENGTH = 5
@@ -49,7 +51,7 @@ function JobListContainer() {
     }
   }, [selectedStatus, query])
 
-  useEffect(() => {
+  useEffect(() => {    
     if (loading) {
       if (companyId) {
         setTimeout(() => {
@@ -96,8 +98,13 @@ function JobListContainer() {
     setLoading(true)
   }
 
-  const _handleChangeActive = (e) => {
-    console.log(e.target.value)
+  const _handleChangeActive = async (e, id) => {
+    //const isActive = e.target.value === "on" ? 1 : 0
+    //await setActiveJob(id, isActive).then(() => console.log('remove success'))
+  }
+
+  const _handleRemove = async (id) => {
+    await deleteJob(id).then((res) => console.log(res))
   }
 
   return (
@@ -120,7 +127,7 @@ function JobListContainer() {
           <Col className="text-right">
             <Link className="btn btn-primary" to={EMPLOYER_JOB_ADD_PATH}>
               <FontAwesomeIcon icon={faPlus} />{" "}
-              รับสมัครงานใหม่
+              เพิ่มงานใหม่
             </Link>
           </Col>
         </Row>
@@ -128,7 +135,7 @@ function JobListContainer() {
       <ContentBody box={false} padding={false}>
         {
           loading
-            ? <Spinner />
+            ? <LoadingPage />
             : (
               state.error
                 ? <p>{state.error}</p>
@@ -139,7 +146,7 @@ function JobListContainer() {
                         <ListGroupItem key={index} className="list-group-jobitem">
                           <div className="detail">
                             <div className="job-type">
-                              <Badge color="info">{item.jobTypeAsso.name}</Badge>
+                              <JobTypeTag type={item.jobTypeAsso.id} label={item.jobTypeAsso.name} />
                             </div>
                             <span className="title">{item.position}</span>
                             <span className="amount">{`จำนวนรับ ${item.amount} ตำแหน่ง`}</span>
@@ -148,11 +155,12 @@ function JobListContainer() {
                             <div className="apply-info">
                               <ToggleCheckbox
                                 defaultChecked={item.active}
-                                onChange={_handleChangeActive}
+                                onChange={e => _handleChangeActive(e, item.id)}
                               />
                             </div>
                             <div className="view">
-                              <Link to={`${EMPLOYER_JOB_EDIT_PATH}/${item.id}`} className="btn btn-outline-primary btn-block">แก้ไข</Link>
+                              <Link to={`${EMPLOYER_JOB_EDIT_PATH}/${item.id}`} className="btn btn-outline-primary">แก้ไข</Link>
+                              <Button color="danger" onClick={() => _handleRemove(item.id)}>ลบ</Button>
                             </div>
                           </div>
                         </ListGroupItem>

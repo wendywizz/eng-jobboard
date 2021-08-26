@@ -1,3 +1,4 @@
+import { apiEndpoint } from "Frontend/configs/uri";
 import React, { useEffect, useContext, useState } from "react";
 import { APPLICANT_TYPE, EMPLOYER_TYPE } from "Shared/constants/user";
 import {
@@ -60,10 +61,10 @@ export function AuthProvider({ children }) {
   }
 
   async function signinWithJWT(email, password) {
-    const uri = "http://localhost:3333/api/authen/signin";
-    const bodyData = { email, password };
+    const uri = `${apiEndpoint}authen/signin`
+    const bodyData = { email, password }
 
-    return await sendPost(uri, bodyData);
+    return await sendPost(uri, bodyData)
   }
 
   function createSession(data) {
@@ -75,7 +76,7 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function signout() {
+  async function signout() {    
     clearAccessToken()
 
     setAuthUser(null)
@@ -92,7 +93,7 @@ export function AuthProvider({ children }) {
         "x-access-token": token,
         "mode": "cors",
       };
-      await sendGet("http://localhost:3333/api/authen/user-info", null, HEADERS )
+      await sendGet(`${apiEndpoint}authen/user-info`, null, HEADERS )
         .then((res) => res.json())
         .then(result => {
           if (result.success) {
@@ -118,7 +119,7 @@ export function AuthProvider({ children }) {
     return localStorage.getItem(TOKEN_KEY_NAME)
   }
 
-  function clearAccessToken() {
+  function clearAccessToken() {    
     localStorage.removeItem(TOKEN_KEY_NAME)
   }
 

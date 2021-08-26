@@ -263,10 +263,10 @@ async function getJobOfCompany(id, length, start, status) {
   }
 }
 
-async function setActiveJob(id) {
+async function setActiveJob(id, isActive) {
   let rSuccess = false, rMessage = null, rError = null
-  const uri = `${apiEndpoint}job/active`
-  const bodyData = { id }
+  const uri = `${apiEndpoint}job/set-active`
+  const bodyData = { id, active: isActive }
 
   await sendPost(uri, bodyData)
     .then(res => res.json())
@@ -287,6 +287,7 @@ async function setActiveJob(id) {
     error: rError
   }
 }
+
 
 async function countAllActiveJob() {
   let rItemCount = 0, rError = null

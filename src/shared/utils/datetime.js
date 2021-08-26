@@ -7,6 +7,11 @@ function fullDate(value) {
   return moment(value).format('DD MMMM') + " " + (Number(moment(value).format('YYYY')) + 543)
 }
 
+function currentDateForDB(format='YYYY-MM-DD') {  
+  return moment().format(format)  
+}
+
 export {
-  fullDate
+  fullDate,
+  currentDateForDB
 }

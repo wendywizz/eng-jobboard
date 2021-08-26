@@ -11,7 +11,7 @@ export default function CompanyInfo({ name, logoUrl, about, phone, website }) {
       </div>
       <div className="body">
         <p className="about">{about}</p>
-        <div class="contact">
+        <div className="contact">
           <dl>
             <dt>โทรศัพท์</dt>
             <dd>{phone}</dd>

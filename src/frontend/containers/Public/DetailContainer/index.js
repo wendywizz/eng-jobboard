@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { Row, Col, Spinner } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import { useParams } from "react-router";
 import Template from "Frontend/components/Template";
 import Page from "Frontend/components/Page";
@@ -30,6 +30,7 @@ import { toMoney } from "Shared/utils/money";
 import JobDetailTag from "Frontend/components/JobDetailTag";
 import CompanyInfo from "./CompanyInfo";
 import ApplyJobSection from "./ApplyJobSection";
+import LoadingPage from "Frontend/components/LoadingPage";
 
 let INIT_DATA = {
   data: null,
@@ -87,7 +88,7 @@ function DetailContainer() {
       <Sizebox value="10px" />
       <Page className="page-job-detail">
         {loading ? (
-          <Spinner />
+          <LoadingPage />
         ) : (
           <Row>
             <Col lg={8} md={8}>

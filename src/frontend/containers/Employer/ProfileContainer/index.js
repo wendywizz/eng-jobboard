@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useRef, useState } from "react"
-import { Row, Col, Button, Spinner } from "reactstrap"
+import { Row, Col, Button } from "reactstrap"
 import Content, { ContentBody, ContentHeader } from "Frontend/components/Content"
 import { useToasts } from "react-toast-notifications"
 import FormCompany from "./_form"
@@ -19,6 +19,7 @@ import { faSave } from "@fortawesome/free-regular-svg-icons"
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
 import { useCompany } from "Shared/context/CompanyContext"
 import { useAuth } from "Shared/context/AuthContext"
+import LoadingPage from "Frontend/components/LoadingPage"
 
 let INIT_DATA = {
   data: null,
@@ -63,7 +64,7 @@ function ProfileFormContainer() {
   const _handleCallback = (bodyData) => {
     setSaving(true)
     setTimeout(async () => {
-      const ownerId = authUser.localId
+      const ownerId = authUser.id
       const { success, data, message, error } = await saveCompanyByOwner(ownerId, bodyData)
 
       if (success) {
@@ -91,7 +92,7 @@ function ProfileFormContainer() {
     <>
       {
         loading
-          ? <Spinner />
+          ? <LoadingPage />
           : (
             state.error
               ? <p>{state.error}</p>

@@ -2,8 +2,7 @@ import React from "react"
 import { Badge } from "reactstrap"
 import { JOB_TYPE_FULLTIME, JOB_TYPE_PARTTIME, JOB_TYPE_INTERNSHIP, JOB_TYPE_COOP } from 'Shared/constants/job-type'
 
-export default function JobTypeTag({type, label}) {
-  console.log("TYPE=", type)
+export default function JobTypeTag({type, label}) {  
   const renderItem = () => {
     switch (type.toString()) {
       case JOB_TYPE_FULLTIME:

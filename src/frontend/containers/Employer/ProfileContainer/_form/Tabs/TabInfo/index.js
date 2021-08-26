@@ -13,7 +13,7 @@ function TabInfo({ name, about, logoUrl, formErrors, formRegister }) {
   const {authUser} = useAuth()
 
   const _handleUploadLogo = async (image) => {
-    const data = await uploadLogo(companyId, authUser.localId, image)
+    const data = await uploadLogo(companyId, authUser.id, image)
 
     console.log(data)
   }

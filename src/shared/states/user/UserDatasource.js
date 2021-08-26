@@ -45,8 +45,6 @@ export {
   createEmployer,
   createApplicant,
   identifyStudent
-  /*getUserType,
-  getUserByCode,*/  
 }
 
 /*async function getUserByCode(code) {

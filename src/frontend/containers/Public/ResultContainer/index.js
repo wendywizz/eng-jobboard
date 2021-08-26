@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useEffect } from "react"
 import { useHistory, useLocation } from "react-router"
-import { Row, Col, Input, Spinner } from "reactstrap"
+import { Row, Col, Input } from "reactstrap"
 import ReactPaginate from "react-paginate"
 import Template from "Frontend/components/Template"
 import Page from "Frontend/components/Page"
@@ -11,8 +11,11 @@ import JobReducer from "Shared/states/job/JobReducer"
 import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType"
 import { dispatchParams } from "Shared/utils/params"
 import { RESULT_PATH } from "Frontend/configs/paths"
-import FilterNav from "./FilterNav"
+//import FilterNav from "./FilterNav"
 import "./index.css"
+import LoadingPage from "Frontend/components/LoadingPage"
+
+//<FilterNav params={params} />
 
 let INIT_DATA = {
   data: [],
@@ -117,13 +120,12 @@ function ResultContainer() {
             <div className="content">
               {
                 loading
-                  ? <Spinner />
+                  ? <LoadingPage />
                   : (
                     state.error
                       ? <p>{state.error}</p>
                       : (
-                        <>
-                          <FilterNav params={params} />
+                        <>                          
                           <div className="nav-sort">
                             <Row>
                               <Col lg={7}>

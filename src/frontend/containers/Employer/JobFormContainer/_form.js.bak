@@ -1,7 +1,9 @@
 import React, { forwardRef, Suspense, useEffect, useRef, useState, useImperativeHandle } from "react"
 import { useForm } from "react-hook-form"
 import { Row, Col, Form, FormGroup, Label } from "reactstrap"
+import CheckboxTag from "Frontend/components/CheckboxTag"
 import RadioTag from "Frontend/components/RadioTag"
+import _ from "lodash"
 import {
   SPECIFIC_TYPE,
   STRUCTURAL_TYPE,
@@ -9,6 +11,10 @@ import {
   REQUEST_TYPE,
   NO_TYPE
 } from "Shared/constants/salary-type"
+import {
+  WORK_TIME_OPTION
+} from "Shared/constants/time"
+import day from "Shared/constants/day"
 import "./index.css"
 import { getJobType, getJobCategory, getSalaryType } from "Shared/states/job/JobDatasource"
 import { listProvince, listDistrictByProvince } from "Shared/states/area/AreaDatasource"
@@ -115,8 +121,9 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
 
   const _handleSubmit = (values) => {
     let salary_min = 0, salary_max = 0
+    let workdaysSelect = {}
 
-    switch (Number(values.salary_type)) {
+    switch (values.salary_type) {
       case SPECIFIC_TYPE.value:
         salary_min = values.salary_value
         salary_max = values.salary_value
@@ -127,6 +134,17 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
         break
       default:
         break
+    }
+
+    const workdays = values.workdays
+    if (workdays) {
+      workdaysSelect.mon = _.includes(workdays, "mon") ? 1 : 0
+      workdaysSelect.tue = _.includes(workdays, "tue") ? 1 : 0
+      workdaysSelect.wed = _.includes(workdays, "wed") ? 1 : 0
+      workdaysSelect.thu = _.includes(workdays, "thu") ? 1 : 0
+      workdaysSelect.fri = _.includes(workdays, "fri") ? 1 : 0
+      workdaysSelect.sat = _.includes(workdays, "sat") ? 1 : 0
+      workdaysSelect.sun = _.includes(workdays, "sun") ? 1 : 0
     }
 
     const bodyData = {}
@@ -140,6 +158,9 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
     bodyData.salary_type = values.salary_type
     bodyData.salary_min = salary_min
     bodyData.salary_max = salary_max
+    bodyData.work_days = JSON.stringify(workdaysSelect)
+    bodyData.work_timestart = values.time_start
+    bodyData.work_timeend = values.time_end
     bodyData.province = values.province
     bodyData.district = values.district
 
@@ -152,9 +173,9 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
     onSubmit(bodyData)
   }
 
-  const renderSalaryInput = () => {    
+  const renderSalaryInput = () => {
     if (selectedSalaryType) {
-      switch (Number(selectedSalaryType)) {
+      switch (selectedSalaryType.toString()) {
         case SPECIFIC_TYPE.value:
           return (
             <FormGroup>
@@ -431,7 +452,92 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
                   (errors.province?.type === "noSelected" || errors.district?.type === "noSelected")
                   && <p className="validate-message">Field is required</p>
                 }
-              </FormGroup>            
+              </FormGroup>
+              <FormGroup>
+                <Label>วันทำงาน</Label>
+                <div className="group-work-day horizontal">
+                  {
+                    day.map((item, index) => {
+                      let isChecked = 0
+
+                      if (editing) {
+                        if (workDays) {
+                          const wdJSON = JSON.parse(workDays)
+                          isChecked = wdJSON[item.value] ? true : false
+                        }
+                      } else {
+                        isChecked = index < 5 ? true : false
+                      }
+
+                      return (
+                        <CheckboxTag
+                          key={index}
+                          name="workdays"
+                          text={item.text}
+                          value={item.value}
+                          checked={isChecked}
+                          ref={register({
+                            required: true
+                          })}
+                        />
+                      )
+                    })
+                  }
+                </div>
+                {errors.work_days?.type === "required" && <p className="validate-message">Field is required</p>}
+              </FormGroup>
+              <FormGroup>
+                <Row>
+                  <Col lg={3} md={6} sm={12}>
+                    <Label>เวลาทำงาน</Label>
+                    <div className="time-range">
+                      <div className="control start">
+                        <Label htmlFor="time-start">เริ่ม</Label>
+                        <select
+                          className={"form-control control " + (errors.time_start?.type && "is-invalid")}
+                          name="time_start"
+                          id="time-start"
+                          ref={register({
+                            required: true
+                          })}
+                          defaultValue={workTimeStart}
+                        >
+                          <option></option>
+                          {
+                            WORK_TIME_OPTION.map((value, index) => (
+                              <option key={index} value={value}>{value}</option>
+                            ))
+                          }
+                        </select>
+                      </div>
+                      <div className="seperator">ถึง</div>
+                      <div className="control end">
+                        <Label htmlFor="time-end">สิ้นสุด</Label>
+                        <select
+                          className={"form-control control " + (errors.time_end?.type && "is-invalid")}
+                          name="time_end"
+                          id="time-end"
+                          ref={register({
+                            required: true
+                          })}
+                          defaultValue={workTimeEnd}
+                        >
+                          <option></option>
+                          {
+                            WORK_TIME_OPTION.map((value, index) => (
+                              <option key={index} value={value}>{value}</option>
+                            ))
+                          }
+                        </select>
+                      </div>
+                    </div>
+                    {
+                      (errors.time_start?.type === "required" || errors.time_end?.type === "required")
+                      && <p className="validate-message">Field is required</p>
+                    }
+                  </Col>
+                </Row>
+              </FormGroup>
               <FormGroup>
                 <Label htmlFor="welfare">สวัสดิการ</Label>
                 <textarea

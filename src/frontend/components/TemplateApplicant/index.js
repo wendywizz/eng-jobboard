@@ -6,17 +6,9 @@ function TemplateApplicant({ children }) {
   
   function setNavConfig() {
     return [
-      {
-        text: "", children: [
-          { text: "โปรไฟล์ส่วนตัว", link: APPLICANT_PROFILE_PATH },
-          //{ text: "การสมัครงาน", link: APPLICANT_RESUME_PATH },
-        ]
-      },
-      {
-        text: "", children: [
-          { text: "ตั้งค่า", link: APPLICANT_SETTING_PATH }
-        ]
-      }
+      { text: "ข้อมูลส่วนตัว", link: APPLICANT_PROFILE_PATH },
+      { text: "ตั้งค่า", link: APPLICANT_SETTING_PATH },
+      { text: "ออกจากระบบ", link: "#" }
     ]
   }
 
