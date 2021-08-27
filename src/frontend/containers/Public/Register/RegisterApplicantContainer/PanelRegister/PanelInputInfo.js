@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react"
 import { Form, FormGroup, Label, Button, Alert } from "reactstrap"
 import { useForm } from "react-hook-form"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
 import { useAuth } from "Shared/context/AuthContext"
 import { APPLICANT_TYPE } from "Shared/constants/user"
 import "./index.css"
@@ -24,7 +22,7 @@ function PanelInputInfo({ onCallback, studentCode, personNo }) {
       }
       const { success, message, error } = await signupWithEmail(email, password, APPLICANT_TYPE, additional)
       if (error) {
-        setMessage(error)
+        setMessage(message)
         return
       }
       if (success) {
@@ -96,18 +94,7 @@ function PanelInputInfo({ onCallback, studentCode, personNo }) {
             message && <Alert color="danger"><p>{message}</p></Alert>
           }
         </Form>
-      </div>
-      <hr className="line" />
-      <div className="block-register-social">
-        <Button style={{ backgroundColor: "#3b5998", color: "#fff" }}>
-          <FontAwesomeIcon icon={faFacebookF} />
-          <span>Sign in with Facebook</span>
-        </Button>
-        <Button style={{ backgroundColor: "#fff", color: "#111" }}>
-          <FontAwesomeIcon icon={faGoogle} />
-          <span>Sign in with Google</span>
-        </Button>
-      </div>
+      </div>     
     </div>
   )
 }

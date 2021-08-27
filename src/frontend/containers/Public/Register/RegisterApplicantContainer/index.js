@@ -6,7 +6,7 @@ import {
   PanelCodeChecking,
   PanelInputInfo,
   PanelFinish
-} from "Frontend/containers/Public/RegisterContainer/PanelRegister"
+} from "Frontend/containers/Public/Register/RegisterApplicantContainer/PanelRegister"
 import Sizebox from "Frontend/components/Sizebox"
 import "./index.css"
 
@@ -15,7 +15,7 @@ const REGIST_STATE = {
   inputInfo: 1,
   finish: 2,
 }
-function RegisterContainer() {
+export default function RegisterApplicantContainer() {
   const [registState, setRegistState] = useState(REGIST_STATE.codeChecking)
   const [studentCode, setStudentCode] = useState(null)
   const [registStatus, setRegistStatus] = useState(null)
@@ -86,4 +86,3 @@ function RegisterContainer() {
     </Template>
   )
 }
-export default RegisterContainer

@@ -29,9 +29,9 @@ async function getStudentByUserId(id) {
 
 async function saveStudentByUserId(id, saveData) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
-  const uri = `${apiEndpoint}user/student-info`
+  const uri = `${apiEndpoint}user/student-save`
   const bodyData = {
-    id,
+    user_id: id,
     ...saveData
   }
 

@@ -21,29 +21,22 @@ export function AuthProvider({ children }) {
   const [ready, setReady] = useState(false)
 
   async function signupWithEmail(email, password, userType, additional) {
-    let success = false,
-      message = "Create user failed",
-      error = null;
 
     switch (userType) {
       // Create new Applicant
       case APPLICANT_TYPE:
         const { studentCode, personNo } = additional;
-        await createApplicant(email, password, studentCode, personNo);
-        break;
+        return await createApplicant(email, password, studentCode, personNo)
       // Create new Employer
       case EMPLOYER_TYPE:
-        await createEmployer(email, password);
-        break;
+        return await createEmployer(email, password)
       default:
-        break;
+        return {
+          success: false,
+          message: "Register failed",
+          error: "Unknown error"
+        }
     }
-
-    return {
-      success,
-      message,
-      error,
-    };
   }
 
   async function signin(email, password) {
@@ -51,7 +44,7 @@ export function AuthProvider({ children }) {
       .then((res) => res.json())
       .then((result) => {
         const { success, data, token, message } = result;
-        
+
         if (result.success) {
           setAccessToken(token)
           createSession(data);
@@ -76,7 +69,7 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function signout() {    
+  async function signout() {
     clearAccessToken()
 
     setAuthUser(null)
@@ -86,21 +79,21 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     async function verifyToken() {
-      const token = getAccessToken()    
+      const token = getAccessToken()
       const HEADERS = {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + process.env.AUTHORIZE_TOKEN,
         "x-access-token": token,
         "mode": "cors",
       };
-      await sendGet(`${apiEndpoint}authen/user-info`, null, HEADERS )
+      await sendGet(`${apiEndpoint}authen/user-info`, null, HEADERS)
         .then((res) => res.json())
         .then(result => {
           if (result.success) {
             createSession(result.data);
           }
         })
-    }    
+    }
     verifyToken()
 
     return () => {
@@ -119,7 +112,7 @@ export function AuthProvider({ children }) {
     return localStorage.getItem(TOKEN_KEY_NAME)
   }
 
-  function clearAccessToken() {    
+  function clearAccessToken() {
     localStorage.removeItem(TOKEN_KEY_NAME)
   }
 
@@ -129,7 +122,7 @@ export function AuthProvider({ children }) {
     authType,
     ready,
     signupWithEmail,
-    signin,        
+    signin,
     signout
   }
 

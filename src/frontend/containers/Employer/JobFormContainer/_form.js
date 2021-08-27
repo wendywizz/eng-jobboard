@@ -13,7 +13,7 @@ import "./index.css"
 import { getJobType, getJobCategory, getSalaryType } from "Shared/states/job/JobDatasource"
 import { listProvince, listDistrictByProvince } from "Shared/states/area/AreaDatasource"
 
-const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategory, duty, performance, salaryType, salaryMax, salaryMin, workDays, workTimeStart, workTimeEnd, welfare, province, district, amount, owner, companyOwner, onSubmit }, ref) => {
+const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategory, duty, performance, salaryType, salaryMax, salaryMin, welfare, province, district, amount, owner, companyOwner, onSubmit }, ref) => {
   const [ready, setReady] = useState(false)
   const { register, handleSubmit, errors } = useForm()
   const refSubmit = useRef(null)

@@ -2,17 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AuthProvider } from "Shared/context/AuthContext";
 import { ToastProvider } from "react-toast-notifications";
-
-
-import "jquery/dist/jquery";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
-import "@fortawesome/fontawesome-free/css/all.css";
-import "draft-js/dist/Draft.css";
-import "rc-slider/assets/index.css";
-import "./assets/css/style.css";
 import { ApplicantRoute, EmployerRoute } from "./components/Route";
-import { APPLICANT_PROFILE_PATH, APPLICANT_RESUME_PATH, APPLICANT_SETTING_PATH, DETAIL_PATH, EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH, HOME_PATH, LOGIN_PATH, REGISTER_PATH, RESULT_PATH } from "./configs/paths";
+import { APPLICANT_PROFILE_PATH, APPLICANT_RESUME_PATH, APPLICANT_SETTING_PATH, DETAIL_PATH, EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH, HOME_PATH, LOGIN_PATH, REGISTER_APPLICANT, REGISTER_EMPLOYER, REGISTER_PATH, RESULT_PATH } from "./configs/paths";
 import {
   EmprProfileContainer,
   EmprJobFormAddContainer,
@@ -21,9 +12,17 @@ import {
   EmprResumeContainer,
   EmprSettingContainer
 } from "Frontend/containers/Employer"
-import { DetailContainer, HomeContainer, LoginContainer, RegisterContainer, ResultContainer } from "./containers/Public";
+import { DetailContainer, HomeContainer, LoginContainer, RegisterTypeContainer, RegisterApplicantContainer, RegisterEmployerContainer, ResultContainer } from "./containers/Public";
 import { ApcProfileContainer, ApcResumeContainer, ApcSettingContainer } from "./containers/Applicant";
 import { E404Container } from "./containers/Public/ErrorContainer";
+
+import "jquery/dist/jquery";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "draft-js/dist/Draft.css";
+import "rc-slider/assets/index.css";
+import "./assets/css/style.css";
 
 function RouteApp() {  
   return (
@@ -31,7 +30,9 @@ function RouteApp() {
       <Switch>               
         <Route path={HOME_PATH} component={HomeContainer} exact />
         <Route path={LOGIN_PATH} component={LoginContainer} exact />
-        <Route path={REGISTER_PATH} component={RegisterContainer} exact />
+        <Route path={REGISTER_PATH} component={RegisterTypeContainer} exact />
+        <Route path={REGISTER_EMPLOYER} component={RegisterEmployerContainer} exact />
+        <Route path={REGISTER_APPLICANT} component={RegisterApplicantContainer} exact />
         <Route path={RESULT_PATH} component={ResultContainer} />
         <Route path={DETAIL_PATH + "/:id"} component={DetailContainer} />
         <ApplicantRoute path="/applicant">
