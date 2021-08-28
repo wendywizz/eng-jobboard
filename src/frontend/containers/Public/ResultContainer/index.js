@@ -22,7 +22,7 @@ let INIT_DATA = {
   itemCount: 0,
   message: null
 }
-const PAGE_DISPLAY_LENGTH = 3
+const PAGE_DISPLAY_LENGTH = 8
 function ResultContainer() {
   const [init, setInit] = useState(true)
   const [loading, setLoading] = useState(true)
@@ -133,7 +133,6 @@ function ResultContainer() {
                               </Col>
                               <Col md={5}>
                                 <Input type="select" disabled={state.itemCount <= 0}>
-                                  <option>เรียงตามผลการค้นหา</option>
                                   <option>เรียงจากวันที่ประกาศล่าสุด</option>
                                   <option>เรียงตามชื่อบริษัท</option>
                                   <option>เรียงจากเงินเดือนน้อย - มาก</option>
@@ -151,7 +150,7 @@ function ResultContainer() {
                                     key={index}
                                     id={item.id}
                                     title={item.position}
-                                    jobType={item.jobTypeAsso.name}
+                                    jobType={item.jobTypeAsso}
                                     companyName={item.companyOwnerAsso.name}
                                     logoUrl={item.logoSourceUrl + item.companyOwnerAsso.logoFile}
                                     amount={item.amount}

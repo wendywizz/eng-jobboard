@@ -7,6 +7,7 @@ import { fullDate } from "Shared/utils/datetime"
 import { RANGE_TYPE, SPECIFIC_TYPE } from "Shared/constants/salary-type"
 import defaultLogo from "Frontend/assets/img/default-logo.jpg"
 import './index.css';
+import JobTypeTag from "../JobTypeTag"
 
 function ListJobItem({
   id,
@@ -42,7 +43,7 @@ function ListJobItem({
         />
       </div>
       <div className="detail">
-        <Badge>{jobType}</Badge>
+        <JobTypeTag type={jobType.id} label={jobType.name} />
         <h5 className="title">{title}</h5>
         <div className="desc">
           <div className="desc-item">

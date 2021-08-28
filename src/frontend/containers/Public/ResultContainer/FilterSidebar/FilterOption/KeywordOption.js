@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { Input, Button } from "reactstrap"
 import Sizebox from "Frontend/components/Sizebox";
 import { PARAM_KEYWORD } from "Shared/constants/option-filter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRedoAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function KeywordOption({ defaultValue, onChange }) {
   const [keyword, setKeyword] = useState()
@@ -20,7 +22,7 @@ export default function KeywordOption({ defaultValue, onChange }) {
   }
 
   return (
-    <>
+    <div className="option-keyword">
       <Input 
         type="text" 
         placeholder="Keyword" 
@@ -29,7 +31,16 @@ export default function KeywordOption({ defaultValue, onChange }) {
         defaultValue={defaultValue} 
       />
       <Sizebox value="10px" />
-      <Button color="primary" block onClick={_handleClick}>ค้นหา</Button>
-    </>
+      <div className="action">
+        <Button className="btn-search" color="primary" onClick={_handleClick}>
+          <FontAwesomeIcon icon={faSearch} />
+          {" "}ค้นหา
+        </Button>
+        <Button className="btn-reset" color="danger" onClick={() => window.location.reload()}>
+          <FontAwesomeIcon icon={faRedoAlt} />
+          {" "}รีเซต
+        </Button>
+      </div>
+    </div>
   )
 }

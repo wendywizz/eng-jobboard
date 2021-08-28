@@ -169,7 +169,7 @@ export default function DialogAreaFilter({ defaultProvinceValue, defaultDistrict
           </Row>
         </ModalFooter>
       </Modal>
-      <select className="form-control" onClick={_handleToggle}>
+      <select className="form-control dialog-area-filter" onClick={_handleToggle}>
         {
           textResult && <option>{textResult}</option>
         }

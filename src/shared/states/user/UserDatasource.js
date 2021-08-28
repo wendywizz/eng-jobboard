@@ -1,31 +1,28 @@
 import { sendPost } from "Shared/utils/request"
 import { apiEndpoint } from "Frontend/configs/uri"
 
-async function createApplicant(email, password, studentCode, personNo) {
-  const uri = `${apiEndpoint}register/applicant/email`
-  const userType = 1
+async function registerApplicant(email, password, studentCode, personNo) {
+  const uri = `${apiEndpoint}register/applicant-email`  
   const body = {
     email,
-    password,
-    user_type: userType,
+    password,    
     std_code: studentCode,
     person_no: personNo
   }
-  return await createUser(uri, body)
+  return await sendRegisterRequest(uri, body)
 }
 
-async function createEmployer(email, password) {
-  const uri = `${apiEndpoint}register/employer/email`
-  const userType = 2
+async function registerEmployer(email, password, companyName) {
+  const uri = `${apiEndpoint}register/employer-email`  
   const body = {
     email,
     password,
-    user_type: userType
+    company_name: companyName
   }
-  return await createUser(uri, body)
+  return await sendRegisterRequest(uri, body)
 }
 
-async function createUser(uri, data) {
+async function sendRegisterRequest(uri, data) {
   const bodyData = {
     ...data
   }
@@ -42,36 +39,7 @@ async function identifyStudent(studentCode, personNo) {
 }
 
 export {
-  createEmployer,
-  createApplicant,
+  registerApplicant,
+  registerEmployer,
   identifyStudent
 }
-
-/*async function getUserByCode(code) {
-  let rData = null, rMessage = null, rError = null
-  const uri = "http://localhost:3333/api/user/user-by-code"
-  const params = { code }
-
-  await sendGet(uri, params)
-    .then(res => res.json())
-    .then(result => {
-      const { data, message, error } = result
-
-      rData = data ? UserMapper(data) : null
-      rMessage = message
-      rError = error
-    })
-
-  return {
-    data: rData,
-    message: rMessage,
-    error: rError
-  }
-}
-
-async function getUserType(code) {
-  const uri = "http://localhost:3333/api/user/type-by-code"
-  const params = { code }
-
-  return sendGet(uri, params).then(res => res.json())
-}*/

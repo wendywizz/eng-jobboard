@@ -1,3 +1,6 @@
+.dialog-area-filter:hover {
+  cursor: pointer;
+}
 .modal-filter-area {
   max-width: 800px!important;
 }

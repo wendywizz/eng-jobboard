@@ -31,6 +31,19 @@
   color: #272f46;
 }
 
+/* Filter keyword */
+.option-keyword .action{
+  display: flex;
+  flex-direction: row;
+}
+.option-keyword .action .btn-search {
+  flex: 3;
+  margin-right: 3px;
+}
+.option-keyword .action .btn-reset {
+  flex: 1;
+}
+
 /* Filter Category */
 .option-category .body .list{
   height: 250px;

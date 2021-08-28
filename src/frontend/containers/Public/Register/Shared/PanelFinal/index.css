@@ -1,0 +1,13 @@
+.section-final {
+  margin-top: 3.6rem;
+}
+.section-final .panel-final {
+  text-align: center;
+}
+.section-final .panel-final .image {
+  margin-bottom: 20px;
+  width: 80px;
+}
+.section-final .panel-final .desc {
+  margin-bottom: 20px;
+}

@@ -1,88 +1,99 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "reactstrap"
-import Template from "Frontend/components/Template"
-import Page from "Frontend/components/Page"
-import {
-  PanelCodeChecking,
-  PanelInputInfo,
-  PanelFinish
-} from "Frontend/containers/Public/Register/RegisterApplicantContainer/PanelRegister"
-import Sizebox from "Frontend/components/Sizebox"
-import "./index.css"
+import Template from "Frontend/components/Template";
+import Page from "Frontend/components/Page";
+import PanelCodeChecking from "Frontend/containers/Public/Register/RegisterApplicantContainer/PanelCodeChecking";
+import PanelInput from "Frontend/containers/Public/Register/RegisterApplicantContainer/PanelInput";
+import PanelFinal from "Frontend/containers/Public/Register/Shared/PanelFinal";
+import Box from "Frontend/components/Box";
 
 const REGIST_STATE = {
   codeChecking: 0,
   inputInfo: 1,
   finish: 2,
-}
+};
 export default function RegisterApplicantContainer() {
-  const [registState, setRegistState] = useState(REGIST_STATE.codeChecking)
-  const [studentCode, setStudentCode] = useState(null)
-  const [registStatus, setRegistStatus] = useState(null)
-  const [message, setMessage] = useState(null)
-  const [personNo, setPersonNo] = useState(null)
+  const [registState, setRegistState] = useState(REGIST_STATE.codeChecking);
+  const [registSuccess, setRegistSuccess] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [studentCode, setStudentCode] = useState(null);
+  const [personNo, setPersonNo] = useState(null);
 
   useEffect(() => {
     return {
-      REGIST_STATE
-    }
-  })
+      REGIST_STATE,
+    };
+  });
 
-  const _handleCallback = (passed, optionals) => {    
+  const _handleCallback = (passed, optionals) => {
     switch (registState) {
-      case REGIST_STATE.codeChecking:      
-        setStudentCode(optionals.studentCode)
-        setPersonNo(optionals.personNo)  
-        setRegistState(REGIST_STATE.inputInfo)
-        break
-      case REGIST_STATE.inputInfo: default:
+      case REGIST_STATE.codeChecking:
+        setStudentCode(optionals.studentCode);
+        setPersonNo(optionals.personNo);
+        setRegistState(REGIST_STATE.inputInfo);
+        break;
+      case REGIST_STATE.inputInfo:
+      default:
         if (passed) {
-          setMessage(optionals.message) 
-          setRegistStatus(true)          
-          setRegistState(REGIST_STATE.finish)
+          setMessage(optionals.message);
+          setRegistSuccess(true);
+          setRegistState(REGIST_STATE.finish);
         }
-        break
+        break;
       case REGIST_STATE.finish:
         if (passed) {
-          setRegistState(REGIST_STATE.codeChecking)
+          setRegistState(REGIST_STATE.codeChecking);
         }
-        break
+        break;
     }
-  }
+  };
 
   const renderPanel = () => {
     switch (registState) {
-      case REGIST_STATE.codeChecking: default:
-        return <PanelCodeChecking onCallback={_handleCallback} />
+      case REGIST_STATE.codeChecking:
+      default:
+        return <PanelCodeChecking onCallback={_handleCallback} />;
       case REGIST_STATE.inputInfo:
-        return <PanelInputInfo onCallback={_handleCallback} studentCode={studentCode} personNo={personNo} />
+        return (
+          <PanelInput
+            onCallback={_handleCallback}
+            studentCode={studentCode}
+            personNo={personNo}
+          />
+        );
       case REGIST_STATE.finish:
-        return <PanelFinish onCallback={_handleCallback} registStatus={registStatus} message={message} />
+        return (
+          <PanelFinal
+            onCallback={_handleCallback}
+            registSuccess={registSuccess}
+            message={message}
+          />
+        );
     }
-  }
+  };
 
   return (
     <Template>
       <Page centered={true}>
-        <Sizebox value="30px" />
-        <div className="container-register shadow">
-          <Row>
-            <Col>
-              <h1>สมัครเข้าใช้งาน</h1>
-              <p>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-              <br />
-              <p>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-              <br />
-              <p>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-            </Col>
-            <Col className="col-input">
-              <div className="box-register">
-                { renderPanel() }
-              </div>
-            </Col>
-          </Row>
-        </div>
+        <Row>
+          <Col
+            lg={{ offset: 1, size: 10 }}
+            md={{ offset: 1, size: 10 }}
+            sm={12}
+          >
+            <Box
+              showDesc={true}
+              title={"สมัครใช้งานสำหรับผู้หางาน"}
+              desc={
+                "Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16"
+              }
+              image={"http://www.ansonika.com/mavia/img/registration_bg.svg"}
+            >
+              {renderPanel()}
+            </Box>
+          </Col>
+        </Row>
       </Page>
     </Template>
-  )
+  );
 }

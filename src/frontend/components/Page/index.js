@@ -2,13 +2,13 @@ import React from "react"
 import classNames from "classnames"
 import "./index.css"
 
-function Page({ centered, ...props }) {
+function Page({ centered=false, height="70vh", ...props }) {
   const classes = classNames({
     "page": true,
-    "centered": centered && true
+    "centered": centered
   })
   return (
-    <div className={classes.toString() + " " + props.className}>
+    <div className={classes.toString() + " " + props.className} style={{minHeight: height}}>
       { props.children}
     </div>
   )

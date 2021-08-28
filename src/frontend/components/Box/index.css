@@ -1,0 +1,31 @@
+.box {
+  background-color: #ffffff;   
+}
+.box .column {
+  min-height: 500px;
+}
+.box .col-desc {
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.box .col-desc .image {
+  width: 40%;
+}
+.box .col-input {
+  padding: 25px;
+}
+.box .card-desc .title{
+  font-size: 20px;
+  line-height: 1.6em;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.box .card-desc .desc {
+  margin-bottom: 30px;
+}
+.box .panel-action {
+  text-align: right;
+  padding: 20px 0;
+}

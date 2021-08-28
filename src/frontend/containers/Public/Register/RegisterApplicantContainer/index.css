@@ -1,20 +1,6 @@
-.container-register {
-  background-color: #ffffff;
-  padding: 4.2rem 3.8rem;
-  max-width: 80vw;
-  margin: 0 auto;
+.section-panel .section-heading {
+  margin-bottom: 25px;
 }
-.container-register .col-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.box-register {
-  width: 400px;
-}
-.box-register .input-inner {
-  padding: 30px 0;
-}
-.box-register .btn {
-  margin-bottom: 20px;
+.section-panel .section-title {
+  font-size: 20px;
 }

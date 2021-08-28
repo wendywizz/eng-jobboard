@@ -2,8 +2,8 @@ import { apiEndpoint } from "Frontend/configs/uri";
 import React, { useEffect, useContext, useState } from "react";
 import { APPLICANT_TYPE, EMPLOYER_TYPE } from "Shared/constants/user";
 import {
-  createApplicant,
-  createEmployer,
+  registerApplicant,
+  registerEmployer,
 } from "Shared/states/user/UserDatasource";
 import { sendGet, sendPost } from "Shared/utils/request";
 
@@ -20,16 +20,16 @@ export function AuthProvider({ children }) {
   const [authType, setAuthType] = useState();
   const [ready, setReady] = useState(false)
 
-  async function signupWithEmail(email, password, userType, additional) {
-
+  async function signupWithEmail(email, password, userType, additionals={}) {
     switch (userType) {
-      // Create new Applicant
+      // Register new Applicant
       case APPLICANT_TYPE:
-        const { studentCode, personNo } = additional;
-        return await createApplicant(email, password, studentCode, personNo)
-      // Create new Employer
-      case EMPLOYER_TYPE:
-        return await createEmployer(email, password)
+        const { studentCode, personNo } = additionals;
+        return await registerApplicant(email, password, studentCode, personNo)
+      // Register new Employer
+      case EMPLOYER_TYPE:        
+        const { companyName } = additionals
+        return await registerEmployer(email, password, companyName)
       default:
         return {
           success: false,

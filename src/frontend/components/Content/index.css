@@ -1,27 +1,17 @@
-.box {
-  background-color: #fff;
-  box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%);
-}
 .content .content-header,
 .content .content-footer {
   display: flex;
   flex-direction: column;
+  padding: 12px 0;
 }
-/*.content .content-header .content-column {
-  flex: 1;
-  flex-direction: row;
-}*/
 .content .content-header .title {
   font-size: 1.3em;
   margin-bottom: 20px;
 }
-/*.content .content-header .content-column.right {
-  text-align: right;
-}*/
 .content > *.padding {
   padding: 15px;
 }
-/*.content .content-row {
-  display: flex;
-  flex-direction: row;
-}*/
+.content .content-body.box {
+  background-color: #fff;
+  box-shadow: 0 0 15px 0 rgb(0 0 0 / 10%);  
+}

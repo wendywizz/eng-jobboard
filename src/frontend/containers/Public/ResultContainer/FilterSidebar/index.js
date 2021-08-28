@@ -64,6 +64,15 @@ function FilterSidebar({ defaultParams, onFilterChanged }) {
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item open>
+          <Accordion.Header>พื้นที่</Accordion.Header>
+          <Accordion.Body>
+            <AreaOption 
+              defaultValue={area}
+              onChange={_handleSubmitSearch} 
+            />
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item open>
           <Accordion.Header>กลุ่มงาน</Accordion.Header>
           <Accordion.Body>
             <CategoryOption defaultValue={category} onChange={_handleSubmitSearch} />
@@ -74,16 +83,7 @@ function FilterSidebar({ defaultParams, onFilterChanged }) {
           <Accordion.Body>
             <TypeOption defaultValue={type} onChange={_handleSubmitSearch} />
           </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item open>
-          <Accordion.Header>พื้นที่</Accordion.Header>
-          <Accordion.Body>
-            <AreaOption 
-              defaultValue={area}
-              onChange={_handleSubmitSearch} 
-            />
-          </Accordion.Body>
-        </Accordion.Item>
+        </Accordion.Item>      
         <Accordion.Item open>
           <Accordion.Header>เงินเดือน</Accordion.Header>
           <Accordion.Body>
