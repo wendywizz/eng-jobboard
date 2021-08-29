@@ -3,8 +3,8 @@ import 'moment/locale/th'
 
 moment.locale("th")
 
-function fullDate(value) {
-  return moment(value).format('DD MMMM') + " " + (Number(moment(value).format('YYYY')) + 543)
+function formatFullDate(value) {
+  return moment(value).format('DD MMMM') + " " + (Number(moment(value).format('YYYY')) + 543).toString()  
 }
 
 function currentDateForDB(format='YYYY-MM-DD') {  
@@ -12,6 +12,6 @@ function currentDateForDB(format='YYYY-MM-DD') {
 }
 
 export {
-  fullDate,
+  formatFullDate,
   currentDateForDB
 }

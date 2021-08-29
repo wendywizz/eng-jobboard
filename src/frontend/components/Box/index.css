@@ -15,6 +15,7 @@
 }
 .box .col-input {
   padding: 25px;
+  overflow: hidden;
 }
 .box .card-desc .title{
   font-size: 20px;

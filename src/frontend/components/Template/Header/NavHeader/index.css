@@ -1,13 +1,13 @@
-.header-nav-sticky {
+.nav-header {
   position: fixed;
   top: 0;
   background-color: #890403;
   width: 100%;
-  z-index: 100;
+  z-index: 1000;
 }
-.header-nav-sticky > .header-nav-inner {
+.nav-header > .nav-inner {
   padding: 10px 15px;
 }
-.header-nav-sticky .nav-logo {
+.nav-header .nav-logo {
   height: 40px;
 }

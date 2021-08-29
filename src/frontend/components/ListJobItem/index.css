@@ -4,11 +4,11 @@
   justify-content: space-around;
   background-color: #fff;
   margin-bottom: 25px;
-  padding: 15px;
+  padding: 10px 15px;
 }
 .list-job-item .image {  
   display: flex;
-  width: 160px;
+  width: 120px;
   align-items: flex-start;
   justify-content: flex-start;
 }
@@ -16,6 +16,7 @@
   max-height: 150px;
   width: 100%;
   object-fit: cover;
+  align-self: center;
 }
 .list-job-item .detail {
   flex: 1;

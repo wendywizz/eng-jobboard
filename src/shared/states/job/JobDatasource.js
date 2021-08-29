@@ -85,7 +85,7 @@ async function deleteJob(id) {
   }
 }
 
-async function searchJob(query, length, start) {
+async function searchJob(query, length, start, sortingMode) {
   let rData = null, rItemCount = null, rMessage = null, rError = null
   const uri = `${apiEndpoint}job/search`
 
@@ -95,6 +95,9 @@ async function searchJob(query, length, start) {
   }
   if (start) {
     extendQuery.start = start
+  }
+  if (sortingMode) {
+    extendQuery.sorting = sortingMode
   }
   const sendQuery = {...query, ...extendQuery}
 

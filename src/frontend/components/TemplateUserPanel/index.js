@@ -2,11 +2,11 @@ import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import Template from "../Template"
 import { useAuth } from "Shared/context/AuthContext"
-import "./index.css"
 import { EMPLOYER_TYPE } from "Shared/constants/user"
 import { HOME_PATH } from "Frontend/configs/paths"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons"
+import "./index.css"
 
 function TemplateUserPanel({ navConfig, showLogoutMenu = true, children }) {
   const { authUser, authType, signout } = useAuth()
@@ -56,7 +56,7 @@ function TemplateUserPanel({ navConfig, showLogoutMenu = true, children }) {
   }
 
   return (
-    <Template>
+    <Template headerType="nav" showFooter={false}>
       <div className="container-main">
         <div className="up-sidebar">
           <div className="up-sidebar-header">

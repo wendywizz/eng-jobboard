@@ -1,36 +1,31 @@
-import React, { useState, useEffect } from "react";
-import Header from './Header';
-import HeaderNavSticky from "./HeaderNavSticky"
-import Footer from './Footer';
-import './index.css';
+import React from "react";
+import { DefaultHeader, NavHeader } from "./Header";
+import Footer from "./Footer";
+import "./index.css";
 
-const STICKY_NAV_POS = 150;
-
-function Template(props) {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
+function Template({
+  headerType = "default",
+  showHeader = true,
+  showFooter = true,
+  children,
+}) {
+  const renderHeader = () => {
+    switch (headerType) {
+      case "default":
+      default:
+        return <DefaultHeader />;
+      case "nav":
+        return <NavHeader />;
+    }
   };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
+  const renderFooter = () => {
+    return <Footer />;
+  };
   return (
     <>
-      <Header />
-      {
-        scrollPosition >= STICKY_NAV_POS && <HeaderNavSticky />
-      }
-      <div className="main-container">
-        {props.children}
-      </div>
-      <Footer />
+      {showHeader && renderHeader()}
+      <div className="main-container">{children}</div>
+      {showFooter && renderFooter()}
     </>
   );
 }

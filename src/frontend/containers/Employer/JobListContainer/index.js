@@ -35,7 +35,7 @@ import { useCompany } from "Shared/context/CompanyContext";
 import LoadingPage from "Frontend/components/LoadingPage";
 import JobTypeTag from "Frontend/components/JobTypeTag";
 import "./index.css";
-import { fullDate } from "Shared/utils/datetime";
+import { formatFullDate } from "Shared/utils/datetime";
 import { ModalConfirm } from "Frontend/components/Modal";
 
 const PAGE_DISPLAY_LENGTH = 5;
@@ -183,7 +183,7 @@ function JobListContainer() {
                   </div>
                   <span className="title">{item.position}</span>
                   <span className="amount">{`จำนวนรับ ${item.amount} ตำแหน่ง`}</span>
-                  <span className="deadline">{`สิ้นสุดวันที่ ${fullDate(
+                  <span className="deadline">{`สิ้นสุดวันที่ ${formatFullDate(
                     item.expired_at
                   )}`}</span>
                 </div>

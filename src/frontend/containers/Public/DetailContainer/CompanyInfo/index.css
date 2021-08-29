@@ -11,3 +11,25 @@
   font-size: 24px;
   margin-left: 10px;
 }
+.card-company-info .contact .list-contact {
+  overflow: hidden;
+}
+.card-company-info .contact .list-contact .title{
+  float: left;
+  width: 30%;
+}
+.card-company-info .contact .list-contact .value {
+  float: left;
+  width: 70%;
+}
+.card-company-info .contact .extend-contact {
+  display: flex;
+  flex-direction: row;  
+}
+.card-company-info .contact .extend-contact .contact-icon:not(:last-child) {
+  margin-right: 4px;
+}
+.card-company-info .contact .extend-contact .contact-icon .icon-image {
+  height: 36px;
+  border: 2px solid #efefef;
+}

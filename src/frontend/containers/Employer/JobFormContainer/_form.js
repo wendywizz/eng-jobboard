@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form"
 import { Row, Col, Form, FormGroup, Label } from "reactstrap"
 import RadioTag from "Frontend/components/RadioTag"
 import {
-  SPECIFIC_TYPE,
-  STRUCTURAL_TYPE,
-  RANGE_TYPE,
-  REQUEST_TYPE,
-  NO_TYPE
+  SALARY_SPECIFIC_TYPE,
+  SALARY_STRUCTURAL_TYPE,
+  SALARY_RANGE_TYPE,
+  SALARY_REQUEST_TYPE,
+  SALARY_NO_TYPE
 } from "Shared/constants/salary-type"
 import "./index.css"
 import { getJobType, getJobCategory, getSalaryType } from "Shared/states/job/JobDatasource"
@@ -117,11 +117,11 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
     let salary_min = 0, salary_max = 0
 
     switch (Number(values.salary_type)) {
-      case SPECIFIC_TYPE.value:
+      case SALARY_SPECIFIC_TYPE.value:
         salary_min = values.salary_value
         salary_max = values.salary_value
         break
-      case RANGE_TYPE.value:
+      case SALARY_RANGE_TYPE.value:
         salary_min = values.salary_min
         salary_max = values.salary_max
         break
@@ -155,7 +155,7 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
   const renderSalaryInput = () => {    
     if (selectedSalaryType) {
       switch (Number(selectedSalaryType)) {
-        case SPECIFIC_TYPE.value:
+        case SALARY_SPECIFIC_TYPE.value:
           return (
             <FormGroup>
               <Label htmlFor="salary-value">ระบุเงินเดือน</Label>
@@ -173,7 +173,7 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
               {errors.salary_value?.type === "required" && <p className="validate-message">Field is required</p>}
             </FormGroup>
           )
-        case RANGE_TYPE.value:
+        case SALARY_RANGE_TYPE.value:
           return (
             <FormGroup>
               <Label htmlFor="salary-range">ระบุช่วงเงินเดือน</Label>
@@ -210,7 +210,7 @@ const JobForm = forwardRef(({ editing = false, id, position, jobType, jobCategor
               }
             </FormGroup>
           )
-        case STRUCTURAL_TYPE.value: case REQUEST_TYPE.value: case NO_TYPE.value: default:
+        case SALARY_STRUCTURAL_TYPE.value: case SALARY_REQUEST_TYPE.value: case SALARY_NO_TYPE.value: default:
           return (
             <div />
           )

@@ -9,28 +9,22 @@ import JobReducer from "Shared/states/job/JobReducer";
 import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType";
 import Sizebox from "Frontend/components/Sizebox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendarAlt,
-  faMapMarker,
-  faMoneyBill,
-  faThLarge,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
-import { fullDate } from "Shared/utils/datetime";
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { formatFullDate } from "Shared/utils/datetime";
 import JobTypeTag from "Frontend/components/JobTypeTag";
-import "./index.css";
 import {
-  NO_TYPE,
-  RANGE_TYPE,
-  REQUEST_TYPE,
-  SPECIFIC_TYPE,
-  STRUCTURAL_TYPE,
+  SALARY_NO_TYPE,
+  SALARY_RANGE_TYPE,
+  SALARY_REQUEST_TYPE,
+  SALARY_SPECIFIC_TYPE,
+  SALARY_STRUCTURAL_TYPE,
 } from "Shared/constants/salary-type";
 import { toMoney } from "Shared/utils/money";
-import JobDetailTag from "Frontend/components/JobDetailTag";
 import CompanyInfo from "./CompanyInfo";
 import ApplyJobSection from "./ApplyJobSection";
 import LoadingPage from "Frontend/components/LoadingPage";
+import JobTagInfo from "./JobTagInfo";
+import "./index.css";
 
 let INIT_DATA = {
   data: null,
@@ -67,16 +61,16 @@ function DetailContainer() {
       };
     };
   });
-  
-  const renderSalaryValue = (type, min, max) => {    
+
+  const renderSalaryValue = (type, min, max) => {
     switch (type.id) {
-      case SPECIFIC_TYPE.value:
+      case SALARY_SPECIFIC_TYPE.value:
         return toMoney(min) + " บาท";
-      case RANGE_TYPE.value:
+      case SALARY_RANGE_TYPE.value:
         return toMoney(min) + " - " + toMoney(max) + " บาท";
-      case STRUCTURAL_TYPE.value:
-      case REQUEST_TYPE.value:
-      case NO_TYPE.value:
+      case SALARY_STRUCTURAL_TYPE.value:
+      case SALARY_REQUEST_TYPE.value:
+      case SALARY_NO_TYPE.value:
         return type.name;
       default:
         return "-";
@@ -102,83 +96,66 @@ function DetailContainer() {
                     <h1 className="title">{state.data.position}</h1>
                     <div className="date">
                       <FontAwesomeIcon icon={faCalendarAlt} />{" "}
-                      {fullDate(state.data.createdAt)}
+                      {formatFullDate(state.data.createdAt)}
                     </div>
-                    <div className="detail-tag">
-                      <Row>
-                        <Col>
-                          <JobDetailTag
-                            icon={<FontAwesomeIcon icon={faMapMarker} />}
-                            label={"สถานที่ปฎิบัติงาน"}
-                            value={
-                              state.data.districtAsso.name +
-                              " " +
-                              state.data.provinceAsso.name
-                            }
-                          />
-                        </Col>
-                        <Col>
-                          <JobDetailTag
-                            icon={<FontAwesomeIcon icon={faMoneyBill} />}
-                            label={"อัตราเงินเดือน"}
-                            value={renderSalaryValue(
-                              state.data.salaryTypeAsso,
-                              state.data.salaryMin,
-                              state.data.salaryMax
-                            )}
-                          />
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <JobDetailTag
-                            icon={<FontAwesomeIcon icon={faUser} />}
-                            label={"จำนวนรับสมัคร"}
-                            value={state.data.amount + " ตำแหน่ง"}
-                          />
-                        </Col>
-                        <Col>
-                          <JobDetailTag
-                            icon={<FontAwesomeIcon icon={faThLarge} />}
-                            label={"กลุ่มงาน"}
-                            value={state.data.jobCategoryAsso.name}
-                          />
-                        </Col>
-                      </Row>
-                    </div>
+                    <JobTagInfo
+                      location={state.data.districtAsso.name}
+                      salary={renderSalaryValue(
+                        state.data.salaryTypeAsso,
+                        state.data.salaryMin,
+                        state.data.salaryMax
+                      )}
+                      amount={state.data.amount}
+                      jobCategoryName={state.data.jobCategoryAsso.name}
+                    />
                   </div>
-                  <Section
-                    className="section-detail section-performance"
-                    title="คุณสมบัติผู้เข้าสมัคร"
-                    centeredTitle={false}
-                  >
-                    <p>{state.data.performance}</p>
-                  </Section>
-                  <Section
-                    className="section-detail section-scope"
-                    title="ขอบเขตงาน"
-                    centeredTitle={false}
-                  >
-                    <p>{state.data.duty}</p>
-                  </Section>
-                  <Section
-                    className="section-detail section-welfare"
-                    title="สวัสดิการ"
-                    centeredTitle={false}
-                  >
-                    <p>{state.data.welfare}</p>
-                  </Section>
+                  {state.data.performance && (
+                    <Section
+                      className="section-detail section-performance"
+                      title="คุณสมบัติผู้เข้าสมัคร"
+                      centeredTitle={false}
+                    >
+                      <p>{state.data.performance}</p>
+                    </Section>
+                  )}
+                  {state.data.duty && (
+                    <Section
+                      className="section-detail section-scope"
+                      title="ขอบเขตงาน"
+                      centeredTitle={false}
+                    >
+                      <p>{state.data.duty}</p>
+                    </Section>
+                  )}
+                  {state.data.welfare && (
+                    <Section
+                      className="section-detail section-welfare"
+                      title="สวัสดิการ"
+                      centeredTitle={false}
+                    >
+                      <p>{state.data.welfare}</p>
+                    </Section>
+                  )}
                 </div>
               </div>
             </Col>
-            <Col lg={4} md={4}>              
+            <Col lg={4} md={4}>
               <ApplyJobSection jobId={state.data.id} />
-              <CompanyInfo 
+              <CompanyInfo
                 name={state.data.companyOwnerAsso.name}
                 about={state.data.companyOwnerAsso.about}
-                logoUrl={state.data.logoSourceUrl + state.data.companyOwnerAsso.logoFile}
-                website={state.data.companyOwnerAsso.website}
+                logoUrl={
+                  state.data.logoSourceUrl +
+                  state.data.companyOwnerAsso.logoFile
+                }
+                address={state.data.companyOwnerAsso.address}
+                district={state.data.companyOwnerAsso.districtAsso.name}
+                province={state.data.companyOwnerAsso.provinceAsso.name}
+                postCode={state.data.companyOwnerAsso.postCode}
                 phone={state.data.companyOwnerAsso.phone}
+                email={state.data.companyOwnerAsso.email}
+                website={state.data.companyOwnerAsso.website}         
+                facebook={state.data.companyOwnerAsso.facebook}       
               />
             </Col>
           </Row>
@@ -188,5 +165,3 @@ function DetailContainer() {
   );
 }
 export default DetailContainer;
-
-

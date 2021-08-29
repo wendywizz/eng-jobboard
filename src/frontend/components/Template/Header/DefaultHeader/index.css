@@ -1,0 +1,12 @@
+.header-default {
+  background-color: #fff;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom: 1px solid #eaeaea;
+}
+.header-default .nav-logo {
+  max-height: 60px;
+}
+.header-default .header-body {
+  padding: 25px 0;
+}

@@ -9,9 +9,10 @@ export default function Box({
   image,
   bgColor="primary",
   children,  
+  className
 }) {
   return (
-    <div className="box">
+    <div className={"box" + (className && " " + className)}>
       <Row>
         {showDesc && (
           <Col md={5} className={`text-white text-center bg-${bgColor}`}>

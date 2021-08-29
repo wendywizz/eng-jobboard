@@ -1,4 +1,6 @@
 .main-container {
-  min-height: 100%;
-  margin-top: 154px;
+  min-height: 100vh;
+}
+.nav-header + .main-container {
+  margin-top: 60px;
 }

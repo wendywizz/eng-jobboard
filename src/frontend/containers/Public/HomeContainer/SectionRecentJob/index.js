@@ -18,7 +18,7 @@ function SectionRecentJob() {
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA);
 
   const getData = async () => {
-    const { data, itemCount, error } = await searchJob(null, DISPLAY_COUNT);
+    const { data, itemCount, error } = await searchJob(null, DISPLAY_COUNT, 0, "d");
 
     if (error) {
       dispatch({ type: READ_FAILED, payload: { error } });
@@ -69,6 +69,7 @@ function SectionRecentJob() {
                   salaryMin={item.salaryMin}
                   salaryMax={item.salaryMax}
                   area={renderArea(item)}
+                  createdAt={item.createdAt}
                 />
               ))}
             </Section>
