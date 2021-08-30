@@ -5,13 +5,14 @@ import ContentBody from "./ContentBody"
 import ContentFooter from "./ContentFooter"
 import "./index.css"
 
-function Content(props) {
+function Content({ fill=false, className, children }) {
   const classes = classNames({
-    "content": true
+    "content": true,
+    "fill": fill
   })
   return (
-    <div className={classes.concat(" "+props.className)}>
-      {props.children}
+    <div className={classes.concat(" "+ (className ? className : ""))}>
+      {children}
     </div>
   )
 }

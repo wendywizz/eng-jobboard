@@ -6,8 +6,35 @@
   z-index: 1000;
 }
 .nav-header > .nav-inner {
-  padding: 10px 15px;
+  display: flex;
+  flex-direction: row;
+  padding: 0px 15px;
 }
-.nav-header .nav-logo {
-  height: 40px;
+.nav-header > .nav-inner > * {
+  flex: 1;
+  padding: 10px 0;
+}
+.nav-header .site-logo .nav-logo {  
+  height: 38px;  
+}
+.nav-header .right-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  float: right;  
+}
+.nav-header .nav-link:hover {
+  cursor: pointer;
+  border-radius: 25px;
+}
+.nav-header .navbar-nav {
+  display: flex;
+  flex-direction: row;  
+}
+.nav-header .navbar-nav a.nav-link {
+  color: #fff;
+  padding: 8px 15px;
+}
+.nav-header .navbar-nav a.nav-link:hover {
+  background-color: #6b0403;
 }

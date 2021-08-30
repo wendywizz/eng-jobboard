@@ -1,0 +1,22 @@
+.card-resume .card-header {
+  background-color: #007bff;
+  color: #fff;
+}
+.card-resume .card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  height: 200px;
+}
+.card-resume .card-footer {
+  background-color: #fff;
+  border-top: 0;
+  padding-bottom: 20px;
+}
+.card-resume .card-footer .btn {
+  border-radius: 25px;  
+}
+.card-resume .title {
+  font-size: 20px;
+}

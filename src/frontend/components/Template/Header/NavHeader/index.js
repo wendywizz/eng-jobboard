@@ -1,6 +1,7 @@
 import React from "react"
 import { HOME_PATH } from "Frontend/configs/paths"
 import navLogo from "Frontend/assets/img/nav-logo-inverse.png";
+import UserMenu from "Frontend/components/Template/Header/UserMenu"
 import "./index.css"
 
 export default function NavHeader(props) {
@@ -12,7 +13,8 @@ export default function NavHeader(props) {
             <img className="nav-logo" src={navLogo} alt="site logo" />
           </a>
         </div>
-        <div className="header-menu">
+        <div className="right-panel">
+          <UserMenu />
         </div>
       </div>
     </div>

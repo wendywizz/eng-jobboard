@@ -1,15 +1,16 @@
 import React from "react"
 import className from "classnames"
 
-function ContentHeader({ title, box = false, padding = false, ...props }) {
+function ContentHeader({ title, box = false, padding = false, fill = false, ...props }) {
   const classes = className({
     "content-header": true,
     "box": box,
-    "padding": padding
+    "padding": padding,
+    "fill": fill
   })
 
   return (
-    <div className={classes.concat(" " + props.className)}>
+    <div className={classes.concat(" " + (props.className ? props.className : ""))}>
       {
         title && <h1 className="title">{title}</h1>
       }

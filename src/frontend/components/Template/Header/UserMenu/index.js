@@ -162,7 +162,7 @@ function MenuItems() {
 
 export default function UserMenu() {
   return (
-    <div className="user-menu">
+    <div className="nav-user-menu">
       <AuthProvider>
         <MenuItems />
       </AuthProvider>

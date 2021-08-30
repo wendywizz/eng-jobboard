@@ -1,0 +1,27 @@
+.card-new-resume {
+  height: 350px;
+  width: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #7f8c8d !important;
+  border-radius: 5px;
+}
+.card-new-resume:focus {
+  outline: 0 !important;
+}
+.card-new-resume:hover {
+  cursor: pointer;
+  background-color: #cdcdcd;
+}
+.card-new-resume > * {
+  color: #7f8c8d !important;
+}
+.card-new-resume .icon {
+  font-size: 46px;
+  margin-bottom: 5px;  
+}
+.card-new-resume .desc {
+  font-size: 16px;
+}

@@ -45,7 +45,7 @@ export default function CompanyInfo({
         <p className="about">{subText(about, 200, true)}</p>
         <hr />
         <div className="contact">
-          <dl class="list-contact">
+          <dl className="list-contact">
             {renderAddress() && (
               <>
                 <dt className="title">

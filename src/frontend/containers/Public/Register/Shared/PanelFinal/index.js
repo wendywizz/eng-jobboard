@@ -8,7 +8,7 @@ import "./index.css"
 
 function ContentSuccess() {
   return (
-    <div class="panel-final">
+    <div className="panel-final">
       <img className="image" src={imageRegistSuccess} alt="final-result" />
       <p className="desc">สมัครใช้งานเรียบร้อย ล็อกอินเข้าใช้งานได้ตามลิงค์ข้างใต้นี้</p>      
       <Link to={LOGIN_PATH} className="btn btn-success">ไปยังหน้าล็อกอิน</Link>      
@@ -18,7 +18,7 @@ function ContentSuccess() {
 
 function ContentFailed() {
   return (
-    <div class="panel-final">
+    <div className="panel-final">
       <img className="image" src={imageRegistFailed} alt="final-result" />
       <p className="desc">สมัครใช้งานล้มเหลว โปรดกรุณาลองใหม่อีกครั้ง</p>
       <Link to={REGISTER_PATH} className="btn btn-danger">

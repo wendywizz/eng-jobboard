@@ -1,3 +1,6 @@
+.content .fill {
+  min-height: 80vh;
+}
 .content .content-header,
 .content .content-footer {
   display: flex;

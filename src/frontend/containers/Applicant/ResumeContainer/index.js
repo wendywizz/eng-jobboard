@@ -1,10 +1,35 @@
-import React from "react"
+import React, { useState } from "react"
+import Content, { ContentHeader } from "Frontend/components/Content"
+import { Row, Col } from "reactstrap"
+//import CardResume from "Frontend/components/CardResume"
+import CardNewResume from "./CardNewResume"
+import ModalNewResume from "Frontend/components/ModalNewResume"
 
-function ResumeContainer({ ...props }) {
+export default function ResumeContainer() {  
+  const [showNewResumeModal, setShowNewResumeModal] = useState(false)
+
+  const _handleToggleModal = () => setShowNewResumeModal(!showNewResumeModal)
+
+  const _handleSelectedFile = (files) => {
+    console.log(files)
+  }
+
   return (
-    <div>
-      <h1>Applicant Resume</h1>
-    </div>
+    <Content className="content-applicant-resume">
+      <ContentHeader><h1 className="title">ใบสมัครงาน</h1></ContentHeader>
+      <Row>
+        <Col>
+          <CardNewResume onClick={_handleToggleModal} />
+        </Col>
+        <Col />
+        <Col />
+        <Col />
+      </Row>
+      <ModalNewResume
+        isOpen={showNewResumeModal}
+        toggle={_handleToggleModal}
+        onSelectedFile={_handleSelectedFile}
+      />
+    </Content>
   )
 }
-export default ResumeContainer
