@@ -10,10 +10,6 @@ export default function ResumeContainer() {
 
   const _handleToggleModal = () => setShowNewResumeModal(!showNewResumeModal)
 
-  const _handleSelectedFile = (files) => {
-    console.log(files)
-  }
-
   return (
     <Content className="content-applicant-resume">
       <ContentHeader><h1 className="title">ใบสมัครงาน</h1></ContentHeader>
@@ -28,7 +24,6 @@ export default function ResumeContainer() {
       <ModalNewResume
         isOpen={showNewResumeModal}
         toggle={_handleToggleModal}
-        onSelectedFile={_handleSelectedFile}
       />
     </Content>
   )

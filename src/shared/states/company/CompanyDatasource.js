@@ -85,7 +85,7 @@ async function saveCompanyByOwner(ownerId, saveData) {
 async function uploadLogo(companyId, ownerId, logo) {
   const uri = `${apiEndpoint}company/upload-logo`
   const formData = new FormData()
-  formData.append('imageLogo', logo)
+  formData.append('logo_file', logo)
   formData.append('company_id', companyId)
   formData.append('owner_id', ownerId)
 

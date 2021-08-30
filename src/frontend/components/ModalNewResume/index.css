@@ -1,39 +1,3 @@
 .form-upload > .form-group{
   margin-bottom: 35px;
 }
-
-.drop-upload .drop-control {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border-width: 2;
-  border-radius: 2;
-  border-color: #eeeeee;
-  border-style: dashed;
-  background-color: #fafafa;
-  color: #bdbdbd;
-  outline: none;
-  transition: border .24s ease-in-out;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-.drop-upload .drop-control .upload-desc {
-  margin-bottom: 0;
-}
-.drop-upload .preview-filename {
-  list-style: none;
-  padding: 0;
-  margin-top: 3px;
-}
-.drop-upload .preview-filename li {
-  display: flex;
-  flex-direction: row;
-}
-.drop-upload .preview-filename li > * {
-  flex: 1;
-}
-.drop-upload .preview-filename .desc {
-  text-align: right;
-}
