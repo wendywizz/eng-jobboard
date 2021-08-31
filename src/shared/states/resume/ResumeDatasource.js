@@ -2,7 +2,9 @@ import { sendPost, formPost } from "Shared/utils/request"
 import { apiEndpoint } from "Frontend/configs/uri"
 
 async function createResume(userId, name, file, additional) {
+  let rSuccess = false, rMessage = null, rError = null
   const uri = `${apiEndpoint}resume/add`
+
   const formData = new FormData()
   formData.append('name', name)
   formData.append('file', file)
@@ -11,7 +13,20 @@ async function createResume(userId, name, file, additional) {
 
   await formPost(uri, formData)
     .then(res => res.json())
-    .then(result)
+    .then(result => {
+      const { success, message, error } = result
+
+      rSuccess = success
+      rMessage = message
+      rError = error
+    })
+
+  return {
+    success: rSuccess,
+    message: rMessage,
+    error: rError
+  }
+
 }
 
 async function deleteResumeById(id) {

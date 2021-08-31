@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 import filesize from "filesize";
 import "./index.css"
+import { reduceFileName } from "Shared/utils/string";
 
 export default function DropFileInput({
   accept = "application/pdf, application/msword, image/png, image/jpeg",
@@ -48,14 +49,14 @@ export default function DropFileInput({
 
   const renderAcceptFileItems = acceptedFiles.map((file) => (
     <li key={file.path}>
-      <div className="filename">{file.path}</div>
+      <div className="filename">{reduceFileName(file.path)}</div>
       <div className="desc">{filesize(file.size, { standard: "jedec" })}</div>
     </li>
   ));
 
   const renderRejectFileItems = fileRejections.map(({ file, errors }) => (
     <li key={file.path}>
-      <div className="filename">{file.path}</div>
+      <div className="filename">{reduceFileName(file.path)}</div>
       <div className="desc">
         <ul className="list-error">
           {errors.map((e) =>

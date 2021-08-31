@@ -14,13 +14,15 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faExclamationTriangle,
+  faSpinner,
   faUpload,
 } from "@fortawesome/free-solid-svg-icons";
 import DropFileInput from "Frontend/components/DropFileInput";
-import { AuthProvider, useAuth } from "Shared/context/AuthContext";
+import { useAuth } from "Shared/context/AuthContext";
 import "./index.css";
+import { createResume } from "Shared/states/resume/ResumeDatasource";
 
-function FormResume({ onFormSubmit, ...props }) {
+function FormResume({ submitted, onFormSubmit, ...props }) {
   const refSubmit = useRef(null);
   const { register, handleSubmit, errors } = useForm();
   const [filesUpload, setFilesUpload] = useState();
@@ -38,12 +40,12 @@ function FormResume({ onFormSubmit, ...props }) {
   };
 
   const _handleSubmit = (values) => {
-    const { name, detail } = values;
+    const { name, detail, additional } = values;
 
     if (!filesUpload) {
       setIsFileUploadError(true)
     } else {
-      onFormSubmit({ name, detail, filesUpload });
+      onFormSubmit({ name, detail, additional, filesUpload });
     }
   };
 
@@ -84,8 +86,8 @@ function FormResume({ onFormSubmit, ...props }) {
           <FormGroup>
             <Label>รายละเอียดเพิ่มเติม</Label>
             <textarea
-              id="detail"
-              name="detail"
+              id="additional"
+              name="additional"
               className={
                 "form-control " + (errors.detail?.type && "is-invalid")
               }
@@ -99,10 +101,17 @@ function FormResume({ onFormSubmit, ...props }) {
         </Form>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={_handleSubmitClick}>
-          <FontAwesomeIcon icon={faUpload} /> อัพโหลด
+        <Button color="primary" onClick={_handleSubmitClick} disabled={submitted}>
+          {
+            submitted ? (
+              <FontAwesomeIcon icon={faSpinner} spin />
+            ) : (
+              <FontAwesomeIcon icon={faUpload} />
+            )
+          }
+          {" "}อัพโหลด
         </Button>
-        <Button color="danger" onClick={props.toggle}>
+        <Button color="danger" onClick={props.toggle} disabled={submitted}>
           ยกเลิก
         </Button>
       </ModalFooter>
@@ -110,20 +119,42 @@ function FormResume({ onFormSubmit, ...props }) {
   );
 }
 
-export default function ModalNewResume(props) {
+export default function ModalNewResume({ onSuccess, onError, ...props }) {
   const { authUser } = useAuth()
+  const [submitting, setSubmitting] = useState(false)
 
   const _handleSubmit = (values) => {
-    if (authUser) {
+    const { name, additional, filesUpload } = values
 
-    } else {
-      alert("Go back to login")
-    }
+    setSubmitting(true)
+    setTimeout(async () => {
+      const userId = authUser.id
+      if (userId) {
+        const { success, message, error } = await createResume(userId, name, filesUpload, additional)
+
+        if (success) {
+          onSuccess(message)
+        } else {
+          onError({
+            code: 403,
+            message: error
+          })
+        }
+      } else {
+        onError({
+          code: 419,
+          message: "Session expire, Please go back to login"
+        })
+      }
+
+      setSubmitting(false)
+    }, 1000)
   };
 
   return (
-    <AuthProvider>
-      <FormResume onFormSubmit={_handleSubmit} {...props} />
-    </AuthProvider>
+    <FormResume
+      onFormSubmit={_handleSubmit} {...props}
+      submitted={submitting}
+    />
   );
 }

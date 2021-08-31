@@ -4,11 +4,36 @@ import { Row, Col } from "reactstrap"
 //import CardResume from "Frontend/components/CardResume"
 import CardNewResume from "./CardNewResume"
 import ModalNewResume from "Frontend/components/ModalNewResume"
+import { useToasts } from "react-toast-notifications"
 
 export default function ResumeContainer() {  
-  const [showNewResumeModal, setShowNewResumeModal] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const { addToast } = useToasts()
 
-  const _handleToggleModal = () => setShowNewResumeModal(!showNewResumeModal)
+  const _handleToggleModal = () => setShowModal(!showModal)
+
+  const _handleUploadSuccess = (message) => {
+    setShowModal(false)
+
+    responseMessage(true, message)
+  }
+
+  const _handleUploadFailed = (message) => {
+    setShowModal(false)
+
+    responseMessage(false, message)
+  }
+
+  const responseMessage = (success, message) => {
+    let type
+    if (success) {
+      type = "success"
+    } else {
+      type = "error"
+    }
+
+    addToast(message, { appearance: type })
+  }
 
   return (
     <Content className="content-applicant-resume">
@@ -22,8 +47,10 @@ export default function ResumeContainer() {
         <Col />
       </Row>
       <ModalNewResume
-        isOpen={showNewResumeModal}
-        toggle={_handleToggleModal}
+        isOpen={showModal}
+        toggle={_handleToggleModal}        
+        onSuccess={_handleUploadSuccess}
+        onError={_handleUploadFailed}
       />
     </Content>
   )

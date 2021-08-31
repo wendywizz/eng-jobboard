@@ -22,7 +22,7 @@ async function formPost(uri, formData) {
   return await fetch(uri, {
     method: "POST",
     body: formData,
-    headers: { mode: "cors" }
+    headers: { "mode": "cors" }
   })
 }
 export {
