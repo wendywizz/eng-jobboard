@@ -1,6 +1,12 @@
 .card-resume .card-header {
-  background-color: #007bff;
-  color: #fff;
+  display: flex;
+  flex-direction: row;
+}
+.card-resume .card-header .header-title{
+  flex: 1;
+}
+.card-resume .card-header .btn-remove {
+  height: 25px;
 }
 .card-resume .card-body{
   display: flex;
@@ -18,5 +24,5 @@
   border-radius: 25px;  
 }
 .card-resume .title {
-  font-size: 20px;
+  font-size: 18px;
 }

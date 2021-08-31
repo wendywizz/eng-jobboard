@@ -34,9 +34,9 @@ import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType";
 import { useCompany } from "Shared/context/CompanyContext";
 import LoadingPage from "Frontend/components/LoadingPage";
 import JobTypeTag from "Frontend/components/JobTypeTag";
-import "./index.css";
 import { formatFullDate } from "Shared/utils/datetime";
 import { ModalConfirm } from "Frontend/components/Modal";
+import "./index.css";
 
 const PAGE_DISPLAY_LENGTH = 5;
 let INIT_DATA = {
@@ -82,7 +82,7 @@ function JobListContainer() {
       if (companyId) {
         setTimeout(() => {
           getData(companyId);
-        }, 500);
+        }, 1000);
       }
     }
 

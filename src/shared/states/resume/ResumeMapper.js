@@ -4,7 +4,7 @@ function ResumeMapper(data) {
   return {
     id: isset(data.id),
     name: isset(data.name),
-    fileUrl: isset(data.file_url),    
+    resumeFile: isset(data.resume_file),    
     additional: isset(data.additional),
     createdAt: isset(data.created_at),
     deleted: isset(data.deleted),

@@ -143,9 +143,9 @@ function ResultContainer() {
                         <p className="result-count">{`พบ ${state.itemCount} ตำแหน่งงาน`}</p>
                       </Col>
                       <Col md={5}>
-                        <Input type="select" disabled={state.itemCount <= 0} onChange={_handleSortingChanged}>
+                        <Input type="select" disabled={state.itemCount <= 0} onChange={_handleSortingChanged} defaultValue={sortingMode}>
                           {SORTING_OPTIONS.map((item, index) => (
-                            <option key={index} value={item.value} selected={sortingMode === item.value}>
+                            <option key={index} value={item.value}>
                               {item.text}
                             </option>
                           ))}

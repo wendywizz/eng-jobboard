@@ -1,5 +1,31 @@
-import { sendPost, formPost } from "Shared/utils/request"
+import { sendPost, sendGet, formPost } from "Shared/utils/request"
 import { apiEndpoint } from "Frontend/configs/uri"
+import { ResumeMapper } from "./ResumeMapper"
+
+async function listResumeOfUserId(id) {
+  let rData = [], rMessage = null, rError = null
+  const uri = `${apiEndpoint}resume/list-by-user`
+  const params = { id }
+  
+  await sendGet(uri, params)
+    .then(res => res.json())
+    .then(result => {
+      const { data, message, error } = result      
+
+      rData = data.map(value => ResumeMapper(value))      
+      rMessage = message
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+
+  return {
+    data: rData,
+    message: rMessage,
+    error: rError
+  }
+}
 
 async function createResume(userId, name, file, additional) {
   let rSuccess = false, rMessage = null, rError = null
@@ -55,6 +81,7 @@ async function deleteResumeById(id) {
 }
 
 export {
+  listResumeOfUserId,
   createResume,
   deleteResumeById
 }
