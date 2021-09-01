@@ -3,6 +3,7 @@ const LOGIN_PATH = "/login"
 const RESULT_PATH = "/result"
 const DETAIL_PATH = "/view"
 const REGISTER_PATH = "/register"
+const APPLY_JOB_PATH = "/apply-job"
 const REGISTER_APPLICANT = REGISTER_PATH + "/applicant"
 const REGISTER_EMPLOYER = REGISTER_PATH + "/employer"
 const TEST_PATH = "/test"
@@ -28,6 +29,7 @@ export {
   REGISTER_PATH,
   REGISTER_APPLICANT,
   REGISTER_EMPLOYER,
+  APPLY_JOB_PATH,
   TEST_PATH,
   EMPLOYER_PATH,
   APPLICANT_PATH,

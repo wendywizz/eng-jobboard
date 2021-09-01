@@ -11,19 +11,11 @@ import Sizebox from "Frontend/components/Sizebox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { formatFullDate } from "Shared/utils/datetime";
-import JobTypeTag from "Frontend/components/JobTypeTag";
-import {
-  SALARY_NO_TYPE,
-  SALARY_RANGE_TYPE,
-  SALARY_REQUEST_TYPE,
-  SALARY_SPECIFIC_TYPE,
-  SALARY_STRUCTURAL_TYPE,
-} from "Shared/constants/salary-type";
-import { toMoney } from "Shared/utils/money";
-import CompanyInfo from "./CompanyInfo";
-import ApplyJobSection from "./ApplyJobSection";
+import CompanyInfo from "Frontend/components/CompanyInfo";
+import ApplyJobSection from "Frontend/components/ApplyJobSection";
 import LoadingPage from "Frontend/components/LoadingPage";
-import JobTagInfo from "./JobTagInfo";
+import JobTypeTag from "Frontend/components/JobTypeTag";
+import JobTagInfo from "Frontend/components/JobTagInfo";
 import "./index.css";
 
 let INIT_DATA = {
@@ -31,8 +23,8 @@ let INIT_DATA = {
   message: null,
 };
 function DetailContainer() {
-  const [loading, setLoading] = useState(true);
   let { id } = useParams();
+  const [loading, setLoading] = useState(true);  
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA);
 
   useEffect(() => {
@@ -62,21 +54,6 @@ function DetailContainer() {
     };
   });
 
-  const renderSalaryValue = (type, min, max) => {
-    switch (type.id) {
-      case SALARY_SPECIFIC_TYPE.value:
-        return toMoney(min) + " บาท";
-      case SALARY_RANGE_TYPE.value:
-        return toMoney(min) + " - " + toMoney(max) + " บาท";
-      case SALARY_STRUCTURAL_TYPE.value:
-      case SALARY_REQUEST_TYPE.value:
-      case SALARY_NO_TYPE.value:
-        return type.name;
-      default:
-        return "-";
-    }
-  };
-
   return (
     <Template>
       <Sizebox value="10px" />
@@ -100,11 +77,9 @@ function DetailContainer() {
                     </div>
                     <JobTagInfo
                       location={state.data.districtAsso.name}
-                      salary={renderSalaryValue(
-                        state.data.salaryTypeAsso,
-                        state.data.salaryMin,
-                        state.data.salaryMax
-                      )}
+                      salaryTypeAsso={state.data.salaryTypeAsso}
+                      salaryMin={state.data.salaryMin}
+                      salaryMax={state.data.salaryMax}
                       amount={state.data.amount}
                       jobCategoryName={state.data.jobCategoryAsso.name}
                     />
@@ -140,7 +115,7 @@ function DetailContainer() {
               </div>
             </Col>
             <Col lg={4} md={4}>
-              <ApplyJobSection jobId={state.data.id} />
+              <ApplyJobSection jobId={state.data.id} expireDate={state.data.expireAt} />
               <CompanyInfo
                 name={state.data.companyOwnerAsso.name}
                 about={state.data.companyOwnerAsso.about}
@@ -154,8 +129,8 @@ function DetailContainer() {
                 postCode={state.data.companyOwnerAsso.postCode}
                 phone={state.data.companyOwnerAsso.phone}
                 email={state.data.companyOwnerAsso.email}
-                website={state.data.companyOwnerAsso.website}         
-                facebook={state.data.companyOwnerAsso.facebook}       
+                website={state.data.companyOwnerAsso.website}
+                facebook={state.data.companyOwnerAsso.facebook}
               />
             </Col>
           </Row>

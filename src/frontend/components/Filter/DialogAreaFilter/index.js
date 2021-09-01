@@ -54,6 +54,7 @@ export default function DialogAreaFilter({ defaultProvinceValue, defaultDistrict
       fetchDistrict()
     }
     showTextResult()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProvince, selectedDistrict])
 
   const _handleSelected = () => {

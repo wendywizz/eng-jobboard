@@ -91,6 +91,7 @@ function JobListContainer() {
         ...state
       }
     }*/
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, companyId, currentPage]);
 
   const renderPagination = () => {

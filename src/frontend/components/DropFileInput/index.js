@@ -43,7 +43,8 @@ export default function DropFileInput({
       ...(isDragActive ? activeStyle : {}),
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject ? rejectStyle : {}),
-    }),
+    }),    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [isDragActive, isDragReject, isDragAccept]
   );
 

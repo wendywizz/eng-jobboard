@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AuthProvider } from "Shared/context/AuthContext";
 import { ToastProvider } from "react-toast-notifications";
 import { ApplicantRoute, EmployerRoute } from "./components/Route";
-import { APPLICANT_PROFILE_PATH, APPLICANT_RESUME_PATH, APPLICANT_SETTING_PATH, DETAIL_PATH, EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH, HOME_PATH, LOGIN_PATH, REGISTER_APPLICANT, REGISTER_EMPLOYER, REGISTER_PATH, RESULT_PATH } from "./configs/paths";
+import { APPLICANT_PROFILE_PATH, APPLICANT_RESUME_PATH, APPLICANT_SETTING_PATH, APPLY_JOB_PATH, DETAIL_PATH, EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH, HOME_PATH, LOGIN_PATH, REGISTER_APPLICANT, REGISTER_EMPLOYER, REGISTER_PATH, RESULT_PATH } from "./configs/paths";
 import {
   EmprProfileContainer,
   EmprJobFormAddContainer,
@@ -23,6 +23,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "draft-js/dist/Draft.css";
 import "rc-slider/assets/index.css";
 import "./assets/css/style.css";
+import ApplyJobContainer from "./containers/Public/ApplyJobContainer";
 
 function RouteApp() {  
   return (
@@ -35,6 +36,7 @@ function RouteApp() {
         <Route path={REGISTER_APPLICANT} component={RegisterApplicantContainer} exact />
         <Route path={RESULT_PATH} component={ResultContainer} />
         <Route path={DETAIL_PATH + "/:id"} component={DetailContainer} />
+        <Route path={APPLY_JOB_PATH + "/:id"} component={ApplyJobContainer} />
         <ApplicantRoute path="/applicant">
           <Route path={APPLICANT_PROFILE_PATH} component={ApcProfileContainer} exact />
           <Route path={APPLICANT_RESUME_PATH} component={ApcResumeContainer} exact />

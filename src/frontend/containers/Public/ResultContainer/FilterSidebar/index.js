@@ -52,6 +52,7 @@ function FilterSidebar({ defaultParams, onFilterChanged }) {
       [PARAM_SALARY]: isset(salary)
     }
     onFilterChanged(filters)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyword, category, type, area, salary])
 
   return (

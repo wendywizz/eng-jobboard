@@ -5,6 +5,15 @@
   padding: 50px 45px;
   background-color: #fff;
 }
+.page-job-detail .header-detail {
+  padding: 10px 0;  
+}
+.page-job-detail .header-detail .title {
+  font-size: 28px;
+  margin-top: 7px;
+  margin-bottom: 20px;
+}
+
 .section-detail .section-content {
   font-size: 16px;
   line-height: 2em;
