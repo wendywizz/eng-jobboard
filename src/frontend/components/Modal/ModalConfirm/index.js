@@ -1,40 +1,25 @@
-import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Spinner } from 'reactstrap';
+import React from "react";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
-export default function ModalConfirm({title, text, onSubmit, buttonText, textSubmit="Yes", textClose="No", ...props}) {
-  const [modal, setModal] = useState(false);
-  const [progressing, setProgressing] = useState(false)
-
-  const toggle = () => setModal(!modal);
-
-  const _handleSubmit = () => {
-    if (onSubmit) {
-      setProgressing(true)
-
-      setTimeout(async () => {
-        await onSubmit()        
-
-        setModal(false)      
-        setProgressing(false)
-      }, 1000)
-    }    
-  }  
-
+export default function ModalConfirm({
+  title,
+  content,
+  toggle,
+  onAction,
+  textConfirm = "Yes",
+  textCancel = "No",
+  ...props
+}) {
   return (
-    <div>
-      <Button color="danger" onClick={toggle}>{buttonText}</Button>
-      <Modal isOpen={modal} toggle={toggle} className={props.className} {...props} backdrop={progressing ? "static" : true}>
-        <ModalHeader toggle={toggle}>{title}</ModalHeader>
-        <ModalBody>
-          <div dangerouslySetInnerHTML={{ __html: text }} />
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" disabled={progressing} onClick={_handleSubmit}>
-            {progressing ? <Spinner size="sm" /> : textSubmit}            
-          </Button>
-          <Button color="secondary" disabled={progressing} onClick={toggle}>{textClose}</Button>
-        </ModalFooter>
-      </Modal>
-    </div>
-  )
+    <Modal {...props}>
+      <ModalHeader>{title}</ModalHeader>
+      <ModalBody>{content}</ModalBody>
+      <ModalFooter>
+        <Button color="primary" onClick={onAction}>
+          {textConfirm}
+        </Button>
+        <Button onClick={toggle}>{textCancel}</Button>
+      </ModalFooter>
+    </Modal>
+  );
 }

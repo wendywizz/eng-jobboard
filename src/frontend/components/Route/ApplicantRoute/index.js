@@ -1,38 +1,51 @@
-import React from "react"
-import { Route, Redirect } from "react-router-dom"
-import { APPLICANT_TYPE } from "Shared/constants/user"
-import { useAuth } from "Shared/context/AuthContext"
-import { HOME_PATH } from "Frontend/configs/paths"
-import TemplateApplicant from "Frontend/components/TemplateApplicant"
-import BackToLoginContainer from "Frontend/containers/Public/ErrorContainer/BackToLoginContainer"
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { APPLICANT_TYPE } from "Shared/constants/user";
+import { useAuth } from "Shared/context/AuthContext";
+import { HOME_PATH } from "Frontend/configs/paths";
+import TemplateApplicant from "Frontend/components/TemplateApplicant";
+import BackToLoginContainer from "Frontend/containers/Public/ErrorContainer/BackToLoginContainer";
 
-export default function ApplicantRoute({ children, ...rest }) {
-  const { isAuthenticated, ready, authType } = useAuth()
+export default function ApplicantRoute({
+  children,
+  withTemplate = true,
+  ...rest
+}) {
+  const { isAuthenticated, ready, authType } = useAuth();
 
   const verifyRoute = () => {
-    if (isAuthenticated && (authType === APPLICANT_TYPE)) {
-      return true
+    if (isAuthenticated && authType === APPLICANT_TYPE) {
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   return (
     <>
-      {
-        ready ? (
-          <TemplateApplicant>
+      {ready ? (
+        <>
+          {withTemplate ? (
+            <TemplateApplicant>
+              <Route
+                {...rest}
+                render={() => {
+                  return verifyRoute() ? children : <Redirect to={HOME_PATH} />;
+                }}
+              ></Route>
+            </TemplateApplicant>
+          ) : (
             <Route
               {...rest}
               render={() => {
-                return verifyRoute() ? children : <Redirect to={HOME_PATH} />
+                return verifyRoute() ? children : <Redirect to={HOME_PATH} />;
               }}
             ></Route>
-          </TemplateApplicant>
-        ) : (
-          <BackToLoginContainer />
-        )
-      }
+          )}
+        </>
+      ) : (
+        <BackToLoginContainer />
+      )}
     </>
-  )
+  );
 }

@@ -35,7 +35,7 @@ import { useCompany } from "Shared/context/CompanyContext";
 import LoadingPage from "Frontend/components/LoadingPage";
 import JobTypeTag from "Frontend/components/JobTypeTag";
 import { formatFullDate } from "Shared/utils/datetime";
-import { ModalConfirm } from "Frontend/components/Modal";
+import { ModalConfirmAction } from "Frontend/components/Modal";
 import "./index.css";
 
 const PAGE_DISPLAY_LENGTH = 5;
@@ -197,7 +197,7 @@ function JobListContainer() {
                       >
                         แก้ไข
                       </Link>
-                      <ModalConfirm
+                      <ModalConfirmAction
                         buttonText="ลบ"
                         title="ลบข้อมูล"
                         text={`ยืนยันการลบข้อมูลงาน?<br /><b>${item.position}</b>`}

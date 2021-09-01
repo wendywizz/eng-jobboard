@@ -11,12 +11,13 @@ import Sizebox from "Frontend/components/Sizebox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { formatFullDate } from "Shared/utils/datetime";
-import CompanyInfo from "Frontend/components/CompanyInfo";
+import CardCompanyInfo from "Frontend/components/Card/CardCompanyInfo";
 import ApplyJobSection from "Frontend/components/ApplyJobSection";
 import LoadingPage from "Frontend/components/LoadingPage";
 import JobTypeTag from "Frontend/components/JobTypeTag";
 import JobTagInfo from "Frontend/components/JobTagInfo";
 import "./index.css";
+import { textLocationAsso } from "Shared/utils/location";
 
 let INIT_DATA = {
   data: null,
@@ -76,7 +77,7 @@ function DetailContainer() {
                       {formatFullDate(state.data.createdAt)}
                     </div>
                     <JobTagInfo
-                      location={state.data.districtAsso.name}
+                      location={textLocationAsso(state.data.districtAsso, state.data.provinceAsso)}
                       salaryTypeAsso={state.data.salaryTypeAsso}
                       salaryMin={state.data.salaryMin}
                       salaryMax={state.data.salaryMax}
@@ -116,7 +117,7 @@ function DetailContainer() {
             </Col>
             <Col lg={4} md={4}>
               <ApplyJobSection jobId={state.data.id} expireDate={state.data.expireAt} />
-              <CompanyInfo
+              <CardCompanyInfo
                 name={state.data.companyOwnerAsso.name}
                 about={state.data.companyOwnerAsso.about}
                 logoUrl={

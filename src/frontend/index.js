@@ -36,7 +36,7 @@ function RouteApp() {
         <Route path={REGISTER_APPLICANT} component={RegisterApplicantContainer} exact />
         <Route path={RESULT_PATH} component={ResultContainer} />
         <Route path={DETAIL_PATH + "/:id"} component={DetailContainer} />
-        <Route path={APPLY_JOB_PATH + "/:id"} component={ApplyJobContainer} />
+        <ApplicantRoute path={APPLY_JOB_PATH + "/:id"} component={ApplyJobContainer} withTemplate={false} />
         <ApplicantRoute path="/applicant">
           <Route path={APPLICANT_PROFILE_PATH} component={ApcProfileContainer} exact />
           <Route path={APPLICANT_RESUME_PATH} component={ApcResumeContainer} exact />

@@ -1,5 +1,5 @@
 .main-container {
-  min-height: 100vh;
+  min-height: calc(80vh - 60px);
 }
 .nav-header + .main-container {
   margin-top: 60px;

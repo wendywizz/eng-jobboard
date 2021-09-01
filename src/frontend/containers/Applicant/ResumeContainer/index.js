@@ -4,7 +4,7 @@ import Content, { ContentHeader } from "Frontend/components/Content";
 import ModalNewResume from "Frontend/components/ModalNewResume";
 import LoadingPage from "Frontend/components/LoadingPage";
 import CardNewResume from "./CardNewResume";
-import CardResume from "Frontend/components/CardResume";
+import CardResume from "Frontend/components/Card/CardResume";
 import { useToasts } from "react-toast-notifications";
 import ResumeReducer from "Shared/states/resume/ResumeReducer";
 import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType";

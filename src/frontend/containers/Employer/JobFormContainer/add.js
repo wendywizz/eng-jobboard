@@ -48,7 +48,7 @@ function JobFormAddContainer() {
         setSaving(false)
         history.push(EMPLOYER_JOB_PATH)
       }, 1500)
-    }, 2000)
+    }, 1000)
   }
 
   const responseMessage = (success, message) => {

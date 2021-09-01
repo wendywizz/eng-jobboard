@@ -2,7 +2,7 @@ import React from "react"
 import classNames from "classnames"
 import "./index.css"
 
-function Page({ centered=false, height="70vh", ...props }) {
+function Page({ centered=false, height, ...props }) {
   const classes = classNames({
     "page": true,
     "centered": centered

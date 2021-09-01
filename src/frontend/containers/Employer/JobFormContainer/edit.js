@@ -70,7 +70,7 @@ function JobFormEditContainer() {
       }
       setSaving(false)
       responseMessage(success, message)
-    }, 2000)
+    }, 1000)
   }
 
   const responseMessage = (success, message) => {

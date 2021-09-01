@@ -4,15 +4,15 @@ import { subText } from "Shared/utils/string";
 import iconWWW from "Frontend/assets/img/icon-www.png";
 import iconFacebook from "Frontend/assets/img/icon-facebook.png";
 import LinkIcon from "Frontend/components/LinkIcon";
-import "./index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
   faMapMarkerAlt,
   faPhoneSquare,
 } from "@fortawesome/free-solid-svg-icons";
+import "./index.css";
 
-export default function CompanyInfo({
+export default function CardCompanyInfo({
   name,
   logoUrl,
   about,
