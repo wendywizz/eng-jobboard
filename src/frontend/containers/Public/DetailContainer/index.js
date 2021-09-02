@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { formatFullDate } from "Shared/utils/datetime";
 import CardCompanyInfo from "Frontend/components/Card/CardCompanyInfo";
-import ApplyJobSection from "Frontend/components/ApplyJobSection";
+import CardApplyButton from "Frontend/containers/Public/DetailContainer/CardApplyButton";
 import LoadingPage from "Frontend/components/LoadingPage";
 import JobTypeTag from "Frontend/components/JobTypeTag";
 import JobTagInfo from "Frontend/components/JobTagInfo";
@@ -116,7 +116,7 @@ function DetailContainer() {
               </div>
             </Col>
             <Col lg={4} md={4}>
-              <ApplyJobSection jobId={state.data.id} expireDate={state.data.expireAt} />
+              <CardApplyButton jobId={state.data.id} expireDate={state.data.expireAt} />
               <CardCompanyInfo
                 name={state.data.companyOwnerAsso.name}
                 about={state.data.companyOwnerAsso.about}

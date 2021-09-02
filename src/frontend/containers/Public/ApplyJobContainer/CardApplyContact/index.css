@@ -1,0 +1,25 @@
+.card-apply-contact {
+  margin-bottom: 25px;
+}
+.card-apply-contact .heading {
+  margin-bottom: 25px;
+}
+.card-apply-contact .heading .title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.card-apply-contact .form-submit .form-group{
+  margin-bottom: 40px;
+}
+.card-apply-contact .contact .list-contact {
+  overflow: hidden;
+}
+.card-apply-contact .contact .list-contact .title{
+  float: left;
+  margin-left: 5px;
+  width: 10%;
+}
+.card-apply-contact .contact .list-contact .value {
+  float: left;
+  width: calc(90% - 5px);
+}

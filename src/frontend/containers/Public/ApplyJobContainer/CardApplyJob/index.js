@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardBody,
@@ -21,16 +21,14 @@ import { APPLICANT_RESUME_PATH } from "Frontend/configs/paths";
 import { useForm } from "react-hook-form";
 import { ModalConfirm } from "Frontend/components/Modal";
 import { applyResume } from "Shared/states/apply/ApplyDatasource";
-import { SAVE_SUCCESS, SAVE_FAILED } from "Shared/states/apply/ApplyType";
 import "./index.css";
 
-export default function CardJobApply({ userId, jobId }) {
+export default function CardApplyJob({ userId, jobId, onFinish, disableSubmit }) {
   const [ready, setReady] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [progressing, setProgressing] = useState(false);
   const [resumeItems, setResumeItems] = useState([]);
   const { register, handleSubmit, errors } = useForm();
   const [showModal, setShowModal] = useState(false);
-  const [, dispatch] = useReducer();
   const [dataValues, setDataValues] = useState();
 
   const _handleToggleModal = () => setShowModal(!showModal);
@@ -62,6 +60,7 @@ export default function CardJobApply({ userId, jobId }) {
           className={"form-control " + (errors.resume?.type && "is-invalid")}
           defaultValue=""
           ref={register({ required: true })}
+          disabled={disableSubmit}
         >
           <option value="" disabled>
             เลือกใบสมัครงาน
@@ -99,21 +98,17 @@ export default function CardJobApply({ userId, jobId }) {
     setShowModal(true);
   };
 
-  const _handleSendResume = () => {
-    console.log(dataValues)
-    /*setSending(true);
-    setTimeout(async () => {
+  const _handleSendResume = async () => {
+    setProgressing(true);
+    await setTimeout(async () => {
       if (dataValues) {
-        const { success, data, message, error } = await applyResume(dataValues);
+        const { success, message } = await applyResume(dataValues);
 
-        if (success) {
-          dispatch({ type: SAVE_SUCCESS, payload: { data, message } });
-        } else {
-          dispatch({ type: SAVE_FAILED, payload: { message, error } });
-        }
+        onFinish(success, message)
       }
-      setSending(false);
-    }, 1000);*/
+      setShowModal(false)
+      setProgressing(false);
+    }, 1000);
   };
 
   return (
@@ -121,12 +116,7 @@ export default function CardJobApply({ userId, jobId }) {
       <CardBody>
         <div className="heading">
           <h3 className="title">ส่งใบสมัครงาน</h3>
-          <p className="desc">
-            ตรงกันข้ามกับความเชื่อที่นิยมกัน Lorem Ipsum
-            ไม่ได้เป็นเพียงแค่ชุดตัวอักษรที่สุ่มขึ้นมามั่วๆ
-            แต่หากมีที่มาจากวรรณกรรมละตินคลาสสิกชิ้นหนึ่งในยุค 45
-            ปีก่อนคริสตศักราช
-          </p>
+          <p className="desc">เลือกใบสมัคร เพื่อส่งข้อมูลให้กับผู้ว่าจ้าง</p>
         </div>
         <hr />
         <Form
@@ -140,19 +130,22 @@ export default function CardJobApply({ userId, jobId }) {
             {!ready ? <SpinnerBlock size={"sm"} /> : renderResumeSelector()}
           </FormGroup>
           <FormGroup>
-            <Label>ข้อความแนะนำตัวเอง</Label>
+            <Label htmlFor="greeting">ข้อความแนะนำตัวเอง</Label>
             <textarea
               type="textarea"
               className="form-control"
               name="greeting"
               id="greeting"
-              rows="3"
+              rows="2"
               ref={register()}
+              disabled={disableSubmit}
             />
           </FormGroup>
-          <Button color="primary">
-            <FontAwesomeIcon icon={faPaperPlane} /> ส่งใบสมัครงาน
-          </Button>
+          <div className="text-right">
+            <Button color="primary" disabled={disableSubmit}>
+              <FontAwesomeIcon icon={faPaperPlane} /> ส่งใบสมัครงาน
+            </Button>
+          </div>
         </Form>
       </CardBody>
       <ModalConfirm
@@ -161,6 +154,7 @@ export default function CardJobApply({ userId, jobId }) {
         isOpen={showModal}
         toggle={_handleToggleModal}
         onAction={_handleSendResume}
+        disableButton={progressing}
       />
     </Card>
   );

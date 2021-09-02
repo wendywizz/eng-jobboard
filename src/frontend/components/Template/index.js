@@ -5,6 +5,7 @@ import "./index.css";
 
 function Template({
   headerType = "default",
+  footerType ="default",
   showHeader = true,
   showFooter = true,
   children,
@@ -16,10 +17,18 @@ function Template({
         return <DefaultHeader />;
       case "nav":
         return <NavHeader />;
+      case "no-header":
+        return <div />
     }
   };
   const renderFooter = () => {
-    return <Footer />;
+    switch (footerType) {
+      case "default": default:
+        return <Footer />;
+      case "no-footer":
+        return <div />
+    }
+    
   };
   return (
     <>

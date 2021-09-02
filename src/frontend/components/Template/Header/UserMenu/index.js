@@ -108,7 +108,7 @@ function MenuItems() {
             link: EMPLOYER_PROFILE_PATH,
           },
           {
-            text: "จัดการงาน",
+            text: "งานของฉัน",
             icon: <FontAwesomeIcon icon={faListAlt} />,
             link: EMPLOYER_JOB_PATH,
           },

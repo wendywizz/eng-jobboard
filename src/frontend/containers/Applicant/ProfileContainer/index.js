@@ -31,7 +31,7 @@ let INIT_DATA = {
 };
 function ProfileContainer() {
   const refSubmit = useRef(null)
-  const [loading, setLoading] = useState(true);
+  const [ready, setReady] = useState(false);
   const [saving, setSaving] = useState(false);
   const [state, dispatch] = useReducer(StudentReducer, INIT_DATA);
   const { register, handleSubmit, errors } = useForm()
@@ -72,25 +72,25 @@ function ProfileContainer() {
   }, [selectedProvince])
 
   useEffect(() => {
-    async function fetchData(id) {
-      const { data, error } = await getStudentByUserId(id);
-      setSelectedProvince(data.province)
-      setSelectedDistrict(data.district)
+    async function fetchData() {
+      if (authUser) {
+        const { data, error } = await getStudentByUserId(authUser.id);
+        setSelectedProvince(data.province)
+        setSelectedDistrict(data.district)
 
-      if (error) {
-        dispatch({ type: READ_FAILED, payload: { error } });
-      } else {
-        dispatch({ type: READ_SUCCESS, payload: { data } });
+        if (error) {
+          dispatch({ type: READ_FAILED, payload: { error } });
+        } else {
+          dispatch({ type: READ_SUCCESS, payload: { data } });
+        }
       }
-      setLoading(false);
+      setReady(true);
     }
 
-    if (loading) {
-      if (authUser) {
-        setTimeout(() => {
-          fetchData(authUser.id);
-        }, 1000);
-      }
+    if (!ready) {
+      setTimeout(() => {
+        fetchData();
+      }, 1000);
     }
 
     return () => {
@@ -170,16 +170,14 @@ function ProfileContainer() {
 
   return (
     <>
-      {loading ? (
+      {!ready ? (
         <LoadingPage />
-      ) : state.error ? (
-        <p>{state.error}</p>
       ) : (
         <Content>
           <ContentHeader>
             <Row>
               <Col>
-                <h1 className="title">โปรไฟล์ส่วนตัว</h1>
+                <h1 className="title">ข้อมูลส่วนตัว</h1>
               </Col>
               <Col style={{ textAlign: "right" }}>
                 <Button
@@ -347,8 +345,8 @@ function ProfileContainer() {
                       type="email"
                       id="email"
                       name="email"
-                      className={"form-control " + (errors.email?.type && "is-invalid")}                      
-                      ref={register({                        
+                      className={"form-control " + (errors.email?.type && "is-invalid")}
+                      ref={register({
                         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                       })}
                       placeholder="example@mail.com"

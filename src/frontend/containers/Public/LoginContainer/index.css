@@ -1,3 +1,11 @@
+.box-login {
+  width: 400px;
+  text-align: center;
+}
+.box-login .logo {
+  margin-bottom: 30px;
+  height: 72px;
+}
 .box-login .column{
   min-height: auto !important;
   padding: 40px 30px !important;

@@ -9,7 +9,7 @@ export function useCompany() {
 }
 
 export function CompanyProvider({ children }) {
-  const [loaded, setLoaded] = useState(false)
+  const [ready, setReady] = useState(false)
   const [companyId, setCompanyId] = useState()
   const {authUser} = useAuth()
 
@@ -17,23 +17,23 @@ export function CompanyProvider({ children }) {
     const { data } = await getCompanyByOwner(id)
     if (data) {
       setCompanyId(data.id)
-      setLoaded(true)
+      setReady(true)
     }
   }
 
   useEffect(() => {    
-    if (!loaded && authUser) {            
+    if (!ready && authUser) {            
       const ownerId = authUser.id
       getData(ownerId)
     }
-  }, [authUser, loaded])
+  }, [authUser, ready])
 
-  const value = {
+  const values = {
     companyId
   }
 
   return (
-    <CompanyContext.Provider value={value}>
+    <CompanyContext.Provider value={values}>
       {children}
     </CompanyContext.Provider>
   )

@@ -1,10 +1,10 @@
-.section-apply-job {
+.card-apply-button {
   margin-bottom: 25px;
 }
-.section-apply-job .btn-apply {
+.card-apply-button .btn-apply {
   margin-bottom: 10px;
 }
-.section-apply-job .alert-day {
+.card-apply-button .alert-day {
   font-size: 12px;
   padding-top: 7px;
   padding-bottom:7px;

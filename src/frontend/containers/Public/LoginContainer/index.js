@@ -7,9 +7,10 @@ import { useAuth } from "Shared/context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { HOME_PATH } from "Frontend/configs/paths";
-import "./index.css";
 import Page from "Frontend/components/Page";
 import Box from "Frontend/components/Box";
+import imgLogo from "Frontend/assets/img/nav-logo.png"
+import "./index.css";
 
 function LoginContainer() {
   const { signin } = useAuth();
@@ -37,10 +38,10 @@ function LoginContainer() {
   };
 
   return (
-    <Template>
-      <Page centered={true}>
-        <Box className="box-login">
-          <h1>Login</h1>
+    <Template headerType="no-header" footerType="no-footer">
+      <Page centered={true} height="90vh">
+        <Box className="box-login">          
+          <img className="logo" src={imgLogo} alt="logo" />
           <Form onSubmit={handleSubmit(_handleSubmit)}>
             <div className="input-group form-group">
               <div className="input-group-prepend">
@@ -102,7 +103,7 @@ function LoginContainer() {
               </Button>
               {message && <p style={{ color: "red" }}>{message}</p>}
             </div>
-          </Form>
+          </Form>          
         </Box>
       </Page>
     </Template>

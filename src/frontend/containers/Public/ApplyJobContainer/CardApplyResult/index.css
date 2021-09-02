@@ -1,0 +1,19 @@
+.card-apply-result {
+  margin-bottom: 50px;
+  min-width: 40vw;
+}
+.card-apply-result .card-body{
+  text-align: center;
+  padding: 50px 40px;
+}
+.card-apply-result .image {
+  height: 80px;
+  margin-bottom: 8px;
+}
+.card-apply-result .title {
+  font-size: 24px;
+}
+.card-apply-result .desc{
+  font-size: 16px;
+  margin-bottom: 25px;
+}

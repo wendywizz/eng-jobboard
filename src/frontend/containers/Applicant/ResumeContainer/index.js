@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Row, Col } from "reactstrap";
 import Content, { ContentHeader } from "Frontend/components/Content";
-import ModalNewResume from "Frontend/components/ModalNewResume";
+import ModalNewResume from "Frontend/components/Modal/ModalNewResume";
 import LoadingPage from "Frontend/components/LoadingPage";
 import CardNewResume from "./CardNewResume";
 import CardResume from "Frontend/components/Card/CardResume";

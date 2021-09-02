@@ -19,6 +19,7 @@ export default function CardJobInfo({
       <CardBody>
         <JobTypeTag type={jobTypeAsso.id} label={jobTypeAsso.name} />
         <h1 className="title">{position}</h1>
+        <br />
         <JobTagInfo
           location={location}
           salaryTypeAsso={salaryTypeAsso}
