@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { AuthProvider, useAuth } from "Shared/context/AuthContext";
 import { APPLICANT_TYPE, EMPLOYER_TYPE } from "Shared/constants/user";
 import {
+  APPLICANT_APPLYING_PATH,
   APPLICANT_PROFILE_PATH,
   APPLICANT_RESUME_PATH,
   APPLICANT_SETTING_PATH,
@@ -24,6 +25,7 @@ import {
   faList,
   faListAlt,
   faPowerOff,
+  faRedo,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import blankUser from "Frontend/assets/img/blank-user.jpg";
@@ -92,6 +94,11 @@ function MenuItems() {
             text: "ใบสมัครงาน",
             icon: <FontAwesomeIcon icon={faFile} />,
             link: APPLICANT_RESUME_PATH,
+          },
+          {
+            text: "งานที่กำลังสมัคร",
+            icon: <FontAwesomeIcon icon={faRedo} />,
+            link: APPLICANT_APPLYING_PATH
           },
           {
             text: "ตั้งค่า",

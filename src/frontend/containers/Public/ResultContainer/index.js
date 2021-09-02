@@ -4,7 +4,7 @@ import { Row, Col, Input } from "reactstrap";
 import ReactPaginate from "react-paginate";
 import Template from "Frontend/components/Template";
 import Page from "Frontend/components/Page";
-import ListJobItem from "Frontend/components/ListJobItem";
+import ListJobItem from "Frontend/components/List/ListJobItem";
 import FilterSidebar from "./FilterSidebar";
 import { searchJob } from "Shared/states/job/JobDatasource";
 import JobReducer from "Shared/states/job/JobReducer";

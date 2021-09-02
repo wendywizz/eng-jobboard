@@ -11,7 +11,7 @@ import {
   SALARY_STRUCTURAL_TYPE,
 } from "Shared/constants/salary-type";
 import defaultLogo from "Frontend/assets/img/default-logo.jpg";
-import JobTypeTag from "../JobTypeTag";
+import JobTypeTag from "Frontend/components/JobTypeTag";
 import "./index.css";
 
 function ListJobItem({

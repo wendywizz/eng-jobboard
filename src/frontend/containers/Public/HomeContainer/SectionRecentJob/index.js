@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useEffect } from "react";
-import ListJobItem from "Frontend/components/ListJobItem";
+import ListJobItem from "Frontend/components/List/ListJobItem";
 import Section from "Frontend/components/Section";
 import { searchJob } from "Shared/states/job/JobDatasource";
 import JobReducer from "Shared/states/job/JobReducer";

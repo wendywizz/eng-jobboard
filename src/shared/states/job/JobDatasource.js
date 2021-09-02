@@ -5,7 +5,6 @@ import { apiEndpoint } from "Frontend/configs/uri"
 
 async function createJob(newData) {
   let rSuccess = false, rData = null, rMessage = null, rError = null
-
   const uri = `${apiEndpoint}job/add`
 
   await sendPost(uri, newData)

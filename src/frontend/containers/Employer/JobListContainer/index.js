@@ -25,10 +25,7 @@ import {
   EMPLOYER_JOB_PATH,
 } from "Frontend/configs/paths";
 import { ALL, ACTIVE, INACTIVE } from "Shared/constants/employer-job-status";
-import {
-  deleteJob,
-  getJobOfCompany
-} from "Shared/states/job/JobDatasource";
+import { deleteJob, getJobOfCompany } from "Shared/states/job/JobDatasource";
 import JobReducer from "Shared/states/job/JobReducer";
 import { READ_SUCCESS, READ_FAILED } from "Shared/states/job/JobType";
 import { useCompany } from "Shared/context/CompanyContext";
@@ -45,7 +42,7 @@ let INIT_DATA = {
 };
 function JobListContainer() {
   const query = useQuery();
-  const [loading, setLoading] = useState(true);
+  const [ready, setReady] = useState(true);
   const [selectedStatus, setSelectedStatus] = useState();
   const [currentPage, setCurrentPage] = useState(0);
   const [state, dispatch] = useReducer(JobReducer, INIT_DATA);
@@ -65,11 +62,12 @@ function JobListContainer() {
     } else {
       dispatch({ type: READ_SUCCESS, payload: { data, itemCount } });
     }
-    setLoading(false);
+    setReady(true);
   };
 
   useEffect(() => {
     const status = query.get("status");
+
     if (status) {
       setSelectedStatus(status);
     } else {
@@ -78,7 +76,7 @@ function JobListContainer() {
   }, [selectedStatus, query]);
 
   useEffect(() => {
-    if (loading) {
+    if (!ready) {
       if (companyId) {
         setTimeout(() => {
           getData(companyId);
@@ -91,8 +89,8 @@ function JobListContainer() {
         ...state
       }
     }*/
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading, companyId, currentPage]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, companyId, currentPage]);
 
   const renderPagination = () => {
     if (state.itemCount > 0) {
@@ -122,7 +120,7 @@ function JobListContainer() {
 
   const _handlePageChanged = ({ selected }) => {
     setCurrentPage(selected);
-    setLoading(true);
+    setReady(false);
   };
 
   /*const _handleChangeActive = async (e, id) => {
@@ -132,8 +130,8 @@ function JobListContainer() {
 
   const _handleRemove = async (id) => {
     await deleteJob(id).then(() => {
-      window.location.reload()
-    })
+      window.location.reload();
+    });
   };
 
   return (
@@ -167,49 +165,51 @@ function JobListContainer() {
         </Row>
       </ContentHeader>
       <ContentBody box={false} padding={false}>
-        {loading ? (
+        {!ready ? (
           <LoadingPage />
-        ) : state.error ? (
-          <p>{state.error}</p>
         ) : (
-          <ListGroup className="list-group-job">
-            {state.data.map((item, index) => (
-              <ListGroupItem key={index} className="list-group-jobitem">
-                <div className="detail">
-                  <div className="job-type">
-                    <JobTypeTag
-                      type={item.jobTypeAsso.id}
-                      label={item.jobTypeAsso.name}
-                    />
-                  </div>
-                  <span className="title">{item.position}</span>
-                  <span className="amount">{`จำนวนรับ ${item.amount} ตำแหน่ง`}</span>
-                  <span className="deadline">{`สิ้นสุดวันที่ ${formatFullDate(
-                    item.expired_at
-                  )}`}</span>
-                </div>
-                <div className="action">
-                  <div className="view">
-                    <ButtonGroup>
-                      <Link
-                        to={`${EMPLOYER_JOB_EDIT_PATH}/${item.id}`}
-                        className="btn btn-outline-primary"
-                      >
-                        แก้ไข
-                      </Link>
-                      <ModalConfirmAction
-                        buttonText="ลบ"
-                        title="ลบข้อมูล"
-                        text={`ยืนยันการลบข้อมูลงาน?<br /><b>${item.position}</b>`}
-                        keyboard={false}
-                        onSubmit={() => _handleRemove(item.id)}
+          <>
+            state.error ? (<p>{state.error}</p>) : (
+            <ListGroup className="list-group-job">
+              {state.data.map((item, index) => (
+                <ListGroupItem key={index} className="list-group-jobitem">
+                  <div className="detail">
+                    <div className="job-type">
+                      <JobTypeTag
+                        type={item.jobTypeAsso.id}
+                        label={item.jobTypeAsso.name}
                       />
-                    </ButtonGroup>
+                    </div>
+                    <span className="title">{item.position}</span>
+                    <span className="amount">{`จำนวนรับ ${item.amount} ตำแหน่ง`}</span>
+                    <span className="deadline">{`สิ้นสุดวันที่ ${formatFullDate(
+                      item.expired_at
+                    )}`}</span>
                   </div>
-                </div>
-              </ListGroupItem>
-            ))}
-          </ListGroup>
+                  <div className="action">
+                    <div className="view">
+                      <ButtonGroup>
+                        <Link
+                          to={`${EMPLOYER_JOB_EDIT_PATH}/${item.id}`}
+                          className="btn btn-outline-primary"
+                        >
+                          แก้ไข
+                        </Link>
+                        <ModalConfirmAction
+                          buttonText="ลบ"
+                          title="ลบข้อมูล"
+                          text={`ยืนยันการลบข้อมูลงาน?<br /><b>${item.position}</b>`}
+                          keyboard={false}
+                          onSubmit={() => _handleRemove(item.id)}
+                        />
+                      </ButtonGroup>
+                    </div>
+                  </div>
+                </ListGroupItem>
+              ))}
+            </ListGroup>
+            )
+          </>
         )}
       </ContentBody>
       <ContentFooter>{renderPagination()}</ContentFooter>

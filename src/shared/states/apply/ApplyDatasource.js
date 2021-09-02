@@ -1,5 +1,38 @@
 import { sendGet, sendPost } from "Shared/utils/request"
 import { apiEndpoint } from "Frontend/configs/uri"
+import { ApplyMapper } from "./ApplyMapper"
+
+async function listApplyingByUser(userId, status, length, start) {
+  let rData = null, rItemCount = null, rMessage = null, rError = null
+  const uri = `${apiEndpoint}apply/list-by-user`
+
+  const query = {
+    user: userId,
+    status,
+    length,
+    start
+  }
+  await sendGet(uri, query)
+    .then(res => res.json())
+    .then(result => {
+      const { data, itemCount, message, error } = result
+
+      rData = itemCount > 0 ? data.map(value => ApplyMapper(value)) : []
+      rItemCount = itemCount
+      rMessage = message
+      rError = error
+    })
+    .catch(e => {
+      rError = e.message
+    })
+    
+  return {
+    data: rData,
+    itemCount: rItemCount,
+    message: rMessage,
+    error: rError
+  }
+}
 
 async function applyResume(newData) {
   let rSuccess = false, rMessage = null, rError = null
@@ -37,5 +70,6 @@ async function checkCanApplyJobByUser(jobId, userId) {
 
 export {
   applyResume,
-  checkCanApplyJobByUser
+  checkCanApplyJobByUser,
+  listApplyingByUser
 }

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AuthProvider } from "Shared/context/AuthContext";
 import { ToastProvider } from "react-toast-notifications";
 import { ApplicantRoute, EmployerRoute } from "./components/Route";
-import { APPLICANT_PROFILE_PATH, APPLICANT_RESUME_PATH, APPLICANT_SETTING_PATH, APPLY_JOB_PATH, DETAIL_PATH, EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH, HOME_PATH, LOGIN_PATH, REGISTER_APPLICANT, REGISTER_EMPLOYER, REGISTER_PATH, RESULT_PATH } from "./configs/paths";
+import { APPLICANT_APPLYING_PATH, APPLICANT_PROFILE_PATH, APPLICANT_RESUME_PATH, APPLICANT_SETTING_PATH, APPLY_JOB_PATH, DETAIL_PATH, EMPLOYER_JOB_ADD_PATH, EMPLOYER_JOB_EDIT_PATH, EMPLOYER_JOB_PATH, EMPLOYER_PROFILE_PATH, EMPLOYER_RESUME_PATH, EMPLOYER_SETTING_PATH, HOME_PATH, LOGIN_PATH, REGISTER_APPLICANT, REGISTER_EMPLOYER, REGISTER_PATH, RESULT_PATH } from "./configs/paths";
 import {
   EmprProfileContainer,
   EmprJobFormAddContainer,
@@ -13,7 +13,7 @@ import {
   EmprSettingContainer
 } from "Frontend/containers/Employer"
 import { DetailContainer, HomeContainer, LoginContainer, RegisterTypeContainer, RegisterApplicantContainer, RegisterEmployerContainer, ResultContainer } from "./containers/Public";
-import { ApcProfileContainer, ApcResumeContainer, ApcSettingContainer } from "./containers/Applicant";
+import { ApcApplyingContainer, ApcProfileContainer, ApcResumeContainer, ApcSettingContainer } from "./containers/Applicant";
 import { E404Container } from "./containers/Public/ErrorContainer";
 
 import "jquery/dist/jquery";
@@ -40,6 +40,7 @@ function RouteApp() {
         <ApplicantRoute path="/applicant">
           <Route path={APPLICANT_PROFILE_PATH} component={ApcProfileContainer} exact />
           <Route path={APPLICANT_RESUME_PATH} component={ApcResumeContainer} exact />
+          <Route path={APPLICANT_APPLYING_PATH} component={ApcApplyingContainer} exact />
           <Route path={APPLICANT_SETTING_PATH} component={ApcSettingContainer} exact />
         </ApplicantRoute>
         <EmployerRoute path="/employer">
